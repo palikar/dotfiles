@@ -1,0 +1,498 @@
+#+STARTUP: overview
+
+#+TITLE: Configuration file for my EMACS
+#+AUTHOR: Stanislav Arnaudov
+#+DATE: 18-04-2018
+#+EMAIL: stanislav_ts@abv.bg
+#+LANGUAGE: En
+#+EXPORT_FILE_NAME: config_emacs
+#+CREATOR: Emacs 24.3.50.3 (Org mode 8.0.3)
+
+* Abstract
+This is the cofiguration of my EMACS-Editor written in [[https://orgmode.org/][Org mode]] in literate style programming. I've pretty much hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
+Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
+Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use =use-package= as I found that it actually makes my emacs slugish on windows and I actually prefer to have everything in my local config all the time.\\
+Download the repo with
+#+BEGIN_EXAMPLE
+git clone https://github.com/palikar/emacs-confiDEL Bundleg
+#+END_EXAMPLE
+* Repos and packages
+The default packages repo for emacs is ELPA. ELPA is not super good, we also want ELPA. +ELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is her now!
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(package-initialize)
+
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
+(add-to-list 'package-archives '("(match-end )lpa2" . "http://www.mirrorservice.org/sites/melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa3" . "http://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
+
+ 
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+(package-refresh-contents)
+#+END_SRC
+** Installing packages
+I use a lot of aditional packages and like to keep them local and installed. I've tried =use-package= but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
+#+BEGIN_SRC emacs-lisp
+ ; all of my packages that I want in my config
+(setq package-list '(alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-complete auto-org-md base16-theme beacon clang-format cmake-ide color-theme-modern company-c-headers company-emacs-eclim company-irony company-jedi company-rtags crux ctags-update dashboard doom-themes drag-stuff dumb-jump eclim elpy emmet-mode evil expand-region find-file-in-project flycheck-irony function-args goto-chg haskell-mode helm-projectile helm-rtags helm helm-core highlight-indentation hungry-delete irony-eldoc irony jedi-core epc ctable concurrent latex-pretty-symbols levenshtein lorem-ipsum meghanada company moe-theme molokai-theme monokai-theme mvn neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-hugo org ox-twbs page-break-lines pdf-tools popup pretty-mode python-environment deferred pyvenv rtags simple-httpd smart-hungry-delete smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key virtualenvwrapper web-mode workgroups2 f s anaphora wrap-region xml-rpc yasnippet-snippets yasnippet zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize))
+
+; activate all the packages (in particular autoloads)
+(package-initialize)
+
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+
+#+END_SRC
+* Interface tweaks
+Making the whole =emacs= experience a tiny bit better with those fixes of the interface of the editor
+- Startup screen is anoying
+- The toolbar is wasting sapce
+- =f5= should function as a refresh in firefox
+- Fringes waste space
+- Numbered lines come in handy
+- Highlighting the current line is pretty =übersichtlich=
+- Pretty sybols like \lambda over the whole place is pretty cool
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+(fset 'yes-or-no-p 'y-or-n-p)
+(global-set-key (kbd "<f5>") 'revert-buffer)
+(fringe-mode '(0 . 0))
+(setq-default cursor-type 'bar)
+(global-linum-mode t) 
+(global-visual-line-mode 1)
+(global-hl-line-mode 1)    
+(global-prettify-symbols-mode +1)
+
+#+END_SRC
+* Behaiviour tweaks
+Some quick fixes for intuitinve and streight forwawrd editing. Generally I strive for the cleanest designf the interface possible so I remove a lot from the unneccesery things that come by default with EMACS.
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+(delete-selection-mode 1)
+(setq auto-save-default nil)
+(setq backup-inhibited t)
+(cua-mode 1)
+(load "~/.emacs.d/lisp/syntax-subword")
+(global-syntax-subword-mode 1) 
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq mouse-wheel-follow-mouse nil)
+(setq scroll-step 1)
+
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+
+#+END_SRC
+** Copy line below
+Use =Alt-up/down= as in any other editor to copy lines 
+#+BEGIN_SRC emacs-lisp
+(defun duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank)
+)
+(global-set-key [(control shift down)]  'duplicate-line)
+(global-set-key [(control shift up)]  'duplicate-line)
+
+
+
+
+
+
+    
+#+END_SRC
+** Making parantesis handy and smart
+Those are pretty much a must when editing code...and also anything else
+- Select region and wrap it up with a sybol
+  - Cofigured with the standards
+  - Cofigured with the formating of =org-mode=
+- Insert a opening bracecket and the closing is inserted automagically!
+#+BEGIN_SRC emacs-lisp
+(require 'wrap-region)
+(wrap-region-add-wrapper "=" "=")
+(wrap-region-add-wrapper "/" "/")
+(wrap-region-add-wrapper "_" "_")
+(wrap-region-add-wrapper "+" "+")
+(wrap-region-add-wrapper "*" "*")
+
+(wrap-region-global-mode t)
+
+
+(require 'smartparens)
+(smartparens-global-mode 1)
+
+#+END_SRC
+* Org-mode
+Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writting/. Therefore some basic org-mode configuraion comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporterrs for =.org= files that just make my life easier. 
+#+BEGIN_SRC emacs-lisp
+(require 'org-bullets)
+(require 'ox-beamer)
+(require 'ox-twbs)
+(require 'ox-hugo)
+
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(custom-set-variables
+    '(org-directory "~/Dropbox/orgfiles")
+    '(org-default-notes-file (concat org-directory "/notes.org"))
+    '(org-export-html-postamble nil)
+    '(org-hide-leading-stars t)
+    '(org-startup-folded (quote overview))
+    '(org-startup-indented t)
+)
+
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cc" 'org-capture)
+
+(setq org-log-done 'time)
+
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(setq org-pretty-entities t)
+
+
+#+END_SRC
+The codeblocks should be formated with the native envinroment of the language
+#+BEGIN_SRC emacs-lisp
+(setq org-src-fontify-natively t
+      org-src-tab-acts-natively t
+      org-confirm-babel-evaluate nil
+      org-edit-src-content-indentation 0)
+#+END_SRC 
+
+* Windowing
+COuple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
+#+BEGIN_SRC emacs-lisp
+(defun transpose-windows (arg)
+   "Transpose the buffers shown in two windows."
+   (interactive "p")
+   (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+     (while (/= arg 0)
+       (let ((this-win (window-buffer))
+             (next-win (window-buffer (funcall selector))))
+         (set-window-buffer (selected-window) next-win)
+         (set-window-buffer (funcall selector) this-win)
+         (select-window (funcall selector)))
+       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+
+ (define-key ctl-x-4-map (kbd "t") 'transpose-windows)
+ 
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+ 
+
+
+#+END_SRC
+
+* Better searching
+=Isearch= is great but I have ever wanted a isearch on steroids...or something with helm infused isearch. =Swiper= is exaclty that. =Anzu= is a mode line tweak that displays the number of found things by isearch but not by swiper. Yes, I should probably fix that some time in the future.
+#+BEGIN_SRC emacs-lisp
+(require 'swiper)
+(global-set-key (kbd "C-s")  'swiper)
+
+(require 'anzu)
+(global-anzu-mode +1)
+(define-key isearch-mode-map [remap isearch-query-replace]  #'anzu-isearch-query-replace)
+
+#+END_SRC
+
+* Helm goodies
+#+BEGIN_SRC emacs-lisp
+
+(require 'helm)
+(require 'helm-config)
+(helm-mode 1)
+
+(global-set-key (kbd "C-x C-f") 'helm-find-files)  
+(setq helm-autoresize-max-height 0)
+(setq helm-autoresize-min-height 50)
+(helm-autoresize-mode 1)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-c b") 'helm-semantic-or-imenu)
+(global-set-key (kbd "M-s") 'helm-projectile-grep)
+
+#+END_SRC
+
+* Avy
+Navigate by searching for a letter on the screen and jumping to it.\\
+See https://github.com/abo-abo/avy for more info.
+#+BEGIN_SRC emacs-lisp
+(require 'avy)
+  
+#+END_SRC
+* Company
+#+BEGIN_SRC emacs-lisp
+(require 'company)
+
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 3)
+(global-company-mode t)
+(global-set-key (kbd "M-m") 'company-complete)
+
+
+(require 'company-meghanada)
+(add-to-list 'company-backends 'company-meghanada)
+
+(require' company-irony)
+(add-to-list 'company-backends 'company-irony)
+
+(require' irony)
+
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+(require 'company-jedi)
+(add-hook 'python-mode-hook 'jedi:setup)
+       
+
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+
+
+
+#+END_SRC
+
+* Themes and modeline
+#+BEGIN_SRC emacs-lisp
+     
+#+END_SRC  
+* Reveal.js
+#+BEGIN_SRC emacs-lisp :tangle no
+    (require 'ox-reveal)
+
+    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+    (setq org-reveal-mathjax t)
+
+    (require 'htmlize)
+#+END_SRC
+
+* Flycheck
+#+BEGIN_SRC emacs-lisp
+    (require 'flycheck)  
+    (global-flycheck-mode t)
+#+END_SRC
+
+* Python
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC  
+* Yasnippet
+#+BEGIN_SRC emacs-lisp
+    (require 'yasnippet)
+    (yas-global-mode 1)
+    (require 'yasnippet-snippets)
+#+END_SRC
+* Misc packages
+#+BEGIN_SRC emacs-lisp
+  
+  ; flashes the cursor's line when you scroll
+  (require 'beacon)
+  (beacon-mode 1)
+  
+  
+  ; deletes all the whitespace when you hit backspace or delete
+  (require 'hungry-delete)
+  (global-hungry-delete-mode)
+    
+  
+
+  ; expand the marked region in semantic increments (negative prefix to reduce region)
+  (require 'expand-region)
+  (global-set-key (kbd "C-c =") 'er/expand-region)
+    
+
+  (setq save-interprogram-paste-before-kill t)
+
+
+  (global-auto-revert-mode 1) ;; you might not want this
+  (setq auto-revert-verbose nil) ;; or this
+
+#+END_SRC
+
+* Folding code
+#+BEGIN_SRC emacs-lisp
+   (add-hook 'prog-mode-hook 'hs-minor-mode)
+   (global-set-key (kbd "M-[") 'hs-show-all)
+   (global-set-key (kbd "M-]") 'hs-hide-all)
+   (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
+   (global-set-key (kbd "<C-[>") 'hs-toggle-hiding)
+#+END_SRC
+
+* Programming
+#+BEGIN_SRC emacs-lisp
+(defun comment-or-uncomment-region-or-line ()
+    "Comments or uncomments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+        (if (region-active-p)
+            (setq beg (region-beginning) end (region-end))
+            (setq beg (line-beginning-position) end (line-end-position)))
+        (comment-or-uncomment-region beg end)))
+
+(global-set-key (kbd "C-/") 'comment-or-uncomment-region-or-line)
+(setq c-default-style
+      '((java-mode . "java") (other . "awk")))
+(setq-default c-default-style "awk")
+(setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 2)
+
+(add-hook 'proge-mode-hook 'semmantic-highlight-func-mode)
+(show-paren-mode 1)
+
+(require 'function-args)
+(fa-config-default)
+(set-default 'semantic-case-fold t)
+
+#+END_SRC
+* Text edeting
+#+BEGIN_SRC emacs-lisp
+
+(require 'drag-stuff)
+
+(drag-stuff-global-mode)
+(global-set-key (kbd "M-<up>") 'drag-stuff-up)
+(global-set-key (kbd "M-<down>") 'drag-stuff-down)
+#+END_SRC
+* Web Mode
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+* Projectile
+#+BEGIN_SRC emacs-lisp
+ (require 'projectile)
+ (projectile-global-mode)
+ (setq projectile-completion-system 'helm)
+ (global-set-key [f4] 'projectile-find-other-file)
+#+END_SRC
+* Neotree
+#+BEGIN_SRC emacs-lisp
+(require 'neotree)
+(require 'all-the-icons)
+
+(global-set-key [f1] 'neotree-toggle)
+(global-set-key [f2] 'neotree-find)
+
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-show-hidden-files t)
+(setq projectile-switch-project-action 'neotree-projectile-action)
+
+#+END_SRC
+
+* Sublime features
+#+BEGIN_SRC emacs-lisp
+
+(require 'sublimity)
+(require 'sublimity-scroll)
+
+(setq sublimity-scroll-weight 10
+      sublimity-scroll-drift-length 5)
+      
+
+(sublimity-mode 1)
+
+#+END_SRC
+* PDF-Tools
+#+BEGIN_SRC emacs-lisp
+
+(require 'pdf-tools)
+(require 'org-pdfview)
+
+#+END_SRC
+
+* Pretty startup screen
+
+#+BEGIN_SRC emacs-lisp
+
+(require 'dashboard)
+
+(setq dashboard-banner-logo-title "Welcome to the Emacs of Stanislav Arnaudov")
+(setq dashboard-startup-banner 'official)
+(setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)
+                        (agenda . 5)
+                        (registers . 5)))
+(dashboard-setup-startup-hook)
+
+#+END_SRC
+* Sessios persistence
+#+BEGIN_SRC emacs-lisp
+(require 'workgroups2)
+(workgroups-mode 1)  
+
+(setq wg-prefix-key (kbd "C-c z"))
+(setq wg-session-file "~/.emacs.d/.emacs_workgroups")
+(setq wg-emacs-exit-save-behavior           'save)      ; Options: 'save 'ask nil
+(setq wg-workgroups-mode-exit-save-behavior 'save)      ; Options: 'save 'ask nil
+(setq wg-mode-line-display-on t)          
+(setq wg-flag-modified t)
+(setq wg-mode-line-decor-left-brace "["
+      wg-mode-line-decor-right-brace "]"
+      wg-mode-line-decor-divider ":")
+#+END_SRC
+* Java
+#+BEGIN_SRC emacs-lisp
+(require 'meghanada)
+(add-hook 'java-mode-hook
+          (lambda ()
+            ;; meghanada-mode on
+            (meghanada-mode t)
+            (flycheck-mode +1)
+            (setq c-basic-offset 2)
+            ;; use code format
+            (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
+(cond
+   ((eq system-type 'windows-nt)
+    (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
+    (setq meghanada-maven-path "mvn.cmd"))
+   (t
+    (setq meghanada-java-path "java")
+    (setq meghanada-maven-path "mvn")))
+
+
+
+
+#+END_SRC
+* Things that need to be done in the dot-files
+** TODO Configure better web-mode support
+Is done in the config file that we use at work
+** TODO Set up the key bindings for =avy=
+could be *REALLY* usefule
+** DONE Move all the repos in one place
+CLOSED: [2018-05-01 Tue 23:00]
+** DONE Clean the /.emacs/ file
+CLOSED: [2018-05-01 Tue 23:02]
+It's pretty good now
+** DONE Upload the file to a repo
+CLOSED: [2018-05-01 Tue 23:03]
+If you are reading this and you are not me....well, then I guess is to be marked as /DONE/!
+** DONE Make an archive with the .emacs.d directory
+CLOSED: [2018-05-01 Tue 23:03]
+Some files of it at least!
+** TODO Put the whole thing on the blog
