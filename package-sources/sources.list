@@ -1,0 +1,15 @@
+# 
+
+# deb cdrom:[Official Debian GNU/Linux Live 9.4.0 gnome 2018-03-10T12:39]/ stretch main
+
+#deb cdrom:[Official Debian GNU/Linux Live 9.4.0 gnome 2018-03-10T12:39]/ stretch main
+
+deb http://ftp.uni-stuttgart.de/debian/ testing  main non-free contrib
+deb-src http://ftp.uni-stuttgart.de/debian/ testing main  non-free contrib
+
+deb http://security.debian.org/debian-security testing/updates main contrib non-free
+deb-src http://security.debian.org/debian-security testing/updates main contrib non-free
+
+# stretch-updates, previously known as 'volatile'
+deb http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
+deb-src http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
