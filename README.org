@@ -46,4 +46,4 @@ Because no system is complete without some pimp-ass wallpapers. My choices - yes
 * References
 For my dotfiles I've extensively taken inspiration from:
 - [[https://mathiasbynens.be/][Mathias Bynens]] and his [[https://github.com/mathiasbynens/dotfiles][dotfile]] 
-- [[https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789][This]] very good post on startign with dotfiles
+- [[https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789][This]] very good post on starting up with dotfiles

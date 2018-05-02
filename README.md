@@ -1,31 +1,31 @@
 
 # Table of Contents
 
-1.  [Abstract](#org9d4e212)
-    1.  [Warning](#orgc7f006e)
-2.  [Installation](#orgb4b639e)
-3.  [Emacs](#orge8291b4)
-4.  [Package sources](#org35055f2)
-5.  [Wallpapers](#org484690c)
-6.  [References](#orgbd50438)
+1.  [Abstract](#orgbaba7a3)
+    1.  [Warning](#org6f5d1fa)
+2.  [Installation](#org8b928e9)
+3.  [Emacs](#org437e135)
+4.  [Package sources](#orgf03114a)
+5.  [Wallpapers](#orgdd0d023)
+6.  [References](#orgd662b4c)
 
 
 
-<a id="org9d4e212"></a>
+<a id="orgbaba7a3"></a>
 
 # Abstract
 
 Everyone loves setting up their system from scratch as easy as possible. org layerThat's why much smarter people than me has come up with the idea of *dotfiles*. A collection of scripts, configuration-files and system settings that can make your whole *system installation* as seamless as possible. My final goal with this 'project' of sorts is to be able to install fresh Debian, run one *master .sh file* and then just wait couple of hours unitl everything is getting ready by itself&#x2026;time in which I can, I don't know, drink tea and watch movies or something.
 
 
-<a id="orgc7f006e"></a>
+<a id="org6f5d1fa"></a>
 
 ## Warning
 
 **Please!** Do not run any of my scripts without understanding what they do. Look at the config files and choose the settings that you like and discard those you don't. Creating your dotfiles is pretty much an art.
 
 
-<a id="orgb4b639e"></a>
+<a id="org8b928e9"></a>
 
 # Installation
 
@@ -53,7 +53,7 @@ For not I've setup things for:
 you can install everything in `package_list.txt`. With a little bit of modification you can also install everything in `package_all.txt`. 
 
 
-<a id="orge8291b4"></a>
+<a id="org437e135"></a>
 
 # Emacs
 
@@ -66,7 +66,7 @@ For setting up the emacs config just use:
 It's as bash script file that will just copy the `.emacs` file and some little things of the `.emacs.d` directory in the appropriate places.
 
 
-<a id="org35055f2"></a>
+<a id="orgf03114a"></a>
 
 # Package sources
 
@@ -77,19 +77,19 @@ For my Debian system I use diffetent sources for the apt-packages from those wit
 you can set those up on your system.(With that you can also install Spotify on your system ;) )
 
 
-<a id="org484690c"></a>
+<a id="orgdd0d023"></a>
 
 # Wallpapers
 
 Because no system is complete without some pimp-ass wallpapers. My choices - yes, those are kinda old classics which inherantly makes them 'boring' but hey&#x2026;.the are still nice.
 
 
-<a id="orgbd50438"></a>
+<a id="orgd662b4c"></a>
 
 # References
 
 For my dotfiles I've extensively taken inspiration from:
 
 -   [Mathias Bynens](https://mathiasbynens.be/) and his [dotfile](https://github.com/mathiasbynens/dotfiles)
--   [This](https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789) very good post on startign with dotfiles
+-   [This](https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789) very good post on starting up with dotfiles
 
