@@ -382,6 +382,50 @@ See https://github.com/abo-abo/avy for more info.
 * Web Mode
 #+BEGIN_SRC emacs-lisp
 
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+
+  (require 'emmet-mode)
+  (emmet-mode 1)
+
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-style-padding 1)
+  (setq web-mode-script-padding 1)
+  (setq web-mode-block-padding 0)
+
+  (setq web-mode-extra-auto-pairs
+      '(("erb"  . (("beg" "end")))
+        ("php"  . (("beg" "end")
+                   ("beg" "end")))
+       ))
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-current-column-highlight t)
+
+
+  (setq web-mode-ac-sources-alist
+  '(("css" . (ac-source-css-property))
+    ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+
+  
+  
+)
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
 #+END_SRC
 * Projectile
 #+BEGIN_SRC emacs-lisp
@@ -488,7 +532,8 @@ See https://github.com/abo-abo/avy for more info.
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 #+END_SRC
 * Things that need to be done in the dot-files
-** TODO Configure better web-mode support
+** DONE Configure better web-mode support
+CLOSED: [2018-05-02 Wed 12:53]
 Is done in the config file that we use at work
 ** TODO Set up the key bindings for =avy=
 could be *REALLY* usefule
