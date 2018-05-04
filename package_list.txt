@@ -26,3 +26,5 @@
  gnome
  openssl
  snapd 
+ openjfx
+ locate
