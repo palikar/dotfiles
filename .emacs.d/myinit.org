@@ -90,6 +90,7 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
+(setq confirm-kill-emacs 'y-or-n-p)
 
 #+END_SRC
 ** Copy line below
