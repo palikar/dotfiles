@@ -35,7 +35,7 @@ The default packages repo for emacs is ELPA. ELPA is not super good, we also wan
 I use a lot of aditional packages and like to keep them local and installed. I've tried =use-package= but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
 #+BEGIN_SRC emacs-lisp
  ; all of my packages that I want in my config
-(setq package-list '(alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-complete auto-org-md base16-theme beacon clang-format cmake-ide color-theme-modern company-c-headers company-emacs-eclim company-irony company-jedi company-rtags crux ctags-update dashboard doom-themes drag-stuff dumb-jump eclim elpy emmet-mode evil expand-region find-file-in-project flycheck-irony function-args goto-chg haskell-mode helm-projectile helm-rtags helm helm-core highlight-indentation hungry-delete irony-eldoc irony jedi-core epc ctable concurrent latex-pretty-symbols levenshtein lorem-ipsum meghanada company moe-theme molokai-theme monokai-theme mvn neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-hugo org ox-twbs page-break-lines pdf-tools popup pretty-mode python-environment deferred pyvenv rtags simple-httpd smart-hungry-delete smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key virtualenvwrapper web-mode workgroups2 f s anaphora wrap-region xml-rpc yasnippet-snippets yasnippet zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize markdown-mode))
+(setq package-list '(alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-complete auto-org-md base16-theme beacon clang-format cmake-ide color-theme-modern company-c-headers company-emacs-eclim company-irony company-jedi company-rtags crux ctags-update dashboard doom-themes drag-stuff dumb-jump eclim elpy emmet-mode evil expand-region find-file-in-project flycheck-irony function-args goto-chg haskell-mode helm-projectile helm-rtags helm helm-core highlight-indentation hungry-delete irony-eldoc irony jedi-core epc ctable concurrent latex-pretty-symbols levenshtein lorem-ipsum meghanada company moe-theme molokai-theme monokai-theme mvn neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-hugo org ox-twbs page-break-lines pdf-tools popup pretty-mode python-environment deferred pyvenv rtags simple-httpd smart-hungry-delete smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key virtualenvwrapper web-mode workgroups2 f s anaphora wrap-region xml-rpc yasnippet-snippets yasnippet zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize markdown-mode ox-gfm))
 
 ; activate all the packages (in particular autoloads)
 (package-initialize)
@@ -140,9 +140,7 @@ Those are pretty much a must when editing code...and also anything else
 Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writting/. Therefore some basic org-mode configuraion comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporterrs for =.org= files that just make my life easier. 
 #+BEGIN_SRC emacs-lisp
 (require 'org-bullets)
-(require 'ox-beamer)
-(require 'ox-twbs)
-(require 'ox-hugo)
+
 
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (custom-set-variables
@@ -166,8 +164,6 @@ Org-mode is awesome not just for note taking but also for general text editing, 
         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 (setq org-pretty-entities t)
-
-
 #+END_SRC
 The codeblocks should be formated with the native envinroment of the language
 #+BEGIN_SRC emacs-lisp
@@ -176,7 +172,16 @@ The codeblocks should be formated with the native envinroment of the language
       org-confirm-babel-evaluate nil
       org-edit-src-content-indentation 0)
 #+END_SRC 
+** Exporters
+Some extra export backends for org-mode that come in handy.
+#+BEGIN_SRC emacs-lisp
+(require 'ox-beamer)
+(require 'ox-twbs)
+(require 'ox-hugo)
+(require 'ox-gfm)
 
+
+#+END_SRC
 * Windowing
 COuple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
 #+BEGIN_SRC emacs-lisp
@@ -237,7 +242,8 @@ Navigate by searching for a letter on the screen and jumping to it.\\
 See https://github.com/abo-abo/avy for more info.
 #+BEGIN_SRC emacs-lisp
 (require 'avy)
-  
+(global-set-key (kbd "M-g w") 'avy-goto-word-1)
+(global-set-key (kbd "M-g c") 'avy-goto-char)
 #+END_SRC
 * Company
 #+BEGIN_SRC emacs-lisp
@@ -434,6 +440,7 @@ See https://github.com/abo-abo/avy for more info.
  (projectile-global-mode)
  (setq projectile-completion-system 'helm)
  (global-set-key [f4] 'projectile-find-other-file)
+
 #+END_SRC
 * Neotree
 #+BEGIN_SRC emacs-lisp
@@ -446,20 +453,6 @@ See https://github.com/abo-abo/avy for more info.
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-show-hidden-files t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
-
-#+END_SRC
-
-* Sublime features
-#+BEGIN_SRC emacs-lisp
-
-(require 'sublimity)
-(require 'sublimity-scroll)
-
-(setq sublimity-scroll-weight 10
-      sublimity-scroll-drift-length 5)
-      
-
-(sublimity-mode 1)
 
 #+END_SRC
 * PDF-Tools

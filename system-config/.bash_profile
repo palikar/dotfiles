@@ -18,8 +18,9 @@ fi
 #load all of the dotfiles for the system config
 for DOTFILE in `find ~/code/dotfiles/system-config/dotfiles`
 do
-  [ -f “$DOTFILE” ] && source “$DOTFILE”
+  echo $DOTFILE
+  [ -f "$DOTFILE" ] && source $DOTFILE
 done
 
 
-
+ 

@@ -11,42 +11,30 @@ alias rsync="rsync -vh"
 alias json="json -c"
 alias psgrep="psgrep -i"
 
-is-executable hub && eval "$(hub alias -s)" # alias git=hub
 
 # Global aliases
 
-if $(is-supported "alias -g"); then
-  alias -g G="| grep -i"
-  alias -g H="| head"
-  alias -g T="| tail"
-  alias -g L="| less"
-fi
 
 # List declared aliases, functions, paths
 
 alias aliases="alias | sed 's/=.*//'"
-alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 alias paths='echo -e ${PATH//:/\\n}'
 
 # Directory listing/traversal
 
-LS_COLORS=`is-supported "ls --color" --color -G`
-LS_TIMESTYLEISO=`is-supported "ls --time-style=long-iso" --time-style=long-iso`
-LS_GROUPDIRSFIRST=`is-supported "ls --group-directories-first" --group-directories-first`
 
-alias l="ls -lahA $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
-alias ll="ls -lA $LS_COLORS"
-alias lt="ls -lhAtr $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
+
+alias l="ls -lahA"
+alias ll="ls -lA"
+alias lt="ls -lhAtr"
 alias ld="ls -ld $LS_COLORS */"
 alias lpm="stat -c '%a %n' *"
 
-unset LS_COLORS LS_TIMESTYLEISO LS_GROUPDIRSFIRST
 
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias -- -="cd -"                  # Go to previous dir with -
-alias cd.='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
 
 alias tree="tree -A"
 alias treed="tree -d"
@@ -92,7 +80,7 @@ alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
 
 
 #listing packages
-alias list-packages=dpkg-query -f '${binary:Package}\n' -W
+alias list-packages="dpkg-query -f \" ${binary:Package} \n\" -W"
 
 
 

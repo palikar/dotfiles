@@ -1,6 +1,4 @@
 #+STARTUP: overview
-
-
 * Abstract 
 Everyone loves setting up their system from scratch as easy as possible. org layerThat's why much smarter people than me has come up with the idea of /dotfiles/. A collection of scripts, configuration-files and system settings that can make your whole /system installation/ as seamless as possible. My final goal with this 'project' of sorts is to be able to install fresh Debian, run one /master .sh file/ and then just wait couple of hours unitl everything is getting ready by itself...time in which I can, I don't know, drink tea and watch movies or something.
 ** Warning
