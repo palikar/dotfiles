@@ -9,7 +9,7 @@
 #+CREATOR: Emacs 24.3.50.3 (Org mode 8.0.3)
 
 * Abstract
-This is the cofiguration of my EMACS-Editor written in [[https://orgmode.org/][Org mode]] in literate style programming. I've pretty much hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
+This is the cofiguration of my EMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
 Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
 Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use =use-package= as I found that it actually makes my emacs slugish on windows and I actually prefer to have everything in my local config all the time.\\
 Download the repo with
@@ -35,7 +35,7 @@ The default packages repo for emacs is ELPA. ELPA is not super good, we also wan
 I use a lot of aditional packages and like to keep them local and installed. I've tried =use-package= but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
 #+BEGIN_SRC emacs-lisp
  ; all of my packages that I want in my config
-(setq package-list '(alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-complete auto-org-md base16-theme beacon clang-format cmake-ide color-theme-modern company-c-headers company-emacs-eclim company-irony company-jedi company-rtags crux ctags-update dashboard doom-themes drag-stuff dumb-jump eclim elpy emmet-mode evil expand-region find-file-in-project flycheck-irony function-args goto-chg haskell-mode helm-projectile helm-rtags helm helm-core highlight-indentation hungry-delete irony-eldoc irony jedi-core epc ctable concurrent latex-pretty-symbols levenshtein lorem-ipsum meghanada company moe-theme molokai-theme monokai-theme mvn neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-hugo org ox-twbs page-break-lines pdf-tools popup pretty-mode python-environment deferred pyvenv rtags simple-httpd smart-hungry-delete smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key virtualenvwrapper web-mode workgroups2 f s anaphora wrap-region xml-rpc yasnippet-snippets yasnippet zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize markdown-mode ox-gfm))
+(setq package-list '(alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-complete auto-org-md base16-theme beacon clang-format cmake-ide color-theme-modern company-c-headers company-emacs-eclim company-irony company-jedi company-rtags crux ctags-update dashboard doom-themes drag-stuff dumb-jump eclim elpy emmet-mode evil expand-region find-file-in-project flycheck-irony function-args goto-chg haskell-mode helm-projectile helm-rtags helm helm-core highlight-indentation hungry-delete irony-eldoc irony jedi-core epc ctable concurrent latex-pretty-symbols levenshtein lorem-ipsum meghanada company moe-theme molokai-theme monokai-theme mvn neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-hugo org ox-twbs page-break-lines pdf-tools popup pretty-mode python-environment deferred pyvenv rtags simple-httpd smart-hungry-delete smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key virtualenvwrapper web-mode workgroups2 f s anaphora wrap-region xml-rpc yasnippet-snippets yasnippet zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize markdown-mode ox-gfm iy-go-to-char smart-mode-line telephone-line))
 
 ; activate all the packages (in particular autoloads)
 (package-initialize)
@@ -137,6 +137,7 @@ Those are pretty much a must when editing code...and also anything else
 
 #+END_SRC
 * Org-mode
+** Common settings
 Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writting/. Therefore some basic org-mode configuraion comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporterrs for =.org= files that just make my life easier. 
 #+BEGIN_SRC emacs-lisp
 (require 'org-bullets)
@@ -182,8 +183,22 @@ Some extra export backends for org-mode that come in handy.
 
 
 #+END_SRC
+** Reveal.js
+#+BEGIN_SRC emacs-lisp :tangle no
+    (require 'ox-reveal)
+
+    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+    (setq org-reveal-mathjax t)
+
+    (require 'htmlize)
+#+END_SRC
+** Reloading
+For some reasons I have to call this after I've /require/-d all the exporters' backends in order to make them available in the export dispatcher of /org-mode/.
+#+BEGIN_SRC emacs-lisp
+(org-reload)
+#+END_SRC
 * Windowing
-COuple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
+Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
 #+BEGIN_SRC emacs-lisp
 (defun transpose-windows (arg)
    "Transpose the buffers shown in two windows."
@@ -245,6 +260,13 @@ See https://github.com/abo-abo/avy for more info.
 (global-set-key (kbd "M-g w") 'avy-goto-word-1)
 (global-set-key (kbd "M-g c") 'avy-goto-char)
 #+END_SRC
+* Iy
+Go to next CHAR which is similar to "f" and "t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginnign of the epxresison and you type =C-SPC C-c f (= you wno't mark everything till the =(=. Still useful though. 
+#+BEGIN_SRC emacs-lisp
+(require 'iy-go-to-char)
+(global-set-key (kbd "C-c f") 'iy-go-up-to-char)
+(global-set-key (kbd "C-c F") 'iy-go-up-to-char-backward)
+#+END_SRC
 * Company
 #+BEGIN_SRC emacs-lisp
 (require 'company)
@@ -285,24 +307,16 @@ See https://github.com/abo-abo/avy for more info.
 
 #+END_SRC
 
-* Themes and modeline
+* Themes
+I often alternate between these two and can't really decide which is my favorite one. I depends on the day, I guess. In this case, better to gave them both at one place!
 #+BEGIN_SRC emacs-lisp
-     
-#+END_SRC  
-* Reveal.js
-#+BEGIN_SRC emacs-lisp :tangle no
-    (require 'ox-reveal)
-
-    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-    (setq org-reveal-mathjax t)
-
-    (require 'htmlize)
+(load-theme 'spacemacs-dark)
+;; (load-theme 'monokai)
 #+END_SRC
-
 * Flycheck
 #+BEGIN_SRC emacs-lisp
-    (require 'flycheck)  
-    (global-flycheck-mode t)
+(require 'flycheck)  
+(global-flycheck-mode t)
 #+END_SRC
 
 * Python
@@ -341,6 +355,20 @@ See https://github.com/abo-abo/avy for more info.
   (setq auto-revert-verbose nil) ;; or this
 
 #+END_SRC
+** CRUX
+...is an abrabiation for /A Collection of Ridiculously Useful eXtensions for Emacs/, so yeah, pretty self-explenatory.
+ -[[https://github.com/bbatsov/crux][crux]]
+#+BEGIN_SRC emacs-lisp
+(require 'crux)
+
+(global-set-key (kbd "C-c o") 'crux-open-with)
+(global-set-key (kbd "C-k") 'crux-smart-kill-line)
+(global-set-key (kbd "C-c r") 'crux-rename-file-and-buffer)
+(global-set-key (kbd "C-c I") 'crux-find-user-init-file)
+(global-set-key (kbd "C-c S") 'crux-find-shell-init-file)
+
+(crux-reopen-as-root-mode t)
+#+END_SRC
 
 * Folding code
 #+BEGIN_SRC emacs-lisp
@@ -377,11 +405,11 @@ See https://github.com/abo-abo/avy for more info.
 (set-default 'semantic-case-fold t)
 
 #+END_SRC
-* Text edeting
+* Text editing
+** Alt-moving selection
+This is kinda of a standard feature in most text editors. I got used to it from /Netbeans/ and can't live without it. 
 #+BEGIN_SRC emacs-lisp
-
 (require 'drag-stuff)
-
 (drag-stuff-global-mode)
 (global-set-key (kbd "M-<up>") 'drag-stuff-up)
 (global-set-key (kbd "M-<down>") 'drag-stuff-down)
@@ -450,6 +478,7 @@ See https://github.com/abo-abo/avy for more info.
 (global-set-key [f1] 'neotree-toggle)
 (global-set-key [f2] 'neotree-find)
 
+(setq neo-window-fixed-size nil)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-show-hidden-files t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
@@ -525,11 +554,30 @@ See https://github.com/abo-abo/avy for more info.
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 #+END_SRC
+* Modline
+Making the modeline a little bit prettier and more spece efficient than the default. =smart-mode-line= is the "main" package and =telephone-line= is there just to make the separators nicer.
+  - [[https://github.com/dbordak/telephone-line][telephone-line]]
+  - [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]]
+ Preview:
+[[../mode-line.png]]
+#+BEGIN_SRC emacs-lisp
+(package-initialize)
+(require 'smart-mode-line)
+(require 'powerline)
+(sml/setup)
+(setq sml/no-confirm-load-theme t)
+(setq sml/theme 'automatic)
+
+(require 'telephone-line)
+(telephone-line-mode t)
+#+END_SRC
+----------------------
 * Things that need to be done in the dot-files
 ** DONE Configure better web-mode support
 CLOSED: [2018-05-02 Wed 12:53]
 Is done in the config file that we use at work
-** TODO Set up the key bindings for =avy=
+** DONE Set up the key bindings for =avy=
+CLOSED: [2018-05-07 Mon 16:50]
 could be *REALLY* usefule
 ** DONE Move all the repos in one place
 CLOSED: [2018-05-01 Tue 23:00]
@@ -542,4 +590,5 @@ If you are reading this and you are not me....well, then I guess is to be marked
 ** DONE Make an archive with the .emacs.d directory
 CLOSED: [2018-05-01 Tue 23:03]
 Some files of it at least!
+** TODO Add annotations for everything
 ** TODO Put the whole thing on the blog
