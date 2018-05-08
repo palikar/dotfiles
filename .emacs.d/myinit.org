@@ -14,7 +14,11 @@ Using the configuraion as is it is is not really advisable. Some things may seem
 Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use =use-package= as I found that it actually makes my emacs slugish on windows and I actually prefer to have everything in my local config all the time.\\
 Download the repo with
 #+BEGIN_EXAMPLE
-git clone https://github.com/palikar/emacs-confiDEL Bundleg
+git clone https://github.com/palikar/dotfiles
+#+END_EXAMPLE
+and setupe emacs 
+#+BEGIN_EXAMPLE
+. setup-emacs.sh
 #+END_EXAMPLE
 * Repos and packages
 The default packages repo for emacs is ELPA. ELPA is not super good, we also want ELPA. +ELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is her now!
@@ -80,7 +84,9 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (delete-selection-mode 1)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
-(cua-mode 1)
+
+;; (cua-mode 1) I am pretty much a big deal pro and I don't need cua-mode 8)
+
 (load "~/.emacs.d/lisp/syntax-subword")
 (global-syntax-subword-mode 1) 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
@@ -90,7 +96,14 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
+(global-set-key (kbd "C-z") 'undo)
+
 (setq confirm-kill-emacs 'y-or-n-p)
+
+(setq save-interprogram-paste-before-kill t)
+
+(global-auto-revert-mode 1) ;; you might not want this
+(setq auto-revert-verbose nil) ;; or this
 
 #+END_SRC
 ** Copy line below
@@ -184,7 +197,7 @@ Some extra export backends for org-mode that come in handy.
 
 #+END_SRC
 ** Reveal.js
-#+BEGIN_SRC emacs-lisp :tangle no
+#+BEGIN_SRC emacs-lisp
     (require 'ox-reveal)
 
     (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
@@ -257,8 +270,7 @@ Navigate by searching for a letter on the screen and jumping to it.\\
 See https://github.com/abo-abo/avy for more info.
 #+BEGIN_SRC emacs-lisp
 (require 'avy)
-(global-set-key (kbd "M-g w") 'avy-goto-word-1)
-(global-set-key (kbd "M-g c") 'avy-goto-char)
+(global-set-key (kbd "C-c C-f") 'avy-goto-char)
 #+END_SRC
 * Iy
 Go to next CHAR which is similar to "f" and "t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginnign of the epxresison and you type =C-SPC C-c f (= you wno't mark everything till the =(=. Still useful though. 
@@ -330,6 +342,11 @@ I often alternate between these two and can't really decide which is my favorite
     (require 'yasnippet-snippets)
 #+END_SRC
 * Misc packages
+Those pacakges add some minor tweak to EMACS to make text editing easier.
+- [[][beacon]]
+- [[][hungry-delete]]
+- [[][expand-region]]
+- 
 #+BEGIN_SRC emacs-lisp
   
   ; flashes the cursor's line when you scroll
@@ -346,13 +363,7 @@ I often alternate between these two and can't really decide which is my favorite
   ; expand the marked region in semantic increments (negative prefix to reduce region)
   (require 'expand-region)
   (global-set-key (kbd "C-c =") 'er/expand-region)
-    
 
-  (setq save-interprogram-paste-before-kill t)
-
-
-  (global-auto-revert-mode 1) ;; you might not want this
-  (setq auto-revert-verbose nil) ;; or this
 
 #+END_SRC
 ** CRUX
@@ -362,7 +373,7 @@ I often alternate between these two and can't really decide which is my favorite
 (require 'crux)
 
 (global-set-key (kbd "C-c o") 'crux-open-with)
-(global-set-key (kbd "C-k") 'crux-smart-kill-line)
+(global-set-key (kbd "C-c k") 'crux-smart-kill-line)
 (global-set-key (kbd "C-c r") 'crux-rename-file-and-buffer)
 (global-set-key (kbd "C-c I") 'crux-find-user-init-file)
 (global-set-key (kbd "C-c S") 'crux-find-shell-init-file)
@@ -564,12 +575,53 @@ Making the modeline a little bit prettier and more spece efficient than the defa
 (package-initialize)
 (require 'smart-mode-line)
 (require 'powerline)
-(sml/setup)
 (setq sml/no-confirm-load-theme t)
+(sml/setup)
 (setq sml/theme 'automatic)
 
 (require 'telephone-line)
 (telephone-line-mode t)
+#+END_SRC
+* IBuffer
+
+#+BEGIN_SRC emacs-lisp
+(require 'ibuffer)
+(require 'ibuffer-projectile)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+;;(autoload 'ibuffer "ibuffer" "List buffers." t)
+(setq ibuffer-expert t)
+(setq ibuffer-show-empty-filter-groups nil)
+(add-hook 'ibuffer-mode-hook
+	  '(lambda ()
+	     (ibuffer-auto-mode 1)
+	     (ibuffer-switch-to-saved-filter-groups "home")))
+
+
+
+(setq ibuffer-saved-filter-groups
+      '(("home"
+	 ("Emacs" (or (filename . ".emacs")
+                      (filename . "myinit.org")))
+	 ("Org" (or (mode . org-mode)
+		    (filename . "OrgMode")))
+         ("Code" (filename . "code"))
+	 ("Web Dev" (or (mode . html-mode)
+			(mode . css-mode)))
+	 ("Subversion" (name . "\*svn"))
+	 ("Magit" (name . "\*magit"))
+	 ("ERC" (mode . erc-mode))
+	 ("Help" (or (name . "\*Help\*")
+		     (name . "\*Apropos\*")
+		     (name . "\*info\*"))))))
+
+(add-hook 'ibuffer-hook
+    (lambda ()
+      (ibuffer-projectile-set-filter-groups)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+        (ibuffer-do-sort-by-alphabetic))))
+
+
+(add-to-list 'ibuffer-never-show-regexps "^\\*")
 #+END_SRC
 ----------------------
 * Things that need to be done in the dot-files
