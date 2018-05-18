@@ -725,11 +725,43 @@ My choce of terminal envinroment in my emacs is /Terminal Emulator/(term). There
 (global-set-key [f5] 'compile)
 (global-set-key (kbd "C-<f5>") 'compile)
 
+
+
 #+END_SRC
+
 * Org-Babel
 
 #+BEGIN_SRC emacs-lisp
 (setq org-babel-python-command "~/anaconda3/bin/python3.6")
+#+END_SRC
+* Spellchecking
+
+#+BEGIN_SRC emacs-lisp
+(require 'flyspell)
+(define-key flyspell-mode-map (kbd "C-c s") #'flyspell-popup-correct)
+(add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode)
+
+(defun fd-switch-dictionary()
+  (interactive)
+  (let* ((dic ispell-current-dictionary)
+    	 (change (if (string= dic "deutsch8") "english" "deutsch8")))
+    (ispell-change-dictionary change)
+    (message "Dictionary switched from %s to %s" dic change)
+    ))
+
+(global-set-key (kbd "<f8>")   'fd-switch-dictionary)
+
+#+END_SRC
+* GoogletThis
+
+#+BEGIN_SRC emacs-lisp
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "firefox")
+
+(google-this-mode 1)
+(global-set-key (kbd "C-c g") 'google-this-mode-submap)
+
 #+END_SRC
 * Modline
 Making the modeline a little bit prettier and more spece efficient than the default. =smart-mode-line= is the "main" package and =telephone-line= is there just to make the separators nicer.
