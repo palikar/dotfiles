@@ -7,9 +7,20 @@
 #+LANGUAGE: En
 #+EXPORT_FILE_NAME: config_emacs
 #+CREATOR: Emacs 24.3.50.3 (Org mode 8.0.3)
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.2.2 (Org mode 9.1.13)
+
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+
+
 
 * Abstract
-This is the cofiguration of my EMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
+This is the cofiguration of my EmonkeysMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
 Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
 Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use =use-package= as I found that it actually makes my emacs slugish on windows and I actually prefer to have everything in my local config all the time.\\
 Download the repo with
@@ -21,7 +32,7 @@ and setupe emacs
 . setup-emacs.sh
 #+END_EXAMPLE
 * Repos and packages
-The default packages repo for emacs is ELPA. ELPA is not super good, we also want ELPA. +ELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is her now!
+The default packages repo for emacs is ELPA. ELPA is not super good, we also want ELPA. +ELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (package-initialize)
@@ -39,7 +50,7 @@ The default packages repo for emacs is ELPA. ELPA is not super good, we also wan
 I use a lot of aditional packages and like to keep them local and installed. I've tried =use-package= but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
 #+BEGIN_SRC emacs-lisp
  ; all of my packages that I want in my config
-(setq package-list '(alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-complete auto-org-md base16-theme beacon clang-format cmake-ide color-theme-modern company-c-headers company-emacs-eclim company-irony company-jedi company-rtags crux ctags-update dashboard doom-themes drag-stuff dumb-jump eclim elpy emmet-mode evil expand-region find-file-in-project flycheck-irony function-args goto-chg haskell-mode helm-projectile helm-rtags helm helm-core highlight-indentation hungry-delete irony-eldoc irony jedi-core epc ctable concurrent latex-pretty-symbols levenshtein lorem-ipsum meghanada company moe-theme molokai-theme monokai-theme mvn neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-hugo org ox-twbs page-break-lines pdf-tools popup pretty-mode python-environment deferred pyvenv rtags simple-httpd smart-hungry-delete smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key virtualenvwrapper web-mode workgroups2 f s anaphora wrap-region xml-rpc yasnippet-snippets yasnippet zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize markdown-mode ox-gfm iy-go-to-char smart-mode-line telephone-line))
+(setq package-list '(alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme beacon clang-format cmake-ide cmake-mode color-theme-modern company-c-headers company-emacs-eclim company-irony company-irony-c-headers company-jedi company-rtags crux ctags-update dashboard doom-themes drag-stuff dumb-jump easy-hugo eclim ein auto-complete elpy emmet-mode expand-region find-file-in-project flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup function-args google-this haskell-mode helm-flycheck helm-ispell helm-projectile helm-rtags helm helm-core highlight-indentation hugo hungry-delete ibuffer-projectile irony-eldoc irony iy-go-to-char jedi-core epc ctable concurrent latex-pretty-symbols levenshtein lorem-ipsum markdown-mode meghanada company moe-theme molokai-theme monokai-theme mvn neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines pdf-tools popup-complete popup powerline-evil evil goto-chg pretty-mode python-environment pyvenv request-deferred request deferred rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key virtualenvwrapper web-mode websocket workgroups2 f s anaphora wrap-region xml-rpc yasnippet-snippets yasnippet zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize))
 
 ; activate all the packages (in particular autoloads)
 (package-initialize)
@@ -67,6 +78,8 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
+(global-set-key (kbd "<f10>") 'tool-bar-mode)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (fringe-mode '(0 . 0))
 (setq-default cursor-type 'bar)
@@ -76,7 +89,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (global-prettify-symbols-mode +1)
 
 #+END_SRC
-* Behaiviour tweaksq
+* Behaiviour tweaks
 Some quick fixes for intuitinve and streight forwawrd editing. Generally I strive for the cleanest designf the interface possible so I remove a lot from the unneccesery things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp
 (setq-default indent-tabs-mode nil)
@@ -105,9 +118,10 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(require 'saveplace)
+(require 'saveplace) ;; saves your cursor's position in buffers and jumps to it on reopening
 
 (put 'upcase-region 'disabled nil)
+(setq vc-follow-symlinks t)
 #+END_SRC
 ** Copy line below
 Use =Alt-up/down= as in any other editor to copy lines 
@@ -137,6 +151,8 @@ Those are pretty much a must when editing code...and also anything else
   - Cofigured with the standards
   - Cofigured with the formating of =org-mode=
 - Insert a opening bracecket and the closing is inserted automagically!
+-[[https://github.com/rejeep/wrap-region.el][wrap-region]]
+-[[https://github.com/Fuco1/smartparens][smartparens]]
 #+BEGIN_SRC emacs-lisp
 (require 'wrap-region)
 (wrap-region-add-wrapper "=" "=")
@@ -144,9 +160,11 @@ Those are pretty much a must when editing code...and also anything else
 (wrap-region-add-wrapper "_" "_")
 (wrap-region-add-wrapper "+" "+")
 (wrap-region-add-wrapper "*" "*")
+(wrap-region-add-wrapper "~" "~")
+(wrap-region-add-wrapper "$" "$")
+
 
 (wrap-region-global-mode t)
-
 
 (require 'smartparens)
 (smartparens-global-mode 1)
@@ -171,6 +189,16 @@ Org-mode is awesome not just for note taking but also for general text editing, 
 #+BEGIN_SRC emacs-lisp
 (require 'org-bullets)
 
+(setq org-support-shift-select (quote always))
+(setq org-startup-indented t)
+(setq org-hide-leading-stars t)
+
+
+(setq org-babel-python-command "~/anaconda3/bin/python3.6")        
+(setq org-default-notes-file (concat org-directory "/notes.org"))  
+(setq org-directory "~/Dropbox/orgfiles")                          
+(setq org-export-html-postamble nil)                               
+(setq org-startup-folded (quote overview))                         
 
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (custom-set-variables
@@ -269,6 +297,11 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 (require 'swiper)
 (global-set-key (kbd "C-s")  'swiper)
 
+(require 'ivy)
+(setq ivy-display-style (quote fancy))
+
+
+
 (require 'anzu)
 (global-anzu-mode +1)
 (define-key isearch-mode-map [remap isearch-query-replace]  'anzu-isearch-query-replace)
@@ -318,15 +351,23 @@ Go to next CHAR which is similar to "f" and "t" in /vim/. To note is that I don'
 (global-set-key (kbd "C-c F") 'iy-go-up-to-char-backward)
 #+END_SRC
 * Company
-Complete Anything!
+Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The ~company-idle-delay~ makes the automatic popup impossible so that I would have to call it manually through =M-m=. 
 - [[http://company-mode.github.io/][company]]
 #+BEGIN_SRC emacs-lisp
 (require 'company)
 
- (setq company-minimum-prefix-length 2
-		company-tooltip-align-annotations t
-		company-tooltip-flip-when-above t
-		company-idle-delay nil)
+(setq company-minimum-prefix-length 2
+      company-tooltip-align-annotations t
+      company-tooltip-flip-when-above t
+      company-idle-delay nil
+      company-show-numbers t
+      company-echo-truncate-lines nil
+)
+
+
+
+
+
 
 (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
 							company-preview-if-just-one-frontend))
@@ -342,15 +383,12 @@ Complete Anything!
                           company-keywords
                           )
                          company-dabbrev
+                         company-yasnippets
                          ))
+
 
 (global-company-mode t)
 (global-set-key (kbd "M-m") 'company-complete)
-
-
-;;(add-to-list 'company-backends 'company-file)
-;;(add-to-list 'company-backends 'company-dabbrev)
-
 
 (defun my/nxml-mode-hook ()
   (add-to-list 'company-backends 'company-nxml))
@@ -380,21 +418,13 @@ Complete Anything!
 
 
 
-(require 'company-jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
-
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
-
 
 #+END_SRC
 * Themes
 I often alternate between these two and can't really decide which is my favorite one. I depends on the day, I guess. In this case, better to gave them both at one place!
 #+BEGIN_SRC emacs-lisp
 
+(setq custom-enabled-themes (quote (spacemacs-dark)))
 (setq custom-safe-themes t)
 (load-theme 'spacemacs-dark)
 
@@ -407,20 +437,36 @@ I often alternate between these two and can't really decide which is my favorite
 #+END_SRC
 
 * Python
+I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess emacs is that good with python by default. 
 #+BEGIN_SRC emacs-lisp
+(require 'company-jedi)
+(add-hook 'python-mode-hook 'jedi:setup)
 
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)
 #+END_SRC  
 * Yasnippet
+One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
+
 #+BEGIN_SRC emacs-lisp
 (require 'yasnippet)
-(yas-global-mode 1)
 (require 'yasnippet-snippets)
+(yas-global-mode 1)
+(global-set-key (kbd "C-c y n" ) 'yas/new-snippet)
+(global-set-key (kbd "C-c y v" ) 'yas/visit-snippet-file)
+(global-set-key (kbd "C-c y r" ) 'yas/reload-all)
+
+;; stacked snippets <3
+(setq yas-triggers-in-field t)
+
 #+END_SRC
 * Misc packages
 Those pacakges add some minor tweak to EMACS to make text editing easier.
-- [[][beacon]]
-- [[][hungry-delete]]
-- [[][expand-region]]
+- [[https://github.com/Malabarba/beacon][beacon]] - flashes your cursor after the cursor has been re-positioned.
+- [[https://github.com/nflath/hungry-delete]] - deletes all of the white spaces that are 'on the way' after hitting /delete/ or /backspace/. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
+- [[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
 - 
 #+BEGIN_SRC emacs-lisp
   
@@ -448,23 +494,22 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 (require 'crux)
 
 (global-set-key (kbd "C-c o") 'crux-open-with)
-(global-set-key (kbd "C-c k") 'crux-smart-kill-line)
 (global-set-key (kbd "C-c r") 'crux-rename-file-and-buffer)
 (global-set-key (kbd "C-c I") 'crux-find-user-init-file)
 (global-set-key (kbd "C-c S") 'crux-find-shell-init-file)
+(global-set-key (kbd "M-k") 'crux-kill-line-backwards)
+(global-set-key (kbd "C-c t") 'crux-visit-term-buffer)
 
-(crux-reopen-as-root-mode t)
+
 #+END_SRC
 
 * Folding code
 #+BEGIN_SRC emacs-lisp
    (add-hook 'prog-mode-hook 'hs-minor-mode)
-   (global-set-key (kbd "M-[") 'hs-show-all)
-   (global-set-key (kbd "M-]") 'hs-hide-all)
-   (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
-   (global-set-key (kbd "<C-[>") 'hs-toggle-hiding)
+   (global-set-key (kbd "M-ü") 'hs-show-all)
+   (global-set-key (kbd "C-M-ü") 'hs-hide-all)
+   (global-set-key (kbd "<C-ü>") 'hs-toggle-hiding)
 #+END_SRC
-
 * C++
 #+BEGIN_SRC emacs-lisp
 (require' irony)
@@ -474,6 +519,8 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 
 #+END_SRC
 * Programming
+Surprisingly I don't have all that much tweaks in here. Commenting out regions or lines is probably the thing I use the most. The other things are just very minor things that are standard in every other IDE. 
+- [[https://github.com/abo-abo/function-args][function-args]] - package that provies smart completion for function arguments. Works perfectly with *yasnippets*.
 #+BEGIN_SRC emacs-lisp
 (defun comment-or-uncomment-region-or-line ()
     "Comments or uncomments the region or the current line if there's no active region."
@@ -497,6 +544,11 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 (require 'function-args)
 (fa-config-default)
 (set-default 'semantic-case-fold t)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(set-default 'semantic-case-fold t)
+
+(add-hook 'c++-mode-hook 'function-args-mode)
+
 
 #+END_SRC
 * Text editing
@@ -557,14 +609,28 @@ This is kinda of a standard feature in most text editors. I got used to it from 
 
 #+END_SRC
 * Projectile
+The de-facto standard for project management for emacs. Not sure if I utilize half of its functionality but this file searching and opening...man that feels good when putting it to use. When in a project(which is just a git-repo btw) just type =C-c p f= and be blown away. When you we *helm* with *projectile*, we pretty much get one of the most powerful features in the history of IDEs ever. Some of my relevant keybindings include:
+- =f4= - switch to other file. For working with /.cpp/ and /.hpp/ files
+- =C-c p f= for finding files the easiest way possible.
+- =C-c p d= for finding directories the easiest way possible.
+- =M-s= helm-projectile-grep - really cool for searching a phrase of something in a entire project
+- =C-c p 4 f= - find file and open it in another window
+- =C-c p F= - find file in all known projects
+- =C-c p 4 F= find file in all known projects and open it in another window
+- =C-c p e= - see recent files
+- =C-c p x s= run shell at the root of the project
+- =C-c p S= save all files of the current project
+----------------------------
+Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 #+BEGIN_SRC emacs-lisp
  (require 'projectile)
  (projectile-global-mode)
  (setq projectile-completion-system 'helm)
  (global-set-key [f4] 'projectile-find-other-file)
-
 #+END_SRC
 * Neotree
+My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their low level plebian 'web-apps')
+- [[https://github.com/jaypei/emacs-neotree][neotree]]
 #+BEGIN_SRC emacs-lisp
 (require 'neotree)
 (require 'all-the-icons)
@@ -572,10 +638,12 @@ This is kinda of a standard feature in most text editors. I got used to it from 
 (global-set-key [f1] 'neotree-toggle)
 (global-set-key [f2] 'neotree-find)
 
+(setq neo-window-width 40)
 (setq neo-window-fixed-size nil)
 (setq neo-theme (if (display-graphic-p) 'nerd 'arrow))
 (setq neo-show-hidden-files t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
+
 
 #+END_SRC
 * PDF-Tools
@@ -587,7 +655,8 @@ Viewing pdf files in emacs! Not really intented for big and heavy files but when
 #+END_SRC
 
 * Pretty startup screen
-
+A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that display on startup of/Emacs/ and gives quick access to recent files and projectile-projects. It works with sessions too but I haven't configured that yet. A image can also be displayed so I guess that is pretty. Custom startup message is a must of course!!
+- [[https://github.com/rakanalh/emacs-dashboard][dashboard]]
 #+BEGIN_SRC emacs-lisp
 
 (require 'dashboard)
@@ -705,7 +774,7 @@ Markdown is not as pretty as Org-mode but is widely used throughout the Internet
 * Shell
 My choce of terminal envinroment in my emacs is /Terminal Emulator/(term). There are two modes to it - /char/ and /line/. Switching between them is made easier with one simple function and some custom key-bindings.
 //
- May other IDEs use =EF5= for building and compiling projects and I've gotten used to that. Therefore...custom keybinding.
+ May other IDEs use =F5= for building and compiling projects and I've gotten used to that. Therefore...custom keybinding.
 #+BEGIN_SRC emacs-lisp
 (require 'term)
 
@@ -722,7 +791,7 @@ My choce of terminal envinroment in my emacs is /Terminal Emulator/(term). There
 (define-key term-mode-map (kbd "C-c C-k") 'my/term-toggle-mode)
 (define-key term-raw-map (kbd "C-c C-j") 'my/term-toggle-mode)
 (define-key term-raw-map (kbd "C-c C-k") 'my/term-toggle-mode)
-(global-set-key [f5] 'compile)
+(global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "C-<f5>") 'compile)
 
 
@@ -730,12 +799,17 @@ My choce of terminal envinroment in my emacs is /Terminal Emulator/(term). There
 #+END_SRC
 
 * Org-Babel
-
+For some reason I must set the right /python/ command each time I start emacs. This does the trick...sometimes. Running random snippets of code in /.org/ files...how bonkers is that. The answer is *pretty bonkers*!!(You know if you are into emacs if you get this "reference")
 #+BEGIN_SRC emacs-lisp
 (setq org-babel-python-command "~/anaconda3/bin/python3.6")
+
+
+
+
 #+END_SRC
 * Spellchecking
-
+Yes, I am a hirroble speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find =C-c s= to be most intuitive for correcting misspelled words. *flyspell-popup* is a handy little thing that is pretty much company for showing a list of possible *correct* words.
+[[https://github.com/xuchunyang/flyspell-popup][flyspell-popup]]
 #+BEGIN_SRC emacs-lisp
 (require 'flyspell)
 (define-key flyspell-mode-map (kbd "C-c s") #'flyspell-popup-correct)
@@ -753,16 +827,82 @@ My choce of terminal envinroment in my emacs is /Terminal Emulator/(term). There
 
 #+END_SRC
 * GoogletThis
-
+This is absolutely a genius thing! Mark something, simple key-stroke, BAM!! Google! You are there! You have no idea how much copying and windows switching this package saves. Again, for intuition sake, =C-c g= is the prefix. After that:
+- =w= for word
+- =s= for selection
+- =g= for google
+- =SPC= for region
+- =l= for line
+- =c= for cpp-reference
+-------------------
+-[[https://github.com/Malabarba/emacs-google-this][google-this]]
 #+BEGIN_SRC emacs-lisp
 
+
+
+(require 'google-this)
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "firefox")
-
 (google-this-mode 1)
 (global-set-key (kbd "C-c g") 'google-this-mode-submap)
+(global-set-key (kbd "C-c g c") 'google-this-cpp-reference)
+
 
 #+END_SRC
+* Cmake
+A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant to the eyes. I don't really need more as I don't spend that much time writing /cmake/ scripts.
+#+BEGIN_SRC emacs-lisp
+(require 'cmake-mode)
+(require 'company-cmake)
+
+(defun my/cmake-mode-hook ()
+  (add-to-list 'company-backends 'company-cmake))
+(add-hook 'cmake-mode-hook 'my/cmake-mode-hook)
+
+(setq cmake-tab-width 4)
+
+(setq auto-mode-alist
+      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+                ("\\.cmake\\'" . cmake-mode))
+              auto-mode-alist))
+#+END_SRC
+* Latex
+I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writing my $\LaTeX$ documents but recent changes to its interface have made me look for alternative. Also, recent changes with me and me loving /Emacs/ have made the choice pretty easy. By know I don't think I miss anything that /TexMaker/ could offer me that /Emacs/ cannot.
+- [[https://www.emacswiki.org/emacs/AUCTeX][auctex]] - full fledged environment for writing, editing and compiling /.tex/ documents. Almost everything comes out of the box. Only a simple setup and configuration is required. 
+- [[https://www.emacswiki.org/emacs/LaTeXPreviewPane][latex-preview-pane]] - The very cool feature of Tex/Maker/ where your generated /pdf/-document is displayed on the side. Yes. Emacs can do it too...surprise, surprise!!
+#+BEGIN_SRC emacs-lisp :results none
+(require 'tex)
+
+
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook 'pretty-mode)
+(add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
+
+(defun my/latex-mode-hook ()
+  (add-to-list 'company-backends 'company-auctex-bibs)
+  (add-to-list 'company-backends 'company-auctex-macros)
+  (add-to-list 'company-backends 'company-auctex-labels)
+  (add-to-list 'company-backends 'company-auctex-symbols)
+  (add-to-list 'company-backends 'company-auctex-environments)
+  )
+(add-hook 'cmake-mode-hook 'my/latex-mode-hook)
+
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+
+(TeX-global-PDF-mode t)
+
+(require 'latex-preview-pane)
+(global-set-key (kbd "C-c l p") 'latex-preview-pane-mode)
+
+#+END_SRC
+
 * Modline
 Making the modeline a little bit prettier and more spece efficient than the default. =smart-mode-line= is the "main" package and =telephone-line= is there just to make the separators nicer.
   - [[https://github.com/dbordak/telephone-line][telephone-line]]
@@ -780,6 +920,7 @@ Making the modeline a little bit prettier and more spece efficient than the defa
 (telephone-line-mode t)
 #+END_SRC
 * Things that need to be done in the dot-files
+Don't look at that, it's not for you!!!
 ** DONE Configure better web-mode support
 CLOSED: [2018-05-02 Wed 12:53]
 Is done in the config file that we use at work
@@ -799,3 +940,14 @@ CLOSED: [2018-05-01 Tue 23:03]
 Some files of it at least!
 ** TODO Add annotations for everything
 ** TODO Put the whole thing on the blog
+* Nonsense
+Put the whole whoel wourld on your table and pray for it!
+#+BEGIN_SRC emacs-lisp
+
+
+
+#+END_SRC
+
+
+
+
