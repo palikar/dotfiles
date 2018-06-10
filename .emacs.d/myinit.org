@@ -915,6 +915,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
            ))
 
          ("Text" (name . ".txt"))
+         ("JS" (mode . "javascript-mode"))
          ("Web Dev" (or (mode . html-mode)
 			(mode . css-mode)
                         (mode . webmode-mode)))
