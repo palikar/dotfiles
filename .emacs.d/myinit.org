@@ -52,28 +52,28 @@ The default packages repo for emacs is ELPA. ELPA is not super good, we also wan
 (add-to-list 'package-archives '("(match-end )lpa2" . "http://www.mirrorservice.org/sites/melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa3" . "http://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
- 
+
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (package-refresh-contents)
 #+END_SRC
 ** Installing packages
 I use a lot of aditional packages and like to keep them local and installed. I've tried =use-package= but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
 #+BEGIN_SRC emacs-lisp
- ; all of my packages that I want in my config
+                                        ; all of my packages that I want in my config
 (setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme beacon clang-format cmake-ide cmake-mode color-theme-modern company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-rtags cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein auto-complete elpy emmet-mode expand-region exwm find-file-in-project flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup function-args google-this google-translate graphviz-dot-mode haskell-mode helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm helm-core highlight-indentation hugo hungry-delete ibuffer-projectile irony-eldoc irony iy-go-to-char java-imports java-snippets jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme mvn mvn-help neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools popup-complete popup powerline-evil evil goto-chg pretty-mode python-environment pyvenv request-deferred request deferred rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper web-mode websocket workgroups workgroups2 f s anaphora wrap-region xelb xml-rpc yasnippet-snippets yasnippet zeal-at-point zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize))
 
 
 
 
 
-; activate all the packages (in particular autoloads)
+                                        ; activate all the packages (in particular autoloads)
 (package-initialize)
 
-; fetch the list of packages available 
+                                        ; fetch the list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
+                                        ; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
@@ -167,7 +167,7 @@ Use =Alt-up/down= as in any other editor to copy lines
   (open-line 1)
   (next-line 1)
   (yank)
-)
+  )
 (define-key my-keys-mode-map [(control shift down)]  'duplicate-line)
 (define-key my-keys-mode-map [(control shift up)]  'duplicate-line)   
 #+END_SRC
@@ -188,6 +188,13 @@ Those are pretty much a must when editing code...and also anything else
 (wrap-region-add-wrapper "*" "*")
 (wrap-region-add-wrapper "~" "~")
 (wrap-region-add-wrapper "$" "$")
+(wrap-region-add-wrapper "<" ">")
+(wrap-region-add-wrapper ">" "<")
+
+
+
+
+
 
 
 (wrap-region-global-mode t)
@@ -196,7 +203,7 @@ Those are pretty much a must when editing code...and also anything else
 (smartparens-global-mode 1)
 
 
-(define-key my-keys-mode-map (kbd "C-M-k")  'sp-kill-hybrid-sexp)
+
 
 #+END_SRC
 ** Custom key bindings(some of it!) 
@@ -228,13 +235,13 @@ Org-mode is awesome not just for note taking but also for general text editing, 
 
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (custom-set-variables
-    '(org-directory "~/Dropbox/orgfiles")
-    '(org-default-notes-file (concat org-directory "/notes.org"))
-    '(org-export-html-postamble nil)
-    '(org-hide-leading-stars t)
-    '(org-startup-folded (quote overview))
-    '(org-startup-indented t)
-)
+ '(org-directory "~/Dropbox/orgfiles")
+ '(org-default-notes-file (concat org-directory "/notes.org"))
+ '(org-export-html-postamble nil)
+ '(org-hide-leading-stars t)
+ '(org-startup-folded (quote overview))
+ '(org-startup-indented t)
+ )
 
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cc" 'org-capture)
@@ -265,10 +272,10 @@ The codeblocks should be formated with the native envinroment of the language
 #+END_SRC 
 ** Exporters
 Some extra export backends for org-mode that come in handy.
- - Beamer - for making those awesome-ish presentations
- - twbs(Tweeter Bootstrap) - quickly make your org files look really pretty
- - hugo - I use Hugo for blogging and the exporter allowes me to write every single content page in /org-mode/
- - gfm (Github Flavored Markdown) - this makes writing /README.md/ files easy (i.e. writing them in org-mode)
+- Beamer - for making those awesome-ish presentations
+- twbs(Tweeter Bootstrap) - quickly make your org files look really pretty
+- hugo - I use Hugo for blogging and the exporter allowes me to write every single content page in /org-mode/
+- gfm (Github Flavored Markdown) - this makes writing /README.md/ files easy (i.e. writing them in org-mode)
 #+BEGIN_SRC emacs-lisp
 (require 'ox-beamer)
 (require 'ox-twbs)
@@ -309,12 +316,12 @@ Some extra export backends for org-mode that come in handy.
 ** Reveal.js
 This style of presenting looks cool but I don't use it that much. Still, I want to have the possibility in my emacs. 
 #+BEGIN_SRC emacs-lisp
-    (require 'ox-reveal)
+(require 'ox-reveal)
 
-    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-    (setq org-reveal-mathjax t)
+(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+(setq org-reveal-mathjax t)
 
-    (require 'htmlize)
+(require 'htmlize)
 #+END_SRC
 ** Babel Languages
 - Source block with this line in the header:
@@ -354,19 +361,19 @@ For some reasons I have to call this after I've /require/-d all the exporters' b
 Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
 #+BEGIN_SRC emacs-lisp
 (defun transpose-windows (arg) ;; yes, I know, there is also a crux-function that does the exact same thing...still...!!!
-   "Transpose the buffers shown in two windows."
-   (interactive "p")
-   (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-     (while (/= arg 0)
-       (let ((this-win (window-buffer))
-             (next-win (window-buffer (funcall selector))))
-         (set-window-buffer (selected-window) next-win)
-         (set-window-buffer (funcall selector) this-win)
-         (select-window (funcall selector)))
-       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+  "Transpose the buffers shown in two windows."
+  (interactive "p")
+  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+    (while (/= arg 0)
+      (let ((this-win (window-buffer))
+            (next-win (window-buffer (funcall selector))))
+        (set-window-buffer (selected-window) next-win)
+        (set-window-buffer (funcall selector) this-win)
+        (select-window (funcall selector)))
+      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
 
- (define-key ctl-x-4-map (kbd "t") 'transpose-windows)
- 
+(define-key ctl-x-4-map (kbd "t") 'transpose-windows)
+
 (define-key my-keys-mode-map (kbd "C-c <left>")  'windmove-left)
 (define-key my-keys-mode-map (kbd "C-c <right>") 'windmove-right)
 (define-key my-keys-mode-map (kbd "C-c <up>")    'windmove-up)
@@ -464,7 +471,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
       company-idle-delay 0.1
       company-show-numbers nil
       company-echo-truncate-lines nil
-)
+      )
 
 
 
@@ -473,7 +480,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 
 
 (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
-							))
+                          ))
 ;;(setq company-frontends nil)
 
 ;;(setq company-backends '())
@@ -586,27 +593,27 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 - [[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
 - 
 #+BEGIN_SRC emacs-lisp
-  
-  ; flashes the cursor's line when you scroll
-  (require 'beacon)
-  (beacon-mode 1)
-  
-  
-  ; deletes all the whitespace when you hit backspace or delete
-  (require 'hungry-delete)
-  (global-hungry-delete-mode)
-    
-  
 
-  ; expand the marked region in semantic increments (negative prefix to reduce region)
-  (require 'expand-region)
-  (define-key my-keys-mode-map (kbd "C-c =") 'er/expand-region)
+                                        ; flashes the cursor's line when you scroll
+(require 'beacon)
+(beacon-mode 1)
+
+
+                                        ; deletes all the whitespace when you hit backspace or delete
+(require 'hungry-delete)
+(global-hungry-delete-mode)
+
+
+
+                                        ; expand the marked region in semantic increments (negative prefix to reduce region)
+(require 'expand-region)
+(define-key my-keys-mode-map (kbd "C-c =") 'er/expand-region)
 
 
 #+END_SRC
 ** CRUX
 ...is an abrabiation for /A Collection of Ridiculously Useful eXtensions for Emacs/, so yeah, pretty self-explenatory.
- -[[https://github.com/bbatsov/crux][crux]]
+-[[https://github.com/bbatsov/crux][crux]]
 #+BEGIN_SRC emacs-lisp
 (require 'crux)
 
@@ -623,10 +630,10 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 * Folding code
 A standard IDE feature that comes out of the box with emacs. Just a little tweak to give it nice keybindings. To note is that I use german QWERTZ keyboard so this won't work for all you QWERTY-Normies out there.
 #+BEGIN_SRC emacs-lisp
-   (add-hook 'prog-mode-hook 'hs-minor-mode)
-   (define-key my-keys-mode-map (kbd "M-ü") 'hs-show-all)
-   (define-key my-keys-mode-map (kbd "C-M-ü") 'hs-hide-all)
-   (define-key my-keys-mode-map (kbd "C-ü") 'hs-toggle-hiding)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+(define-key my-keys-mode-map (kbd "M-ü") 'hs-show-all)
+(define-key my-keys-mode-map (kbd "C-M-ü") 'hs-hide-all)
+(define-key my-keys-mode-map (kbd "C-ü") 'hs-toggle-hiding)
 #+END_SRC
 * C++
 At my work I use this emacs-configuration for a lot of c++ programming. Yet, similar to other sections, the c++ tweaks are...pretty much nothing. Emacs is just that good with no special c++ tweaks.
@@ -650,13 +657,13 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 - [[https://github.com/abo-abo/function-args][function-args]] - package that provies smart completion for function arguments. Works perfectly with *yasnippets*.
 #+BEGIN_SRC emacs-lisp
 (defun comment-or-uncomment-region-or-line ()
-    "Comments or uncomments the region or the current line if there's no active region."
-    (interactive)
-    (let (beg end)
-        (if (region-active-p)
-            (setq beg (region-beginning) end (region-end))
-            (setq beg (line-beginning-position) end (line-end-position)))
-        (comment-or-uncomment-region beg end)))
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive)
+  (let (beg end)
+    (if (region-active-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)))
 
 (define-key my-keys-mode-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
 (setq c-default-style
@@ -719,21 +726,21 @@ From time to time I ahave to write HTML and other 'web-stuff' and this setup get
   (setq web-mode-block-padding 0)
 
   (setq web-mode-extra-auto-pairs
-      '(("erb"  . (("beg" "end")))
-        ("php"  . (("beg" "end")
-                   ("beg" "end")))
-       ))
+        '(("erb"  . (("beg" "end")))
+          ("php"  . (("beg" "end")
+                     ("beg" "end")))
+          ))
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-current-column-highlight t)
 
 
   (setq web-mode-ac-sources-alist
-  '(("css" . (ac-source-css-property))
-    ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+        '(("css" . (ac-source-css-property))
+          ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 
   
   
-)
+  )
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 #+END_SRC
@@ -1116,6 +1123,116 @@ Making the modeline a little bit prettier and more spece efficient than the defa
 (sml/setup)
 (setq sml/theme 'automatic)
 #+END_SRC
+* Sexp on steroids
+As previously stated, I knew tiny bit of vim key-bindings and holy cow those can do a lot of things in very few keystrokes. Emacs is not really like that. I've written some simple functions thal with saving, marking and killing /sexp/s. I really like that feature of vim "*d*elete *i*nside *(*-block" and it kills everything inside the parentesies....or copies it into kill ring or marks it, basically - it's pretty awesome and here I am trying to ripp off exxaclty that.\\
+The commands that come in handy a lot of the times and that I've written:
+
+| Keystroke   | Description                                              |
+|-------------+----------------------------------------------------------|
+| =C-M-k=     | Kill erverything inside the current /sexp/               |
+| =C-M-K=     | Kill the current /sexp/ and the                          |
+| =C-M-SPC=   | Mark erverything inside the current /sexp/               |
+| =C-M-S-SPC= | Mar the current /sexp/                                   |
+| =C-M-w=     | Save everything inside the current /sexp/ into kill ring |
+| =C-M-W=     | Save the current /sexp/ into kill ring                   |
+|-------------+----------------------------------------------------------|
+
+As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operations
+
+#+BEGIN_SRC emacs-lisp :results none 
+
+(defun arnaud-mark-sexp () 
+  "Function to mark the things inside of the current sexp"
+  (interactive)
+  (if (use-region-p)
+      (progn       
+        (sp-backward-up-sexp)
+        (sp-backward-up-sexp)
+        (forward-char 1) 
+        (set-mark-command nil)
+        (sp-up-sexp)
+        (backward-char 1)
+        )
+    (progn
+      (sp-backward-up-sexp)
+      (forward-char 1) 
+      (set-mark-command nil)
+      (sp-up-sexp)
+      (backward-char 1)
+      )
+    ))
+
+
+(defun arnaud-kill-save-sexp () 
+  "Function to mark the things inside of the current sexp"
+  (interactive)
+  (save-excursion
+    (sp-backward-up-sexp)
+    (forward-char 1) 
+    (set-mark-command nil)
+    (sp-up-sexp)
+    (backward-char 1)
+    (kill-ring-save (region-beginning) (region-end))
+    (deactivate-mark)
+    )
+  )
+
+
+(defun arnaud-kill-save-sexp-whole () 
+  "Function to mark the things inside of the current sexp"
+  (interactive)
+  (save-excursion
+    (sp-backward-up-sexp)
+    (set-mark-command nil)
+    (sp-up-sexp)
+    (kill-ring-save (region-beginning) (region-end))
+    (deactivate-mark)
+    )
+
+  (defun arnaud-kill-sexp () 
+    "Function to mark the things inside of the current sexp"
+    (interactive)
+    (sp-backward-up-sexp)
+    (forward-char 1) 
+    (set-mark-command nil)
+    (sp-up-sexp)
+    (backward-char 1)
+    (kill-region (region-beginning) (region-end))
+    ))
+
+(defun arnaud-mark-sexp-whole () 
+  "Function to mark the things inside of the current sexp"
+  (interactive)
+  (sp-backward-up-sexp)
+  (set-mark-command nil)
+  (forward-sexp)
+  )
+
+(defun arnaud-kill-sexp-whole () 
+  "Function to mark the things inside of the current sexp"
+  (interactive)
+  (sp-backward-up-sexp)
+  (set-mark-command nil)
+  (forward-sexp)
+  (kill-region (region-beginning) (region-end))
+  )
+
+
+
+(define-key my-keys-mode-map (kbd "C-M-SPC") 'arnaud-mark-sexp)
+(define-key my-keys-mode-map (kbd "C-M-k") 'arnaud-kill-sexp)
+(define-key my-keys-mode-map (kbd "C-M-S-SPC") 'arnaud-mark-sexp-whole)
+(define-key my-keys-mode-map (kbd "C-M-S-k") 'arnaud-kill-sexp-whole)
+(define-key my-keys-mode-map (kbd "C-M-w") 'arnaud-kill-save-sexp)
+(define-key my-keys-mode-map (kbd "C-M-S-w") 'arnaud-kill-save-sexp-whole)
+#+END_SRC
+
+
+
+
+
+
+
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!
 ** DONE Configure better web-mode support
