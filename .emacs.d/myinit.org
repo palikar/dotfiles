@@ -8,7 +8,8 @@
 #+EXPORT_FILE_NAME: config_emacs
 #+CREATOR: Emacs 24.3.50.3 (Org mode 8.0.3)
 #+SELECT_TAGS: export
-#+EXCLUDE_TAGS: noexport
+#+EXCLUDE_TAGS:noexport no_export
+#+EXCLUDE_TAGS: no_export
 #+CREATOR: Emacs 25.2.2 (Org mode 9.1git remote add origin https://github.com/palikar/jgrapher.git.13)
 
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
@@ -17,15 +18,6 @@
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t todo:t |:t
 #+OPTIONS: toc:2
-
-#+EXCLUDE_TAGS: no_export
-
-
-
-
-
-
-
 
 * Abstract
 This is the cofiguration of my EmonkeysMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
@@ -1236,10 +1228,27 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 #+END_SRC
 * Hydra
 
+=C-c h= is like the prefix for all my hydras. After that comes another letter (of /C-letter/) that selects the desired hydra.
 
+|------------------+--------------------|
+| Keybinding       | Hydra              |
+|------------------+--------------------|
+| =<prefix> b=     | Bookmarks          |
+| =<prefix> r=     | Rectangle          |
+| =<prefix> R=     | Registers          |
+| =<prefix> C-o m= | Org Tress movement |
+| =<prefix> C-o t= | Org Templates      |
+| =<prefix> f=     | Formating          |
+| =<prefix> p=     | Projectile         |
+| =<prefix> M=     | Modes              |
+| =<prefix> m=     | Magit              |
+|------------------+--------------------|
+
+ - [[https://github.com/abo-abo/hydra][hydra]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'hydra)
 (require 'hydra-examples)
+
 #+END_SRC
 ** Windowing
 
@@ -1332,7 +1341,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
   ("p" point-to-register)
   ("h" helm-register)
   ("q" nil :color blue))
-(define-key my-keys-mode-map (kbd "C-c h C-r") 'arnaud-hydra-registers/body)
+(define-key my-keys-mode-map (kbd "C-c h R") 'arnaud-hydra-registers/body)
 #+END_SRC
 ** Modes toggling
 #+BEGIN_SRC emacs-lisp :results none
@@ -1356,7 +1365,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
   ("q" nil :color blue))
 
 
-(define-key my-keys-mode-map (kbd "C-c h C-m") 'arnaud-hydra-active-modes/body)
+(define-key my-keys-mode-map (kbd "C-c h M") 'arnaud-hydra-active-modes/body)
 #+END_SRC
 ** Org trees movement
 #+BEGIN_SRC emacs-lisp :results none
@@ -1537,9 +1546,6 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 (define-key my-keys-mode-map (kbd "C-c h m") 'arnaud-hydra-magit/body)
 #+END_SRC
-
-
-
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!
 ** DONE Configure better web-mode support
