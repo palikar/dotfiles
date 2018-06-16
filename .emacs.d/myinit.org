@@ -40,7 +40,9 @@ and setupe emacs
 . setup-emacs.sh
 #+END_EXAMPLE
 //
-I've drawn a lot of inspiration for my Emacs configuration form [[https://github.com/zamansky/using-emacs][here]]
+I've drawn a lot of inspiration for my Emacs configuration form:
+- [[https://github.com/zamansky/using-emacs][here]] (for the genera concept of the configuration file)
+- [[https://sriramkswamy.github.io/dotemacs/][also here]] (for the all of the /hydras/)
 * Repos and packages
 The default packages repo for emacs is ELPA. ELPA is not super good, we also want ELPA. +ELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
 #+BEGIN_SRC emacs-lisp :results none
@@ -158,19 +160,39 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 #+END_SRC
 ** Copy line below
 Use =Alt-up/down= as in any other editor to copy lines 
-#+BEGIN_SRC emacs-lisp
-(defun duplicate-line()
+#+BEGIN_SRC emacs-lisp :results none
+(defun duplicate-line-down()
   (interactive)
-  (move-beginning-of-line 1)
-  (kill-line)
-  (yank)
-  (open-line 1)
-  (next-line 1)
-  (yank)
+  (let ((saved-position (point)))
+    (move-beginning-of-line 1)
+    (kill-line)
+    (yank)
+    (open-line 1)
+    (next-line 1)
+    (yank)
+    (goto-char saved-position)
+    )
   )
-(define-key my-keys-mode-map [(control shift down)]  'duplicate-line)
-(define-key my-keys-mode-map [(control shift up)]  'duplicate-line)   
+(defun duplicate-line-up()
+  (interactive)
+  (let ((saved-position (point)))
+    (move-beginning-of-line 1)
+    (kill-line)
+    (yank)
+    (move-beginning-of-line 1)
+    (open-line 1)
+    (yank)
+    (goto-char saved-position)
+    (next-line 1)
+    )
+  )
+
+
+(define-key my-keys-mode-map [(control shift down)]  'duplicate-line-down)
+(define-key my-keys-mode-map [(control shift up)]  'duplicate-line-up) 
 #+END_SRC
+
+
 ** Making parenthesis smart
 Those are pretty much a must when editing code...and also anything else
 - Select region and wrap it up with a sybol
@@ -349,7 +371,43 @@ will produce a graph-png at the end....it's awesome!
          (plantuml . t)
          (latex . t))))
 #+END_SRC
+** Templates
+#+BEGIN_SRC emacs-lisp :results none
+;; More of those nice template expansion
+  (add-to-list 'org-structure-template-alist '("A" "#+DATE: ?"))
+  (add-to-list 'org-structure-template-alist '("C" "#+BEGIN_CENTER\n?\n#+END_CENTER\n"))
+  (add-to-list 'org-structure-template-alist '("D" "#+DESCRIPTION: ?"))
+  (add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE\n"))
+  (add-to-list 'org-structure-template-alist '("H" "#+LATEX_HEADER: ?"))
+  (add-to-list 'org-structure-template-alist '("I" ":INTERLEAVE_PDF: ?"))
+  (add-to-list 'org-structure-template-alist '("L" "#+BEGIN_LaTeX\n?\n#+END_LaTeX"))
+  (add-to-list 'org-structure-template-alist '("M" "#+LATEX_HEADER: \\usepackage{minted}\n"))
+  (add-to-list 'org-structure-template-alist '("N" "#+NAME: ?"))
+  (add-to-list 'org-structure-template-alist '("P" "#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"org.css\"/>\n"))
+  (add-to-list 'org-structure-template-alist '("S" "#+SUBTITLE: ?"))
+  (add-to-list 'org-structure-template-alist '("T" ":DRILL_CARD_TYPE: twosided"))
+  (add-to-list 'org-structure-template-alist '("V" "#+BEGIN_VERSE\n?\n#+END_VERSE"))
+  (add-to-list 'org-structure-template-alist '("X" "#+EXCLUDE_TAGS: reveal?"))
+  (add-to-list 'org-structure-template-alist '("a" "#+AUTHOR: ?"))
+  (add-to-list 'org-structure-template-alist '("c" "#+CAPTION: ?"))
+  (add-to-list 'org-structure-template-alist '("d" "#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \\n:nil ^:t arch:headline\n#+OPTIONS: author:t email:nil e:t f:t inline:t creator:nil d:nil date:t\n#+OPTIONS: toc:nil num:nil tags:nil todo:nil p:nil pri:nil stat:nil c:nil d:nil\n#+LATEX_HEADER: \\usepackage[margin=2cm]{geometry}\n#+LANGUAGE: en\n\n#+REVEAL_TRANS: slide\n#+REVEAL_THEME: white\n"))
+  (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+  (add-to-list 'org-structure-template-alist '("f" "#+TAGS: @?"))
+  (add-to-list 'org-structure-template-alist '("h" "#+BEGIN_HTML\n?\n#+END_HTML\n"))
+  (add-to-list 'org-structure-template-alist '("i" "#+INTERLEAVE_PDF: ?"))
+  (add-to-list 'org-structure-template-alist '("k" "#+KEYWORDS: ?"))
+  (add-to-list 'org-structure-template-alist '("l" "#+LABEL: ?"))
+  (add-to-list 'org-structure-template-alist '("m" "#+BEGIN_SRC matlab\n?\n#+END_SRC"))
+  (add-to-list 'org-structure-template-alist '("n" "#+BEGIN_NOTES\n?\n#+END_NOTES"))
+  (add-to-list 'org-structure-template-alist '("o" "#+OPTIONS: ?"))
+  (add-to-list 'org-structure-template-alist '("p" "#+BEGIN_SRC python\n?\n#+END_SRC"))
+  (add-to-list 'org-structure-template-alist '("q" "#+BEGIN_QUOTE\n?\n#+END_QUOTE"))
+  (add-to-list 'org-structure-template-alist '("r" ":PROPERTIES:\n?\n:END:"))
+  (add-to-list 'org-structure-template-alist '("s" "#+BEGIN_SRC ?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("t" "#+TITLE: ?"))
+  (add-to-list 'org-structure-template-alist '("v" "#+BEGIN_VERBATIM\n?\n#+END_VERBATIM"))
 
+#+END_SRC
 ** Reloading
 For some reasons I have to call this after I've /require/-d all the exporters' backends in order to make them available in the export dispatcher of /org-mode/.
 #+BEGIN_SRC emacs-lisp
@@ -420,16 +478,36 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 * Helm goodies
 The best and the most fully fledged completion engine for emacs IMO. I cannot be productive in my emacs without this. When you are in minibuffer and start typing, things just appear as you type, you can select multiple items, perform actions on all of the (example: open multiple files with single =C-x C-f=) and many more features that I should probalby use on more regular basis.
 - [[https://github.com/emacs-helm/helm][helm]]
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (require 'helm)
 (require 'helm-config)
-(helm-mode 1)
+
+
+(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t
+      helm-echo-input-in-header-line t)
+
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match t)
+
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match    t)
+
+
+(setq helm-M-x-fuzzy-match t)
+
+(setq helm-exit-idle-delay 0)
+
 
 (define-key my-keys-mode-map (kbd "C-x C-f") 'helm-find-files)  
 (setq helm-autoresize-max-height 0)
 (setq helm-autoresize-min-height 50)
 (helm-autoresize-mode 1)
 (define-key my-keys-mode-map (kbd "M-x") 'helm-M-x)
+(define-key my-keys-mode-map (kbd "C-x b") 'helm-mini)
 (define-key my-keys-mode-map (kbd "C-c b") 'helm-semantic-or-imenu)
 (define-key my-keys-mode-map (kbd "M-s") 'helm-projectile-grep)
 
@@ -441,9 +519,10 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 (define-key my-keys-mode-map (kbd "C-x c C-s") 'helm-occur-from-isearch)
 
 
+(helm-mode 1)
+(helm-autoresize-mode 1)
 
 #+END_SRC
-
 * Avy
 Navigate by searching for a letter on the screen and jumping to it. Useful for quick navigation and getting to places on the screen.
 - [[https://github.com/abo-abo/avy][avy]]
@@ -468,7 +547,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (setq company-minimum-prefix-length 2
       company-tooltip-align-annotations nil
       company-tooltip-flip-when-above nil
-      company-idle-delay 0.1
+      company-idle-delay nil
       company-show-numbers nil
       company-echo-truncate-lines nil
       )
@@ -1014,8 +1093,11 @@ This is absolutely a genius thing! Mark something, simple key-stroke, BAM!! Goog
 - =SPC= for region
 - =l= for line
 - =c= for cpp-reference
+
+I also frequanlty use Zeal. It's an application housing tons of usefull documentations and look ups in it while working on somethings are a must. Therefore I have package named *zeal-at-point* that allows me to perform quick search actions in the application with query take form the point. The keybinding for that is =C-c g z= (*Z*eal).
 -------------------
--[[https://github.com/Malabarba/emacs-google-this][google-this]]
+- [[https://github.com/Malabarba/emacs-google-this][google-this]]
+- [[https://github.com/jinzhu/zeal-at-point][zeal-at-point]]
 #+BEGIN_SRC emacs-lisp
 
 
@@ -1026,6 +1108,9 @@ This is absolutely a genius thing! Mark something, simple key-stroke, BAM!! Goog
 (google-this-mode 1)
 (define-key my-keys-mode-map (kbd "C-c g") 'google-this-mode-submap)
 (define-key my-keys-mode-map (kbd "C-c g c") 'google-this-cpp-reference)
+
+
+(define-key my-keys-mode-map (kbd "C-c g z ") 'zeal-at-point)
 
 
 #+END_SRC
@@ -1124,7 +1209,7 @@ Making the modeline a little bit prettier and more spece efficient than the defa
 (setq sml/theme 'automatic)
 #+END_SRC
 * Sexp on steroids
-As previously stated, I knew tiny bit of vim key-bindings and holy cow those can do a lot of things in very few keystrokes. Emacs is not really like that. I've written some simple functions thal with saving, marking and killing /sexp/s. I really like that feature of vim "*d*elete *i*nside *(*-block" and it kills everything inside the parentesies....or copies it into kill ring or marks it, basically - it's pretty awesome and here I am trying to ripp off exxaclty that.\\
+As previously stated, I know tiny bit of vim key-bindings and holy cow those can do a lot of things in very few keystrokes. Emacs is not really like that. I've written some simple functions thal with saving, marking and killing /sexp/s. I really like that feature of vim "*d*elete *i*nside *(*-block" and it kills everything inside the parentesies....or copies it into kill ring or marks it, basically - it's pretty awesome and here I am trying to ripp off exxaclty that.\\
 The commands that come in handy a lot of the times and that I've written:
 
 | Keystroke   | Description                                              |
@@ -1139,85 +1224,8 @@ The commands that come in handy a lot of the times and that I've written:
 
 As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operations
 
-#+BEGIN_SRC emacs-lisp :results none 
-
-(defun arnaud-mark-sexp () 
-  "Function to mark the things inside of the current sexp"
-  (interactive)
-  (if (use-region-p)
-      (progn       
-        (sp-backward-up-sexp)
-        (sp-backward-up-sexp)
-        (forward-char 1) 
-        (set-mark-command nil)
-        (sp-up-sexp)
-        (backward-char 1)
-        )
-    (progn
-      (sp-backward-up-sexp)
-      (forward-char 1) 
-      (set-mark-command nil)
-      (sp-up-sexp)
-      (backward-char 1)
-      )
-    ))
-
-
-(defun arnaud-kill-save-sexp () 
-  "Function to mark the things inside of the current sexp"
-  (interactive)
-  (save-excursion
-    (sp-backward-up-sexp)
-    (forward-char 1) 
-    (set-mark-command nil)
-    (sp-up-sexp)
-    (backward-char 1)
-    (kill-ring-save (region-beginning) (region-end))
-    (deactivate-mark)
-    )
-  )
-
-
-(defun arnaud-kill-save-sexp-whole () 
-  "Function to mark the things inside of the current sexp"
-  (interactive)
-  (save-excursion
-    (sp-backward-up-sexp)
-    (set-mark-command nil)
-    (sp-up-sexp)
-    (kill-ring-save (region-beginning) (region-end))
-    (deactivate-mark)
-    )
-
-  (defun arnaud-kill-sexp () 
-    "Function to mark the things inside of the current sexp"
-    (interactive)
-    (sp-backward-up-sexp)
-    (forward-char 1) 
-    (set-mark-command nil)
-    (sp-up-sexp)
-    (backward-char 1)
-    (kill-region (region-beginning) (region-end))
-    ))
-
-(defun arnaud-mark-sexp-whole () 
-  "Function to mark the things inside of the current sexp"
-  (interactive)
-  (sp-backward-up-sexp)
-  (set-mark-command nil)
-  (forward-sexp)
-  )
-
-(defun arnaud-kill-sexp-whole () 
-  "Function to mark the things inside of the current sexp"
-  (interactive)
-  (sp-backward-up-sexp)
-  (set-mark-command nil)
-  (forward-sexp)
-  (kill-region (region-beginning) (region-end))
-  )
-
-
+#+BEGIN_SRC emacs-lisp :results none
+(require 'arnaud-sexp)
 
 (define-key my-keys-mode-map (kbd "C-M-SPC") 'arnaud-mark-sexp)
 (define-key my-keys-mode-map (kbd "C-M-k") 'arnaud-kill-sexp)
@@ -1226,10 +1234,309 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 (define-key my-keys-mode-map (kbd "C-M-w") 'arnaud-kill-save-sexp)
 (define-key my-keys-mode-map (kbd "C-M-S-w") 'arnaud-kill-save-sexp-whole)
 #+END_SRC
+* Hydra
+
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'hydra)
+(require 'hydra-examples)
+#+END_SRC
+** Windowing
+
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-windowing (:color red
+                               :hint nil)
+  "
+ ^Ace-window^
+^^------------------------------------------------------------------
+^ _s_: Select window^           
+^ _d_: Delete window^           
+^ _m_: Maximize window^         
+^ _c_: Close other windows^    
+^ _t_: Transpose windows^       
+^ _o_: Ace^
+"
+  ("s" ace-select-window)
+  ("d" ace-delete-window)
+  ("m" ace-maximize-window)
+  ("c" ace-delete-other-windows)
+  ("t" ace-swap-windows)
+  ("o" ace-window)
+  ("q" nil :color blue))
+
+(define-key my-keys-mode-map (kbd "C-c h w") 'arnaud-windowing/body)
+#+END_SRC
+** Bookmarks navigation
+
+#+BEGIN_SRC emacs-lisp
+(defhydra arnaud-hydra-bookmarks (:color red
+                              :hint nil)
+  "
+ _s_: set  _b_: bookmark   _j_: jump   _d_: delete   _q_: quit
+  "
+  ("s" bookmark-set)
+  ("b" bookmark-save)
+  ("j" bookmark-jump)
+  ("d" bookmark-delete)
+  ("q" nil :color blue))
+(define-key my-keys-mode-map (kbd "C-c h b") 'arnaud-hydra-bookmarks/body)
+#+END_SRC
+
+** Editing rectangle
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-hydra-rectangle (:pre (rectangle-mark-mode 1)
+                                   :color red
+                                   :hint nil)
+  "
+ _p_: paste   _r_: replace  _I_: insert
+ _y_: copy    _o_: open     _V_: reset
+ _d_: kill    _n_: number   _q_: quit
+"
+  ("h" backward-char nil)
+  ("l" forward-char nil)
+  ("k" previous-line nil)
+  ("j" next-line nil)
+  ("y" copy-rectangle-as-kill)
+  ("d" kill-rectangle)
+  ("x" clear-rectangle)
+  ("o" open-rectangle)
+  ("p" yank-rectangle)
+  ("r" string-rectangle)
+  ("n" rectangle-number-lines)
+  ("I" string-insert-rectangle)
+  ("V" (if (region-active-p)
+           (deactivate-mark)
+         (rectangle-mark-mode 1)) nil)
+  ("q" keyboard-quit :color blue))
+
+(define-key my-keys-mode-map (kbd "C-c h r") 'arnaud-hydra-rectangle/body)
+#+END_SRC
+** Registers
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-hydra-registers (:color red
+                              :hint nil)
+  "
+ _a_: append     _c_: copy-to    _j_: jump            _r_: rectangle-copy   _q_: quit
+ _i_: insert     _n_: number-to  _f_: frameset        _w_: window-config
+ _+_: increment  _p_: point-to   _h_: helm-register
+  "
+  ("a" append-to-register)
+  ("c" copy-to-register)
+  ("i" insert-register)
+  ("f" frameset-to-register)
+  ("j" jump-to-register)
+  ("n" number-to-register)
+  ("r" copy-rectangle-to-register)
+  ("w" window-configuration-to-register)
+  ("+" increment-register)
+  ("p" point-to-register)
+  ("h" helm-register)
+  ("q" nil :color blue))
+(define-key my-keys-mode-map (kbd "C-c h C-r") 'arnaud-hydra-registers/body)
+#+END_SRC
+** Modes toggling
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-hydra-active-modes (:color red
+                                       :hint nil)
+  "
+ _b_: fancy battery   _C-c_: flycheck       _c_: company     _j_: jedi
+ _l_: linenum         _v_: visual-line      _h_: hs-minor   
+ _f_: flyspell        _y_: yas              _e_: emmet       _q_: quit
+"
+  ("b" fancy-battery-mode)
+  ("l" linum-mode)
+  ("f" flyspell-mode)
+  ("C-c" global-flycheck-mode)
+  ("v" visual-line-mode)
+  ("y" yas-global-mode)
+  ("c" company-mode)
+  ("h" hs-minor-mode)
+  ("e" emmet-mode)
+  ("j" jedi-mode)
+  ("q" nil :color blue))
+
+
+(define-key my-keys-mode-map (kbd "C-c h C-m") 'arnaud-hydra-active-modes/body)
+#+END_SRC
+** Org trees movement
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-hydra-org-organize (:color red
+                                            :hint nil)
+  "
+       ^Meta^                 
+^^--------------------------------------------------------------------
+      ^ _<up>_ ^          _q_: quit
+ _<right>_ ^+^ _<left>_
+      ^_<down>_^      
+"
+  ("<left>" org-metaleft)
+  ("<right>" org-metaright)
+  ("<down>" org-metadown)
+  ("<up>" org-metaup)
+  ("q" nil :color blue))
+
+(define-key my-keys-mode-map (kbd "C-c h o") 'arnaud-hydra-org-organize/body)
+#+END_SRC
+** Org templates expansions
+#+BEGIN_SRC emacs-lisp :results none
+(defun hot-expand (str)
+  "Expand org template."
+  (insert str)
+  (org-try-structure-completion))
+
+(defhydra arnaud-hydra-org-template (:color blue
+                                 :hint nil)
+  "
+ ^One liners^                                        ^Blocks^                                      ^Properties^
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+ _a_: author        _i_: interleave  _D_: description    _C_: center      _p_: python src    _n_: notes    _d_: defaults   _r_: properties        _<_: insert '<'
+ _A_: date          _l_: label       _S_: subtitle       _e_: elisp src   _Q_: quote                     _L_: latex      _I_: interleave        _q_: quit
+ _c_: caption       _N_: name        _k_: keywords       _E_: example     _s_: src                       _x_: export     _T_: drill two-sided
+ _f_: file tags     _o_: options     _M_: minted         _h_: html        _v_: verbatim                  _X_: noexport
+ _H_: latex header  _t_: title       _P_: publish        _m_: matlab src  _V_: verse
+ "
+  ("a" (hot-expand "<a"))
+  ("A" (hot-expand "<A"))
+  ("c" (hot-expand "<c"))
+  ("f" (hot-expand "<f"))
+  ("H" (hot-expand "<H"))
+  ("i" (hot-expand "<i"))
+  ("I" (hot-expand "<I"))
+  ("l" (hot-expand "<l"))
+  ("n" (hot-expand "<n"))
+  ("N" (hot-expand "<N"))
+  ("P" (hot-expand "<P"))
+  ("o" (hot-expand "<o"))
+  ("t" (hot-expand "<t"))
+  ("C" (hot-expand "<C"))
+  ("D" (hot-expand "<D"))
+  ("e" (hot-expand "<e"))
+  ("E" (hot-expand "<E"))
+  ("h" (hot-expand "<h"))
+  ("k" (hot-expand "<k"))
+  ("M" (hot-expand "<M"))
+  ("m" (hot-expand "<m"))
+  ("p" (hot-expand "<p"))
+  ("Q" (hot-expand "<q"))
+  ("s" (hot-expand "<s"))
+  ("S" (hot-expand "<S"))
+  ("v" (hot-expand "<v"))
+  ("V" (hot-expand "<V"))
+  ("x" (hot-expand "<x"))
+  ("X" (hot-expand "<X"))
+  ("d" (hot-expand "<d"))
+  ("L" (hot-expand "<L"))
+  ("r" (hot-expand "<r"))
+  ("I" (hot-expand "<I"))
+  ("T" (hot-expand "<T"))
+  ("b" (hot-expand "<b"))
+  ("<" self-insert-command)
+  ("q" nil :color blue))
+
+(define-key my-keys-mode-map (kbd "C-c h C-o t") 'arnaud-hydra-org-template/body)
+#+END_SRC
+** Formatting
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-hydra-format (:color red
+                               :hint nil)
+  "
+ ^Beautify^
+^^^^^^^^^^--------------------------------------
+ _h_: html        _c_: css       _j_: js        _q_: quit
+ _H_: html buf    _C_: css buf   _J_: js buf
+"
+  ("h" web-beautify-html)
+  ("H" web-beautify-html-buffer)
+  ("c" web-beautify-css)
+  ("C" web-beautify-css-buffer)
+  ("j" web-beautify-js)
+  ("J" web-beautify-js-buffer)
+  ("q" nil :color blue))
+(define-key my-keys-mode-map (kbd "C-c h f") 'arnaud-hydra-format/body)
+#+END_SRC
+** Projectile
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra hydra-projectile-other-window (:color teal)
+  "projectile-other-window"
+  ("f"  projectile-find-file-other-window        "file")
+  ("g"  projectile-find-file-dwim-other-window   "file dwim")
+  ("d"  projectile-find-dir-other-window         "dir")
+  ("b"  projectile-switch-to-buffer-other-window "buffer")
+  ("q"  nil                                      "cancel" :color blue))
+
+(defhydra arnaud-hydra-projectile (:color teal :hint nil)
+  "
+     PROJECTILE: %(projectile-project-root)
+
+     Find File            Search/Tags          Buffers                Cache
+------------------------------------------------------------------------------------------
+_s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
+ _ff_: file dwim       _g_: update gtags      _b_: switch to buffer  _x_: remove known project
+ _fd_: file curr dir   _o_: multi-occur     _s-k_: Kill all buffers  _X_: cleanup non-existing
+  _r_: recent file                                               ^^^^_z_: cache current
+  _d_: dir
+
+"
+  ("<ESC>" nil "quit")
+  ("<" hydra-project/body "back")
+  ("a"   projectile-ag)
+  ("b"   projectile-switch-to-buffer)
+  ("c"   projectile-invalidate-cache)
+  ("d"   projectile-find-dir)
+  ("s-f" projectile-find-file)
+  ("ff"  projectile-find-file-dwim)
+  ("fd"  projectile-find-file-in-directory)
+  ("g"   ggtags-update-tags)
+  ("s-g" ggtags-update-tags)
+  ("i"   projectile-ibuffer)
+  ("K"   projectile-kill-buffers)
+  ("s-k" projectile-kill-buffers)
+  ("m"   projectile-multi-occur)
+  ("o"   projectile-multi-occur)
+  ("s-p" projectile-switch-project "switch project")
+  ("p"   projectile-switch-project)
+  ("s"   projectile-switch-project)
+  ("r"   projectile-recentf)
+  ("x"   projectile-remove-known-project)
+  ("X"   projectile-cleanup-known-projects)
+  ("z"   projectile-cache-current-file)
+  ("`"   hydra-projectile-other-window/body "other window" :color blue)
+  ("q"   nil "cancel" :color blue))
+
+(define-key my-keys-mode-map (kbd "C-c h p") 'arnaud-hydra-projectile/body)
+#+END_SRC
+** Magit
+
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-hydra-magit (:color blue :hint nil)
+  "
+      Magit: %(magit-get \"remote\" \"origin\" \"url\")
+
+ ^Status^      ^Remote^          ^Operations^
+^^^^^^------------------------------------------------------------------------------------------
+_s_: Status      _f_: Pull       _c_  : Commit
+_l_: Log all     _p_: Push       _C-s_: Stage 
+_d_: Diff        _C-c_: Clone    _S_  : Stage modified
+ ^^                 ^^           ^_C-f_: Stage file^
+ ^^                 ^^           ^_M-f_: Unstage file^
+"
+  ("f" magit-pull)
+  ("p" magit-push)
+  ("c" magit-commit)
+  ("C-c" magit-clone)
+  ("d" magit-diff)
+  ("l" magit-log-all )
+  ("s" magit-status)
+  ("C-s" magit-stage)
+  ("C-f" magit-stage-file)
+  ("M-f" magit-unstage-file)
+  ("S" magit-stage-modified)
+  ("q" nil "Cancel" :color blue))
 
 
 
-
+(define-key my-keys-mode-map (kbd "C-c h m") 'arnaud-hydra-magit/body)
+#+END_SRC
 
 
 
