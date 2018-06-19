@@ -1,6 +1,6 @@
-#+STARTUP: overview
+#+startup: overview
 
-#+TITLE: Configuration file for my EMACS
+#+title: configuration file for my EMACS
 #+AUTHOR: Stanislav Arnaudov
 #+DATE: 18-04-2018
 #+EMAIL: stanislav_ts@abv.bg
@@ -19,6 +19,13 @@
 #+OPTIONS: timestamp:t title:t todo:t |:t
 #+OPTIONS: toc:2
 
+
+#+BEGIN_SRC emacs-lisp 
+(require 'pymacs)
+;;(pymacs-load "ropemacs" "rope-")
+#+END_SRC
+
+
 * Abstract
 This is the cofiguration of my EmonkeysMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
 Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
@@ -36,18 +43,17 @@ I've drawn a lot of inspiration for my Emacs configuration form:
 - [[https://github.com/zamansky/using-emacs][here]] (for the genera concept of the configuration file)
 - [[https://sriramkswamy.github.io/dotemacs/][also here]] (for the all of the /hydras/)
 * Repos and packages
-The default packages repo for emacs is ELPA. ELPA is not super good, we also want ELPA. +ELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
+The default packages repo for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
 #+BEGIN_SRC emacs-lisp :results none
 (require 'package)
 (package-initialize)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
-(add-to-list 'package-archives '("(match-end )lpa2" . "http://www.mirrorservice.org/sites/melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa3" . "http://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
-
-
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+;; (add-to-list 'package-archives '("melpa2" . "http://www.mirrorservice.org/sites/melpa.org/packages/"))
+;; (add-to-list 'package-archives '("melpa3" . "http://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
+
 (package-refresh-contents)
 #+END_SRC
 ** Installing packages
@@ -96,6 +102,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 - Numbered lines come in handy
 - Highlighting the current line is pretty =übersichtlich=
 - Pretty sybols like \lambda over the whole place is pretty cool
+- [[https://elpa.gnu.org/packages/nlinum.html][nlinum]] - a mode to display the linenumbers but it's much more efficient than the build in /linum/-mode. /nlinum/ can handle big files without a hicup while scrolling.
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
@@ -104,7 +111,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (fset 'yes-or-no-p 'y-or-n-p)
 (fringe-mode '(0 . 0))
 (setq-default cursor-type 'bar)
-(global-linum-mode t) 
+(global-nlinum-mode t)
 (global-visual-line-mode 1)
 (global-hl-line-mode 1)    
 (global-prettify-symbols-mode +1)
@@ -123,32 +130,28 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-follow-mouse nil)
 (setq scroll-step 1) ;;smooth-osh scrolling
-
 (setq confirm-kill-emacs 'y-or-n-p) ;; Sometimes I fat finger C-x C-c
-
 (setq save-interprogram-paste-before-kill t)
-
 (global-auto-revert-mode 1) ;; see changes on disc as quick as possible 
 (setq auto-revert-verbose nil) ;; everything is seemless
-
 ;;for good measures
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-
 (require 'saveplace) ;; saves your cursor's position in buffers and jumps to it on reopening
 (setq-default save-place t)
 (setq save-place-file (locate-user-emacs-file "places" ".emacs-places"))
 (setq save-place-forget-unreadable-files nil)
-
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (define-key my-keys-mode-map (kbd "M-c") 'capitalize-dwim)
-
 (setq vc-follow-symlinks t) ;; it asks you everytime otherwise
-
 (define-key my-keys-mode-map (kbd "<f5>") 'revert-buffer)
+(global-unset-key  ( kbd "<prior>"))
+(global-unset-key  ( kbd "<next>"))
+(define-key my-keys-mode-map (kbd "C-<prior>") 'scroll-down-line)
+(define-key my-keys-mode-map (kbd "C-<next>") 'scroll-up-line)
 #+END_SRC
 ** Copy line below
 Use =Alt-up/down= as in any other editor to copy lines 
@@ -183,8 +186,6 @@ Use =Alt-up/down= as in any other editor to copy lines
 (define-key my-keys-mode-map [(control shift down)]  'duplicate-line-down)
 (define-key my-keys-mode-map [(control shift up)]  'duplicate-line-up) 
 #+END_SRC
-
-
 ** Making parenthesis smart
 Those are pretty much a must when editing code...and also anything else
 - Select region and wrap it up with a sybol
@@ -217,6 +218,27 @@ Those are pretty much a must when editing code...and also anything else
 (smartparens-global-mode 1)
 
 
+
+
+#+END_SRC
+** Bytecompiling everything
+This function will bytecompile everything that it finds in the .emacs.d directory. This could boots the performance of emacs
+#+BEGIN_SRC emacs-lisp
+(defun byte-compile-init-dir ()
+  "Byte-compile all your dotfiles."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory 0))
+
+(defun remove-elc-on-save ()
+  "If you're saving an elisp file, likely the .elc is no longer valid."
+  (add-hook 'after-save-hook
+            (lambda ()
+              (if (file-exists-p (concat buffer-file-name "c"))
+                  (delete-file (concat buffer-file-name "c"))))
+            nil
+            t))
+
+(add-hook 'emacs-lisp-mode-hook 'remove-elc-on-save)
 
 
 #+END_SRC
@@ -357,7 +379,7 @@ will produce a graph-png at the end....it's awesome!
          (ruby . t)
          (gnuplot . t)
          (clojure . t)
-         (sh . t)
+         (shell . t)
          (ledger . t)
          (org . t)
          (plantuml . t)
@@ -510,6 +532,8 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 
 (define-key my-keys-mode-map (kbd "C-x c C-s") 'helm-occur-from-isearch)
 
+(define-key my-keys-mode-map (kbd "C-x r h") 'helm-register)
+
 
 (helm-mode 1)
 (helm-autoresize-mode 1)
@@ -541,21 +565,21 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
       company-tooltip-flip-when-above nil
       company-idle-delay nil
       company-show-numbers nil
-      company-echo-truncate-lines nil
-      )
+      company-echo-truncate-lines nil)
 
-
-
-;;(ac-config-default)
-
-
+;; (require 'ycmd)
+;; (require 'company-ycmd)
+;; (set-variable 'ycmd-extra-conf-whitelist '("/home/arnaud//my_projects/*"))
+;; (set-variable 'ycmd-server-command `("python2.7" ,(file-truename "~/code/ycmd/ycmd/")))
+;; (company-ycmd-setup)
 
 (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
                           ))
-;;(setq company-frontends nil)
 
-;;(setq company-backends '())
 
+(setq company-backends '())
+
+(setq company-backends nil)
 
 (setq company-backends '(
                          company-capf          
@@ -573,6 +597,8 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 
 (global-company-mode t)
 (define-key my-keys-mode-map (kbd "M-m") 'company-complete)
+
+
 
 (defun my/nxml-mode-hook ()
   (add-to-list 'company-backends 'company-nxml))
@@ -730,11 +756,12 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
   (interactive)
-  (let (beg end)
-    (if (region-active-p)
-        (setq beg (region-beginning) end (region-end))
-      (setq beg (line-beginning-position) end (line-end-position)))
-    (comment-or-uncomment-region beg end)))
+  (save-excursion 
+    (let (beg end)
+      (if (region-active-p)
+          (setq beg (region-beginning) end (region-end))
+        (setq beg (line-beginning-position) end (line-end-position)))
+      (comment-or-uncomment-region beg end))))
 
 (define-key my-keys-mode-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
 (setq c-default-style
@@ -928,8 +955,6 @@ I don't really use EMACS for java development as it can be tedious and the packa
    (t
     (setq meghanada-java-path "java")
     (setq meghanada-maven-path "mvn")))
-
-
 
 
 #+END_SRC
@@ -1190,15 +1215,17 @@ Making the modeline a little bit prettier and more spece efficient than the defa
   - [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]]
  Preview:
 [[../mode-line.png]]
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (require 'telephone-line)
-(telephone-line-mode t)
+(telephone-line-mode 1)
 
-(require 'smart-mode-line)
 (require 'powerline)
-(setq sml/no-confirm-load-theme t)
-(sml/setup)
-(setq sml/theme 'automatic)
+(powerline-revert)
+(powerline-center-theme)
+
+;; (setq sml/no-confirm-load-theme t)
+;; (sml/setup)
+;; (setq sml/theme 'automatic)
 #+END_SRC
 * Sexp on steroids
 As previously stated, I know tiny bit of vim key-bindings and holy cow those can do a lot of things in very few keystrokes. Emacs is not really like that. I've written some simple functions thal with saving, marking and killing /sexp/s. I really like that feature of vim "*d*elete *i*nside *(*-block" and it kills everything inside the parentesies....or copies it into kill ring or marks it, basically - it's pretty awesome and here I am trying to ripp off exxaclty that.\\
@@ -1217,6 +1244,11 @@ The commands that come in handy a lot of the times and that I've written:
 As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operations
 
 #+BEGIN_SRC emacs-lisp :results none
+
+;; (require 'load-directory)
+;; (load-directory "~/.emacs.d/my-lisp")
+
+(load "~/.emacs.d/lisp/arnaud-sexp") 
 (require 'arnaud-sexp)
 
 (define-key my-keys-mode-map (kbd "C-M-SPC") 'arnaud-mark-sexp)
@@ -1227,9 +1259,9 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 (define-key my-keys-mode-map (kbd "C-M-S-w") 'arnaud-kill-save-sexp-whole)
 #+END_SRC
 * Hydra
-
-=C-c h= is like the prefix for all my hydras. After that comes another letter (of /C-letter/) that selects the desired hydra.
-
+/Hydra/ is a package that allows you to create hydras. Those are like munues with keybindings that popout on the bottom of the buffer and prompt you to type one(or more) of the listed keybindings. This provides really cool way of structuring commands in a menu-like fashion. There are some predifined hydras that come with the package but those are not that good and therefore I've 'borrowed' a few from the mighty internet.
+\\
+=C-c h= is like the prefix for all my hydras. After that comes another letter (or /C-letter/) that selects the desired hydra.
 |------------------+--------------------|
 | Keybinding       | Hydra              |
 |------------------+--------------------|
@@ -1244,26 +1276,28 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 | =<prefix> m=     | Magit              |
 |------------------+--------------------|
 
+There is also a 'special' Hydra that lists all other hydras and it's bound to =C-c h h=
+-------------------
  - [[https://github.com/abo-abo/hydra][hydra]]
+
 #+BEGIN_SRC emacs-lisp :results none
 (require 'hydra)
 (require 'hydra-examples)
-
 #+END_SRC
-** Windowing
 
+** Windowing
 #+BEGIN_SRC emacs-lisp :results none
-(defhydra arnaud-windowing (:color red
+(defhydra arnaud-hydra-windowing (:color blue
                                :hint nil)
   "
- ^Ace-window^
-^^------------------------------------------------------------------
-^ _s_: Select window^           
+ ^Ace-window^                        ^^
+^^^^------------------------------------------------------------------
+^ _s_: Select window^           ^ _o_: Ace^
 ^ _d_: Delete window^           
 ^ _m_: Maximize window^         
 ^ _c_: Close other windows^    
 ^ _t_: Transpose windows^       
-^ _o_: Ace^
+
 "
   ("s" ace-select-window)
   ("d" ace-delete-window)
@@ -1273,12 +1307,11 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
   ("o" ace-window)
   ("q" nil :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h w") 'arnaud-windowing/body)
+(define-key my-keys-mode-map (kbd "C-c h w") 'arnaud-hydra-windowing/body)
 #+END_SRC
 ** Bookmarks navigation
-
 #+BEGIN_SRC emacs-lisp
-(defhydra arnaud-hydra-bookmarks (:color red
+(defhydra arnaud-hydra-bookmarks (:color blue
                               :hint nil)
   "
  _s_: set  _b_: bookmark   _j_: jump   _d_: delete   _q_: quit
@@ -1294,7 +1327,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 ** Editing rectangle
 #+BEGIN_SRC emacs-lisp :results none
 (defhydra arnaud-hydra-rectangle (:pre (rectangle-mark-mode 1)
-                                   :color red
+                                   :color blue
                                    :hint nil)
   "
  _p_: paste   _r_: replace  _I_: insert
@@ -1322,7 +1355,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 #+END_SRC
 ** Registers
 #+BEGIN_SRC emacs-lisp :results none
-(defhydra arnaud-hydra-registers (:color red
+(defhydra arnaud-hydra-registers (:color blue
                               :hint nil)
   "
  _a_: append     _c_: copy-to    _j_: jump            _r_: rectangle-copy   _q_: quit
@@ -1353,7 +1386,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
  _f_: flyspell        _y_: yas              _e_: emmet       _q_: quit
 "
   ("b" fancy-battery-mode)
-  ("l" linum-mode)
+  ("l" global-nlinum-mode)
   ("f" flyspell-mode)
   ("C-c" global-flycheck-mode)
   ("v" visual-line-mode)
@@ -1384,7 +1417,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
   ("<up>" org-metaup)
   ("q" nil :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h o") 'arnaud-hydra-org-organize/body)
+(define-key my-keys-mode-map (kbd "C-c h C-o m") 'arnaud-hydra-org-organize/body)
 #+END_SRC
 ** Org templates expansions
 #+BEGIN_SRC emacs-lisp :results none
@@ -1446,7 +1479,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 #+END_SRC
 ** Formatting
 #+BEGIN_SRC emacs-lisp :results none
-(defhydra arnaud-hydra-format (:color red
+(defhydra arnaud-hydra-format (:color blue
                                :hint nil)
   "
  ^Beautify^
@@ -1546,6 +1579,34 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 (define-key my-keys-mode-map (kbd "C-c h m") 'arnaud-hydra-magit/body)
 #+END_SRC
+** Hydras
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-hydra-magit (:color teal :hint nil)
+"
+    ^^                    ^Available Hydras^             ^^
+^^^^^^------------------------------------------------------------------------
+^_w_^ : Windowing    ^_R_^     : Registers            ^_f_^ : Formating
+^_b_^ : Bookmarks    ^_M_ ^    : Modes                ^_p_^ : Projectile
+^_r_^ : Rectangle    ^_C-o m_^ : Org treee move       ^_m_^ : Magit
+^_l_^ : LaTeX        ^_C-o t_^ : Org templates             ^^
+    
+"
+  ("w" arnaud-hydra-windowing/body)
+  ("b" arnaud-hydra-bookmarks/body)
+  ("r" arnaud-hydra-rectangle/body)
+  ("R" arnaud-hydra-registers/body)
+  ("M" arnaud-hydra-modes/body)
+  ("C-o m" arnaud-hydra-org-organize/body)
+  ("C-o t" arnaud-hydra-org-template/body)
+  ("f" arnaud-hydra-formating/body)
+  ("p" arnaud-hydra-projectile/body)
+  ("m" arnaud-hydra-magit/body)
+  ("l" arnaud-hydra-latex/body)
+  ("q" nil "Cancel" :color blue))
+
+(define-key my-keys-mode-map (kbd "C-c h h") 'arnaud-hydra-magit/body)
+#+END_SRC
+
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!
 ** DONE Configure better web-mode support
@@ -1567,12 +1628,14 @@ CLOSED: [2018-05-01 Tue 23:03]
 Some files of it at least!
 ** DONE Add annotations for everything
 CLOSED: [2018-06-07 Thu 21:35]
+** DONE Anotate the Hydra setup(s)
+CLOSED: [2018-06-17 Sun 19:42]
+** TODO Create Hydra for the latex mode things
+** TODO Steal someone's python setup
+** TODO Steal someone's c++ setup
 ** TODO Put the whole thing on the blog   
 * Nonsense                                                         :no_export:
 Put the whole whoel world on your table and pray for it!
 #+BEGIN_SRC emacs-lisp
 #+END_SRC
 
-
-
-                                                                              
