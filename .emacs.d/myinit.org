@@ -1,6 +1,6 @@
 #+startup: overview
 
-#+title: configuration file for my EMACS
+#+title: Configuration file for my EMACS
 #+AUTHOR: Stanislav Arnaudov
 #+DATE: 18-04-2018
 #+EMAIL: stanislav_ts@abv.bg
@@ -20,10 +20,6 @@
 #+OPTIONS: toc:2
 
 
-#+BEGIN_SRC emacs-lisp 
-(require 'pymacs)
-;;(pymacs-load "ropemacs" "rope-")
-#+END_SRC
 
 
 * Abstract
@@ -50,9 +46,9 @@ The default packages repo for emacs is ELPA. ELPA is not super good, we also wan
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-;; (add-to-list 'package-archives '("melpa2" . "http://www.mirrorservice.org/sites/melpa.org/packages/"))
-;; (add-to-list 'package-archives '("melpa3" . "http://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
+(add-to-list 'package-archives '("melpa2" . "http://www.mirrorservice.org/sites/melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa3" . "http://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
 
 (package-refresh-contents)
 #+END_SRC
@@ -103,10 +99,12 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 - Highlighting the current line is pretty =übersichtlich=
 - Pretty sybols like \lambda over the whole place is pretty cool
 - [[https://elpa.gnu.org/packages/nlinum.html][nlinum]] - a mode to display the linenumbers but it's much more efficient than the build in /linum/-mode. /nlinum/ can handle big files without a hicup while scrolling.
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (define-key my-keys-mode-map (kbd "<f10>") 'tool-bar-mode)
+(menu-bar-mode -1)
+(define-key my-keys-mode-map (kbd "<f9>") 'menu-bar-mode)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (fringe-mode '(0 . 0))
