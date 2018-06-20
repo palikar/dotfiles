@@ -1,3 +1,9 @@
+;;; package --- Summery
+
+
+;;; Commentary:
+
+
 ;;; Code:
 
 ;; Added by Package.el.  This must come before configurations of
@@ -25,7 +31,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (company-ycmd ycmd org-plus-contrib nlinum-relative nlinum pymacs ranger web-beautify fancy-battery google-this flyspell-popup flyspell-correct-popup popup-complete helm-flycheck helm-ispell company-irony-c-headers ibuffer-projectile telephone-line smart-mode-line-powerline-theme smart-mode-line easy-hugo hugo ctags-update meghanada atom-dark-theme monokai-theme molokai-theme smart-hungry-delete use-package wrap-region treemacs syntax-subword sublimity srefactor solarized-theme smartparens pretty-mode ox-twbs ox-hugo org2blog org-pdfview org-page org-bullets mvn lorem-ipsum latex-pretty-symbols helm-rtags helm-projectile haskell-mode flycheck-irony expand-region evil emmet-mode dumb-jump doom-themes crux company-rtags company-irony company-emacs-eclim company-c-headers cmake-ide clang-format auto-org-md auto-complete-nxml auto-complete-clang-async auto-complete-clang anzu))))
+    (mu4e-conversation imenu-list company-ycmd ycmd org-plus-contrib nlinum-relative nlinum pymacs ranger web-beautify fancy-battery google-this flyspell-popup flyspell-correct-popup popup-complete helm-flycheck helm-ispell company-irony-c-headers ibuffer-projectile telephone-line smart-mode-line-powerline-theme smart-mode-line easy-hugo hugo ctags-update meghanada atom-dark-theme monokai-theme molokai-theme smart-hungry-delete use-package wrap-region treemacs syntax-subword sublimity srefactor solarized-theme smartparens pretty-mode ox-twbs ox-hugo org2blog org-pdfview org-page org-bullets mvn lorem-ipsum latex-pretty-symbols helm-rtags helm-projectile haskell-mode flycheck-irony expand-region evil emmet-mode dumb-jump doom-themes crux company-rtags company-irony company-emacs-eclim company-c-headers cmake-ide clang-format auto-org-md auto-complete-nxml auto-complete-clang-async auto-complete-clang anzu))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

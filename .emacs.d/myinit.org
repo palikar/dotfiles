@@ -1579,7 +1579,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 #+END_SRC
 ** Hydras
 #+BEGIN_SRC emacs-lisp :results none
-(defhydra arnaud-hydra-magit (:color teal :hint nil)
+(defhydra arnaud-hydra-hydras (:color teal :hint nil)
 "
     ^^                    ^Available Hydras^             ^^
 ^^^^^^------------------------------------------------------------------------
@@ -1602,7 +1602,29 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("l" arnaud-hydra-latex/body)
   ("q" nil "Cancel" :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h h") 'arnaud-hydra-magit/body)
+(define-key my-keys-mode-map (kbd "C-c h h") 'arnaud-hydra-hydras/body)
+#+END_SRC
+* IMenu
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'imenu-list)
+
+(define-key my-keys-mode-map (kbd "<f12>") 'imenu-list-smart-toggle)
+
+(magit-file-header ((t (:foreground "violet"))))
+(magit-hunk-header ((t (:foreground "blue"))))
+(magit-header ((t (:foreground "cyan"))))
+(magit-tag-label ((t (:background "blue" :foreground "orange"))))
+(magit-diff-add ((t (:foreground "MediumSlateBlue"))))
+(magit-diff-del ((t (:foreground "maroon"))))
+(magit-item-highlight ((t (:background "#000012"))))
+
+ (setq gnus-secondary-select-methods '((nnml ""))
+       mail-sources '((pop :server "pop3.abv.bg"
+                           :user "stanislav_ts")))
+
+
+
 #+END_SRC
 
 * Things that need to be done in the dot-files                     :no_export:
