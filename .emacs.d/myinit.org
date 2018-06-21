@@ -1610,7 +1610,10 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 (require 'imenu-list)
 
 (define-key my-keys-mode-map (kbd "<f12>") 'imenu-list-smart-toggle)
+#+END_SRC
+* Magit
 
+#+BEGIN_SRC emacs-lisp 
 (magit-file-header ((t (:foreground "violet"))))
 (magit-hunk-header ((t (:foreground "blue"))))
 (magit-header ((t (:foreground "cyan"))))
@@ -1618,15 +1621,6 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 (magit-diff-add ((t (:foreground "MediumSlateBlue"))))
 (magit-diff-del ((t (:foreground "maroon"))))
 (magit-item-highlight ((t (:background "#000012"))))
-
-
-
- (setq gnus-secondary-select-methods '((nnml ""))
-       mail-sources '((pop :server "pop3.abv.bg"
-                           :user "stanislav_ts")))
-
-
-
 #+END_SRC
 
 * Things that need to be done in the dot-files                     :no_export:

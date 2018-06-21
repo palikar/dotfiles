@@ -79,3 +79,8 @@
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 }; f"
+
+
+[user]
+        name = Stanislav Arnaudov
+        email = stanislav_ts@abv.bg
