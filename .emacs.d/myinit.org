@@ -1619,6 +1619,8 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 (magit-diff-del ((t (:foreground "maroon"))))
 (magit-item-highlight ((t (:background "#000012"))))
 
+
+
  (setq gnus-secondary-select-methods '((nnml ""))
        mail-sources '((pop :server "pop3.abv.bg"
                            :user "stanislav_ts")))
