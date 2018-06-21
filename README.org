@@ -1,4 +1,21 @@
 #+STARTUP: overview
+
+
+#+OPTIONS: ':t *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t
+#+OPTIONS: broken-links:nil c:nil creator:nil d:(not "LOGBOOK")
+#+OPTIONS: date:t e:t email:nil f:t inline:t num:t p:nil pri:nil
+#+OPTIONS: prop:nil stat:t tags:t tasks:t tex:t timestamp:t title:t
+#+OPTIONS: toc:t todo:t |:t
+#+TITLE: README
+#+DATE: <2018-06-21 Thu>
+#+AUTHOR: Stanislav Arnaudov
+#+EMAIL: arnaud@localhost.localdomain
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.13)
+
+
 * Abstract 
 Everyone loves setting up their system from scratch as easy as possible. org layerThat's why much smarter people than me has come up with the idea of /dotfiles/. A collection of scripts, configuration-files and system settings that can make your whole /system installation/ as seamless as possible. My final goal with this 'project' of sorts is to be able to install fresh Debian, run one /master .sh file/ and then just wait couple of hours unitl everything is getting ready by itself...time in which I can, I don't know, drink tea and watch movies or something.
 ** Warning
@@ -9,20 +26,23 @@ Clone as normal and just execute the scripts for the diffetent things. The =.sh=
 #+BEGIN_EXAMPLE
 git clone https://github.com/palikar/dotfiles
 cd dotfiles
-sudo bash setup-all.sh
+sudo bash setup_all.sh
 #+END_EXAMPLE
 /Note:/ In my system I keep all of my development files(including my dotfiles) in folder called =code= and located at my home directory. Some of my setup sctipts asume that this is infact the case so if you are going to use the, please make the neccessery changes.
 //
 For not I've setup things for:
-+ =.emacs= - my editor of choice
-+ =.alias= - some useful abbriviations for certain commands in the terminal
++ =.emacs= - [[https://www.gnu.org/software/emacs/][Emacs]] is my editor of choice and this is the file that gets evaluated on each launch of it
++ =.vimrc= - [[https://www.vim.org/][Vim]] is my other editor of choice...
++ =.bash_aliases= - some useful abbriviations for certain commands in the terminal
++ =.bash_prompt=
++ =.bashr= - this file will beevaluated every time you lauch your /bash/ terminal
 + =.env= - setting up some basic environment variables
 + =.inputrc=  - some minor fixes for better typing in the terminal
 + =.gitconfig= - making =git= more pleasent to work with. Mainly diffetent abbriviations for git-commands
 //
 =package_list.txt= is a file the countains all =apt= packages that I can imagine myself using. =package_all.txt= containts list of all packages that I currently have on my system. With:
 #+BEGIN_EXAMPLE
-sudo bash install-packages.sh
+sudo bash install_packages.sh
 #+END_EXAMPLE
 you can install everything in =package_list.txt=. With a little bit of modification you can also install everything in =package_all.txt=. 
 * Emacs
@@ -30,13 +50,25 @@ I've been using EMACS for a while now (5-6 months). Before my config was just a 
 \\
 For setting up the emacs config just use:
 #+BEGIN_EXAMPLE
-. setup-emacs.sh
+. setup_-_emacs.sh
 #+END_EXAMPLE
-It's as bash script file that will just copy the =.emacs= file and some little things of the =.emacs.d= directory in the appropriate places.
+It's as bash script file that will just copy the =.emacs= file and some little things of the =.emacs.d= directory in the appropriate places....kinda, it actually creates soft links to the relevent configs but some things are still getting copied.
+* Vim
+The setup is pretty analogous to the emacs-one. Just run the script like: 
+#+BEGIN_EXAMPLE
+. ./setup_vim.sh
+#+END_EXAMPLE
+It will create the soft link to ./vimrc/ in your home directory. To note is that will delete the current /.vim/ directory in your home (/~/). My vim config is quite vanialla and all I got in my /.vim/ is a single theme. For that it makes sense to do the whole deleting thing.
+* Bash Configuration
+All the 'system' dotfiles are in =./system-config=. Those must be placed in the home directory. _Be careful while running:_
+#+BEGIN_EXAMPLE
+. ./setup_system.sh
+#+END_EXAMPLE
+This will first *delete* all file with the same names in the home directory. This means that your original /.bashrc/ will be gone so *archive* it first. After the deletion the script will create the necessary soft links.
 * Package sources
 For my Debian system I use diffetent sources for the apt-packages from those with which the system ships. My =sources.list= files are in the /package-sources/ directory of the repository. With
 #+BEGIN_EXAMPLE
-sudo bash setup-package-sources.sh
+sudo bash setup_package_sources.sh
 #+END_EXAMPLE
 you can set those up on your system.(With that you can also install Spotify on your system ;) )
 * Wallpapers
@@ -45,3 +77,4 @@ Because no system is complete without some pimp-ass wallpapers. My choices - yes
 For my dotfiles I've extensively taken inspiration from:
 - [[https://mathiasbynens.be/][Mathias Bynens]] and his [[https://github.com/mathiasbynens/dotfiles][dotfile]] 
 - [[https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789][This]] very good post on starting up with dotfiles
+- Recently I've changed my Bash Prompt and made it pretty much like this [[https://github.com/KeizerDev/.bashrc][guy's(KeizerDev)]] one.
