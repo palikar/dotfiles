@@ -47,6 +47,8 @@ alias open="gio open"
 # Saving a lot of time!
 alias gitcred="git config --global credential.helper cache"
 
+alias ua_python="sudo update-alternatives --config python"
+
 
 google() {
     search=""

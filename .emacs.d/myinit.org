@@ -1,3 +1,5 @@
+
+
 #+startup: overview
 
 #+title: Configuration file for my EMACS
@@ -127,12 +129,11 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (global-syntax-subword-mode 1) ;; easy workings with camel case, snake case and pretty much anything else
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-follow-mouse nil)
-(setq scroll-step 1) ;;smooth-osh scrolling
+(setq scroll-step 1) ;;smooth-ish scrolling
 (setq confirm-kill-emacs 'y-or-n-p) ;; Sometimes I fat finger C-x C-c
 (setq save-interprogram-paste-before-kill t)
 (global-auto-revert-mode 1) ;; see changes on disc as quick as possible 
 (setq auto-revert-verbose nil) ;; everything is seemless
-;;for good measures
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -150,6 +151,7 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (global-unset-key  ( kbd "<next>"))
 (define-key my-keys-mode-map (kbd "C-<prior>") 'scroll-down-line)
 (define-key my-keys-mode-map (kbd "C-<next>") 'scroll-up-line)
+(define-key my-keys-mode-map (kbd "C-c d") 'delete-file)
 #+END_SRC
 ** Copy line below
 Use =Alt-up/down= as in any other editor to copy lines 
@@ -336,14 +338,8 @@ Some extra export backends for org-mode that come in handy.
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Captured TODOS")
          "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        ("w" "Web" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Tasks")
-         "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        ("r" "Prog" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Tasks")
-         "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        ("i" "Idea" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Someday/Maybe")
+        ("i" "Idea" entry (file+headline "~/Dropbox/orgfiles/notes.org" "Someday/Maybe")
          "* IDEA %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        ("h" "Home" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Home")
-         "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
         )
       )
 #+END_SRC
@@ -561,7 +557,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (setq company-minimum-prefix-length 2
       company-tooltip-align-annotations nil
       company-tooltip-flip-when-above nil
-      company-idle-delay nil
+      company-idle-delay 0
       company-show-numbers nil
       company-echo-truncate-lines nil)
 
@@ -580,6 +576,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (setq company-backends nil)
 
 (setq company-backends '(
+                         company-irony
                          company-capf          
                          company-files         
                          (
@@ -677,7 +674,6 @@ One of the most useful packages that is pretty much a must for a emacs configura
 (setq helm-yas-space-match-any-greedy t)
 (define-key my-keys-mode-map (kbd "C-c y h") 'helm-yas-complete)
 
-;; stacked snippets <3
 (setq yas-triggers-in-field t)
 
 #+END_SRC
@@ -688,28 +684,19 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 - [[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
 - 
 #+BEGIN_SRC emacs-lisp
-
-                                        ; flashes the cursor's line when you scroll
 (require 'beacon)
 (beacon-mode 1)
 
-
-                                        ; deletes all the whitespace when you hit backspace or delete
 (require 'hungry-delete)
 (global-hungry-delete-mode)
 
-
-
-                                        ; expand the marked region in semantic increments (negative prefix to reduce region)
 (require 'expand-region)
 (define-key my-keys-mode-map (kbd "C-c =") 'er/expand-region)
-
-
 #+END_SRC
 ** CRUX
 ...is an abrabiation for /A Collection of Ridiculously Useful eXtensions for Emacs/, so yeah, pretty self-explenatory.
 -[[https://github.com/bbatsov/crux][crux]]
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (require 'crux)
 
 (define-key my-keys-mode-map (kbd "C-c o") 'crux-open-with)
@@ -720,8 +707,8 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 (define-key my-keys-mode-map (kbd "C-c t") 'crux-visit-term-buffer)
 
 
-#+END_SRC
 
+#+END_SRC
 * Folding code
 A standard IDE feature that comes out of the box with emacs. Just a little tweak to give it nice keybindings. To note is that I use german QWERTZ keyboard so this won't work for all you QWERTY-Normies out there.
 #+BEGIN_SRC emacs-lisp
@@ -863,19 +850,32 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 * Neotree
 My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their low level plebian 'web-apps')
 - [[https://github.com/jaypei/emacs-neotree][neotree]]
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (require 'neotree)
 (require 'all-the-icons)
 
 (define-key my-keys-mode-map [f1] 'neotree-toggle)
 (define-key my-keys-mode-map [f2] 'neotree-find)
 
+
+(setq neo-model-line-type 'none)
+
 (setq neo-window-width 40)
 (setq neo-window-fixed-size nil)
-(setq neo-theme (if (display-graphic-p) 'nerd 'arrow))
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-show-hidden-files t)
 ;;(setq projectile-switch-project-action 'neotree-projectile-action)
+(setq neo-theme 'icons)
 
+
+
+(face-spec-set 'neo-button-face '((t (:foreground "gold" :underline nil))))
+(face-spec-set 'neo-button-face '((t (:inherit bold :foreground "#268bd2" :underline t :height 1.1 :width semi-condensed))))
+(face-spec-set 'neo-file-link-face '((t (:foreground "light sky blue"))))
+(face-spec-set 'neo-open-dir-link-face '((t (:foreground "gold" :underline t :height 1.1))))
+(face-spec-set 'neo-dir-link-face '((t (:underline t :height 1.1))))
+(face-spec-set 'neo-dir-icon-face '((t (:foreground "light sky blue"))))
+(face-spec-set 'neo-open-dir-icon-face '((t (:foreground "gold"))))
 
 #+END_SRC
 * PDF-Tools
@@ -1249,6 +1249,9 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 (load "~/.emacs.d/lisp/arnaud-sexp") 
 (require 'arnaud-sexp)
 
+(define-key my-keys-mode-map (kbd "C-M-y") 'sp-backward-up-sexp)
+(define-key my-keys-mode-map (kbd "C-M-x") 'sp-up-sexp)
+
 (define-key my-keys-mode-map (kbd "C-M-SPC") 'arnaud-mark-sexp)
 (define-key my-keys-mode-map (kbd "C-M-k") 'arnaud-kill-sexp)
 (define-key my-keys-mode-map (kbd "C-M-S-SPC") 'arnaud-mark-sexp-whole)
@@ -1272,7 +1275,9 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 | =<prefix> p=     | Projectile         |
 | =<prefix> M=     | Modes              |
 | =<prefix> m=     | Magit              |
+| =<prefix> F=     | Files              |
 |------------------+--------------------|
+
 
 There is also a 'special' Hydra that lists all other hydras and it's bound to =C-c h h=
 -------------------
@@ -1577,6 +1582,28 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 (define-key my-keys-mode-map (kbd "C-c h m") 'arnaud-hydra-magit/body)
 #+END_SRC
+** Files
+
+#+BEGIN_SRC emacs-lisp :results none
+(defhydra arnaud-hydra-files (:color teal :hint nil)
+"
+    ^^                    ^Files^             ^^
+^^^^^^------------------------------------------------------------------------
+^_n_^ : Notes         
+^_t_^ : Todos
+^_a_^ : About(Blog)
+^_i_^ : Myinit
+"
+
+  ("n" (find-file "~/Dropbox/orgfiles/notes.org") )
+  ("t" (find-file "~/Dropbox/orgfiles/todos/todos.org"))
+  ("a" (find-file "~/code/palikar.github.io/org/about.org"))
+  ("i" (find-file "~/code/dotfiles/.emacs.d/myinit.org"))
+  ("q" nil "Cancel" :color blue))
+
+(define-key my-keys-mode-map (kbd "C-c h F") 'arnaud-hydra-files/body)
+#+END_SRC
+
 ** Hydras
 #+BEGIN_SRC emacs-lisp :results none
 (defhydra arnaud-hydra-hydras (:color teal :hint nil)
@@ -1586,7 +1613,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 ^_w_^ : Windowing    ^_R_^     : Registers            ^_f_^ : Formating
 ^_b_^ : Bookmarks    ^_M_ ^    : Modes                ^_p_^ : Projectile
 ^_r_^ : Rectangle    ^_C-o m_^ : Org treee move       ^_m_^ : Magit
-^_l_^ : LaTeX        ^_C-o t_^ : Org templates             ^^
+^_l_^ : LaTeX        ^_C-o t_^ : Org templates        ^_F_^ : Files
     
 "
   ("w" arnaud-hydra-windowing/body)
@@ -1600,10 +1627,12 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("p" arnaud-hydra-projectile/body)
   ("m" arnaud-hydra-magit/body)
   ("l" arnaud-hydra-latex/body)
+  ("F" arnaud-hydra-files/body)
   ("q" nil "Cancel" :color blue))
 
 (define-key my-keys-mode-map (kbd "C-c h h") 'arnaud-hydra-hydras/body)
 #+END_SRC
+
 * IMenu
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -1614,14 +1643,16 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 * Magit
 
 #+BEGIN_SRC emacs-lisp 
-(magit-file-header ((t (:foreground "violet"))))
-(magit-hunk-header ((t (:foreground "blue"))))
-(magit-header ((t (:foreground "cyan"))))
-(magit-tag-label ((t (:background "blue" :foreground "orange"))))
-(magit-diff-add ((t (:foreground "MediumSlateBlue"))))
-(magit-diff-del ((t (:foreground "maroon"))))
-(magit-item-highlight ((t (:background "#000012"))))
+;; (magit-file-header ((t (:foreground "violet"))))
+;; (magit-hunk-header ((t (:foreground "blue"))))
+;; (magit-header ((t (:foreground "cyan"))))
+;; (magit-tag-label ((t (:background "blue" :foreground "orange"))))
+;; (magit-diff-add ((t (:foreground "MediumSlateBlue"))))
+;; (magit-diff-del ((t (:foreground "maroon"))))
+;; (magit-item-highlight ((t (:background "#000012"))))
 #+END_SRC
+
+#+RESULTS:
 
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!

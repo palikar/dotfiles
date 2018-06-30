@@ -84,3 +84,5 @@
 [user]
         name = Stanislav Arnaudov
         email = stanislav_ts@abv.bg
+[credential]
+	helper = cache

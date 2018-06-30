@@ -105,7 +105,7 @@ if [ -f ~/.env ]; then
 fi
 
 if [ -f ~/.inputrc ]; then
-    . ~/.inputrc
+    bind -f ~/.inputrc
 fi
 
 

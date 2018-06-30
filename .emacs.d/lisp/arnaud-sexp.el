@@ -23,21 +23,20 @@
 ;;; of /sexp/s. I know that this functionality more or less exists
 ;;; with the existing package smartparens but I found myself needing
 ;;; the implemented here behavior more and more in my daily
-;;; programming life. Suggested (and the prefered by me) keybinding can be found in the git repository(https://github.com/palikar/arnaud-sexp) 
-
+;;; programming life. Suggested (and the prefered by me) keybinding can be found in the git repository(https://github.com/palikar/arnaud-sexp)
 ;;; Code:
 
 (require 'smartparens)
 (provide 'arnaud-sexp)
 
-(defun arnaud-mark-sexp () 
+(defun arnaud-mark-sexp ()
   "Function to mark the things inside of the current sexp"
   (interactive)
   (if (use-region-p)
-      (progn       
-        (sp-backward-up-sexp) 
+      (progn
         (sp-backward-up-sexp)
-        (forward-char 1) 
+        (sp-backward-up-sexp)
+        (forward-char 1)
         (set-mark-command nil)
         (sp-up-sexp)
         (backward-char 1)
