@@ -8,6 +8,8 @@ alias rr="rm -rf"
 alias aliases="alias | sed 's/=.*//'"
 alias paths='echo -e ${PATH//:/\\n}'
 
+
+
 # Directory listing/traversal
 alias l="ls -lahA"
 alias ll="ls -lA"
@@ -58,6 +60,13 @@ google() {
     done
     xdg-open "http://www.google.com/search?q=$search"
 }
+
+alias emacs='emacs --daemon'
+alias em='emacsclient -t'
+alias emc='emacsclient -c'
+alias vim='emacsclient -t'
+alias vi='emacsclient -t'
+
 
 human() {
   echo "

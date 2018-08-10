@@ -1,5 +1,3 @@
-
-
 #+startup: overview
 
 #+title: Configuration file for my EMACS
@@ -22,8 +20,6 @@
 #+OPTIONS: toc:2
 
 
-
-
 * Abstract
 This is the cofiguration of my EmonkeysMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
 Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
@@ -40,44 +36,6 @@ and setupe emacs
 I've drawn a lot of inspiration for my Emacs configuration form:
 - [[https://github.com/zamansky/using-emacs][here]] (for the genera concept of the configuration file)
 - [[https://sriramkswamy.github.io/dotemacs/][also here]] (for the all of the /hydras/)
-* Repos and packages
-The default packages repo for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
-#+BEGIN_SRC emacs-lisp :results none
-(require 'package)
-(package-initialize)
-
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-(add-to-list 'package-archives '("melpa2" . "http://www.mirrorservice.org/sites/melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa3" . "http://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
-
-(package-refresh-contents)
-#+END_SRC
-** Installing packages
-I use a lot of aditional packages and like to keep them local and installed. I've tried =use-package= but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
-#+BEGIN_SRC emacs-lisp
-                                        ; all of my packages that I want in my config
-(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme beacon clang-format cmake-ide cmake-mode color-theme-modern company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-rtags cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein auto-complete elpy emmet-mode expand-region exwm find-file-in-project flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup function-args google-this google-translate graphviz-dot-mode haskell-mode helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm helm-core highlight-indentation hugo hungry-delete ibuffer-projectile irony-eldoc irony iy-go-to-char java-imports java-snippets jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme mvn mvn-help neotree noflet org-bullets org-page git mustache org-pdfview org2blog htmlize metaweblog ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools popup-complete popup powerline-evil evil goto-chg pretty-mode python-environment pyvenv request-deferred request deferred rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper web-mode websocket workgroups workgroups2 f s anaphora wrap-region xelb xml-rpc yasnippet-snippets yasnippet zeal-at-point zerodark-theme flycheck seq pkg-info epl magit magit-popup git-commit with-editor ghub let-alist dash async all-the-icons memoize))
-
-
-
-
-
-                                        ; activate all the packages (in particular autoloads)
-(package-initialize)
-
-                                        ; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
-
-                                        ; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-
-#+END_SRC
 * Key bindings custom map 
 Some major modes overwrite some of my custom keybindings. Therefore I define a custom global minor mode and use the key map of this mode to define my custom key bindings. This sets their precedence 'above' the precedence of the key bindings of other modes
 #+BEGIN_SRC emacs-lisp :results none
@@ -89,7 +47,55 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 
 (setf (cdr my-keys-mode-map) nil)
 
+
 (my-keys-mode t)
+#+END_SRC
+* Repos and packages
+The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
+/Edit:/ It's anoying when starting emacs it takes so long to connect to all the sites for the packages and I don't need =package-install= that regularly. With the current setup I fist have to call =setup-packages= in order to install new one but the emacs init time significantly lower. You may or may not care about that time if you run emacs like =emacs --daemon=.
+#+BEGIN_SRC emacs-lisp :results none
+(require 'package)
+(package-initialize)
+
+(setq package-archives '())
+
+(defun setup-packages () 
+  (interactive)
+  (setq package-archives '())
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
+  (package-refresh-contents)
+  )
+(package-refresh-contents)
+#+END_SRC
+** Installing packages
+I use a lot of additional packages and like to keep them local and installed. I've tried =use-package= but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
+#+BEGIN_SRC emacs-lisp
+                                        ; all of my packages that I want in my config
+(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-rtags company-ycmd cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein auto-complete elpy emmet-mode expand-region exwm fancy-battery find-file-in-project flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args golden-ratio google-this google-translate graphviz-dot-mode haskell-mode helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm helm-core highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme mu4e-conversation mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools popup-complete popup powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper web-beautify web-mode websocket workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
+
+
+(defun list-installed-packages ()
+  "docstring"
+  (interactive)
+  (describe-variable 'package-activated-list)
+  )
+
+(define-key my-keys-mode-map (kbd "C-<Scroll_Lock>") 'list-installed-packages)
+; activate all the packages (in particular autoloads)
+(package-initialize)
+
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+
 #+END_SRC
 * Interface tweaks
 Making the whole =emacs= experience a tiny bit better with those fixes of the interface of the editor
@@ -98,7 +104,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 - =f5= should function as a refresh in firefox
 - Fringes waste space
 - Numbered lines come in handy
-- Highlighting the current line is pretty =übersichtlich=
+- Highlighting the current line is pretty =Ã¼bersichtlich=
 - Pretty sybols like \lambda over the whole place is pretty cool
 - [[https://elpa.gnu.org/packages/nlinum.html][nlinum]] - a mode to display the linenumbers but it's much more efficient than the build in /linum/-mode. /nlinum/ can handle big files without a hicup while scrolling.
 #+BEGIN_SRC emacs-lisp :results none
@@ -107,16 +113,16 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (define-key my-keys-mode-map (kbd "<f10>") 'tool-bar-mode)
 (menu-bar-mode -1)
 (define-key my-keys-mode-map (kbd "<f9>") 'menu-bar-mode)
-
 (fset 'yes-or-no-p 'y-or-n-p)
 (fringe-mode '(0 . 0))
-(setq-default cursor-type 'bar)
+(setq-default cursor-type 'box)
+(set-cursor-color "#00ffbf")
 (global-nlinum-mode t)
 (global-visual-line-mode 1)
 (global-hl-line-mode 1)    
 (global-prettify-symbols-mode +1)
-
 #+END_SRC
+
 * Behavioral tweaks
 Some quick fixes for intuitinve and streight forwawrd editing. Generally I strive for the cleanest designf the interface possible so I remove a lot from the unneccesery things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp :results none
@@ -151,7 +157,11 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (global-unset-key  ( kbd "<next>"))
 (define-key my-keys-mode-map (kbd "C-<prior>") 'scroll-down-line)
 (define-key my-keys-mode-map (kbd "C-<next>") 'scroll-up-line)
+(define-key my-keys-mode-map (kbd "C-S-<prior>") 'scroll-down-line)
+(define-key my-keys-mode-map (kbd "C-S-<next>") 'scroll-up-line)
+
 (define-key my-keys-mode-map (kbd "C-c d") 'delete-file)
+(defun pass () "A function that does nothing" (interactive))
 #+END_SRC
 ** Copy line below
 Use =Alt-up/down= as in any other editor to copy lines 
@@ -247,11 +257,55 @@ This function will bytecompile everything that it finds in the .emacs.d director
 
 (define-key my-keys-mode-map (kbd "C-+") 'text-scale-increase)
 (define-key my-keys-mode-map (kbd "C--") 'text-scale-decrease)
-(define-key my-keys-mode-map (kbd "C-z") 'undo)
+(define-key my-keys-mode-map (kbd "C-z") 'pass)
 (define-key my-keys-mode-map (kbd "C-x r e") 'eval-region)
 (define-key my-keys-mode-map (kbd "<f5>") 'revert-buffer)
 
 #+END_SRC
+** Smart moving to the beginning of as line
+#+BEGIN_SRC  elisp :results none
+(defun smarter-move-beginning-of-line (arg)
+  "Move point back to indentation of beginning of line.
+
+Move point to the first non-whitespace character on this line.
+If point is already there, move to the beginning of the line.
+Effectively toggle between the first non-whitespace character and
+the beginning of the line.
+
+If ARG is not nil or 1, move forward ARG - 1 lines first.  If
+point reaches the beginning or end of the buffer, stop there."
+  (interactive "^p")
+  (setq arg (or arg 1))
+
+  ;; Move lines first
+  (when (/= arg 1)
+    (let ((line-move-visual nil))
+      (forward-line (1- arg))))
+
+  (let ((orig-point (point)))
+    (move-beginning-of-line 1)
+    (when (= orig-point (point))
+      (back-to-indentation))))
+
+(define-key my-keys-mode-map (kbd "C-a") 'smarter-move-beginning-of-line)
+#+END_SRC
+** Preventing closing Emacsclient
+When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= will close the client  without asking even though =confirm-kill-emacs= is set to /true/. This snippet will notice if Emacs is ran as daemon and will always ask me to close the current client.
+#+BEGIN_SRC emacs-lisp
+(defun ask-before-closing ()
+  "Close only if y was pressed."
+  (interactive)
+  (if (y-or-n-p (format "Are you sure you want to close this frame? "))
+      (save-buffers-kill-emacs)                                                                                            
+    (message "Canceled frame close")))
+
+(when (daemonp)
+  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+#+END_SRC
+
+#+RESULTS:
+: ask-before-closing
+
 * Org-mode
 ** Common settings
 Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writting/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporterrs for =.org= files that just make my life easier. 
@@ -269,7 +323,9 @@ Org-mode is awesome not just for note taking but also for general text editing, 
 (setq org-export-html-postamble nil)                               
 (setq org-startup-folded (quote overview))                         
 
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(add-hook 'org-mode-hook (lambda () 
+                           (org-bullets-mode 1)
+                           (flyspell-mode 1)))
 (custom-set-variables
  '(org-directory "~/Dropbox/orgfiles")
  '(org-default-notes-file (concat org-directory "/notes.org"))
@@ -297,6 +353,8 @@ Org-mode is awesome not just for note taking but also for general text editing, 
 (setq org-export-with-smart-quotes t)
 
 (setq org-enable-priority-commands nil)
+
+(setq org-html-htmlize-output-type 'css)
 #+END_SRC
 The codeblocks should be formated with the native envinroment of the language
 #+BEGIN_SRC emacs-lisp
@@ -335,13 +393,21 @@ Some extra export backends for org-mode that come in handy.
 ** Capture
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-reverse-note-order t)
+
+(defun capture-file (path)
+  (interactive)
+  (let ((name (read-string "Name: ")))
+    (expand-file-name name path)))
+
+;; (write-region "New file\n" nil (capture-file "~/Dropbox/orgfiles/works/"))
+
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Captured TODOS")
          "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
         ("i" "Idea" entry (file+headline "~/Dropbox/orgfiles/notes.org" "Someday/Maybe")
          "* IDEA %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        )
-      )
+        ))
+
 #+END_SRC
 ** Reveal.js
 This style of presenting looks cool but I don't use it that much. Still, I want to have the possibility in my emacs. 
@@ -450,6 +516,14 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 (require 'ace-window)
 (define-key my-keys-mode-map (kbd "C-x o") 'ace-window)
 
+;;(load "~/.emacs.d/lisp/arnaud-framer.el")
+;;(require 'arnaud-framer)
+;;(global-framer-mode 1)
+(require 'golden-ratio)
+
+
+
+
 #+END_SRC
 
 * Better searching
@@ -467,7 +541,6 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 (require 'swiper)
 (define-key my-keys-mode-map (kbd "C-c M-s")  'swiper)
 (define-key my-keys-mode-map (kbd "C-s")  'isearch-forward)
-
 
 
 
@@ -548,86 +621,6 @@ Go to next CHAR which is similar to "f" and "t" in /vim/. To note is that I don'
 (define-key my-keys-mode-map (kbd "C-c f") 'iy-go-up-to-char)
 (define-key my-keys-mode-map (kbd "C-c F") 'iy-go-up-to-char-backward)
 #+END_SRC
-* Company
-Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The ~company-idle-delay~ makes the automatic popup impossible so that I would have to call it manually through =M-m=. 
-- [[http://company-mode.github.io/][company]]
-#+BEGIN_SRC emacs-lisp :results none
-(require 'company)
-
-(setq company-minimum-prefix-length 2
-      company-tooltip-align-annotations nil
-      company-tooltip-flip-when-above nil
-      company-idle-delay 0
-      company-show-numbers nil
-      company-echo-truncate-lines nil)
-
-;; (require 'ycmd)
-;; (require 'company-ycmd)
-;; (set-variable 'ycmd-extra-conf-whitelist '("/home/arnaud//my_projects/*"))
-;; (set-variable 'ycmd-server-command `("python2.7" ,(file-truename "~/code/ycmd/ycmd/")))
-;; (company-ycmd-setup)
-
-(setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
-                          ))
-
-
-(setq company-backends '())
-
-(setq company-backends nil)
-
-(setq company-backends '(
-                         company-irony
-                         company-capf          
-                         company-files         
-                         (
-                          company-dabbrev-code 
-                          company-gtags
-                          company-etags
-                          company-keywords
-                          )
-                         company-dabbrev
-                         company-yasnippets
-                         ))
-
-
-(global-company-mode t)
-(define-key my-keys-mode-map (kbd "M-m") 'company-complete)
-
-
-
-(defun my/nxml-mode-hook ()
-  (add-to-list 'company-backends 'company-nxml))
-(add-hook 'prog-mode-hook 'my/nxml-mode-hook)
-
-(defun my/prog-mode-hook ()
-  (add-to-list 'company-backends 'company-keywords))
-(add-hook 'prog-mode-hook 'my/prog-mode-hook)
-
-
-
-
-(require 'company-meghanada)
-(defun my/meghanada-mode-hook ()
-  (add-to-list 'company-backends 'company-meghanada))
-
-(add-hook 'meghanada-mode-hook 'my/meghanada-mode-hook)
-
-
-
-
-(require' company-irony)
-(defun my/irony-mode-hook ()
-  (add-to-list 'company-backends 'company-irony))
-
-(add-hook 'iorny-mode-hook 'my/irony-mode-hook)
-
-
-
-
-#+END_SRC
-
-#+RESULTS:
-| my/irony-mode-hook |
 
 * Themes
 I often alternate between these two and can't really decide which is my favorite one. I depends on the day, I guess. In this case, better to gave them both at one place!
@@ -639,7 +632,7 @@ I often alternate between these two and can't really decide which is my favorite
 
 ;; (load-theme 'monokai)
 #+END_SRC
-* Flycheck
+* Fly-check
 Syntax error-checking on the fly(haha!) while working on code. It's conventient to avoid small errors that screw up yoour compilation and are just being anoying. 
 - [[http://www.flycheck.org/en/latest/][flycheck]]
 #+BEGIN_SRC emacs-lisp
@@ -650,14 +643,33 @@ Syntax error-checking on the fly(haha!) while working on code. It's conventient 
 * Python
 I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess emacs is that good with python by default. 
 #+BEGIN_SRC emacs-lisp
-(require 'company-jedi)
 (add-hook 'python-mode-hook 'jedi:setup)
 
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
 
-(add-hook 'python-mode-hook 'my/python-mode-hook)
+
+(defun my-python-setup ()
+  (interactive)
+  (setq indent-tabs-mode t
+	python-indent-offset 4
+	electric-indent-chars (delq ?: electric-indent-chars)))
+;; (add-hook 'python-mode-hook 'my-python-setup)
+
+(setq python-shell-interpreter "python"
+      python-shell-interpreter-args "-i")
+
+(require 'anaconda-mode)
+
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+
+(require 'py-yapf)
+
+
 #+END_SRC  
+
+#+RESULTS:
+: -i
+
 * Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
 - [[https://github.com/joaotavora/yasnippet][yasnippets]]
@@ -713,9 +725,9 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 A standard IDE feature that comes out of the box with emacs. Just a little tweak to give it nice keybindings. To note is that I use german QWERTZ keyboard so this won't work for all you QWERTY-Normies out there.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'prog-mode-hook 'hs-minor-mode)
-(define-key my-keys-mode-map (kbd "M-ü") 'hs-show-all)
-(define-key my-keys-mode-map (kbd "C-M-ü") 'hs-hide-all)
-(define-key my-keys-mode-map (kbd "C-ü") 'hs-toggle-hiding)
+(define-key my-keys-mode-map (kbd "M-Ã¼") 'hs-show-all)
+(define-key my-keys-mode-map (kbd "C-M-Ã¼") 'hs-hide-all)
+(define-key my-keys-mode-map (kbd "C-Ã¼") 'hs-toggle-hiding)
 #+END_SRC
 * C++
 At my work I use this emacs-configuration for a lot of c++ programming. Yet, similar to other sections, the c++ tweaks are...pretty much nothing. Emacs is just that good with no special c++ tweaks.
@@ -726,6 +738,11 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+
+;;(setq c-default-style "linux" c-basic-offset 4)
+;;(add-to-list 'c-default-style '(c-mode "bsd"))
+
+;; (add-to-list 'c-offsets-alist '(substatement-open . 0))
 ;; (require 'cquery)
 
 ;; (require 'cquery)
@@ -1133,11 +1150,6 @@ I also frequanlty use Zeal. It's an application housing tons of usefull document
 A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant to the eyes. I don't really need more as I don't spend that much time writing /cmake/ scripts.
 #+BEGIN_SRC emacs-lisp
 (require 'cmake-mode)
-(require 'company-cmake)
-
-(defun my/cmake-mode-hook ()
-  (add-to-list 'company-backends 'company-cmake))
-(add-hook 'cmake-mode-hook 'my/cmake-mode-hook)
 
 (setq cmake-tab-width 4)
 
@@ -1164,14 +1176,7 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (add-hook 'LaTeX-mode-hook 'pretty-mode)
 (add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
 
-(defun my/latex-mode-hook ()
-  (add-to-list 'company-backends 'company-auctex-bibs)
-  (add-to-list 'company-backends 'company-auctex-macros)
-  (add-to-list 'company-backends 'company-auctex-labels)
-  (add-to-list 'company-backends 'company-auctex-symbols)
-  (add-to-list 'company-backends 'company-auctex-environments)
-  )
-(add-hook 'cmake-mode-hook 'my/latex-mode-hook)
+
 
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
@@ -1246,7 +1251,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 ;; (require 'load-directory)
 ;; (load-directory "~/.emacs.d/my-lisp")
 
-(load "~/.emacs.d/lisp/arnaud-sexp") 
+(load "~/.emacs.d/lisp/arnaud-sexp")
 (require 'arnaud-sexp)
 
 (define-key my-keys-mode-map (kbd "C-M-y") 'sp-backward-up-sexp)
@@ -1313,7 +1318,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
 (define-key my-keys-mode-map (kbd "C-c h w") 'arnaud-hydra-windowing/body)
 #+END_SRC
 ** Bookmarks navigation
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (defhydra arnaud-hydra-bookmarks (:color blue
                               :hint nil)
   "
@@ -1327,7 +1332,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
 (define-key my-keys-mode-map (kbd "C-c h b") 'arnaud-hydra-bookmarks/body)
 #+END_SRC
 
-** Editing rectangle
+**  Editing rectangle
 #+BEGIN_SRC emacs-lisp :results none
 (defhydra arnaud-hydra-rectangle (:pre (rectangle-mark-mode 1)
                                    :color blue
@@ -1385,8 +1390,9 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
                                        :hint nil)
   "
  _b_: fancy battery   _C-c_: flycheck       _c_: company     _j_: jedi
- _l_: linenum         _v_: visual-line      _h_: hs-minor   
- _f_: flyspell        _y_: yas              _e_: emmet       _q_: quit
+ _l_: linenum         _v_: visual-line      _h_: hs-minor    _g_: golden-ratio
+ _f_: flyspell        _y_: yas              _e_: emmet       _f_: framer
+ _q_: quit
 "
   ("b" fancy-battery-mode)
   ("l" global-nlinum-mode)
@@ -1398,6 +1404,8 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("h" hs-minor-mode)
   ("e" emmet-mode)
   ("j" jedi-mode)
+  ("g" golden-ratio-mode)
+  ("f" global-framer-mode)
   ("q" nil :color blue))
 
 
@@ -1488,7 +1496,8 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
  ^Beautify^
 ^^^^^^^^^^--------------------------------------
  _h_: html        _c_: css       _j_: js        _q_: quit
- _H_: html buf    _C_: css buf   _J_: js buf
+ _H_: html buf    _C_: css buf   _J_: js buf    
+ _p_: py buf      _P_: py on-sav
 "
   ("h" web-beautify-html)
   ("H" web-beautify-html-buffer)
@@ -1496,6 +1505,8 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("C" web-beautify-css-buffer)
   ("j" web-beautify-js)
   ("J" web-beautify-js-buffer)
+  ("p" py-yapf-buffer)
+  ("P" py-yapf-enable-on-save)
   ("q" nil :color blue))
 (define-key my-keys-mode-map (kbd "C-c h f") 'arnaud-hydra-format/body)
 #+END_SRC
@@ -1632,7 +1643,6 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 (define-key my-keys-mode-map (kbd "C-c h h") 'arnaud-hydra-hydras/body)
 #+END_SRC
-
 * IMenu
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -1640,6 +1650,127 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 (define-key my-keys-mode-map (kbd "<f12>") 'imenu-list-smart-toggle)
 #+END_SRC
+* Company
+Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The ~company-idle-delay~ makes the automatic popup +impossible+ immediate so that I +would+ wouldn't have to call it manually through =M-m=. 
+- [[http://company-mode.github.io/][company]]
+#+BEGIN_SRC emacs-lisp :results none
+
+(setq company-minimum-prefix-length 2
+      company-tooltip-align-annotations nil
+      company-tooltip-flip-when-above nil
+      company-idle-delay 0
+      company-show-numbers nil
+      company-echo-truncate-lines nil)
+(global-company-mode t)
+(define-key my-keys-mode-map (kbd "M-m") 'company-complete)
+
+
+(setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend))
+(setq company-backends '())
+
+
+(face-spec-set 'company-preview '((t (:background "#444444" :foreground "light sky blue"))))
+(face-spec-set 'company-tooltip '((t (:background "#444444" :foreground "light sky blue"))))
+(face-spec-set 'company-tooltip-annotation '((t (:foreground "deep sky blue"))))
+
+
+
+(setq company-tooltip-maximum-width 100)
+(setq company-tooltip-minimum-width 100)
+
+(require 'company-meghanada)
+(require 'company)
+(require 'company-cmake)
+(require 'company-jedi)
+(require 'company-meghanada)
+(require 'company-irony)
+(require 'company-nxml)
+(require 'company-anaconda)
+
+
+
+
+(setq company-backends '((company-files         
+                          company-dabbrev-code
+                          company-keywords
+                          company-dabbrev
+                          )
+                         company-capf))
+
+
+
+(defun my/nxml-mode-hook ()
+  (setq company-backends '(company-nxml
+                           (company-files         
+                            company-dabbrev-code
+                            company-keywords)
+                           company-dabbrev
+                           company-capf)))
+(add-hook 'prog-mode-hook 'my/nxml-mode-hook)
+
+
+
+
+(defun my/meghanada-mode-hook ()
+  (setq company-backends '(company-meghanada
+                           (company-files         
+                            company-dabbrev-code
+                            company-keywords)
+                           company-dabbrev
+                           company-capf)))
+(add-hook 'meghanada-mode-hook 'my/meghanada-mode-hook)
+
+(defun my/irony-mode-hook ()
+  (setq company-backends '(                         
+                           company-irony
+                           ;; (
+                           ;;  company-files         
+                           ;;  company-dabbrev-code
+                           ;;  company-keywords )
+                           ;; company-dabbrev
+                           ;; company-capf
+                           )))
+(add-hook 'iorny-mode-hook 'my/irony-mode-hook)
+
+(defun my/cmake-mode-hook ()
+  (setq company-backends '(company-cmake
+                           (company-files         
+                            company-dabbrev-code
+                            company-keywords)
+                           company-dabbrev
+                           company-capf)))
+(add-hook 'cmake-mode-hook 'my/cmake-mode-hook)
+
+(defun my/python-mode-hook ()
+  (setq company-backends '(
+                           company-anaconda
+                           company-jedi
+                           (company-files         
+                            company-dabbrev-code
+                            company-keywords)
+                           company-dabbrev
+                           company-capf)))
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+
+(defun my/latex-mode-hook ()
+  (setq company-backends
+        '( company-auctex-bibs
+           company-auctex-macros
+           company-auctex-labels
+           company-auctex-symbols
+           company-auctex-environments
+           (company-files         
+            company-dabbrev-code
+            company-keywords)
+           company-dabbrev
+           company-capf)))
+(add-hook 'cmake-mode-hook 'my/latex-mode-hook)
+
+
+
+
+#+END_SRC
+
 * Magit
 
 #+BEGIN_SRC emacs-lisp 
@@ -1680,9 +1811,4 @@ CLOSED: [2018-06-17 Sun 19:42]
 ** TODO Create Hydra for the latex mode things
 ** TODO Steal someone's python setup
 ** TODO Steal someone's c++ setup
-** TODO Put the whole thing on the blog   
-* Nonsense                                                         :no_export:
-Put the whole whoel world on your table and pray for it!
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
-
+** TODO Put the whole thing on the blog
