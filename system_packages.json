@@ -1,0 +1,54 @@
+{
+    "packages_list": [
+        "i3-gaps",
+        "mons",
+        "pamixer",
+        "ranger",
+        "networkmanager-dmenu"
+    ],
+    "packages": {
+        "i3-gaps" : {
+            "download" : "git",
+            "URL" : "https://www.github.com/Airblader/i3",
+            "install" : "script",
+            "script" : "$DOTFILES_DIR/install_scripts/install_i3gaps.sh",
+            "script_args" : "",
+            "dependencies": []
+        },
+        "mons" : {
+            "download" : "git",
+            "URL" : "https://github.com/Ventto/mons.git",
+            "install" : "command",
+            "command" : "sudo make install",
+            "reinstall_command" : "sudo make install"
+        },
+        "pamixer" : {
+            "download" : "git",
+            "URL" : "https://github.com/cdemoulins/pamixer.git",
+            "install" : "command",
+            "command" : "make && sudo make install",
+            "reinstall_command" : "sudo make"
+        },
+        "ranger" : {
+            "download" : "git",
+            "URL" : "https://github.com/ranger/ranger",
+            "install" : "command",
+            "command" : "sudo python setup.py install --optimize=1 --record=install_log.txt",
+            "reinstall_command" : "sudo python setup.py install --optimize=1 --record=install_log.txt"
+        },
+        "networkmanager-dmenu" : {
+            "download" : "git",
+            "URL" : "https://github.com/firecat53/networkmanager-dmenu",
+            "install" : "command",
+            "command" : "echo 'No installation' ",
+            "reinstall_command" : "echo 'No installation' "
+        },
+        "xkblayout-state" : {
+            "download" : "git",
+            "URL" : "https://github.com/nonpop/xkblayout-state",
+            "install" : "command",
+            "command" : "make && sudo make install",
+            "reinstall_command" : "make clean && make && sudo make install"
+        }
+    }
+}

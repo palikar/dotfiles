@@ -47,8 +47,6 @@ bar {
      strip_workspace_numbers yes
 }
 
-
-
 # #---- Basic setup ----# #
 for_window [class="^.*"] border pixel 2
 gaps inner 15

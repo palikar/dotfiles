@@ -1,0 +1,13 @@
+#!/bin/bashf
+
+
+if [ $(emacsclient -e '(message "1")') != "\"1\"" ];
+then
+    echo "Emacs dameon must be running!"
+    exit 0
+fi
+
+PACKAGES=$(emacsclient -e "(symbol-value 'package-list)" | sed "s/(/(setq package-list '(/g")
+PACKAGES="; starting-packages\n${PACKAGES}\n; ending-packages"
+# echo -ne $PACKAGES
+sed '/starting-packages/,/ending-packages/c${PACKAGES}' "${DOTFILES_DIR}/.emacs.d/myinit.org"

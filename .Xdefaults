@@ -27,6 +27,8 @@
 *color7: #a8a19f
 *color15: #f1efee
 
+
+!! Basic interface setup
 URxvt.intensityStyles:	false
 URxvt.background:       [90]#000000
 URxvt.depth:		32
@@ -34,57 +36,39 @@ URxvt.font: 		xft:monospace:size=11
 URxvt.scrollBar:	false
 URxvt.cursorColor:	white
 
+
 !! Extensions
-URxvt.perl-lib: /home/arnaud/code/urxvt-perls/
-URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select,clipboard,font-sizee
-URxvt.colorUL:		#4682B4
+URxvt.perl-lib:                 /home/arnaud/.urxvt-perls/
+URxvt.perl-ext-common:          default,matcher,resize-font,url-select,keyboard-select,clipboard,font-sizee
+# urxvt.font:                   xft:Inconsolata:pixelsize=8
+URxvt.colorUL:		        #4682B4
 
 !! url-select
 URxvt.keysym.M-l:                       perl:url-select:select_next
 URxvt.url-select.launcher:              linkhandler
 URxvt.url-select.underline:             true
 
-!! keyboard-select:
+!! keyboard-eslect:
 URxvt.keysym.M-i:                       perl:keyboard-select:activate
+
 URxvt.keyboard-select.clipboard:        true
 
-# urxvt.font: xft:Inconsolata:pixelsize=8
-
-
 !! resize-font
-URxvt.keysym.C-minus:     perl:font-size:decglobal
-URxvt.keysym.C-plus:      perl:font-size:incglobal
-! URxvt.keysym.C-equal:     resize-font:reset
-! URxvt.keysym.C-question:  resize-font:show
+URxvt.keysym.C-equal:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
 
 !! Matcher
 URxvt.url-launcher:	linkhandler
 URxvt.matcher.button:	1
-
-! ! Tabbed extension configuration
-URxvt.tabbed.tabbar-fg: 8
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg:    15
-URxvt.tabbed.tab-bg:    8
-URxvt.tabbed.new-button: false
 
 !! Clipboard
 URxvt.keysym.M-w:   perl:clipboard:copy
 URxvt.keysym.C-y:   perl:clipboard:paste
 URxvt.keysym.C-w:   perl:clipboard:paste_escaped
 
-! !Tabbedex
-! URxvt.tabbed.tabbar-fg: 2
-! URxvt.tabbed.tabbar-bg: 0
-! URxvt.tabbed.tab-fg: 2
-! URxvt.tabbed.tab-bg: 0
-! URxvt.tabbed.autohide:  yes
-! URxvt.tabbed.new-button:  no
-! URxvt.tabbed.title: yes
-
+!! Movements
 URxvt.keysym.Control-Up:     \033[1;5A
 URxvt.keysym.Control-Down:   \033[1;5B
 URxvt.keysym.Control-Left:   \033[1;5D
 URxvt.keysym.Control-Right:  \033[1;5C
 
-! URxvt.hold: true

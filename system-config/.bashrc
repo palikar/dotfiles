@@ -17,8 +17,8 @@ fi
 
 set bell-style none
 
-source /home/arnaud/fzf/completion.bash
-source /home/arnaud/fzf/key-bindings.bash
+source ${DOTFILES_DIR}/fzf/completion.bash
+source ${DOTFILES_DIR}/fzf/key-bindings.bash
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

@@ -1,9 +1,9 @@
 export CODE_DIR=~/code
-export DOTFILES_DIR=CODE_DIR/dotfiles/system-config/
-export WALLPAPER="/home/arnaud/core.d/wallpapers/Future/moon_SF.jpg"
+export DOTFILES_DIR=${CODE_DIR}/dotfiles
+export WALLPAPER="${DOTFILES_DIR}/screens/awesome_rice.png"
 
 export EDITOR='emacsclient -t';
-export TERMINAL='urxvt';
+export TERMINAL='rxvt-unicode';
 export BROWSER="firefox";
 export READER="evince"
 
