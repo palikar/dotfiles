@@ -106,7 +106,8 @@ bindsym $mod+Shift+q            kill
 
 bindsym $mod+f                  fullscreen toggle
 
-bindsym $mod+d	                exec rofi -show drun
+bindsym $mod+d	                exec rofi -show run
+bindsym $mod+Shift+d            exec rofi -show drun
 bindsym $mod+w	                exec rofi -show window
 
 bindsym $mod+Shift+c            reload
