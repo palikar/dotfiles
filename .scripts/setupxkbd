@@ -1,0 +1,6 @@
+#!/bin/bash
+
+setxkbmap -layout de,bg -variant "deadacute, phonetic"
+setxkbmap -option caps:ctrl_modifier
+notify-send "Changing language" "Keyboard layout has been configured"
+pkill -RTMIN+9 i3blocks

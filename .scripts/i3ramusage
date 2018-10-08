@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+res=$(free -m | awk '{print (NR==1?"Type":""), $1, $2, $3, (NR==1?"":$4)}' | column -t | awk '{print $2,$3}' | grep -o "[0-9]*\s*[0-9]*" | sed '$d' | sed '/^\s*$/d')
+total="$(echo $res | cut -d" " -f1).0"
+used="$(echo $res | cut -d" " -f2).0"
+per=$(bc -l <<< "100 * ($used / $total)")
+printf " ${per%.*}%%\n"

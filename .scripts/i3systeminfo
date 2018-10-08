@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ "$BLOCK_BUTTON" = "1" ] && gnome-system-monitor
+
+echo $(i3cputemp) $(i3ramusage)

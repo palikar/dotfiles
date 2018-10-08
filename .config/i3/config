@@ -1,0 +1,314 @@
+
+#Theming
+set $darkblack	#1b1918
+set $black	#766e6b
+set $darkred	#000000
+set $red	#f22c40
+set $darkgreen	#5ab738
+set $green	#5ab738
+set $darkyellow	#d5911a
+set $yellow	#d5911a
+set $darkblue	#407ee7
+set $blue		#407ee7
+set $darkmagenta	#6666ea
+set $magenta	#6666ea
+set $darkcyan	#00ad9c
+set $cyan       #00ad9c      
+set $darkwhite  #a8a19f
+set $white	#f1efee
+set $transparent		#00000000
+
+#                       BORDER		BACKGROUND	TEXT		INDICATOR   CHILD_BORDER
+client.focused		$red		$red		$magenta	$darkmagenta		$darkblue
+client.unfocused	$transparent	$blue		$white		$darkblue		$darkblack
+client.focused_inactive	$transparent	$blue		$white		$darkblue		$darkblack
+client.urgent		$darkred	$darkred	$black		$darkred		$darkred
+client.background $black
+
+#Status bar
+bar {
+    font pango:mono 11
+    separator_symbol "|"
+    colors {
+        background $darkblack
+        statuslIne $darkwhite
+        separator $cyan
+        focused_workspace  $blue $darkblue $darkwhite
+        active_workspace   $blue $blue $darkwhite
+        inactive_workspace $darkblack $darkblack $white
+        urgent_workspace   $darkblack $darkblack $white
+    }
+     status_command i3blocks
+     position top
+     mode dock
+     modifier None
+     tray_output             primary
+     workspace_buttons       yes
+     strip_workspace_numbers yes
+}
+
+
+
+# #---- Basic setup ----# #
+for_window [class="^.*"] border pixel 2
+gaps inner 15
+gaps outer 15
+smart_gaps on
+
+floating_modifier $mod
+
+set $term --no-startup-id rxvt-unicode
+set $mod Mod4
+set $shutdown sudo -A shutdown -h now
+set $reboot sudo -A reboot
+set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
+set $hibernate sudo -A systemctl suspend
+
+# define names for workspaces
+set $ws1    "1:  Laptop"
+set $ws2    "2:  Code"
+set $ws3    "3:  Terminal"
+set $ws4    "4:  Internet"
+set $ws5    "5:  Files"
+set $ws6    "6:  Documents"
+set $ws7    "7:  Media"
+set $ws8    "8:  Documents"
+set $ws9    "9:  Chat"
+set $ws10   "10:  General"
+
+# #---- System setup ----# #
+exec_always --no-startup-id feh --bg-scale $WALLPAPER
+exec_always --no-startup-id /home/arnaud/.scripts/setupxkbd
+exec --no-startup-id i3spotifyupdate
+exec --no-startup-id nm-applet
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
+exec --no-startup-id unclutter
+exec --no-startup-id dunst
+
+
+# #---- Bindings ----# #
+
+bindsym $mod+Shift+p            exec /home/arnaud/.scripts/setupxkbd
+bindsym $mod+Shift+r            restart 
+
+bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Are you sure you want to reboot?" "$reboot"
+
+bindsym $mod+Shift+Escape 	exec --no-startup-id prompt "Are you sure you want to leave i3?" "i3-msg exit"
+
+bindsym $mod+Shift+F12		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
+
+bindsym $mod+Return		exec $term
+
+bindsym $mod+Home 	        floating toggle
+
+bindsym $mod+q	                kill
+bindsym $mod+Shift+q            kill
+
+bindsym $mod+f                  fullscreen toggle
+
+bindsym $mod+d	                exec rofi -show drun
+bindsym $mod+w	                exec rofi -show window
+
+bindsym $mod+Shift+c            reload
+
+bindsym $mod+l			exec --no-startup-id lockscreen
+
+bindsym $mod+b			bar mode toggle
+
+bindsym $mod+space              exec --no-startup-id i3changelayout
+
+bindsym $mod+v                  split v
+bindsym $mod+h                  split h
+
+bindsym $mod+t                  layout tabbed
+bindsym $mod+Shift+t            layout toggle split
+
+bindsym --release Print exec gnome-screenshot
+bindsym --release Shift+Print exec gnome-screenshot -a
+
+# #---- Gaps ----# #
+
+bindsym $mod+Shift+Prior		gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+Next		        gaps inner current set 15; gaps outer current set
+
+# ----- Modes ----- #
+
+set $emacs-frames-laucher Launcher
+mode "  " {
+     bindsym 2               split v
+     bindsym 3               split h
+     bindsym 0               kill
+
+     bindsym r               exec --no-startup-id $term -e ranger ; mode "default"
+     bindsym w               exec --no-startup-id firefox ; mode "default"
+     bindsym d               exec --no-startup-id emacsclient -c ; mode "default"
+     bindsym t               exec --no-startup-id $term -e htop ; mode "default"
+     bindsym Return          exec --no-startup-id $term ; mode "default"
+     
+     
+     bindsym Escape mode "default"
+}
+bindsym $mod+x          mode "  "
+
+# set $stacking-mode Window
+mode "  " {
+     bindsym q layout stacking  ; mode "default"
+     bindsym w layout tabbed ; mode "default"
+     bindsym e layout toggle split ; mode "default"
+
+     bindsym Escape          mode "default"
+     
+}
+bindsym $mod+c          mode "  "
+
+# ----- Windows ----- #
+
+#Changing focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+#Moving window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+control+Up                 exec --no-startup-id "bash ~/.scripts/i3resize up"
+bindsym $mod+control+Down		exec --no-startup-id "bash ~/.scripts/i3resize down"
+bindsym $mod+control+Left		exec --no-startup-id "bash ~/.scripts/i3resize left"
+bindsym $mod+control+Right 		exec --no-startup-id "bash ~/.scripts/i3resize right"
+
+for_window [class="Emacs"] move workspace $ws2
+for_window [class="Nautilus"] move workspace $ws5
+for_window [class="Evince"] move workspace $ws6
+for_window [class="Spotify"] move workspace $ws7
+
+
+
+
+# ----- Workspaces ----- #
+
+# Bindings
+bindsym $mod+Tab                        workspace back_and_forth
+bindsym $mod+Mod1+Right                 workspace next
+bindsym $mod+Mod1+Left	                workspace prev
+bindsym $mod+Shift+Right                move container to workspace next
+bindsym $mod+Shift+Left               	move container to workspace prev
+bindsym $mod+Prior		        workspace prev
+bindsym $mod+Next		        workspace next
+bindsym $mod+Shift+Prior	        move container to workspace prev
+bindsym $mod+Shift+Next		        move container to workspace next
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# #---- Floating windows ----# #
+for_window [class="Nautilus" instance="file_progress"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
+for_window [class="Gnome-system-monitor"] floating enable
+for_window [class="Gnome-calendar"] floating enable
+
+# #---Extra XF86 Keys---# #
+# # These are the extra media keys that some keyboards have.
+bindsym XF86AudioMute		exec --no-startup-id lmc mute
+bindsym XF86AudioLowerVolume	exec --no-startup-id lmc down 5
+bindsym XF86AudioRaiseVolume	exec --no-startup-id lmc up 5
+# bindsym XF86PowerOff		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
+# ##bindsym XF86Copy		exec
+# ##bindsym XF86Open		exec
+# ##bindsym XF86Paste		exec
+# ##bindsym XF86Cut		exec
+# ##bindsym XF86MenuKB		exec
+# bindsym XF86Calculator		exec $term -e R -q
+# ##bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
+# ##bindsym XF86WakeUp		exec
+# bindsym XF86Explorer		exec $term -e ranger
+# ##bindsym XF86Send		exec
+# ##bindsym XF86Xfer		exec
+# bindsym XF86WWW			exec --no-startup-id $BROWSER
+# ##bindsym XF86DOS		exec
+# bindsym XF86ScreenSaver		exec exec --no-startup-id lockscreen
+# ##bindsym XF86RotateWindows	exec
+# ##bindsym XF86TaskPane		exec
+# ##bindsym XF86Favorites		exec
+# bindsym XF86MyComputer		exec $term -e ranger
+# ##bindsym XF86Back		exec
+# ##bindsym XF86Forward		exec
+# bindsym XF86Eject		exec --no-startup-id dmenuumount
+bindsym XF86AudioNext		exec --no-startup-id lmc next
+bindsym XF86AudioPlay		exec --no-startup-id lmc toggle
+bindsym XF86AudioPrev		exec --no-startup-id lmc prev
+bindsym XF86AudioStop		exec --no-startup-id lmc toggle
+# ##bindsym XF86AudioRecord
+# bindsym XF86AudioRewind		exec --no-startup-id lmc back 10
+# bindsym XF86AudioForward	exec --no-startup-id lmc forward 10
+# ##bindsym XF86Phone		exec
+# ##bindsym XF86Tools		exec
+# bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
+# bindsym XF86Reload		restart
+# ##bindsym XF86ScrollUp		exec
+# ##bindsym XF86ScrollDown		exec
+# ##bindsym XF86New		exec
+# ##bindsym XF86LaunchA		exec
+# ##bindsym XF86LaunchB		exec
+# ##bindsym XF86Launch2		exec
+# ##bindsym XF86Launch3		exec
+# ##bindsym XF86Launch4		exec
+# ##bindsym XF86Launch5		exec
+# ##bindsym XF86Launch6		exec
+# ##bindsym XF86Launch7		exec
+# ##bindsym XF86Launch8		exec
+# ##bindsym XF86Launch9		exec
+# #bindsym XF86AudioMicMute	exec $micmute
+# bindsym XF86TouchpadToggle	exec --no-startup-id toggletouchpad
+# bindsym XF86TouchpadOn		exec --no-startup-id synclient TouchpadOff=0
+# bindsym XF86TouchpadOff		exec --no-startup-id synclient TouchpadOff=1
+# bindsym XF86Suspend		exec --no-startup-id lockscreen
+# bindsym XF86Close		kill
+# bindsym XF86WebCam		exec --no-startup-id camtoggle
+# bindsym XF86Mail		exec $term -e neomutt
+# bindsym XF86Messenger		exec $term -e weechat
+# bindsym XF86Search		exec $BROWSER https://duckduckgo.com
+# ##bindsym XF86Go			exec
+# ##bindsym XF86Finance		exec
+# ##bindsym XF86Game		exec
+# bindsym XF86Shop		exec $BROWSER https://ebay.com
+# bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
+# bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
+# bindsym XF86AudioMedia		exec --no-startup-id st -e ncmpcpp
+# bindsym XF86Display		exec --no-startup-id arandr
+# #bindsym XF86KbdLightOnOff	exec
+# bindsym XF86KbdBrightnessDown	exec --no-startup-id python3.6 ~/.scripts/kb-lights.py -
+# bindsym XF86KbdBrightnessUp	exec --no-startup-id python3.6 ~/.scripts/kb-lights.py +
+# ##bindsym XF86Reply		exec
+# ##bindsym XF86MailForward	exec
+# ##bindsym XF86Save		exec
+# # bindsym XF86Documents	exec $term -e ranger ~/Documents
+# ##bindsym XF86Battery		exec
+# ##bindsym XF86Bluetooth	exec
+# # bindsym XF86WLAN		exec $netrefresh
+

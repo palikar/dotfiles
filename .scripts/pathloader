@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+path_ext=""
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    path_ext="${path_ext}:$line"
+done < ~/.paths
+echo -n $path_ext

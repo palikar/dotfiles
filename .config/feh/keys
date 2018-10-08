@@ -1,0 +1,12 @@
+zoom_in +
+zoom_out -
+next_img Right
+prev_img Left
+
+scroll_up k Up
+scroll_down j Down
+scroll_right l
+scroll_left h
+
+toggle_fullscreen f
+save_filelist F

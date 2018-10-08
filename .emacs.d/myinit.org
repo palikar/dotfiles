@@ -10,7 +10,7 @@
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS:noexport no_export
 #+EXCLUDE_TAGS: no_export
-#+CREATOR: Emacs 25.2.2 (Org mode 9.1git remote add origin https://github.com/palikar/jgrapher.git.13)
+#+CREATOR: Emacs 25.2.2 (Org mode 9.1.13)
 
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+OPTIONS: author:t broken-links:nil c:nil creator:nil
@@ -18,7 +18,6 @@
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t todo:t |:t
 #+OPTIONS: toc:2
-
 
 * Abstract
 This is the cofiguration of my EmonkeysMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
@@ -121,10 +120,13 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (global-visual-line-mode 1)
 (global-hl-line-mode 1)    
 (global-prettify-symbols-mode +1)
+(setq frame-title-format '("Emacs " emacs-version))
+(scroll-bar-mode 0)
+(define-key my-keys-mode-map (kbd "C-<f8>") 'scroll-bar-mode)
 #+END_SRC
 
 * Behavioral tweaks
-Some quick fixes for intuitinve and streight forwawrd editing. Generally I strive for the cleanest designf the interface possible so I remove a lot from the unneccesery things that come by default with EMACS.
+Some quick fixes for intuitinve and streight forwawrd editing. Generally I strive for the cleanest designf the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp :results none
 (setq-default indent-tabs-mode nil)
 (delete-selection-mode 1) ;; it's really weird working without that
@@ -155,13 +157,17 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (define-key my-keys-mode-map (kbd "<f5>") 'revert-buffer)
 (global-unset-key  ( kbd "<prior>"))
 (global-unset-key  ( kbd "<next>"))
+(global-unset-key  ( kbd "<home>"))
+(global-unset-key  ( kbd "<end>"))
 (define-key my-keys-mode-map (kbd "C-<prior>") 'scroll-down-line)
 (define-key my-keys-mode-map (kbd "C-<next>") 'scroll-up-line)
 (define-key my-keys-mode-map (kbd "C-S-<prior>") 'scroll-down-line)
 (define-key my-keys-mode-map (kbd "C-S-<next>") 'scroll-up-line)
-
 (define-key my-keys-mode-map (kbd "C-c d") 'delete-file)
 (defun pass () "A function that does nothing" (interactive))
+
+(define-key my-keys-mode-map (kbd "<deletechar>") 'hungry-delete-forward)
+
 #+END_SRC
 ** Copy line below
 Use =Alt-up/down= as in any other editor to copy lines 
@@ -263,7 +269,7 @@ This function will bytecompile everything that it finds in the .emacs.d director
 
 #+END_SRC
 ** Smart moving to the beginning of as line
-#+BEGIN_SRC  elisp :results none
+#+BEGIN_SRC  emacs-lisp :results none
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 
@@ -291,21 +297,16 @@ point reaches the beginning or end of the buffer, stop there."
 #+END_SRC
 ** Preventing closing Emacsclient
 When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= will close the client  without asking even though =confirm-kill-emacs= is set to /true/. This snippet will notice if Emacs is ran as daemon and will always ask me to close the current client.
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (defun ask-before-closing ()
   "Close only if y was pressed."
   (interactive)
-  (if (y-or-n-p (format "Are you sure you want to close this frame? "))
-      (save-buffers-kill-emacs)                                                                                            
+  (if (y-or-n-p (format "Are you sure you want to close this frame? ")) (save-buffers-kill-emacs)
     (message "Canceled frame close")))
 
 (when (daemonp)
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 #+END_SRC
-
-#+RESULTS:
-: ask-before-closing
-
 * Org-mode
 ** Common settings
 Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writting/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporterrs for =.org= files that just make my life easier. 
@@ -516,13 +517,12 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 (require 'ace-window)
 (define-key my-keys-mode-map (kbd "C-x o") 'ace-window)
 
-;;(load "~/.emacs.d/lisp/arnaud-framer.el")
-;;(require 'arnaud-framer)
-;;(global-framer-mode 1)
+(load "~/.emacs.d/lisp/arnaud-framer.el")
+(require 'arnaud-framer)
+(global-framer-mode 1)
+
+
 (require 'golden-ratio)
-
-
-
 
 #+END_SRC
 
@@ -601,11 +601,23 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 
 (define-key my-keys-mode-map (kbd "C-x r h") 'helm-register)
 
+(define-key my-keys-mode-map (kbd "M-y") 'helm-show-kill-ring)
 
 (helm-mode 1)
 (helm-autoresize-mode 1)
 
 #+END_SRC
+* Undo tree
+#+BEGIN_SRC emacs-lisp :export src
+(require 'undo-tree)
+
+(define-key my-keys-mode-map (kbd "C-x u") 'undo-tree-visualize)
+
+#+END_SRC
+
+#+RESULTS:
+: undo-tree-visualize
+
 * Avy
 Navigate by searching for a letter on the screen and jumping to it. Useful for quick navigation and getting to places on the screen.
 - [[https://github.com/abo-abo/avy][avy]]
@@ -1186,6 +1198,14 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (require 'latex-preview-pane)
 (define-key my-keys-mode-map (kbd "C-c l p") 'latex-preview-pane-mode)
 
+(define-key my-keys-mode-map (kbd "C-c l b") 'helm-bibtex-with-local-bibliography)
+
+
+(setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
+(setq TeX-view-program-selection '((output-pdf "Evince")))
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+(setq TeX-source-correlate-start-server t)
+
 #+END_SRC
 * Vim like killing and yanking
 Not exactly what the heading suggests but I've recently learned some vim keybindings and *my god* those get things done fast. Emacs is kind of lacking on this end, but you know what they say
@@ -1655,7 +1675,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 - [[http://company-mode.github.io/][company]]
 #+BEGIN_SRC emacs-lisp :results none
 
-(setq company-minimum-prefix-length 2
+(setq company-minimum-prefix-length 3
       company-tooltip-align-annotations nil
       company-tooltip-flip-when-above nil
       company-idle-delay 0
@@ -1783,7 +1803,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 ;; (magit-item-highlight ((t (:background "#000012"))))
 #+END_SRC
 
-#+RESULTS:
+
 
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!
@@ -1812,3 +1832,5 @@ CLOSED: [2018-06-17 Sun 19:42]
 ** TODO Steal someone's python setup
 ** TODO Steal someone's c++ setup
 ** TODO Put the whole thing on the blog
+
+

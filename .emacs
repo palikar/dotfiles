@@ -1,6 +1,5 @@
 ;;; package --- Summery
 
-
 ;;; Commentary:
 
 
@@ -11,6 +10,9 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 
+
+
+(setq visible-bell 'nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -34,7 +36,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (yaml-mode bash-completion golden-ratio company-anaconda py-yapf anaconda-mode fontawesome mu4e-conversation imenu-list company-ycmd ycmd org-plus-contrib nlinum-relative nlinum pymacs ranger web-beautify fancy-battery google-this flyspell-popup flyspell-correct-popup popup-complete helm-flycheck helm-ispell company-irony-c-headers ibuffer-projectile telephone-line smart-mode-line-powerline-theme smart-mode-line easy-hugo hugo ctags-update meghanada atom-dark-theme monokai-theme molokai-theme smart-hungry-delete use-package wrap-region treemacs syntax-subword sublimity srefactor solarized-theme smartparens pretty-mode ox-twbs ox-hugo org2blog org-pdfview org-page org-bullets mvn lorem-ipsum latex-pretty-symbols helm-rtags helm-projectile haskell-mode flycheck-irony expand-region evil emmet-mode dumb-jump doom-themes crux company-rtags company-irony company-emacs-eclim company-c-headers cmake-ide clang-format auto-org-md auto-complete-nxml auto-complete-clang-async auto-complete-clang anzu))))
+    (god-mode highlight-indent-guides helm-spotify-plus helm-spotify spotify tabbar firefox-controller fireplace helm-bibtexkey helm-bibtex yaml-mode bash-completion golden-ratio company-anaconda py-yapf anaconda-mode fontawesome mu4e-conversation imenu-list company-ycmd ycmd org-plus-contrib nlinum-relative nlinum pymacs ranger web-beautify fancy-battery google-this flyspell-popup flyspell-correct-popup popup-complete helm-flycheck helm-ispell company-irony-c-headers ibuffer-projectile telephone-line smart-mode-line-powerline-theme smart-mode-line easy-hugo hugo ctags-update meghanada atom-dark-theme monokai-theme molokai-theme smart-hungry-delete use-package wrap-region treemacs syntax-subword sublimity srefactor solarized-theme smartparens pretty-mode ox-twbs ox-hugo org2blog org-pdfview org-page org-bullets mvn lorem-ipsum latex-pretty-symbols helm-rtags helm-projectile haskell-mode flycheck-irony expand-region evil emmet-mode dumb-jump doom-themes crux company-rtags company-irony company-emacs-eclim company-c-headers cmake-ide clang-format auto-org-md auto-complete-nxml auto-complete-clang-async auto-complete-clang anzu))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -43,6 +45,7 @@
  '(company-preview ((t (:background "#444444" :foreground "light sky blue"))))
  '(company-tooltip ((t (:background "#444444" :foreground "light sky blue"))))
  '(company-tooltip-annotation ((t (:foreground "deep sky blue"))))
+ '(highlight-indentation-current-column-face ((t (:background "gray"))))
  '(secondary-selection ((t (:background "light sky blue" :foreground "black")))))
 
 (let ((file-name-handler-alist nil))

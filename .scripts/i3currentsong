@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+if [ "$(playerctl status)" = "Playing" ]; then
+    echo $(playerctl metadata artist) - $(playerctl metadata title)
+else
+    echo -n ""
+fi

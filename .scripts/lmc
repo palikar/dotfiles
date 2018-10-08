@@ -1,0 +1,20 @@
+#!/bin/bash
+
+newvol="pkill -RTMIN+10 i3blocks"
+newplayer="pkill -RTMIN+3 i3blocks"
+newsong="pkill -RTMIN+4 i3blocks"
+
+
+case "$1" in
+    "up") pamixer --allow-boost -i "$2" ; $newvol ;;
+    "down") pamixer --allow-boost -d "$2" ; $newvol ;;
+    "mute") pamixer --allow-boost -t ; $newvol ;;
+    "truemute") pamixer --allow-boost -m && $newsong; $newvol ;;
+    "toggle") playerctl play-pause && $newplayer && $newsong;;
+    "pause") playerctl pause  && $newplayer && $newsong;;
+    "forward") playerctl position "$2"+ && $newplayer ;;
+    "back") playerctl position "$2"- && $newplayer ;;
+    "next") playerctl next && $newsong ;;
+    "prev") playerctl previous && $newsong ;;
+    "replay") playerctl previous && playerctl next && $newsong  ;;
+esac

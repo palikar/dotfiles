@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+
+    1) gnome-calendar& ;;
+esac
+
+
+
+echo $(date '+%Y %b %d (%a)')

@@ -1,0 +1,27 @@
+# rofi.color-enabled: true
+# rofi.color-window: argb:bc303541, #7c8389, #1d1f21
+# rofi.color-normal: argb:03035411, #c4cbd4, argb:96404552, #4084d6, #f9f9f9
+# rofi.color-urgent: argb:aefdf6e3, #cc6666, argb:e54b5160, #a54242, #f9f9f9
+# rofi.color-active: argb:79303541, #65acff, argb:e44b5160, #4491ed, #f9f9f9
+
+# rofi.show-icons: true
+# rofi.lines: 10
+# rofi.width: 100
+# rofi.modi: window,run
+# rofi.terminal: urxvt 
+# rofi.case-sensitive: false
+# rofi.eh: 2
+# rofi.padding: 340
+# rofi.hide-scrollbar: true
+# rofi.bw: 0
+# rofi.separator-style: none
+# rofi.font: mono 14
+# rofi.display-run: Lauch
+# rofi.display-window: Window
+
+rofi.lines: 12
+rofi.font: Source Sans Pro 12
+rofi.show-icons: true
+rofi.theme: ~/.config/rofi/oxide.rasi
+rofi.display-window: Window
+rofi.display-run: Search

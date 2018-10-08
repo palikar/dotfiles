@@ -1,0 +1,9 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+    1) notify-send "Public IP-Adress" $(GET http://ipinfo.io/ip) ;;
+    3) rxvt-unicode -hold -e GET http://ipinfo.io/ip ;;
+esac
+
+
+echo $(hostname -I)

@@ -1,10 +1,11 @@
 $include /etc/inputrc
 
-# Make Tab autocomplete regardless of filename case
 set completion-ignore-case On
-
-# List all matches in case multiple possible completions are possible
-set show-all-if-ambiguous on
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+set horizontal-scroll-mode Off
+set bell-style none
+set colored-stats On
 
 
 

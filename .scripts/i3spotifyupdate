@@ -1,0 +1,15 @@
+#!/bin/bash
+
+newvol="pkill -RTMIN+10 i3blocks"
+newplayer="pkill -RTMIN+3 i3blocks"
+newsong="pkill -RTMIN+4 i3blocks"
+
+
+# dbus-monitor "type='signal', sender=:'1.52', path='/org/mpris/MediaPlayer2'" | while read -r line; do
+#     printf "Now playing: "
+# done
+
+dbus-monitor "type='signal', path='/org/mpris/MediaPlayer2'" | while read -r line; do
+    $newplayer && $newsong && $newvol
+done
+

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+
+case $BLOCK_BUTTON in
+    1) lmc toggle ;;
+esac
+
+
+
+echo $(playerctl status)

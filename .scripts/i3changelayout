@@ -1,0 +1,4 @@
+#!/bin/sh
+
+newlay="pkill -RTMIN+9 i3blocks"
+xkblayout-state set +1 ; $newlay
