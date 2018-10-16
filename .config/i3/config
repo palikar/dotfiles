@@ -51,7 +51,7 @@ bar {
 for_window [class="^.*"] border pixel 2
 gaps inner 15
 gaps outer 15
-smart_gaps on
+smart_gaps off
 
 floating_modifier $mod
 
@@ -96,6 +96,7 @@ bindsym $mod+Shift+Escape 	exec --no-startup-id prompt "Are you sure you want to
 bindsym $mod+Shift+F12		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
 
 bindsym $mod+Return		exec $term
+bindsym $mod+Shift+Return	exec samedir
 
 bindsym $mod+Home 	        floating toggle
 

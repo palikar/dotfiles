@@ -28,6 +28,10 @@
 *color15: #f1efee
 
 
+
+
+
+
 !! Basic interface setup
 URxvt.intensityStyles:	false
 URxvt.background:       [90]#000000
@@ -65,6 +69,12 @@ URxvt.matcher.button:	1
 URxvt.keysym.M-w:   perl:clipboard:copy
 URxvt.keysym.C-y:   perl:clipboard:paste
 URxvt.keysym.C-w:   perl:clipboard:paste_escaped
+
+!! Good scrolling
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
+urxvt*saveLines:            10000
 
 !! Movements
 URxvt.keysym.Control-Up:     \033[1;5A

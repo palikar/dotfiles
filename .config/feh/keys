@@ -1,12 +1,16 @@
-zoom_in +
-zoom_out -
-next_img Right
-prev_img Left
+zoom_in  plus  C-plus 
+zoom_out minus C-minus
+zoom_default d
+zoom_fit s
 
-scroll_up k Up
-scroll_down j Down
-scroll_right l
-scroll_left h
+
+next_img l Right
+prev_img h Left
+
+scroll_up    J C-Up
+scroll_down  K C-Down
+scroll_left  H C-Left
+scroll_right L C-Right
 
 toggle_fullscreen f
 save_filelist F

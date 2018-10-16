@@ -76,7 +76,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-rtags company-ycmd cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein auto-complete elpy emmet-mode expand-region exwm fancy-battery find-file-in-project flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args golden-ratio google-this google-translate graphviz-dot-mode haskell-mode helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm helm-core highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme mu4e-conversation mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools popup-complete popup powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme srefactor sublimity swiper ivy syntax-subword tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper web-beautify web-mode websocket workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
+(setq package-list '(iedit aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-rtags company-ycmd cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein auto-complete elpy emmet-mode expand-region exwm fancy-battery find-file-in-project firefox-controller fireplace flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args god-mode golden-ratio google-this google-translate graphviz-dot-mode haskell-mode helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core highlight-indent-guides highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools popup-complete popup popwin powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme spotify srefactor sublimity swiper ivy syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper web-beautify web-mode websocket workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
 ; ending-packages
 
 (defun list-installed-packages ()
@@ -119,14 +119,18 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (fset 'yes-or-no-p 'y-or-n-p)
 (fringe-mode '(0 . 0))
 (setq-default cursor-type 'box)
-(set-cursor-color "#00ffbf")
-(global-nlinum-mode t)
+;; (set-cursor-color "#00ffbf")
+(global-nlinum-mode -1)
 (global-visual-line-mode 1)
 (global-hl-line-mode 1)    
 (global-prettify-symbols-mode +1)
 (setq frame-title-format '("Emacs " emacs-version))
 (scroll-bar-mode 0)
-(define-key my-keys-mode-map (kbd "C-<f8>") 'scroll-bar-mode)
+(define-key my-keys-mode-map (kbd "C-<f10>") 'scroll-bar-mode)
+(define-key my-keys-mode-map (kbd "C-<f9>") 'hide-mode-line-mode)
+(define-key my-keys-mode-map (kbd "C-<f12>") 'nlinum-mode)
+
+
 #+END_SRC
 
 * Behavioral tweaks
@@ -1162,7 +1166,7 @@ I also frequanlty use Zeal. It's an application housing tons of usefull document
 
 
 #+END_SRC
-* Cmake
+* CMake
 A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant to the eyes. I don't really need more as I don't spend that much time writing /cmake/ scripts.
 #+BEGIN_SRC emacs-lisp
 (require 'cmake-mode)
@@ -1747,12 +1751,12 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (defun my/irony-mode-hook ()
   (setq company-backends '(                         
                            company-irony
-                           ;; (
-                           ;;  company-files         
-                           ;;  company-dabbrev-code
-                           ;;  company-keywords )
-                           ;; company-dabbrev
-                           ;; company-capf
+                           (
+                            company-files         
+                            company-dabbrev-code
+                            company-keywords )
+                           company-dabbrev
+                           company-capf
                            )))
 (add-hook 'iorny-mode-hook 'my/irony-mode-hook)
 

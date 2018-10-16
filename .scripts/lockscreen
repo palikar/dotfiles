@@ -8,6 +8,9 @@ rm -f /tmp/locked.png
     pgrep -x dunst && notify-send -i ~/.scripts/lock.png "Locking computer..." &&
     convert /tmp/base.png -blur 0x8 /tmp/locked.png
 
+
+# convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked2.png
+
 # Pause music (mocp, mpd and send the pause key to all mpv videos):
 # mocp -P &>/dev/null
 # mpc pause &>/dev/null

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 case $BLOCK_BUTTON in
-    1) sudo python3.6 ~/.scripts/networkmanager_dmenu ;;
+    1) python3.6 ~/.scripts/networkmanager_dmenu ;;
 esac
 
 INTERFACE="${BLOCK_INSTANCE:-wlp1s0}"

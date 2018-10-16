@@ -17,8 +17,8 @@ fi
 
 set bell-style none
 
-source ${DOTFILES_DIR}/fzf/completion.bash
-source ${DOTFILES_DIR}/fzf/key-bindings.bash
+. "${DOTFILES_DIR}"/fzf/completion.bash
+. "${DOTFILES_DIR}"/fzf/key-bindings.bash
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -39,6 +39,9 @@ fi
 if [ -f ~/.paths ]; then
     ~/.scripts/pathloader
 fi
+
+export OPENNI2_INCLUDE=/usr/include/openni2/
+# export OPENNI2_REDIST=/usr/lib/n
 
 if [ -n "$DISPLAY" ]; then
     xset b off

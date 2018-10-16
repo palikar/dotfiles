@@ -3,7 +3,7 @@ text/html=org.gnome.gedit.desktop;vim.desktop;
 text/csv=org.gnome.gedit.desktop;libreoffice-calc.desktop;
 application/octet-stream=eog.desktop;shotwell.desktop;evince.desktop;org.gnome.gedit.desktop;
 image/png=shotwell-viewer.desktop;eog.desktop;display-im6.q16hdri.desktop;pqiv.desktop;display-im6.q16.desktop;
-image/jpeg=shotwell-viewer.desktop;display-im6.q16hdri.desktop;display-im6.q16.desktop;
+image/jpeg=shotwell-viewer.desktop;pqiv.desktop;display-im6.q16hdri.desktop;display-im6.q16.desktop;
 video/x-matroska=vlc.desktop;
 video/mp4=mpv.desktop;org.gnome.Totem.desktop;vlc.desktop;
 video/x-msvideo=vlc.desktop;
@@ -50,6 +50,7 @@ application/pdf=evince.desktop;
 image/gif=pqiv.desktop;
 text/plain=org.gnome.gedit.desktop;
 application/xml=org.gnome.gedit.desktop;
+application/x-shellscript=org.gnome.gedit.desktop;
 
 [Default Applications]
 video/x-ogm+ogg=vlc.desktop

@@ -4,7 +4,9 @@
         "mons",
         "pamixer",
         "ranger",
-        "networkmanager-dmenu"
+        "networkmanager-dmenu",
+        "xkblayout-state",
+        "rxvt-unicode"
     ],
     "packages": {
         "i3-gaps" : {
@@ -15,6 +17,7 @@
             "script_args" : "",
             "dependencies": []
         },
+        
         "mons" : {
             "download" : "git",
             "URL" : "https://github.com/Ventto/mons.git",
@@ -22,6 +25,7 @@
             "command" : "sudo make install",
             "reinstall_command" : "sudo make install"
         },
+        
         "pamixer" : {
             "download" : "git",
             "URL" : "https://github.com/cdemoulins/pamixer.git",
@@ -29,6 +33,7 @@
             "command" : "make && sudo make install",
             "reinstall_command" : "sudo make"
         },
+        
         "ranger" : {
             "download" : "git",
             "URL" : "https://github.com/ranger/ranger",
@@ -36,6 +41,7 @@
             "command" : "sudo python setup.py install --optimize=1 --record=install_log.txt",
             "reinstall_command" : "sudo python setup.py install --optimize=1 --record=install_log.txt"
         },
+        
         "networkmanager-dmenu" : {
             "download" : "git",
             "URL" : "https://github.com/firecat53/networkmanager-dmenu",
@@ -43,12 +49,25 @@
             "command" : "echo 'No installation' ",
             "reinstall_command" : "echo 'No installation' "
         },
+        
         "xkblayout-state" : {
             "download" : "git",
             "URL" : "https://github.com/nonpop/xkblayout-state",
             "install" : "command",
             "command" : "make && sudo make install",
             "reinstall_command" : "make clean && make && sudo make install"
+        },
+        
+        "rxvt-unicode" : {
+            "download" : "curl",
+            "URL" : "http://dist.schmorp.de/rxvt-unicode/Attic/rxvt-unicode-9.22.tar.bz2",
+            "install" : "script",
+            "script": "$DOTFILES_DIR/install_scripts/install_rxvt-unicode.sh",
+            "script_args" : "-p /usr"
         }
+
+        
+        
+        
     }
 }

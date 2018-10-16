@@ -1,29 +1,12 @@
-cd 
-cd /home/arnaud/code/pollution
-shell -p #
-search The
-new_
-rename 1526159450525qq.webm
-rename results_single_3
-rename usr
-rename webm
-mkdir 
-mkdir Anime
-search ns
-search nsfw
-rename 1533775699219.webm
 rename 1526159450525.webm
 rename 1528674840557.webm
-shell -p 
 search core
 search mp1
 search th
 shell adq
 open_with 3
 open_with 0
-
 shell °
-shell ls
 chmod 
 rename cypherpunkq.org
 rename fav_one_as_gif.gif
@@ -33,9 +16,6 @@ search mpl1
 refresh
 update_preview 
 1
-delete
-open_with 2
-open_with 1
 shell "§
 search mp
 search vo
@@ -43,8 +23,28 @@ open_with e
 search code
 search voi
 rename README.md
+rename LICENSE
+search cat
+search 
+rename code_mamager.py
+open_with 2
+filter u
 find 
 shell 
-rename LICENSE
+shell -p
+search doc
+shell -p 
+search web
+find we
+find w
+search red
+open_with 1
+delete
+shell feh --bg-scale $@
+shell ls
+shell feh --bg-sacale fallen_by_wojciechfus-d96pri5.png
+
+search stock
+find st
+search nsf
 open_with 
-filter u

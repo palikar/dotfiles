@@ -1,4 +1,4 @@
-#!/bin/bashf
+#!/bin/bash
 
 
 if [ $(emacsclient -e '(message "1")') != "\"1\"" ];
@@ -7,7 +7,7 @@ then
     exit 0
 fi
 
-PACKAGES=$(emacsclient -e "(symbol-value 'package-list)" | sed "s/(/(setq package-list '(/g")
+PACKAGES=$(emacsclient -e "(symbol-value 'package-activated-list)" | sed "s/(/(setq package-list '(/g" | sed "s|)|))|g")
 PACKAGES="; starting-packages\n${PACKAGES}\n; ending-packages"
 # echo -ne $PACKAGES
-sed '/starting-packages/,/ending-packages/c${PACKAGES}' "${DOTFILES_DIR}/.emacs.d/myinit.org"
+sed "/starting-packages/,/ending-packages/c${PACKAGES}" "${DOTFILES_DIR}/.emacs.d/myinit.org" -i
