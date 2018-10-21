@@ -40,9 +40,6 @@ if [ -f ~/.paths ]; then
     ~/.scripts/pathloader
 fi
 
-export OPENNI2_INCLUDE=/usr/include/openni2/
-# export OPENNI2_REDIST=/usr/lib/n
-
 if [ -n "$DISPLAY" ]; then
     xset b off
 fi

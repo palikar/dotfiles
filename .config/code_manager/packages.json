@@ -1,0 +1,349 @@
+{
+    "packages_list": [
+        [
+            "arnaud-framer",
+            "arnaud-sexp",
+            "crypter",
+            "dotfiles",
+            "easyloggingpp",
+            "emacs-neotree",
+            "exploits",
+            "jgrapher",
+            "laset_tracker",
+            "MARS",
+            "palikar.github.io",
+            "pollution",
+            "pollution_final",
+            "projector",
+            "smarthomeworks",
+            "smart_memory_location",
+            "urxvt-perls",
+            "arffpar"
+        ],
+        [
+            "i3-gaps",
+            "mons",
+            "pamixer",
+            "ranger",
+            "networkmanager-dmenu",
+            "xkblayout-state",
+            "rxvt-unicode",
+            "opencv",
+            "opencv-contrib",
+            "easyloggingpp"
+        ],
+        [
+            "scull",
+            "edward",
+            "facebook-chat-api",
+            "fbash",
+            "speech_recognition"
+        ]
+    ],
+    "debian_packages":[
+        ["libboost-all-dev","build-essential", "git", "cmake", "cmake-curses-gui",
+         "krb5-config", "krb5-user", "libfile-homedir-perl", "libpath-class-perl",
+        "libswitch-perl", "virtualenv", "htop", "gitk", "ssh", "ntp", "ntpdate",
+         "ntpstat", "sudo", "net-tools", "inetutils-ping", "curl", "wget","libglew-dev",
+         "libxt-dev","libgtk-3-dev"],
+        ["feh","i3blocks","i3lock","dmunu","rofi", "ibus",
+         "libgtk2.0-dev"]
+    ],
+    "packages": {
+        "arnaud-framer": {
+            "download": "git",
+            "URL": "https://github.com/palikar/arnaud-framer.git",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "arnaud-sexp": {
+            "download": "git",
+            "URL": "https://github.com/palikar/arnaud-sexp",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "crypter": {
+            "download": "git",
+            "URL": "https://github.com/palikar/crypter",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "dotfiles": {
+            "download": "git",
+            "URL": "https://github.com/palikar/dotfiles",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "emacs-neotree": {
+            "download": "git",
+            "URL": "https://github.com/jaypei/emacs-neotree/",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "jgrapher": {
+            "download": "git",
+            "URL": "https://github.com/palikar/jgrapher.git",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "MARS": {
+            "download": "git",
+            "URL": "https://github.com/BodenUnits/MARS",
+            "install": "command",
+            "command": "make -j4",
+            "reinstall_command": "make -j4"
+        },
+        "palikar.github.io": {
+            "download": "git",
+            "URL": "https://github.com/palikar/blog_hugo_files.git",
+            "install": "command",
+            "command": "hugo",
+            "reinstall_command": "hugo"
+        },
+        "pollution": {
+            "download": "git",
+            "URL": "https://github.com/palikar/PollutionDev",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "projector": {
+            "download": "git",
+            "URL": "https://github.com/palikar/projector.git",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "smarthomeworks": {
+            "download": "git",
+            "URL": "https://github.com/palikar/HomeworksSmart/",
+            "install": "command",
+            "command": "webpack --progress",
+            "reinstall_command": "webpack --progress"
+        },
+        "smart_memory_location": {
+            "download": "git",
+            "URL": "https://github.com/palikar/smart_memory_location.git",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "urxvt-perls": {
+            "download": "git",
+            "URL": "https://github.com/muennich/urxvt-perls",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "blog-hugo-files": {
+            "download": "git",
+            "URL": "https://github.com/palikar/blog-hugo-files",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "navigationfx": {
+            "download": "git",
+            "URL": "https://github.com/palikar/NavigationFX",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "gameengine": {
+            "download": "git",
+            "URL": "https://github.com/palikar/GameEngine",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "advancedresoucemenaging": {
+            "download": "git",
+            "URL": "https://github.com/palikar/AdvancedResouceMenaging",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "arffpar": {
+            "download": "git",
+            "URL": "https://github.com/palikar/ArffPar",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "tictacminimax": {
+            "download": "git",
+            "URL": "https://github.com/palikar/TicTacMiniMax",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "stateconifiggui": {
+            "download": "git",
+            "URL": "https://github.com/palikar/StateConifigGUI",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "promanager": {
+            "download": "git",
+            "URL": "https://github.com/palikar/ProManager",
+            "install": "command",
+            "command": "webpack --progress",
+            "reinstall_command": "webpack --progress"
+        },
+        "mandelbrotworks": {
+            "download": "git",
+            "URL": "https://github.com/palikar/MandelbrotWorks",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "navigationcore": {
+            "download": "git",
+            "URL": "https://github.com/palikar/NavigationCore",
+            "install": "command",
+            "command": "echo 'No install command'",
+            "reinstall_command": "echo 'No install command'"
+        },
+        "i3-gaps": {
+            "download": "git",
+            "URL": "https://www.github.com/Airblader/i3",
+            "install": "script",
+            "script": "install_i3gaps.sh",
+            "script_args": "",
+            "dependencies": [],
+            "deb_packages": ["libxcb1-dev", "libxcb-keysyms1-dev", "libpango1.0-dev",
+                             "libxcb-util0-dev", "libxcb-icccm4-dev", "libyajl-dev",
+                             "libstartup-notification0-dev", "libxcb-randr0-dev",
+                             "libev-dev libxcb-cursor-dev", "libxcb-xinerama0-dev", 
+                             "libxcb-xkb-dev", "libxkbcommon-dev" ,"libxkbcommon-x11-dev", "autoconf", "libxcb-xrm-dev"]
+        },
+        "mons": {
+            "download": "git",
+            "URL": "https://github.com/Ventto/mons.git",
+            "install": "command",
+            "command": "sudo make install",
+            "reinstall_command": "sudo make install",
+            "deb_packages": ["xorg-xrandr"]
+        },
+        "pamixer": {
+            "download": "git",
+            "URL": "https://github.com/cdemoulins/pamixer.git",
+            "install": "command",
+            "command": "make && sudo make install",
+            "reinstall_command": "sudo make",
+            "deb_packages": ["libpulse"]
+        },
+        "ranger": {
+            "download": "git",
+            "URL": "https://github.com/ranger/ranger",
+            "install": "command",
+            "command": "sudo python setup.py install --optimize=1 --record=install_log.txt",
+            "reinstall_command": "sudo python setup.py install --optimize=1 --record=install_log.txt",
+            "deb_packages": ["file", "sudo", "w3m", "caca-utils",
+                             "pygmentize","atool","lynx","mediainfo",
+                             "odt2txt"]
+        },
+        "networkmanager-dmenu": {
+            "download": "git",
+            "URL": "https://github.com/firecat53/networkmanager-dmenu",
+            "install": "command",
+            "command": "echo 'No installation' ",
+            "reinstall_command": "echo 'No installation' "
+        },
+        "xkblayout-state": {
+            "download": "git",
+            "URL": "https://github.com/nonpop/xkblayout-state",
+            "install": "command",
+            "command": "make && sudo make install",
+            "reinstall_command": "make clean && make && sudo make install"
+        },
+        "rxvt-unicode": {
+            "download": "curl",
+            "URL": "http://dist.schmorp.de/rxvt-unicode/Attic/rxvt-unicode-9.22.tar.bz2",
+            "install": "script",
+            "script": "install_rxvt-unicode.sh",
+            "script_args": "-p /usr"
+        },
+        "opencv": {
+            "download": "git",
+            "URL": "https://github.com/opencv/opencv",
+            "install": "cmake",
+            "cmake_args": "-DCMAKE_BUILD_TYPE=Release",
+            "make_args": "-j4",
+            "dependencies": [
+                "opencv-contrib"
+            ],
+            "deb_packages": ["gcc","cmake","pkg-config", "libgtk2.0-dev", "ffmpeg",
+                             "libtbb-dev","libdc1394",
+                             "libjpeg-dev", "libpng-dev", "libtiff-dev", "libjasper-dev",
+                             "libdc1394-22-dev"]
+        },
+        "opencv-contrib": {
+            "download": "git",
+            "URL": "https://github.com/opencv/opencv_contrib",
+            "install": "command",
+            "command": "make && sudo make install",
+            "reinstall_command": "make clean && make && sudo make install"
+        },
+        "easyloggingpp": {
+            "download": "git",
+            "URL": "https://github.com/muflihun/easyloggingpp",
+            "install": "cmake",
+            "cmake_args": "",
+            "make_args": "-j2"
+        },        
+        "scull": {
+            "download": "git",
+            "URL": "https://github.com/starpos/scull",
+            "install": "command",
+            "command": "echo 'No installation' ",
+            "reinstall_command": "echo 'No installation' "
+        }
+        ,        
+        "edward": {
+            "download": "git",
+            "URL": "https://github.com/blei-lab/edward",
+            "install": "command",
+            "command": "echo 'No installation' ",
+            "reinstall_command": "echo 'No installation' "
+        },
+        "facebook-chat-api": {
+            "download": "git",
+            "URL": "https://github.com/Schmavery/facebook-chat-api",
+            "install": "command",
+            "command": "npm install",
+            "reinstall_command": "echo 'No installation' "
+        },
+        "fbash": {
+            "download": "git",
+            "URL": "https://github.com/avikj/fbash",
+            "install": "command",
+            "command": "npm install",
+            "reinstall_command": "echo 'No installation' "
+        }
+        ,
+        "speech_recognition": {
+            "download": "git",
+            "URL": "https://github.com/Uberi/speech_recognition",
+            "install": "command",
+            "command": "python setup.py install",
+            "reinstall_command": "python setup.py install"
+        },
+        "jwtxx": {
+            "download": "git",
+            "URL": "https://github.com/madf/jwtxx",
+            "install": "cmake",
+            "cmake_args": "-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-fPIC",
+            "make_args": "-j2",
+            "deb_packages": ["libjansson-dev", "openssl", "libssl-dev"]
+        }
+        
+    }
+}

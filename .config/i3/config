@@ -60,7 +60,8 @@ set $mod Mod4
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
 set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
-set $hibernate sudo -A systemctl suspend
+set $hibernate sudo -A systemctl hibernate
+set $suspend sudo -A systemctl suspend
 
 # define names for workspaces
 set $ws1    "1:  Laptop"
@@ -94,6 +95,10 @@ bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Are you sure you want 
 bindsym $mod+Shift+Escape 	exec --no-startup-id prompt "Are you sure you want to leave i3?" "i3-msg exit"
 
 bindsym $mod+Shift+F12		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
+
+bindsym $mod+Shift+F11		exec --no-startup-id prompt "Are you sure you want to suspend?" "$suspend"
+
+bindsym $mod+Shift+F10		exec --no-startup-id prompt "Are you sure you want to hibernate?" "$hibernate"
 
 bindsym $mod+Return		exec $term
 bindsym $mod+Shift+Return	exec samedir

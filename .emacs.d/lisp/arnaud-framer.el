@@ -1,5 +1,5 @@
 ;; Copyright (C) 2018 Stanislav Arnaudov
-;;; arnaud-framer.el --- Resizing frames of meacs with kybindings
+;; arnaud-framer.el --- Resizing frames of meacs with kybindings
 ;; Filename: arnaud-framer.el
 ;; Author: Stanislav Arnaudov
 ;; Keywords: lisp, window, sizing
@@ -54,7 +54,7 @@
 	 (fr-width (frame-width)))
     (cond
      ((eq 0 this-window-x-min) "left")
-     ((eq (+ fr-width 2) this-window-x-max) "right")
+     ((< (- fr-width this-window-x-max) 5) "right")
      (t "mid"))))
 
 (defun framer-decrease-width ()
@@ -134,14 +134,14 @@
   "Mode that enables manual control over emacs frames' sizes."
   :lighter " Framer"
   :keymap framer-mode-map
-  :group framer)
+  :group 'framer)
 
 (define-minor-mode global-framer-mode
   "Mode that enables manual control over emacs frames' sizes."
   :lighter " Framer"
   :keymap framer-mode-map
   :global t
-  :group framer)
+  :group 'framer)
 
 
 (defcustom resizing-step 50

@@ -1,0 +1,3 @@
+[Config]
+        code = ${HOME}/core.d/code
+        usr = ${HOME}/core.d/usr

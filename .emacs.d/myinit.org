@@ -129,7 +129,20 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (define-key my-keys-mode-map (kbd "C-<f10>") 'scroll-bar-mode)
 (define-key my-keys-mode-map (kbd "C-<f9>") 'hide-mode-line-mode)
 (define-key my-keys-mode-map (kbd "C-<f12>") 'nlinum-mode)
-
+(set-frame-parameter (selected-frame) 'alpha '(85 . 85))
+(add-to-list 'default-frame-alist '(alpha . (85 . 85)))
+(defun toggle-transparency ()
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ;; Also handle undocumented (<active> <inactive>) form.
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(85 . 80) '(100 . 100)))))
+(define-key my-keys-mode-map (kbd "C-<f1>") 'toggle-transparency)
 
 #+END_SRC
 
@@ -527,7 +540,7 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 
 (load "~/.emacs.d/lisp/arnaud-framer.el")
 (require 'arnaud-framer)
-(global-framer-mode 1)
+(global-framer-mode nil)
 
 
 (require 'golden-ratio)
@@ -598,7 +611,8 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 (define-key my-keys-mode-map (kbd "M-x") 'helm-M-x)
 (define-key my-keys-mode-map (kbd "C-x b") 'helm-mini)
 (define-key my-keys-mode-map (kbd "C-c b") 'helm-semantic-or-imenu)
-(define-key my-keys-mode-map (kbd "M-s") 'helm-projectile-grep)
+
+(define-key my-keys-mode-map (kbd "M-s") 'helm-projectile-ag)
 
 
 ;;search and install apt packages through Emacs...crazy, I know!!!
@@ -1812,7 +1826,13 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 #+END_SRC
 
 
-
+* IEdit
+IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with ~M-i~ and while editing the marked region, all other occurrences will be changed accordingly.
+- [[https://github.com/victorhge/iedit][iedit]]
+#+BEGIN_SRC emacs-lisp :results none
+(require 'iedit)
+(define-key my-keys-mode-map (kbd "M-i") 'iedit-mode)
+#+END_SRC
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!
 ** DONE Configure better web-mode support
