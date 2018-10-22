@@ -76,7 +76,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(iedit aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-rtags company-ycmd cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein auto-complete elpy emmet-mode expand-region exwm fancy-battery find-file-in-project firefox-controller fireplace flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args god-mode golden-ratio google-this google-translate graphviz-dot-mode haskell-mode helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core highlight-indent-guides highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools popup-complete popup popwin powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme spotify srefactor sublimity swiper ivy syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper web-beautify web-mode websocket workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
+(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-rtags company-ycmd cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein auto-complete elpy emmet-mode expand-region exwm fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args god-mode golden-ratio google-this google-translate graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools popup-complete popup popwin powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme spotify srefactor sublimity swiper ivy syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper web-beautify web-mode websocket wgrep-helm wgrep workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
 ; ending-packages
 
 (defun list-installed-packages ()
@@ -186,8 +186,29 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (define-key my-keys-mode-map (kbd "C-S-<next>") 'scroll-up-line)
 (define-key my-keys-mode-map (kbd "C-c d") 'delete-file)
 (defun pass () "A function that does nothing" (interactive))
-
+(setq tab-always-indent 'complete)
 (define-key my-keys-mode-map (kbd "<deletechar>") 'hungry-delete-forward)
+(setq require-final-newline t)
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+(require 'savehist) ;; savehist keeps track of some history
+(setq savehist-additional-variables
+      '(search-ring regexp-search-ring)
+      savehist-autosave-interval 60)
+(savehist-mode +1)
+(require 'recentf) ;; save recent files
+(setq recentf-max-saved-items 500
+      recentf-max-menu-items 15
+      recentf-auto-cleanup 'never)
+(recentf-mode +1)
+(require 'super-save)
+(add-to-list 'super-save-triggers 'ace-window)
+(super-save-mode +1)
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
 
 #+END_SRC
 ** Copy line below
@@ -573,7 +594,8 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 
 (require 'anzu)
 (global-anzu-mode +1)
-(define-key isearch-mode-map [remap isearch-query-replace]  'anzu-isearch-query-replace)
+(global-set-key (kbd "M-%") 'anzu-query-replace)
+(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
 #+END_SRC
 
@@ -679,6 +701,17 @@ I use Python a lot these days. Yet, my python setup in /Emacs/ is less than mini
 #+BEGIN_SRC emacs-lisp
 (add-hook 'python-mode-hook 'jedi:setup)
 
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+
+(setq jedi:tooltip-method nil)
+
+(setq elpy-rpc-backend "jedi")
+(setq jedi:get-in-function-call-delay 0)
+
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+
+
 
 
 (defun my-python-setup ()
@@ -702,7 +735,7 @@ I use Python a lot these days. Yet, my python setup in /Emacs/ is less than mini
 #+END_SRC  
 
 #+RESULTS:
-: -i
+: py-yapf
 
 * Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
@@ -1783,6 +1816,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
                            company-capf)))
 (add-hook 'cmake-mode-hook 'my/cmake-mode-hook)
 
+
 (defun my/python-mode-hook ()
   (setq company-backends '(
                            company-anaconda
@@ -1791,7 +1825,9 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
                             company-dabbrev-code
                             company-keywords)
                            company-dabbrev
-                           company-capf)))
+                           company-capf))
+  ((looking-at )mbda () (setq jedi-mode t))
+)
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 
 (defun my/latex-mode-hook ()

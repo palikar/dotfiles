@@ -83,6 +83,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
 exec --no-startup-id unclutter
 exec --no-startup-id dunst
+exec --no-startup-id i3xautolock
 
 
 # #---- Bindings ----# #

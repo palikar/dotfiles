@@ -30,14 +30,16 @@
             "rxvt-unicode",
             "opencv",
             "opencv-contrib",
-            "easyloggingpp"
+            "easyloggingpp",
+            "emacs"
         ],
         [
             "scull",
             "edward",
             "facebook-chat-api",
             "fbash",
-            "speech_recognition"
+            "speech_recognition",
+            "prelude"
         ]
     ],
     "debian_packages":[
@@ -343,6 +345,21 @@
             "cmake_args": "-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-fPIC",
             "make_args": "-j2",
             "deb_packages": ["libjansson-dev", "openssl", "libssl-dev"]
+        },
+        "prelude": {
+            "download": "git",
+            "URL": "https://github.com/bbatsov/prelude",
+            "install": "command",
+            "command": "echo 'No install'",
+            "reinstall_command": "echo 'No reinstall'",
+            "deb_packages": []
+        },
+        "emacs": {
+            "download": "git",
+            "URL": "https://github.com/emacs-mirror/emacs",
+            "install": "script",
+            "script": "install_emacs.sh",
+            "deb_packages": ["build-essential", "libm17n-dev", "libmagickcore-dev", "emacs", "libgtk-3-dev" "libwebkitgtk-3.0-dev"]
         }
         
     }
