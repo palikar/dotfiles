@@ -5,19 +5,14 @@
             "arnaud-sexp",
             "crypter",
             "dotfiles",
-            "easyloggingpp",
-            "emacs-neotree",
             "exploits",
             "jgrapher",
-            "laset_tracker",
             "MARS",
             "palikar.github.io",
             "pollution",
-            "pollution_final",
             "projector",
             "smarthomeworks",
             "smart_memory_location",
-            "urxvt-perls",
             "arffpar"
         ],
         [
@@ -28,10 +23,11 @@
             "networkmanager-dmenu",
             "xkblayout-state",
             "rxvt-unicode",
+            "urxvt-perls",
             "opencv",
-            "opencv-contrib",
             "easyloggingpp",
-            "emacs"
+            "emacs",
+            "pywal"
         ],
         [
             "scull",
@@ -39,7 +35,13 @@
             "facebook-chat-api",
             "fbash",
             "speech_recognition",
-            "prelude"
+            "prelude",
+            "easyloggingpp",
+            "emacs-neotree",
+            "googletest",
+            "crow",
+            "rewire",
+            "pip-requirements"
         ]
     ],
     "debian_packages":[
@@ -329,8 +331,7 @@
             "install": "command",
             "command": "npm install",
             "reinstall_command": "echo 'No installation' "
-        }
-        ,
+        },
         "speech_recognition": {
             "download": "git",
             "URL": "https://github.com/Uberi/speech_recognition",
@@ -359,8 +360,47 @@
             "URL": "https://github.com/emacs-mirror/emacs",
             "install": "script",
             "script": "install_emacs.sh",
-            "deb_packages": ["build-essential", "libm17n-dev", "libmagickcore-dev", "emacs", "libgtk-3-dev" "libwebkitgtk-3.0-dev"]
-        }
-        
+            "deb_packages": ["build-essential","libm17n-dev",
+                             "libmagickcore-dev","emacs",
+                             "libgtk-3-dev", "libwebkitgtk-3.0-dev",
+                             "libxml2-dev"]
+        },
+        "googletest": {
+            "download": "git",
+            "URL": "https://github.com/google/googletest",
+            "install": "cmake",
+            "cmake_args": "-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-fPIC",
+            "make_args": "-j2",
+            "deb_packages": []
+        },
+        "crow": {
+            "download": "git",
+            "URL": "https://github.com/ipkn/crow",
+            "install": "cmake",
+            "cmake_args": "-DCMAKE_BUILD_TYPE=Release",
+            "make_args": "-j2",
+            "deb_packages": []
+        },
+        "pywal": {
+            "download": "git",
+            "URL": "https://github.com/dylanaraps/pywal",
+            "install": "command",
+            "command": "sudo python setup.py install",
+            "reinstall_command": "sudo python setup.py install"
+        },
+        "rewire": {
+            "download": "git",
+            "URL": "https://github.com/jhnns/rewire",
+            "install": "command",
+            "command": "npm install -g rewire",
+            "reinstall_command": "npm install -g rewire"
+        },
+        "pip-requirements": {
+            "download": "git",
+            "URL": "https://github.com/Wilfred/pip-requirements.el",
+            "install": "command",
+            "command": "echo 'No install'",
+            "reinstall_command": "echo 'No install'"
+        },        
     }
 }

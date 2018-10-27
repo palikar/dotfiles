@@ -1,11 +1,9 @@
-rename 1526159450525.webm
 rename 1528674840557.webm
 search core
 search mp1
 search th
 shell adq
 open_with 3
-open_with 0
 shell °
 chmod 
 rename cypherpunkq.org
@@ -39,12 +37,14 @@ find we
 find w
 search red
 open_with 1
-delete
 shell feh --bg-scale $@
 shell ls
 shell feh --bg-sacale fallen_by_wojciechfus-d96pri5.png
 
 search stock
 find st
-search nsf
 open_with 
+rename received_1978342988851803[a.jpeg
+delete
+search nsf
+open_with 0

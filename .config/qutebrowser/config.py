@@ -1408,6 +1408,7 @@ c.url.default_page = '/home/arnaud/core.d/code/homepages/homepage-v5-trystanr/in
 ## `:open google qutebrowser`.
 ## Type: Dict
 # c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q=!g%20{}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl

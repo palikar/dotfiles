@@ -19,4 +19,5 @@ rm -f /tmp/locked.png
 i3lock -e -f -c 000000 -i /tmp/locked.png
 
 # In five seconds, turn off display unless key press in last 4 seconds.
-sleep 5 && [[ 4000 -lt $(xssstate -i) ]] &&  wpgrep -x i3lock && xset dpms force off
+# sleep 5 && [[ 4000 -lt $(xssstate -i) ]] &&  wpgrep -x i3lock && xset dpms force off
+sleep 5 && xset dpms force off

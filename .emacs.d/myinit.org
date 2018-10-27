@@ -144,6 +144,9 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
          '(85 . 80) '(100 . 100)))))
 (define-key my-keys-mode-map (kbd "C-<f1>") 'toggle-transparency)
 
+(set-fill-column 100)
+(turn-on-fci-mode)
+
 #+END_SRC
 
 * Behavioral tweaks
@@ -209,6 +212,9 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (super-save-mode +1)
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
+(define-key my-keys-mode-map (kbd "M-n") 'forward-paragraph)
+(define-key my-keys-mode-map (kbd "M-p") 'backward-paragraph)
+
 
 #+END_SRC
 ** Copy line below
@@ -925,12 +931,15 @@ The de-facto standard for project management for emacs. Not sure if I utilize ha
 - =C-c p S= save all files of the current project
 ----------------------------
 Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
-#+BEGIN_SRC emacs-lisp
- (require 'projectile)
- (projectile-global-mode)
- (setq projectile-completion-system 'helm)
- (define-key my-keys-mode-map [f4] 'projectile-find-other-file)
+#+BEGIN_SRC emacs-lisp :results none
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(define-key my-keys-mode-map [f4] 'projectile-find-other-file)
+(setq projectile-project-search-path '("~/code/" "~/core.d/code/"))
 #+END_SRC
+
+
 * Neotree
 My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their low level plebian 'web-apps')
 - [[https://github.com/jaypei/emacs-neotree][neotree]]
@@ -1100,7 +1109,10 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
            ))
 
          ("Text" (name . ".txt"))
-         ("JS" (mode . "javascript-mode"))
+         ("JS" 
+          (or (mode . "JavaScript")
+              (name . ".js")
+              (mode . javascript-mode)))
          ("Web Dev" (or (mode . html-mode)
 			(mode . css-mode)
                         (mode . webmode-mode)))
