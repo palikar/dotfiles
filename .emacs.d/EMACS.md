@@ -1,44 +1,24 @@
-#+startup: overview
+# Abstract
 
-#+title: Configuration file for my EMACS
-#+AUTHOR: Stanislav Arnaudov
-#+DATE: 18-04-2018
-#+EMAIL: stanislav_ts@abv.bg
-#+LANGUAGE: En
-#+EXPORT_FILE_NAME: EMACS.md
-#+CREATOR: Emacs 24.3.50.3 (Org mode 8.0.3)
-#+SELECT_TAGS: export
-#+EXCLUDE_TAGS:noexport no_export
-#+EXCLUDE_TAGS: no_export
-#+CREATOR: Emacs 25.2.2 (Org mode 9.1.13)
+This is the cofiguration of my EmonkeysMACS-Editor written in [Org mode](https://orgmode.org/) in [literate style programming](https://en.wikipedia.org/wiki/Literate_programming). I've sort of hoarded a lot of different packages and different `.emacs` files from all over the internet and just stucked them together. Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey&#x2026;this is EMACS. Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use `[[https://github.com/jwiegley/use-package][use-package]]` as I found that it actually makes my emacs slugish on windows and I actually prefer to have everything in my local config all the time. Download the repo with
 
-# #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
-# #+OPTIONS: author:t broken-links:nil c:nil creator:nil
-# #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
-# #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
-# #+OPTIONS: timestamp:t title:t todo:t |:t
-# #+OPTIONS: toc:2
-#+OPTIONS: toc:nil
+    git clone https://github.com/palikar/dotfiles
 
-* Abstract
-This is the cofiguration of my EmonkeysMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
-Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
-Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use =[[https://github.com/jwiegley/use-package][use-package]]= as I found that it actually makes my emacs slugish on windows and I actually prefer to have everything in my local config all the time.\\
-Download the repo with
-#+BEGIN_EXAMPLE
-git clone https://github.com/palikar/dotfiles
-#+END_EXAMPLE
-and setupe emacs 
-#+BEGIN_EXAMPLE
-. setup-emacs.sh
-#+END_EXAMPLE
-//
-I've drawn a lot of inspiration for my Emacs configuration form:
-- [[https://github.com/zamansky/using-emacs][here]] (for the genera concept of the configuration file)
-- [[https://sriramkswamy.github.io/dotemacs/][also here]] (for the all of the /hydras/)
-* Key bindings custom map 
+and setupe emacs
+
+    . setup-emacs.sh
+
+// I've drawn a lot of inspiration for my Emacs configuration form:
+
+-   [here](https://github.com/zamansky/using-emacs) (for the genera concept of the configuration file)
+-   [also here](https://sriramkswamy.github.io/dotemacs/) (for the all of the *hydras*)
+
+
+# Key bindings custom map
+
 Some major modes overwrite some of my custom keybindings. Therefore I define a custom global minor mode and use the key map of this mode to define my custom key bindings. This sets their precedence 'above' the precedence of the key bindings of other modes
-#+BEGIN_SRC emacs-lisp :results none
+
+```emacs-lisp
 (define-minor-mode my-keys-mode
   "Minor mode for my personal keybindings."
   :global t
@@ -49,11 +29,14 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 
 
 (my-keys-mode t)
-#+END_SRC
-* Repos and packages
-The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
-/Edit:/ It's anoying when starting emacs it takes so long to connect to all the sites for the packages and I don't need =package-install= that regularly. With the current setup I fist have to call =setup-packages= in order to install new one but the emacs init time significantly lower. You may or may not care about that time if you run emacs like =emacs --daemon=.
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# Repos and packages
+
+The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. ~~MELPA is configured in the .emacs file but here we also add ELPA for good measures~~ Everything is here now! *Edit:* It's anoying when starting emacs it takes so long to connect to all the sites for the packages and I don't need `package-install` that regularly. With the current setup I fist have to call `setup-packages` in order to install new one but the emacs init time significantly lower. You may or may not care about that time if you run emacs like `emacs --daemon`.
+
+```emacs-lisp
 (require 'package)
 (package-initialize)
 
@@ -68,10 +51,14 @@ The default packages repository for emacs is ELPA. ELPA is not super good, we al
   (package-refresh-contents)
   )
 (package-refresh-contents)
-#+END_SRC
-** Installing packages
-I use a lot of additional packages and like to keep them local and installed. I've tried =use-package= but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
-#+BEGIN_SRC emacs-lisp
+```
+
+
+## Installing packages
+
+I use a lot of additional packages and like to keep them local and installed. I've tried `use-package` but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
+
+```emacs-lisp
 
 
 
@@ -100,18 +87,23 @@ I use a lot of additional packages and like to keep them local and installed. I'
     (package-install package)))
 
 
-#+END_SRC
-* Interface tweaks
-Making the whole =emacs= experience a tiny bit better with those fixes of the interface of the editor
-- Startup screen is anoying
-- The toolbar is wasting sapce
-- =f5= should function as a refresh in firefox
-- Fringes waste space
-- Numbered lines come in handy
-- Highlighting the current line is pretty =übersichtlich=
-- Pretty sybols like \lambda over the whole place is pretty cool
-- [[https://elpa.gnu.org/packages/nlinum.html][nlinum]] - a mode to display the linenumbers but it's much more efficient than the build in /linum/-mode. /nlinum/ can handle big files without a hicup while scrolling.
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# Interface tweaks
+
+Making the whole `emacs` experience a tiny bit better with those fixes of the interface of the editor
+
+-   Startup screen is anoying
+-   The toolbar is wasting sapce
+-   `f5` should function as a refresh in firefox
+-   Fringes waste space
+-   Numbered lines come in handy
+-   Highlighting the current line is pretty `übersichtlich`
+-   Pretty sybols like &lambda; over the whole place is pretty cool
+-   [nlinum](https://elpa.gnu.org/packages/nlinum.html) - a mode to display the linenumbers but it's much more efficient than the build in *linum*-mode. *nlinum* can handle big files without a hicup while scrolling.
+
+```emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (define-key my-keys-mode-map (kbd "<f10>") 'tool-bar-mode)
@@ -148,11 +140,14 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (set-fill-column 100)
 (turn-on-fci-mode)
 
-#+END_SRC
+```
 
-* Behavioral tweaks
+
+# Behavioral tweaks
+
 Some quick fixes for intuitinve and streight forwawrd editing. Generally I strive for the cleanest designf the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
-#+BEGIN_SRC emacs-lisp :results none
+
+```emacs-lisp
 (setq-default indent-tabs-mode nil)
 (delete-selection-mode 1) ;; it's really weird working without that
 (setq auto-save-default nil)
@@ -217,10 +212,14 @@ Some quick fixes for intuitinve and streight forwawrd editing. Generally I striv
 (define-key my-keys-mode-map (kbd "M-p") 'backward-paragraph)
 
 
-#+END_SRC
-** Copy line below
-Use =Alt-up/down= as in any other editor to copy lines 
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Copy line below
+
+Use `Alt-up/down` as in any other editor to copy lines
+
+```emacs-lisp
 (defun duplicate-line-down()
   (interactive)
   (let ((saved-position (point)))
@@ -250,16 +249,21 @@ Use =Alt-up/down= as in any other editor to copy lines
 
 (define-key my-keys-mode-map [(control shift down)]  'duplicate-line-down)
 (define-key my-keys-mode-map [(control shift up)]  'duplicate-line-up) 
-#+END_SRC
-** Making parenthesis smart
-Those are pretty much a must when editing code...and also anything else
-- Select region and wrap it up with a sybol
-  - Cofigured with the standards
-  - Cofigured with the formating of =org-mode=
-- Insert a opening bracecket and the closing is inserted automagically!
--[[https://github.com/rejeep/wrap-region.el][wrap-region]]
--[[https://github.com/Fuco1/smartparens][smartparens]]
-#+BEGIN_SRC emacs-lisp
+```
+
+
+## Making parenthesis smart
+
+Those are pretty much a must when editing code&#x2026;and also anything else
+
+-   Select region and wrap it up with a sybol
+    -   Cofigured with the standards
+    -   Cofigured with the formating of `org-mode`
+-   Insert a opening bracecket and the closing is inserted automagically!
+
+-[wrap-region](https://github.com/rejeep/wrap-region.el) -[smartparens](https://github.com/Fuco1/smartparens)
+
+```emacs-lisp
 (require 'wrap-region)
 (wrap-region-add-wrapper "=" "=")
 (wrap-region-add-wrapper "/" "/")
@@ -285,10 +289,14 @@ Those are pretty much a must when editing code...and also anything else
 
 
 
-#+END_SRC
-** Bytecompiling everything
+```
+
+
+## Bytecompiling everything
+
 This function will bytecompile everything that it finds in the .emacs.d directory. This could boots the performance of emacs
-#+BEGIN_SRC emacs-lisp
+
+```emacs-lisp
 (defun byte-compile-init-dir ()
   "Byte-compile all your dotfiles."
   (interactive)
@@ -306,9 +314,12 @@ This function will bytecompile everything that it finds in the .emacs.d director
 (add-hook 'emacs-lisp-mode-hook 'remove-elc-on-save)
 
 
-#+END_SRC
-** Custom key bindings(some of it!) 
-#+BEGIN_SRC emacs-lisp
+```
+
+
+## Custom key bindings(some of it!)
+
+```emacs-lisp
 
 (define-key my-keys-mode-map (kbd "C-+") 'text-scale-increase)
 (define-key my-keys-mode-map (kbd "C--") 'text-scale-decrease)
@@ -316,9 +327,12 @@ This function will bytecompile everything that it finds in the .emacs.d director
 (define-key my-keys-mode-map (kbd "C-x r e") 'eval-region)
 (define-key my-keys-mode-map (kbd "<f5>") 'revert-buffer)
 
-#+END_SRC
-** Smart moving to the beginning of as line
-#+BEGIN_SRC  emacs-lisp :results none
+```
+
+
+## Smart moving to the beginning of as line
+
+```emacs-lisp
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 
@@ -343,10 +357,14 @@ point reaches the beginning or end of the buffer, stop there."
       (back-to-indentation))))
 
 (define-key my-keys-mode-map (kbd "C-a") 'smarter-move-beginning-of-line)
-#+END_SRC
-** Preventing closing Emacsclient
-When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= will close the client  without asking even though =confirm-kill-emacs= is set to /true/. This snippet will notice if Emacs is ran as daemon and will always ask me to close the current client.
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Preventing closing Emacsclient
+
+When you run Emacs as daemon and you connect clients to it, hitting `C-x C-c` will close the client without asking even though `confirm-kill-emacs` is set to *true*. This snippet will notice if Emacs is ran as daemon and will always ask me to close the current client.
+
+```emacs-lisp
 (defun ask-before-closing ()
   "Close only if y was pressed."
   (interactive)
@@ -355,11 +373,17 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 
 (when (daemonp)
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
-#+END_SRC
-* Org-mode
-** Common settings
-Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writting/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporterrs for =.org= files that just make my life easier. 
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Org-mode
+
+
+## Common settings
+
+Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old *writting*. Therefore some basic org-mode configuration comes at handy when working with `.org` files (this .init file is written in org-mode so&#x2026;yeah!!). The `org-bullets` makes the heading look pretty. I have couple of extra exporterrs for `.org` files that just make my life easier.
+
+```emacs-lisp
 (require 'org-bullets)
 
 (setq org-support-shift-select (quote always))
@@ -405,31 +429,41 @@ Org-mode is awesome not just for note taking but also for general text editing, 
 (setq org-enable-priority-commands nil)
 
 (setq org-html-htmlize-output-type 'css)
-#+END_SRC
+```
+
 The codeblocks should be formated with the native envinroment of the language
-#+BEGIN_SRC emacs-lisp
+
+```emacs-lisp
 (setq org-src-fontify-natively t
       org-src-tab-acts-natively t
       org-confirm-babel-evaluate nil
       org-edit-src-content-indentation 0)
 
-#+END_SRC 
-** Exporters
+```
+
+
+## Exporters
+
 Some extra export backends for org-mode that come in handy.
-- Beamer - for making those awesome-ish presentations
-- twbs(Tweeter Bootstrap) - quickly make your org files look really pretty
-- hugo - I use Hugo for blogging and the exporter allowes me to write every single content page in /org-mode/
-- gfm (Github Flavored Markdown) - this makes writing /README.md/ files easy (i.e. writing them in org-mode)
-#+BEGIN_SRC emacs-lisp
+
+-   Beamer - for making those awesome-ish presentations
+-   twbs(Tweeter Bootstrap) - quickly make your org files look really pretty
+-   hugo - I use Hugo for blogging and the exporter allowes me to write every single content page in *org-mode*
+-   gfm (Github Flavored Markdown) - this makes writing *README.md* files easy (i.e. writing them in org-mode)
+
+```emacs-lisp
 (require 'ox-beamer)
 (require 'ox-twbs)
 (require 'ox-hugo)
 (require 'ox-gfm)
 
 
-#+END_SRC
-** Org-extras
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Org-extras
+
+```emacs-lisp
 ;; (require 'ox-extra)
 ;; (ox-extras-activate '(ignore-headlines))
 
@@ -439,9 +473,12 @@ Some extra export backends for org-mode that come in handy.
                    "no_title"))
 
 (add-hook 'org-export-before-processing-hook #'org-remove-headlines)
-#+END_SRC
-** Capture
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Capture
+
+```emacs-lisp
 (setq org-reverse-note-order t)
 
 (defun capture-file (path)
@@ -458,25 +495,32 @@ Some extra export backends for org-mode that come in handy.
          "* IDEA %?\nAdded: %U\n" :prepend t :kill-buffer t)
         ))
 
-#+END_SRC
-** Reveal.js
-This style of presenting looks cool but I don't use it that much. Still, I want to have the possibility in my emacs. 
-#+BEGIN_SRC emacs-lisp
+```
+
+
+## Reveal.js
+
+This style of presenting looks cool but I don't use it that much. Still, I want to have the possibility in my emacs.
+
+```emacs-lisp
 (require 'ox-reveal)
 
 (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
 (setq org-reveal-mathjax t)
 
 (require 'htmlize)
-#+END_SRC
-** Babel Languages
-- Source block with this line in the header:
-#+BEGIN_EXAMPLE
-dot :file ./img/example1.png :cmdline -Kdot -Tpng
-#+END_EXAMPLE
-will produce a graph-png at the end....it's awesome!
+```
 
-#+BEGIN_SRC emacs-lisp :results none
+
+## Babel Languages
+
+-   Source block with this line in the header:
+
+    dot :file ./img/example1.png :cmdline -Kdot -Tpng
+
+will produce a graph-png at the end&#x2026;.it's awesome!
+
+```emacs-lisp
 (org-babel-do-load-languages
  (quote org-babel-load-languages)
  (quote (
@@ -494,9 +538,12 @@ will produce a graph-png at the end....it's awesome!
          (org . t)
          (plantuml . t)
          (latex . t))))
-#+END_SRC
-** Templates
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Templates
+
+```emacs-lisp
 ;; More of those nice template expansion
   (add-to-list 'org-structure-template-alist '("A" "#+DATE: ?"))
   (add-to-list 'org-structure-template-alist '("C" "#+BEGIN_CENTER\n?\n#+END_CENTER\n"))
@@ -531,17 +578,25 @@ will produce a graph-png at the end....it's awesome!
   (add-to-list 'org-structure-template-alist '("t" "#+TITLE: ?"))
   (add-to-list 'org-structure-template-alist '("v" "#+BEGIN_VERBATIM\n?\n#+END_VERBATIM"))
 
-#+END_SRC
-** Reloading
-For some reasons I have to call this after I've /require/-d all the exporters' backends in order to make them available in the export dispatcher of /org-mode/.
-#+BEGIN_SRC emacs-lisp
+```
+
+
+## Reloading
+
+For some reasons I have to call this after I've *require*-d all the exporters' backends in order to make them available in the export dispatcher of *org-mode*.
+
+```emacs-lisp
 (require 'org)
 (org-reload)
 
-#+END_SRC
-* Windowing
-Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Windowing
+
+Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using `C-x o` so `windmove` is set up to work with `C-c` and the arrow keys
+
+```emacs-lisp
 (defun transpose-windows (arg) ;; yes, I know, there is also a crux-function that does the exact same thing...still...!!!
   "Transpose the buffers shown in two windows."
   (interactive "p")
@@ -573,17 +628,19 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 
 (require 'golden-ratio)
 
-#+END_SRC
+```
 
-* Better searching
-=Isearch= is great but I have ever wanted a isearch on steroids...or something with helm infused isearch. =Swiper= is exaclty that. =Anzu= is a mode line tweak that displays the number of found things by isearch but not by swiper. Yes, I should probably fix that some time in the future.
-- [[https://github.com/abo-abo/swiper][Swiper]]
-- [[https://github.com/syohex/emacs-anzu][Anzu]]
-\\
-/Note:/ I do also sometimes use /helm-occur-from-isearch/ in order to find something. I still like to have different possablities while performing an action and picking the best one in each individual case.
-\\
-/Update/: I've switched back to *isearch* for now
-#+BEGIN_SRC emacs-lisp
+
+# Better searching
+
+`Isearch` is great but I have ever wanted a isearch on steroids&#x2026;or something with helm infused isearch. `Swiper` is exaclty that. `Anzu` is a mode line tweak that displays the number of found things by isearch but not by swiper. Yes, I should probably fix that some time in the future.
+
+-   [Swiper](https://github.com/abo-abo/swiper)
+-   [Anzu](https://github.com/syohex/emacs-anzu)
+
+*Note:* I do also sometimes use *helm-occur-from-isearch* in order to find something. I still like to have different possablities while performing an action and picking the best one in each individual case. *Update*: I've switched back to **isearch** for now
+
+```emacs-lisp
 
 (setq search-whitespace-regexp ".*?")
 
@@ -604,12 +661,16 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
-#+END_SRC
+```
 
-* Helm goodies
-The best and the most fully fledged completion engine for emacs IMO. I cannot be productive in my emacs without this. When you are in minibuffer and start typing, things just appear as you type, you can select multiple items, perform actions on all of the (example: open multiple files with single =C-x C-f=) and many more features that I should probalby use on more regular basis.
-- [[https://github.com/emacs-helm/helm][helm]]
-#+BEGIN_SRC emacs-lisp :results none
+
+# Helm goodies
+
+The best and the most fully fledged completion engine for emacs IMO. I cannot be productive in my emacs without this. When you are in minibuffer and start typing, things just appear as you type, you can select multiple items, perform actions on all of the (example: open multiple files with single `C-x C-f`) and many more features that I should probalby use on more regular basis.
+
+-   [helm](https://github.com/emacs-helm/helm)
+
+```emacs-lisp
 (require 'helm)
 (require 'helm-config)
 
@@ -657,55 +718,77 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 (helm-mode 1)
 (helm-autoresize-mode 1)
 
-#+END_SRC
-* Undo tree
-#+BEGIN_SRC emacs-lisp :export src
+```
+
+
+# Undo tree
+
+```emacs-lisp
 (require 'undo-tree)
 
 (define-key my-keys-mode-map (kbd "C-x u") 'undo-tree-visualize)
 
-#+END_SRC
+```
 
-#+RESULTS:
-: undo-tree-visualize
+    undo-tree-visualize
 
-* Avy
+
+# Avy
+
 Navigate by searching for a letter on the screen and jumping to it. Useful for quick navigation and getting to places on the screen.
-- [[https://github.com/abo-abo/avy][avy]]
-#+BEGIN_SRC emacs-lisp
+
+-   [avy](https://github.com/abo-abo/avy)
+
+```emacs-lisp
 (require 'avy)
 (define-key my-keys-mode-map (kbd "C-c C-f") 'avy-goto-char)
-#+END_SRC
-* Iy
-Go to next CHAR which is similar to "f" and "t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginnign of the epxresison and you type =C-SPC C-c f (= you wno't mark everything till the =(=. Still useful though. 
-- [[https://github.com/doitian/iy-go-to-char][iy-go-to-char]]
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Iy
+
+Go to next CHAR which is similar to "f" and "t" in *vim*. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression `int funcName(int a, int b)`, the cursor is at the beginnign of the epxresison and you type `C-SPC C-c f (` you wno't mark everything till the `(`. Still useful though.
+
+-   [iy-go-to-char](https://github.com/doitian/iy-go-to-char)
+
+```emacs-lisp
 (require 'iy-go-to-char)
 (define-key my-keys-mode-map (kbd "C-c f") 'iy-go-up-to-char)
 (define-key my-keys-mode-map (kbd "C-c F") 'iy-go-up-to-char-backward)
-#+END_SRC
+```
 
-* Themes
+
+# Themes
+
 I often alternate between these two and can't really decide which is my favorite one. I depends on the day, I guess. In this case, better to gave them both at one place!
-#+BEGIN_SRC emacs-lisp :results none
+
+```emacs-lisp
 
 (setq custom-enabled-themes (quote (spacemacs-dark)))
 (setq custom-safe-themes t)
 (load-theme 'spacemacs-dark)
 
 ;; (load-theme 'monokai)
-#+END_SRC
-* Fly-check
-Syntax error-checking on the fly(haha!) while working on code. It's conventient to avoid small errors that screw up yoour compilation and are just being anoying. 
-- [[http://www.flycheck.org/en/latest/][flycheck]]
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Fly-check
+
+Syntax error-checking on the fly(haha!) while working on code. It's conventient to avoid small errors that screw up yoour compilation and are just being anoying.
+
+-   [flycheck](http://www.flycheck.org/en/latest/)
+
+```emacs-lisp
 (require 'flycheck)  
 (global-flycheck-mode t)
-#+END_SRC
+```
 
-* Python
-I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess emacs is that good with python by default. 
-#+BEGIN_SRC emacs-lisp :results none
+
+# Python
+
+I use Python a lot these days. Yet, my python setup in *Emacs* is less than minimal. I don't know what to say to you. I guess emacs is that good with python by default.
+
+```emacs-lisp
 (add-hook 'python-mode-hook 'jedi:setup)
 
 (setq jedi:setup-keys t)
@@ -742,12 +825,16 @@ I use Python a lot these days. Yet, my python setup in /Emacs/ is less than mini
 (add-to-list 'auto-mode-alist '("\\requirements.txt\\'" . pip-requirements-mode))
 
 
-#+END_SRC
+```
 
-* Yasnippet
-One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
-- [[https://github.com/joaotavora/yasnippet][yasnippets]]
-#+BEGIN_SRC emacs-lisp
+
+# Yasnippet
+
+One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is `C-c &` but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a `std::vector` and then I want to give it a type of `std::sting`. Stacked snippets are my best friend when it comes to this problem.
+
+-   [yasnippets](https://github.com/joaotavora/yasnippet)
+
+```emacs-lisp
 (require 'yasnippet)
 (require 'yasnippet-snippets)
 (yas-global-mode 1)
@@ -762,14 +849,19 @@ One of the most useful packages that is pretty much a must for a emacs configura
 
 (setq yas-triggers-in-field t)
 
-#+END_SRC
-* Misc packages
+```
+
+
+# Misc packages
+
 Those pacakges add some minor tweak to EMACS to make text editing easier.
-- [[https://github.com/Malabarba/beacon][beacon]] - flashes your cursor after the cursor has been re-positioned.
-- [[https://github.com/nflath/hungry-delete]] - deletes all of the white spaces that are 'on the way' after hitting /delete/ or /backspace/. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
-- [[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
-- 
-#+BEGIN_SRC emacs-lisp
+
+-   [beacon](https://github.com/Malabarba/beacon) - flashes your cursor after the cursor has been re-positioned.
+-   <https://github.com/nflath/hungry-delete> - deletes all of the white spaces that are 'on the way' after hitting *delete* or *backspace*. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
+-   [expand-region](https://github.com/magnars/expand-region.el) - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
+-   
+
+```emacs-lisp
 (require 'beacon)
 (beacon-mode 1)
 
@@ -778,11 +870,14 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 
 (require 'expand-region)
 (define-key my-keys-mode-map (kbd "C-c =") 'er/expand-region)
-#+END_SRC
-** CRUX
-...is an abrabiation for /A Collection of Ridiculously Useful eXtensions for Emacs/, so yeah, pretty self-explenatory.
--[[https://github.com/bbatsov/crux][crux]]
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## CRUX
+
+&#x2026;is an abrabiation for *A Collection of Ridiculously Useful eXtensions for Emacs*, so yeah, pretty self-explenatory. -[crux](https://github.com/bbatsov/crux)
+
+```emacs-lisp
 (require 'crux)
 
 (define-key my-keys-mode-map (kbd "C-c o") 'crux-open-with)
@@ -794,19 +889,26 @@ Those pacakges add some minor tweak to EMACS to make text editing easier.
 
 
 
-#+END_SRC
-* Folding code
+```
+
+
+# Folding code
+
 A standard IDE feature that comes out of the box with emacs. Just a little tweak to give it nice keybindings. To note is that I use german QWERTZ keyboard so this won't work for all you QWERTY-Normies out there.
-#+BEGIN_SRC emacs-lisp
+
+```emacs-lisp
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (define-key my-keys-mode-map (kbd "M-ü") 'hs-show-all)
 (define-key my-keys-mode-map (kbd "C-M-ü") 'hs-hide-all)
 (define-key my-keys-mode-map (kbd "C-ü") 'hs-toggle-hiding)
-#+END_SRC
-* C++
-At my work I use this emacs-configuration for a lot of c++ programming. Yet, similar to other sections, the c++ tweaks are...pretty much nothing. Emacs is just that good with no special c++ tweaks.
-/Note:/ At some time I plan to experiment with *[[https://github.com/cquery-project/cquery][cquery]]*
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# C++
+
+At my work I use this emacs-configuration for a lot of c++ programming. Yet, similar to other sections, the c++ tweaks are&#x2026;pretty much nothing. Emacs is just that good with no special c++ tweaks. *Note:* At some time I plan to experiment with **[cquery](https://github.com/cquery-project/cquery)**
+
+```emacs-lisp
 (require' irony)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
@@ -823,12 +925,16 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 ;; (setq cquery-executable "/home/arnaud/code/cquery/build/release/bin/cquery")
 ;; (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
 
-#+END_SRC
+```
 
-* Programming
-Surprisingly I don't have all that much tweaks in here. Commenting out regions or lines is probably the thing I use the most. The other things are just very minor things that are standard in every other IDE. 
-- [[https://github.com/abo-abo/function-args][function-args]] - package that provies smart completion for function arguments. Works perfectly with *yasnippets*.
-#+BEGIN_SRC emacs-lisp
+
+# Programming
+
+Surprisingly I don't have all that much tweaks in here. Commenting out regions or lines is probably the thing I use the most. The other things are just very minor things that are standard in every other IDE.
+
+-   [function-args](https://github.com/abo-abo/function-args) - package that provies smart completion for function arguments. Works perfectly with **yasnippets**.
+
+```emacs-lisp
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
   (interactive)
@@ -858,21 +964,33 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 (add-hook 'c++-mode-hook 'function-args-mode)
 
 
-#+END_SRC
-* Text editing
-** Alt-moving selection
-Another 'standard feature' of most editors but in emacs we have to set it up because this is how we roll. This is just moving the selected block up and down while holding /Alt/
-- [[https://github.com/rejeep/drag-stuff.el][drag-stuff]]
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Text editing
+
+
+## Alt-moving selection
+
+Another 'standard feature' of most editors but in emacs we have to set it up because this is how we roll. This is just moving the selected block up and down while holding *Alt*
+
+-   [drag-stuff](https://github.com/rejeep/drag-stuff.el)
+
+```emacs-lisp
 (require 'drag-stuff)
 (drag-stuff-global-mode)
 (define-key my-keys-mode-map (kbd "M-<up>") 'drag-stuff-up)
 (define-key my-keys-mode-map (kbd "M-<down>") 'drag-stuff-down)
-#+END_SRC
-* Web Mode
-From time to time I ahave to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
-- [[https://github.com/smihica/emmet-mode][emmet-mode]] - =C-j= Expands the emmet code given the minor mode is active 
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Web Mode
+
+From time to time I ahave to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but&#x2026;. come on, it web-programming&#x2026;no offense. There are a lot Key bindings that come with `web-mode` that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
+
+-   [emmet-mode](https://github.com/smihica/emmet-mode) - `C-j` Expands the emmet code given the minor mode is active
+
+```emacs-lisp
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -917,32 +1035,44 @@ From time to time I ahave to write HTML and other 'web-stuff' and this setup get
   )
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
-#+END_SRC
-* Projectile
-The de-facto standard for project management for emacs. Not sure if I utilize half of its functionality but this file searching and opening...man that feels good when putting it to use. When in a project(which is just a git-repo btw) just type =C-c p f= and be blown away. When you we *helm* with *projectile*, we pretty much get one of the most powerful features in the history of IDEs ever. Some of my relevant keybindings include:
-- =f4= - switch to other file. For working with /.cpp/ and /.hpp/ files
-- =C-c p f= for finding files the easiest way possible.
-- =C-c p d= for finding directories the easiest way possible.
-- =M-s= helm-projectile-grep - really cool for searching a phrase of something in a entire project
-- =C-c p 4 f= - find file and open it in another window
-- =C-c p F= - find file in all known projects
-- =C-c p 4 F= find file in all known projects and open it in another window
-- =C-c p e= - see recent files
-- =C-c p x s= run shell at the root of the project
-- =C-c p S= save all files of the current project
-----------------------------
-Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# Projectile
+
+The de-facto standard for project management for emacs. Not sure if I utilize half of its functionality but this file searching and opening&#x2026;man that feels good when putting it to use. When in a project(which is just a git-repo btw) just type `C-c p f` and be blown away. When you we **helm** with **projectile**, we pretty much get one of the most powerful features in the history of IDEs ever. Some of my relevant keybindings include:
+
+-   `f4` - switch to other file. For working with *.cpp* and *.hpp* files
+-   `C-c p f` for finding files the easiest way possible.
+-   `C-c p d` for finding directories the easiest way possible.
+-   `M-s` helm-projectile-grep - really cool for searching a phrase of something in a entire project
+-   `C-c p 4 f` - find file and open it in another window
+-   `C-c p F` - find file in all known projects
+-   `C-c p 4 F` find file in all known projects and open it in another window
+-   `C-c p e` - see recent files
+-   `C-c p x s` run shell at the root of the project
+-   `C-c p S` save all files of the current project
+
+---
+
+Get it here -> [PROJECTILE!!!](https://github.com/bbatsov/projectile)
+
+```emacs-lisp
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (define-key my-keys-mode-map [f4] 'projectile-find-other-file)
 (setq projectile-project-search-path '("~/code/" "~/core.d/code/"))
-#+END_SRC
-* Neotree
+```
+
+
+# Neotree
+
 My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their low level plebian 'web-apps')
-- [[https://github.com/jaypei/emacs-neotree][neotree]]
-#+BEGIN_SRC emacs-lisp :results none
+
+-   [neotree](https://github.com/jaypei/emacs-neotree)
+
+```emacs-lisp
 (require 'neotree)
 (require 'all-the-icons)
 
@@ -969,19 +1099,28 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 (face-spec-set 'neo-dir-icon-face '((t (:foreground "light sky blue"))))
 (face-spec-set 'neo-open-dir-icon-face '((t (:foreground "gold"))))
 
-#+END_SRC
-* PDF-Tools
+```
+
+
+# PDF-Tools
+
 Viewing pdf files in emacs! Not really intented for big and heavy files but when I have to check on something is does the trick.
-- [[https://github.com/politza/pdf-tools][pdf-tools]]
-#+BEGIN_SRC emacs-lisp
+
+-   [pdf-tools](https://github.com/politza/pdf-tools)
+
+```emacs-lisp
 (require 'pdf-tools)
 (require 'org-pdfview)
-#+END_SRC
+```
 
-* Pretty startup screen
+
+# Pretty startup screen
+
 A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that display on startup of/Emacs/ and gives quick access to recent files and projectile-projects. It works with sessions too but I haven't configured that yet. A image can also be displayed so I guess that is pretty. Custom startup message is a must of course!!
-- [[https://github.com/rakanalh/emacs-dashboard][dashboard]]
-#+BEGIN_SRC emacs-lisp
+
+-   [dashboard](https://github.com/rakanalh/emacs-dashboard)
+
+```emacs-lisp
 
 (require 'dashboard)
 
@@ -996,23 +1135,28 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
 (dashboard-setup-startup-hook)
 
 
-#+END_SRC
-* Sessios persistence
-Sometimes it gets really annoying when I close my emacs and have a bunch of buffers opened, the next time I launch the program, the buffers are gone and I have to open them again. Mind-blowing, I know, "So why do you close emacs?" - shut up, that's not the point . This package addresses my issues. I can even have custom sessions and open whole groups of tabs all at once
-From the documentation:
-#+BEGIN_EXAMPLE
-<prefix> <key>
-<prefix> c    - create workgroup
-<prefix> A    - rename workgroup
-<prefix> k    - kill workgroup
-<prefix> v    - switch to workgroup
-<prefix> C-s  - save session
-<prefix> C-f  - load session
-#+END_EXAMPLE
+```
+
+
+# Sessios persistence
+
+Sometimes it gets really annoying when I close my emacs and have a bunch of buffers opened, the next time I launch the program, the buffers are gone and I have to open them again. Mind-blowing, I know, "So why do you close emacs?" - shut up, that's not the point . This package addresses my issues. I can even have custom sessions and open whole groups of tabs all at once From the documentation:
+
+    <prefix> <key>
+    <prefix> c    - create workgroup
+    <prefix> A    - rename workgroup
+    <prefix> k    - kill workgroup
+    <prefix> v    - switch to workgroup
+    <prefix> C-s  - save session
+    <prefix> C-f  - load session
+
 (kinda like cheat sheet)
----------
-- [[https://github.com/pashinin/workgroups2][workgroups2]]
-#+BEGIN_SRC emacs-lisp :results none
+
+---
+
+-   [workgroups2](https://github.com/pashinin/workgroups2)
+
+```emacs-lisp
 (require 'workgroups2)
 (workgroups-mode 1)  
 
@@ -1025,12 +1169,16 @@ From the documentation:
 (setq wg-mode-line-decor-left-brace "["
       wg-mode-line-decor-right-brace "]"
       wg-mode-line-decor-divider ":")
-#+END_SRC
+```
 
-* Java
-I don't really use EMACS for java development as it can be tedious and the packages are not really on part with some other modern IDEs (like Netbeans ;) ). Still, I do have some basic setup for =meghanada= to make my life easier if I have to edit some java program really quick through emacs.
-- [[https://github.com/mopemope/meghanada-emacs][meghanada]] 
-#+BEGIN_SRC emacs-lisp
+
+# Java
+
+I don't really use EMACS for java development as it can be tedious and the packages are not really on part with some other modern IDEs (like Netbeans ;) ). Still, I do have some basic setup for `meghanada` to make my life easier if I have to edit some java program really quick through emacs.
+
+-   [meghanada](https://github.com/mopemope/meghanada-emacs)
+
+```emacs-lisp
 (require 'meghanada)
 (add-hook 'java-mode-hook
           (lambda ()
@@ -1047,11 +1195,14 @@ I don't really use EMACS for java development as it can be tedious and the packa
     (setq meghanada-maven-path "mvn")))
 
 
-#+END_SRC
-* Markdown
-Markdown is not as pretty as Org-mode but is widely used throughout the Internet. I often have to open /.md/ files and therefore it's woorth making them look pretty in my emacs. The =markdown-mode= provies exaclty that.
--[[https://jblevins.org/projects/markdown-mode/][markdown-mode]]
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Markdown
+
+Markdown is not as pretty as Org-mode but is widely used throughout the Internet. I often have to open *.md* files and therefore it's woorth making them look pretty in my emacs. The `markdown-mode` provies exaclty that. -[markdown-mode](https://jblevins.org/projects/markdown-mode/)
+
+```emacs-lisp
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -1059,11 +1210,16 @@ Markdown is not as pretty as Org-mode but is widely used throughout the Internet
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-#+END_SRC
-* IBuffer
-This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify custom sections where the buffers are to be put depending on certain conditions - name, mode, etc. There is also projectile integration but I don't find that very useful. I like the buffers grouped in small more groups.
-- [[https://www.emacswiki.org/emacs/IbufferMode][ibuffer]]
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# IBuffer
+
+This package makes your `C-x C-b` (*list-buffers*) pretty. You can even specify custom sections where the buffers are to be put depending on certain conditions - name, mode, etc. There is also projectile integration but I don't find that very useful. I like the buffers grouped in small more groups.
+
+-   [ibuffer](https://www.emacswiki.org/emacs/IbufferMode)
+
+```emacs-lisp
 (require 'ibuffer)
 (require 'ibuffer-projectile)
 (define-key my-keys-mode-map (kbd "C-x C-b") 'ibuffer)
@@ -1138,14 +1294,16 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 ;;(require 'ibuf-ext)
 ;;(add-to-list 'ibuffer-never-show-predicates "^\\*")
 
-#+END_SRC
+```
 
-----------------------
-* Shell
-My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). There are two modes to it - /char/ and /line/. Switching between them is made easier with one simple function and some custom key-bindings.
-//
- May other IDEs use =F5= for building and compiling projects and I've gotten used to that. Therefore...custom keybinding.
-#+BEGIN_SRC emacs-lisp
+---
+
+
+# Shell
+
+My choice of terminal envinroment in my emacs is *Terminal Emulator/(term). There are two modes to it - /char* and *line*. Switching between them is made easier with one simple function and some custom key-bindings. // May other IDEs use `F5` for building and compiling projects and I've gotten used to that. Therefore&#x2026;custom keybinding.
+
+```emacs-lisp
 (require 'term)
 
 (define-key my-keys-mode-map [f3] 'term)
@@ -1165,17 +1323,23 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
 
 
 
-#+END_SRC
+```
 
-* Org-Babel
-For some reason I must set the right /python/ command each time I start emacs. This does the trick...sometimes. Running random snippets of code in /.org/ files...how bonkers is that. The answer is *pretty bonkers*!!(You know if you are into emacs if you get this "reference")
-#+BEGIN_SRC emacs-lisp
+
+# Org-Babel
+
+For some reason I must set the right *python* command each time I start emacs. This does the trick&#x2026;sometimes. Running random snippets of code in *.org* files&#x2026;how bonkers is that. The answer is **pretty bonkers**!!(You know if you are into emacs if you get this "reference")
+
+```emacs-lisp
 (setq org-babel-python-command "~/anaconda3/bin/python3.6")
-#+END_SRC
-* Spellchecking
-Yes, I am a hirroble speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find =C-c s= to be most intuitive for correcting misspelled words. *flyspell-popup* is a handy little thing that is pretty much company for showing a list of possible *correct* words.
-[[https://github.com/xuchunyang/flyspell-popup][flyspell-popup]]
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Spellchecking
+
+Yes, I am a hirroble speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find `C-c s` to be most intuitive for correcting misspelled words. **flyspell-popup** is a handy little thing that is pretty much company for showing a list of possible **correct** words. [flyspell-popup](https://github.com/xuchunyang/flyspell-popup)
+
+```emacs-lisp
 (require 'flyspell)
 (define-key flyspell-mode-map (kbd "C-c s") #'flyspell-popup-correct)
 
@@ -1191,21 +1355,28 @@ Yes, I am a hirroble speller. Thank god that there are tools that help me live m
 
 (define-key my-keys-mode-map (kbd "<f8>")   'fd-switch-dictionary)
 
-#+END_SRC
-* Google This
-This is absolutely a genius thing! Mark something, simple key-stroke, BAM!! Google! You are there! You have no idea how much copying and windows switching this package saves. Again, for intuition sake, =C-c g= is the prefix. After that:
-- =w= for word
-- =s= for selection
-- =g= for googling from prompted input
-- =SPC= for region
-- =l= for line
-- =c= for cpp-reference
+```
 
-I also frequanlty use Zeal. It's an application housing tons of usefull documentations and look ups in it while working on somethings are a must. Therefore I have package named *zeal-at-point* that allows me to perform quick search actions in the application with query take form the point. The keybinding for that is =C-c g z= (*Z*eal).
--------------------
-- [[https://github.com/Malabarba/emacs-google-this][google-this]]
-- [[https://github.com/jinzhu/zeal-at-point][zeal-at-point]]
-#+BEGIN_SRC emacs-lisp
+
+# Google This
+
+This is absolutely a genius thing! Mark something, simple key-stroke, BAM!! Google! You are there! You have no idea how much copying and windows switching this package saves. Again, for intuition sake, `C-c g` is the prefix. After that:
+
+-   `w` for word
+-   `s` for selection
+-   `g` for googling from prompted input
+-   `SPC` for region
+-   `l` for line
+-   `c` for cpp-reference
+
+I also frequanlty use Zeal. It's an application housing tons of usefull documentations and look ups in it while working on somethings are a must. Therefore I have package named **zeal-at-point** that allows me to perform quick search actions in the application with query take form the point. The keybinding for that is `C-c g z` (\*Z\*eal).
+
+---
+
+-   [google-this](https://github.com/Malabarba/emacs-google-this)
+-   [zeal-at-point](https://github.com/jinzhu/zeal-at-point)
+
+```emacs-lisp
 
 
 
@@ -1220,10 +1391,14 @@ I also frequanlty use Zeal. It's an application housing tons of usefull document
 (define-key my-keys-mode-map (kbd "C-c g z ") 'zeal-at-point)
 
 
-#+END_SRC
-* CMake
-A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant to the eyes. I don't really need more as I don't spend that much time writing /cmake/ scripts.
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# CMake
+
+A minimal Cmake setup, more or less to make my *CMakeLists.txt* files pleasant to the eyes. I don't really need more as I don't spend that much time writing *cmake* scripts.
+
+```emacs-lisp
 (require 'cmake-mode)
 
 (setq cmake-tab-width 4)
@@ -1232,12 +1407,17 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
-#+END_SRC
-* Latex
-I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writing my $\LaTeX$ documents but recent changes to its interface have made me look for alternative. Also, recent changes with me and me loving /Emacs/ have made the choice pretty easy. By know I don't think I miss anything that /TexMaker/ could offer me that /Emacs/ cannot.
-- [[https://www.emacswiki.org/emacs/AUCTeX][auctex]] - full fledged environment for writing, editing and compiling /.tex/ documents. Almost everything comes out of the box. Only a simple setup and configuration is required. 
-- [[https://www.emacswiki.org/emacs/LaTeXPreviewPane][latex-preview-pane]] - The very cool feature of Tex/Maker/ where your generated /pdf/-document is displayed on the side. Yes. Emacs can do it too...surprise, surprise!!
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# Latex
+
+I used to use [*TexMaker*](http://www.xm1math.net/texmaker/TexMaker/) for writing my \(\LaTeX\) documents but recent changes to its interface have made me look for alternative. Also, recent changes with me and me loving *Emacs* have made the choice pretty easy. By know I don't think I miss anything that *TexMaker* could offer me that *Emacs* cannot.
+
+-   [auctex](https://www.emacswiki.org/emacs/AUCTeX) - full fledged environment for writing, editing and compiling *.tex* documents. Almost everything comes out of the box. Only a simple setup and configuration is required.
+-   [latex-preview-pane](https://www.emacswiki.org/emacs/LaTeXPreviewPane) - The very cool feature of Tex/Maker/ where your generated *pdf*-document is displayed on the side. Yes. Emacs can do it too&#x2026;surprise, surprise!!
+
+```emacs-lisp
 (require 'tex)
 
 
@@ -1269,23 +1449,32 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 (setq TeX-source-correlate-start-server t)
 
-#+END_SRC
-* Vim like killing and yanking
-Not exactly what the heading suggests but I've recently learned some vim keybindings and *my god* those get things done fast. Emacs is kind of lacking on this end, but you know what they say
-#+BEGIN_QUOTE
-Emacs is a nice Operating System but it lacks decent editor
---- Someone big in the Emacs Community
-#+END_QUOTE
-This package adds some handy functionality to =M-w=. Basically, after the initial command, through key strokes one can select very precisely-ish what is to be put in the kill ring.
-- [[https://github.com/leoliu/easy-kill][easy-kill]]
-#+BEGIN_SRC emacs-lisp
+```
+
+
+# Vim like killing and yanking
+
+Not exactly what the heading suggests but I've recently learned some vim keybindings and **my god** those get things done fast. Emacs is kind of lacking on this end, but you know what they say
+
+> Emacs is a nice Operating System but it lacks decent editor &#x2014; Someone big in the Emacs Community
+
+This package adds some handy functionality to `M-w`. Basically, after the initial command, through key strokes one can select very precisely-ish what is to be put in the kill ring.
+
+-   [easy-kill](https://github.com/leoliu/easy-kill)
+
+```emacs-lisp
 (require 'easy-kill)
 (define-key my-keys-mode-map [remap kill-ring-save] 'easy-kill)
-#+END_SRC
-* Aggressive Indent
-When writing code I lot of times I mark the things I've just typed and hit /Tab/ to indent it properly. This packages help me not to do that so often as it indents things right before your eyes in the moment you write them. It gets annoying at times but you get used to it pretty quickly.
-- [[https://github.com/Malabarba/aggressive-indent-mode][agrssive-indent]]
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# Aggressive Indent
+
+When writing code I lot of times I mark the things I've just typed and hit *Tab* to indent it properly. This packages help me not to do that so often as it indents things right before your eyes in the moment you write them. It gets annoying at times but you get used to it pretty quickly.
+
+-   [agrssive-indent](https://github.com/Malabarba/aggressive-indent-mode)
+
+```emacs-lisp
 (require 'aggressive-indent)
 (global-aggressive-indent-mode 1)
 (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
@@ -1294,14 +1483,19 @@ When writing code I lot of times I mark the things I've just typed and hit /Tab/
  '(and (derived-mode-p 'c++-mode)
        (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
                            (thing-at-point 'line)))))
-#+END_SRC
-* Modline
-Making the modeline a little bit prettier and more spece efficient than the default. =smart-mode-line= is the "main" package and =telephone-line= is there just to make the separators nicer.
-  - [[https://github.com/dbordak/telephone-line][telephone-line]]
-  - [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]]
- Preview:
- [[../mode-line.png]]
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# Modline
+
+Making the modeline a little bit prettier and more spece efficient than the default. `smart-mode-line` is the "main" package and `telephone-line` is there just to make the separators nicer.
+
+-   [telephone-line](https://github.com/dbordak/telephone-line)
+-   [smart-mode-line](https://github.com/Malabarba/smart-mode-line)
+
+Preview: ![img](../mode-line.png)
+
+```emacs-lisp
 (require 'telephone-line)
 (telephone-line-mode 1)
 
@@ -1312,24 +1506,25 @@ Making the modeline a little bit prettier and more spece efficient than the defa
 ;; (setq sml/no-confirm-load-theme t)
 ;; (sml/setup)
 ;; (setq sml/theme 'automatic)
-#+END_SRC
-* Sexp on steroids
-As previously stated, I know tiny bit of vim key-bindings and holy cow those can do a lot of things in very few keystrokes. Emacs is not really like that. I've written some simple functions thal with saving, marking and killing /sexp/s. I really like that feature of vim "*d*elete *i*nside *(*-block" and it kills everything inside the parentesies....or copies it into kill ring or marks it, basically - it's pretty awesome and here I am trying to ripp off exxaclty that.\\
-The commands that come in handy a lot of the times and that I've written:
+```
+
+
+# Sexp on steroids
+
+As previously stated, I know tiny bit of vim key-bindings and holy cow those can do a lot of things in very few keystrokes. Emacs is not really like that. I've written some simple functions thal with saving, marking and killing /sexp/s. I really like that feature of vim "**d\*elete \*i\*nside \*(**-block" and it kills everything inside the parentesies&#x2026;.or copies it into kill ring or marks it, basically - it's pretty awesome and here I am trying to ripp off exxaclty that. The commands that come in handy a lot of the times and that I've written:
 
 | Keystroke   | Description                                              |
-|-------------+----------------------------------------------------------|
-|-------------+----------------------------------------------------------|
-| =C-M-k=     | Kill erverything inside the current /sexp/               |
-| =C-M-K=     | Kill the current /sexp/ and the                          |
-| =C-M-SPC=   | Mark erverything inside the current /sexp/               |
-| =C-M-S-SPC= | Mar the current /sexp/                                   |
-| =C-M-w=     | Save everything inside the current /sexp/ into kill ring |
-| =C-M-W=     | Save the current /sexp/ into kill ring                   |
+|----------- |-------------------------------------------------------- |
+| `C-M-k`     | Kill erverything inside the current *sexp*               |
+| `C-M-K`     | Kill the current *sexp* and the                          |
+| `C-M-SPC`   | Mark erverything inside the current *sexp*               |
+| `C-M-S-SPC` | Mar the current *sexp*                                   |
+| `C-M-w`     | Save everything inside the current *sexp* into kill ring |
+| `C-M-W`     | Save the current *sexp* into kill ring                   |
 
-As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operations
+As you've probably noticed `C-M` in like kind of a prefix for all *sexp*-operations
 
-#+BEGIN_SRC emacs-lisp :results none
+```emacs-lisp
 
 ;; (require 'load-directory)
 ;; (load-directory "~/.emacs.d/my-lisp")
@@ -1346,39 +1541,41 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 (define-key my-keys-mode-map (kbd "C-M-S-k") 'arnaud-kill-sexp-whole)
 (define-key my-keys-mode-map (kbd "C-M-w") 'arnaud-kill-save-sexp)
 (define-key my-keys-mode-map (kbd "C-M-S-w") 'arnaud-kill-save-sexp-whole)
-#+END_SRC
-* Hydra
-/Hydra/ is a package that allows you to create hydras. Those are like munues with keybindings that popout on the bottom of the buffer and prompt you to type one(or more) of the listed keybindings. This provides really cool way of structuring commands in a menu-like fashion. There are some predifined hydras that come with the package but those are not that good and therefore I've 'borrowed' a few from the mighty internet.
-\\
-=C-c h= is like the prefix for all my hydras. After that comes another letter (or /C-letter/) that selects the desired hydra.
+```
+
+
+# Hydra
+
+*Hydra* is a package that allows you to create hydras. Those are like munues with keybindings that popout on the bottom of the buffer and prompt you to type one(or more) of the listed keybindings. This provides really cool way of structuring commands in a menu-like fashion. There are some predifined hydras that come with the package but those are not that good and therefore I've 'borrowed' a few from the mighty internet. `C-c h` is like the prefix for all my hydras. After that comes another letter (or *C-letter*) that selects the desired hydra.
 
 | Keybinding       | Hydra              |
-|------------------+--------------------|
-|------------------+--------------------|
-| =<prefix> b=     | Bookmarks          |
-| =<prefix> r=     | Rectangle          |
-| =<prefix> R=     | Registers          |
-| =<prefix> C-o m= | Org Tress movement |
-| =<prefix> C-o t= | Org Templates      |
-| =<prefix> f=     | Formating          |
-| =<prefix> p=     | Projectile         |
-| =<prefix> M=     | Modes              |
-| =<prefix> m=     | Magit              |
-| =<prefix> F=     | Files              |
+|---------------- |------------------ |
+| `<prefix> b`     | Bookmarks          |
+| `<prefix> r`     | Rectangle          |
+| `<prefix> R`     | Registers          |
+| `<prefix> C-o m` | Org Tress movement |
+| `<prefix> C-o t` | Org Templates      |
+| `<prefix> f`     | Formating          |
+| `<prefix> p`     | Projectile         |
+| `<prefix> M`     | Modes              |
+| `<prefix> m`     | Magit              |
+| `<prefix> F`     | Files              |
 
+There is also a 'special' Hydra that lists all other hydras and it's bound to `C-c h h`
 
+---
 
-There is also a 'special' Hydra that lists all other hydras and it's bound to =C-c h h=
--------------------
- - [[https://github.com/abo-abo/hydra][hydra]]
+-   [hydra](https://github.com/abo-abo/hydra)
 
-#+BEGIN_SRC emacs-lisp :results none
+```emacs-lisp
 (require 'hydra)
 (require 'hydra-examples)
-#+END_SRC
+```
 
-** Windowing
-#+BEGIN_SRC emacs-lisp :results none
+
+## Windowing
+
+```emacs-lisp
 (defhydra arnaud-hydra-windowing (:color blue
                                :hint nil)
   "
@@ -1400,9 +1597,12 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("q" nil :color blue))
 
 (define-key my-keys-mode-map (kbd "C-c h w") 'arnaud-hydra-windowing/body)
-#+END_SRC
-** Bookmarks navigation
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Bookmarks navigation
+
+```emacs-lisp
 (defhydra arnaud-hydra-bookmarks (:color blue
                               :hint nil)
   "
@@ -1414,10 +1614,12 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("d" bookmark-delete)
   ("q" nil :color blue))
 (define-key my-keys-mode-map (kbd "C-c h b") 'arnaud-hydra-bookmarks/body)
-#+END_SRC
+```
 
-**  Editing rectangle
-#+BEGIN_SRC emacs-lisp :results none
+
+## Editing rectangle
+
+```emacs-lisp
 (defhydra arnaud-hydra-rectangle (:pre (rectangle-mark-mode 1)
                                    :color blue
                                    :hint nil)
@@ -1444,9 +1646,12 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("q" keyboard-quit :color blue))
 
 (define-key my-keys-mode-map (kbd "C-c h r") 'arnaud-hydra-rectangle/body)
-#+END_SRC
-** Registers
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Registers
+
+```emacs-lisp
 (defhydra arnaud-hydra-registers (:color blue
                               :hint nil)
   "
@@ -1467,9 +1672,12 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("h" helm-register)
   ("q" nil :color blue))
 (define-key my-keys-mode-map (kbd "C-c h R") 'arnaud-hydra-registers/body)
-#+END_SRC
-** Modes toggling
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Modes toggling
+
+```emacs-lisp
 (defhydra arnaud-hydra-active-modes (:color red
                                        :hint nil)
   "
@@ -1494,9 +1702,12 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
 
 
 (define-key my-keys-mode-map (kbd "C-c h M") 'arnaud-hydra-active-modes/body)
-#+END_SRC
-** Org trees movement
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Org trees movement
+
+```emacs-lisp
 (defhydra arnaud-hydra-org-organize (:color red
                                             :hint nil)
   "
@@ -1513,9 +1724,12 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("q" nil :color blue))
 
 (define-key my-keys-mode-map (kbd "C-c h C-o m") 'arnaud-hydra-org-organize/body)
-#+END_SRC
-** Org templates expansions
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Org templates expansions
+
+```emacs-lisp
 (defun hot-expand (str)
   "Expand org template."
   (insert str)
@@ -1571,9 +1785,12 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("q" nil :color blue))
 
 (define-key my-keys-mode-map (kbd "C-c h C-o t") 'arnaud-hydra-org-template/body)
-#+END_SRC
-** Formatting
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Formatting
+
+```emacs-lisp
 (defhydra arnaud-hydra-format (:color blue
                                :hint nil)
   "
@@ -1593,9 +1810,12 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("P" py-yapf-enable-on-save)
   ("q" nil :color blue))
 (define-key my-keys-mode-map (kbd "C-c h f") 'arnaud-hydra-format/body)
-#+END_SRC
-** Projectile
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+## Projectile
+
+```emacs-lisp
 (defhydra hydra-projectile-other-window (:color teal)
   "projectile-other-window"
   ("f"  projectile-find-file-other-window        "file")
@@ -1644,10 +1864,12 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("q"   nil "cancel" :color blue))
 
 (define-key my-keys-mode-map (kbd "C-c h p") 'arnaud-hydra-projectile/body)
-#+END_SRC
-** Magit
+```
 
-#+BEGIN_SRC emacs-lisp :results none
+
+## Magit
+
+```emacs-lisp
 (defhydra arnaud-hydra-magit (:color blue :hint nil)
   "
       Magit: %(magit-get \"remote\" \"origin\" \"url\")
@@ -1676,10 +1898,12 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 
 (define-key my-keys-mode-map (kbd "C-c h m") 'arnaud-hydra-magit/body)
-#+END_SRC
-** Files
+```
 
-#+BEGIN_SRC emacs-lisp :results none
+
+## Files
+
+```emacs-lisp
 (defhydra arnaud-hydra-files (:color teal :hint nil)
 "
     ^^                    ^Files^             ^^
@@ -1697,10 +1921,12 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("q" nil "Cancel" :color blue))
 
 (define-key my-keys-mode-map (kbd "C-c h F") 'arnaud-hydra-files/body)
-#+END_SRC
+```
 
-** Hydras
-#+BEGIN_SRC emacs-lisp :results none
+
+## Hydras
+
+```emacs-lisp
 (defhydra arnaud-hydra-hydras (:color teal :hint nil)
 "
     ^^                    ^Available Hydras^             ^^
@@ -1726,18 +1952,25 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("q" nil "Cancel" :color blue))
 
 (define-key my-keys-mode-map (kbd "C-c h h") 'arnaud-hydra-hydras/body)
-#+END_SRC
-* IMenu
+```
 
-#+BEGIN_SRC emacs-lisp :results none
+
+# IMenu
+
+```emacs-lisp
 (require 'imenu-list)
 
 (define-key my-keys-mode-map (kbd "<f12>") 'imenu-list-smart-toggle)
-#+END_SRC
-* Company
-Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The ~company-idle-delay~ makes the automatic popup +impossible+ immediate so that I +would+ wouldn't have to call it manually through =M-m=. 
-- [[http://company-mode.github.io/][company]]
-#+BEGIN_SRC emacs-lisp :results none
+```
+
+
+# Company
+
+Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The `company-idle-delay` makes the automatic popup ~~impossible~~ immediate so that I ~~would~~ wouldn't have to call it manually through `M-m`.
+
+-   [company](http://company-mode.github.io/)
+
+```emacs-lisp
 
 (setq company-minimum-prefix-length 3
       company-tooltip-align-annotations nil
@@ -1856,45 +2089,23 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 
 
 
-#+END_SRC
+```
 
-* Magit
 
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
-* IEdit
-IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with ~M-i~ and while editing the marked region, all other occurrences will be changed accordingly.
-- [[https://github.com/victorhge/iedit][iedit]]
-#+BEGIN_SRC emacs-lisp :results none
+# Magit
+
+```emacs-lisp
+
+```
+
+
+# IEdit
+
+IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with `M-i` and while editing the marked region, all other occurrences will be changed accordingly.
+
+-   [iedit](https://github.com/victorhge/iedit)
+
+```emacs-lisp
 (require 'iedit)
 (define-key my-keys-mode-map (kbd "M-i") 'iedit-mode)
-#+END_SRC
-* Things that need to be done in the dot-files                     :no_export:
-Don't look at that, it's not for you!!!
-** DONE Configure better web-mode support
-CLOSED: [2018-05-02 Wed 12:53]
-Is done in the config file that we use at work
-** DONE Set up the key bindings for =avy=
-CLOSED: [2018-05-07 Mon 16:50]
-could be *REALLY* usefule
-** DONE Move all the repos in one place
-CLOSED: [2018-05-01 Tue 23:00]
-** DONE Clean the /.emacs/ file
-CLOSED: [2018-05-01 Tue 23:02]
-It's pretty good now
-** DONE Upload the file to a repo
-CLOSED: [2018-05-01 Tue 23:03]
-If you are reading this and you are not me....well, then I guess is to be marked as /DONE/!
-** DONE Make an archive with the .emacs.d directory
-CLOSED: [2018-05-01 Tue 23:03]
-Some files of it at least!
-** DONE Add annotations for everything
-CLOSED: [2018-06-07 Thu 21:35]
-** DONE Anotate the Hydra setup(s)
-CLOSED: [2018-06-17 Sun 19:42]
-** TODO Create Hydra for the latex mode things
-** TODO Steal someone's python setup
-** TODO Steal someone's c++ setup
-** TODO Put the whole thing on the blog
-
-
+```
