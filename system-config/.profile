@@ -1,6 +1,6 @@
 export CODE_DIR="/home/arnaud/code"
 export DOTFILES_DIR="${CODE_DIR}/dotfiles"
-export WALLPAPER="${DOTFILES_DIR}/screens/creepy_pape.png"
+export WALLPAPER="${DOTFILES_DIR}/screens/wall.*"
 
 export EDITOR='emacsclient -t';
 export TERMINAL='rxvt-unicode';
@@ -10,6 +10,8 @@ export READER="evince"
 export GOOGLE_APPLICATION_CREDENTIALS="${HOME}/.google.json"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/arnaud/core.d/usr/bin:$HOME/.scripts:/$HOME/.local/bin"
+export PATH="/home/arnaud/.cask/bin:$PATH"
+
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/arnaud/core.d/usr/lib"
 export CPATH="/home/arnaud/core.d/usr/include:/usr/local/include/openni2"
 

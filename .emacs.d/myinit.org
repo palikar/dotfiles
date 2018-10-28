@@ -704,7 +704,7 @@ Syntax error-checking on the fly(haha!) while working on code. It's conventient 
 
 * Python
 I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess emacs is that good with python by default. 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (add-hook 'python-mode-hook 'jedi:setup)
 
 (setq jedi:setup-keys t)
@@ -737,11 +737,11 @@ I use Python a lot these days. Yet, my python setup in /Emacs/ is less than mini
 
 (require 'py-yapf)
 
+(require 'pip-requirements)
+(add-to-list 'auto-mode-alist '("\\requirements.txt\\'" . pip-requirements-mode))
 
-#+END_SRC  
 
-#+RESULTS:
-: py-yapf
+#+END_SRC
 
 * Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
@@ -1304,7 +1304,7 @@ Making the modeline a little bit prettier and more spece efficient than the defa
   - [[https://github.com/dbordak/telephone-line][telephone-line]]
   - [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]]
  Preview:
-[[../mode-line.png]]
+ [[../mode-line.png]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'telephone-line)
 (telephone-line-mode 1)

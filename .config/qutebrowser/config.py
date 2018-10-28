@@ -1722,3 +1722,4 @@ c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q=!g%20{}'}
 # config.bind('<Return>', 'prompt-accept', mode='yesno')
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
+config.source('shortcuts.py')

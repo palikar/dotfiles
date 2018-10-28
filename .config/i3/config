@@ -1,22 +1,23 @@
 
 #Theming
-set $darkblack	#1b1918
-set $black	#766e6b
-set $darkred	#000000
-set $red	#f22c40
-set $darkgreen	#5ab738
-set $green	#5ab738
-set $darkyellow	#d5911a
-set $yellow	#d5911a
-set $darkblue	#407ee7
+set $darkblack		#1b1918
+set $black		#766e6b
+set $darkred		#000000
+set $red		#f22c40
+set $darkgreen		#5ab738
+set $green		#5ab738
+set $darkyellow		#d5911a
+set $yellow		#d5911a
+set $darkblue           #407ee7
 set $blue		#407ee7
 set $darkmagenta	#6666ea
-set $magenta	#6666ea
-set $darkcyan	#00ad9c
-set $cyan       #00ad9c      
-set $darkwhite  #a8a19f
-set $white	#f1efee
-set $transparent		#00000000
+set $magenta		#6666ea
+set $darkcyan		#00ad9c
+set $cyan       	#00ad9c      
+set $darkwhite  	#a8a19f
+set $white		#f1efee
+set $transparent        #00000000
+
 
 #                       BORDER		BACKGROUND	TEXT		INDICATOR   CHILD_BORDER
 client.focused		$red		$red		$magenta	$darkmagenta		$darkblue

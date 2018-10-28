@@ -1,0 +1,12 @@
+# You can add comments to these files with #
+h 	~/
+d	~/Documents
+D	~/Downloads
+ww       ~/core.d/wallpapers/
+wm       ~/core.d/webms
+s	~/.scripts
+cfc	~/.config
+ccc	~/code
+cco	~/core.d/code
+ccd	~/code/dotfiles
+

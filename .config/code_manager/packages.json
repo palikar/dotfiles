@@ -13,7 +13,8 @@
             "projector",
             "smarthomeworks",
             "smart_memory_location",
-            "arffpar"
+            "arffpar",
+            "python-req-installer"
         ],
         [
             "i3-gaps",
@@ -41,8 +42,17 @@
             "googletest",
             "crow",
             "rewire",
-            "pip-requirements"
+            "pip-requirements",
+            "voidrice",
+            "google-speech-v2-api",
+            "instagram-web-api",
+            "tensorflow",
+            "keras",
+            "linux-4.19",
+            "ov.el",
+            "cask"
         ]
+        
     ],
     "debian_packages":[
         ["libboost-all-dev","build-essential", "git", "cmake", "cmake-curses-gui",
@@ -401,6 +411,69 @@
             "install": "command",
             "command": "echo 'No install'",
             "reinstall_command": "echo 'No install'"
-        },        
+        },
+        "voidrice": {
+            "download": "git",
+            "URL": "https://github.com/palikar/voidrice",
+            "install": "command",
+            "command": "echo 'No install'",
+            "reinstall_command": "echo 'No install'"
+        },
+        "google-speech-v2-api": {
+            "download": "git",
+            "URL": "https://github.com/gillesdemey/google-speech-v2",
+            "install": "command",
+            "command": "echo 'No install'",
+            "reinstall_command": "echo 'No install'"
+        },
+        "instagram-web-api": {
+            "download": "git",
+            "URL": "https://github.com/jlobos/instagram-web-api",
+            "install": "command",
+            "command": "npm install",
+            "reinstall_command": "echo 'No install'"
+        },
+        "tensorflow": {
+            "download": "git",
+            "URL": "https://github.com/tensorflow/tensorflow",
+            "install": "command",
+            "command": "echo 'No install'",
+            "reinstall_command": "echo 'No install'"
+        },
+        "keras": {
+            "download": "git",
+            "URL": "https://github.com/keras-team/keras",
+            "install": "command",
+            "command": "echo 'No install'",
+            "reinstall_command": "echo 'No install'"
+        },
+        "linux-4.19": {
+            "download": "curl",
+            "URL": "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.tar.xz",
+            "install": "script",
+            "script_args": ""
+        },
+        "python-req-installer": {
+            "download": "git",
+            "URL": "https://github.com/palikar/python-requirements-installer",
+            "install": "command",
+            "command": "echo 'No install'",
+            "reinstall_command": "echo 'No install'"
+        },
+        "ov.el": {
+            "download": "git",
+            "URL": "https://github.com/ShingoFukuyama/ov.el/",
+            "install": "command",
+            "command": "echo 'No install'",
+            "reinstall_command": "echo 'No install'"
+        },
+        "cask": {
+            "download": "curl",
+            "URL": "https://raw.githubusercontent.com/cask/cask/master/go",
+            "install": "command",
+            "command": "python go",
+            "reinstall_command": "python go"
+        }
+        
     }
 }

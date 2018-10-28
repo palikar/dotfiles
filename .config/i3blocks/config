@@ -51,6 +51,7 @@ interval=30
 label=🕓
 command=echo $(date '+%H:%M')
 interval=30
+interval=30
 
 
 [wifi]
