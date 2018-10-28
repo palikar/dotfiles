@@ -1,4 +1,3 @@
-rename space_girl_new.jpg
 fin
 search mpl1
 refresh
@@ -36,15 +35,16 @@ delete
 search nsf
 open_with 0
 search py
-touch 
 [1;5B[1;5A
 [1;5B[1;5B
 rename anaconda3
 rename 
 search the
-search_inc pic
 shell 
 
 open_with 
 search_inc dot
-search_inc NS
+touch 
+shell mkdir screeshots
+search_inc poic
+search_inc pic
