@@ -49,7 +49,7 @@ bar {
 }
 
 # #---- Basic setup ----# #
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 gaps inner 15
 gaps outer 15
 smart_gaps off
@@ -114,7 +114,7 @@ bindsym $mod+f                  fullscreen toggle
 
 bindsym $mod+d	                exec rofi -show run
 bindsym $mod+Shift+d            exec rofi -show drun
-bindsym $mod+w	                exec rofi -show window
+bindsym $mod+Shift+Tab          exec rofi -show window
 
 bindsym $mod+Shift+c            reload
 
@@ -145,17 +145,15 @@ mode "  " {
      bindsym 2               split v
      bindsym 3               split h
      bindsym 0               kill
-
-     bindsym r               exec --no-startup-id $term -e ranger ; mode "default"
-     bindsym w               exec --no-startup-id firefox ; mode "default"
-     bindsym d               exec --no-startup-id emacsclient -c ; mode "default"
-     bindsym t               exec --no-startup-id $term -e htop ; mode "default"
-     bindsym Return          exec --no-startup-id $term ; mode "default"
      
      
      bindsym Escape mode "default"
 }
 bindsym $mod+x          mode "  "
+
+bindsym $mod+r               exec --no-startup-id $term -e ranger
+bindsym $mod+e               exec --no-startup-id emacsclient -c
+bindsym $mod+w               exec --no-startup-id $term -e firefox
 
 # set $stacking-mode Window
 mode "  " {

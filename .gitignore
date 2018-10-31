@@ -1,3 +1,4 @@
 .config/ranger/history
 .config/code_manager/cache
 .config/ranger/tagged
+.config/ranger/plugins/__pycache__

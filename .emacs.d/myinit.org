@@ -21,21 +21,21 @@
 #+OPTIONS: toc:nil
 
 * Abstract
-This is the cofiguration of my EmonkeysMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
-Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
-Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use =[[https://github.com/jwiegley/use-package][use-package]]= as I found that it actually makes my emacs slugish on windows and I actually prefer to have everything in my local config all the time.\\
+This is the configuration of my EMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
+Using the configuration as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
+Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use =[[https://github.com/jwiegley/use-package][use-package]]= as I found that it actually makes my emacs sluggish on windows and I actually prefer to have everything in my local config all the time.\\
 Download the repo with
 #+BEGIN_EXAMPLE
 git clone https://github.com/palikar/dotfiles
 #+END_EXAMPLE
-and setupe emacs 
+and setup emacs 
 #+BEGIN_EXAMPLE
 . setup-emacs.sh
 #+END_EXAMPLE
 //
 I've drawn a lot of inspiration for my Emacs configuration form:
 - [[https://github.com/zamansky/using-emacs][here]] (for the genera concept of the configuration file)
-- [[https://sriramkswamy.github.io/dotemacs/][also here]] (for the all of the /hydras/)
+- [[https://sriramkswamy.github.io/dotemacs/][also here]] (for some of my /hydras/)
 * Key bindings custom map 
 Some major modes overwrite some of my custom keybindings. Therefore I define a custom global minor mode and use the key map of this mode to define my custom key bindings. This sets their precedence 'above' the precedence of the key bindings of other modes
 #+BEGIN_SRC emacs-lisp :results none
@@ -50,7 +50,7 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 
 (my-keys-mode t)
 #+END_SRC
-* Repos and packages
+* Repositories and packages
 The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
 /Edit:/ It's anoying when starting emacs it takes so long to connect to all the sites for the packages and I don't need =package-install= that regularly. With the current setup I fist have to call =setup-packages= in order to install new one but the emacs init time significantly lower. You may or may not care about that time if you run emacs like =emacs --daemon=.
 #+BEGIN_SRC emacs-lisp :results none
@@ -104,13 +104,13 @@ I use a lot of additional packages and like to keep them local and installed. I'
 * Interface tweaks
 Making the whole =emacs= experience a tiny bit better with those fixes of the interface of the editor
 - Startup screen is anoying
-- The toolbar is wasting sapce
+- The toolbar is wasting space
 - =f5= should function as a refresh in firefox
 - Fringes waste space
 - Numbered lines come in handy
 - Highlighting the current line is pretty =übersichtlich=
 - Pretty sybols like \lambda over the whole place is pretty cool
-- [[https://elpa.gnu.org/packages/nlinum.html][nlinum]] - a mode to display the linenumbers but it's much more efficient than the build in /linum/-mode. /nlinum/ can handle big files without a hicup while scrolling.
+- [[https://elpa.gnu.org/packages/nlinum.html][nlinum]] - a mode to display the line numbers but it's much more efficient than the build in /linum/-mode. /nlinum/ can handle big files without a hiccup while scrolling.
 #+BEGIN_SRC emacs-lisp :results none
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
@@ -151,7 +151,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 #+END_SRC
 
 * Behavioral tweaks
-Some quick fixes for intuitinve and streight forwawrd editing. Generally I strive for the cleanest designf the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
+Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp :results none
 (setq-default indent-tabs-mode nil)
 (delete-selection-mode 1) ;; it's really weird working without that
@@ -358,7 +358,7 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 #+END_SRC
 * Org-mode
 ** Common settings
-Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writting/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporterrs for =.org= files that just make my life easier. 
+Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writing/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporters for =.org= files that just make my life easier. 
 #+BEGIN_SRC emacs-lisp
 (require 'org-bullets)
 
@@ -418,7 +418,7 @@ The codeblocks should be formated with the native envinroment of the language
 Some extra export backends for org-mode that come in handy.
 - Beamer - for making those awesome-ish presentations
 - twbs(Tweeter Bootstrap) - quickly make your org files look really pretty
-- hugo - I use Hugo for blogging and the exporter allowes me to write every single content page in /org-mode/
+- hugo - I use Hugo for blogging and the exporter allows me to write every single content page in /org-mode/
 - gfm (Github Flavored Markdown) - this makes writing /README.md/ files easy (i.e. writing them in org-mode)
 #+BEGIN_SRC emacs-lisp
 (require 'ox-beamer)
@@ -580,7 +580,7 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 - [[https://github.com/abo-abo/swiper][Swiper]]
 - [[https://github.com/syohex/emacs-anzu][Anzu]]
 \\
-/Note:/ I do also sometimes use /helm-occur-from-isearch/ in order to find something. I still like to have different possablities while performing an action and picking the best one in each individual case.
+/Note:/ I do also sometimes use /helm-occur-from-isearch/ in order to find something. I still like to have different possibilities while performing an action and picking the best one in each individual case.
 \\
 /Update/: I've switched back to *isearch* for now
 #+BEGIN_SRC emacs-lisp
@@ -607,7 +607,7 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 #+END_SRC
 
 * Helm goodies
-The best and the most fully fledged completion engine for emacs IMO. I cannot be productive in my emacs without this. When you are in minibuffer and start typing, things just appear as you type, you can select multiple items, perform actions on all of the (example: open multiple files with single =C-x C-f=) and many more features that I should probalby use on more regular basis.
+The best and the most fully fledged completion engine for emacs IMO. I cannot be productive in my emacs without this. When you are in minibuffer and start typing, things just appear as you type, you can select multiple items, perform actions on all of the (example: open multiple files with single =C-x C-f=) and many more features that I should probably use on more regular basis.
 - [[https://github.com/emacs-helm/helm][helm]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'helm)
@@ -677,7 +677,7 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 (define-key my-keys-mode-map (kbd "C-c C-f") 'avy-goto-char)
 #+END_SRC
 * Iy
-Go to next CHAR which is similar to "f" and "t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginnign of the epxresison and you type =C-SPC C-c f (= you wno't mark everything till the =(=. Still useful though. 
+Go to next CHAR which is similar to "f" and "t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginning of the expression and you type =C-SPC C-c f (= you won't mark everything till the =(= (now I believer this sentence to be lie). Still useful though. 
 - [[https://github.com/doitian/iy-go-to-char][iy-go-to-char]]
 #+BEGIN_SRC emacs-lisp
 (require 'iy-go-to-char)
@@ -696,7 +696,7 @@ I often alternate between these two and can't really decide which is my favorite
 ;; (load-theme 'monokai)
 #+END_SRC
 * Fly-check
-Syntax error-checking on the fly(haha!) while working on code. It's conventient to avoid small errors that screw up yoour compilation and are just being anoying. 
+Syntax error-checking on the fly (haha!) while working on code. It's convenient to avoid small errors that screw up your compilation and are just being anoying. 
 - [[http://www.flycheck.org/en/latest/][flycheck]]
 #+BEGIN_SRC emacs-lisp
 (require 'flycheck)  
@@ -764,7 +764,7 @@ One of the most useful packages that is pretty much a must for a emacs configura
 
 #+END_SRC
 * Misc packages
-Those pacakges add some minor tweak to EMACS to make text editing easier.
+These packages add some minor tweak to EMACS to make text editing easier.
 - [[https://github.com/Malabarba/beacon][beacon]] - flashes your cursor after the cursor has been re-positioned.
 - [[https://github.com/nflath/hungry-delete]] - deletes all of the white spaces that are 'on the way' after hitting /delete/ or /backspace/. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
 - [[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
@@ -870,7 +870,7 @@ Another 'standard feature' of most editors but in emacs we have to set it up bec
 (define-key my-keys-mode-map (kbd "M-<down>") 'drag-stuff-down)
 #+END_SRC
 * Web Mode
-From time to time I ahave to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
+From time to time I have to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
 - [[https://github.com/smihica/emmet-mode][emmet-mode]] - =C-j= Expands the emmet code given the minor mode is active 
 #+BEGIN_SRC emacs-lisp
 (require 'web-mode)
@@ -940,7 +940,7 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 (setq projectile-project-search-path '("~/code/" "~/core.d/code/"))
 #+END_SRC
 * Neotree
-My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their low level plebian 'web-apps')
+My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their 'web-apps')
 - [[https://github.com/jaypei/emacs-neotree][neotree]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'neotree)
@@ -971,7 +971,7 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 
 #+END_SRC
 * PDF-Tools
-Viewing pdf files in emacs! Not really intented for big and heavy files but when I have to check on something is does the trick.
+Viewing pdf files in emacs! Not really indented for big and heavy files but when I have to check on something is does the trick.
 - [[https://github.com/politza/pdf-tools][pdf-tools]]
 #+BEGIN_SRC emacs-lisp
 (require 'pdf-tools)
@@ -997,7 +997,7 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
 
 
 #+END_SRC
-* Sessios persistence
+* Session persistence
 Sometimes it gets really annoying when I close my emacs and have a bunch of buffers opened, the next time I launch the program, the buffers are gone and I have to open them again. Mind-blowing, I know, "So why do you close emacs?" - shut up, that's not the point . This package addresses my issues. I can even have custom sessions and open whole groups of tabs all at once
 From the documentation:
 #+BEGIN_EXAMPLE
@@ -1049,7 +1049,7 @@ I don't really use EMACS for java development as it can be tedious and the packa
 
 #+END_SRC
 * Markdown
-Markdown is not as pretty as Org-mode but is widely used throughout the Internet. I often have to open /.md/ files and therefore it's woorth making them look pretty in my emacs. The =markdown-mode= provies exaclty that.
+Markdown is not as pretty as Org-mode but is widely used throughout the Internet. I often have to open /.md/ files and therefore it's worth making them look pretty in my emacs. The =markdown-mode= provies exaclty that.
 -[[https://jblevins.org/projects/markdown-mode/][markdown-mode]]
 #+BEGIN_SRC emacs-lisp
 (autoload 'markdown-mode "markdown-mode"
@@ -1173,7 +1173,7 @@ For some reason I must set the right /python/ command each time I start emacs. T
 (setq org-babel-python-command "~/anaconda3/bin/python3.6")
 #+END_SRC
 * Spellchecking
-Yes, I am a hirroble speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find =C-c s= to be most intuitive for correcting misspelled words. *flyspell-popup* is a handy little thing that is pretty much company for showing a list of possible *correct* words.
+Yeso, I am a +hirroble+ horrible speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find =C-c s= to be most intuitive for correcting misspelled words. *flyspell-popup* is a handy little thing that is pretty much company for showing a list of possible *correct* words.
 [[https://github.com/xuchunyang/flyspell-popup][flyspell-popup]]
 #+BEGIN_SRC emacs-lisp
 (require 'flyspell)
@@ -1229,7 +1229,7 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
 (setq cmake-tab-width 4)
 
 (setq auto-mode-alist
-      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+      (append '(("CMakeLdists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 #+END_SRC
@@ -1729,11 +1729,15 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 (define-key my-keys-mode-map (kbd "C-c h h") 'arnaud-hydra-hydras/body)
 #+END_SRC
 * IMenu
+IMenu is like that one thingy that nobody uses but its in almost every IDE. IMenu can create a buffer showing the "structure" of what you are currently editing. If you are writing a C++ class, it will show you all the member functions and fields. If you are working on \Latex document, the  IMenu buffer will contain the sections and the subsections. The whole thing is occasionally useful but certainly does not need to clutter your workspace the whole time. 
 
+- https://github.com/bmag/imenu-list
 #+BEGIN_SRC emacs-lisp :results none
 (require 'imenu-list)
 
 (define-key my-keys-mode-map (kbd "<f12>") 'imenu-list-smart-toggle)
+(setq imenu-list-auto-resize t)
+(setq imenu-list-after-jump-hook nil)
 #+END_SRC
 * Company
 Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The ~company-idle-delay~ makes the automatic popup +impossible+ immediate so that I +would+ wouldn't have to call it manually through =M-m=. 
@@ -1870,6 +1874,31 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 (require 'iedit)
 (define-key my-keys-mode-map (kbd "M-i") 'iedit-mode)
 #+END_SRC
+* Vimacs
+/Vim+Emacs/
+
+\\
+
+Yes, from time to time I do find myself saying "Ugh, vim has that one nice feature which can so usefull here in Emacsland". For that reason, I've created a binding that allows me to quickly jump in and out of [[https://github.com/emacs-evil/evil][evil-mode]]. Evil -- or emulating vim layers as they call it -- is more or less full blown vim simulated in Emacs. The modal editing commands of vim are supported and are a joy to be used from time to time, even when one is hardcore Emacs fanboy.
+#+BEGIN_SRC emacs-lisp :results none
+(defun quick-evil () 
+  (interactive)
+  (if (bound-and-true-p evil-local-mode)
+    (progn
+      (evil-local-mode (or -1 1))
+      (undo-tree-mode (or -1 1))
+      (set-cursor-color "#d0d0d0")
+    )
+    (progn
+      (evil-local-mode (or 1 1))
+      (set-variable 'cursor-type 'box)
+      (set-cursor-color "#8968cd"))))
+
+(define-key my-keys-mode-map (kbd "<f13>") 'quick-evil)
+
+#+END_SRC
+
+
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!
 ** DONE Configure better web-mode support

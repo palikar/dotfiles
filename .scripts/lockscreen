@@ -8,8 +8,14 @@ rm -f /tmp/locked.png
     pgrep -x dunst && notify-send -i ~/.scripts/lock.png "Locking computer..." &&
     convert /tmp/base.png -blur 0x8 /tmp/locked.png
 
+convert -composite /tmp/locked.png ~/.scripts/rick.png -gravity Southwest -geometry +250+0  /tmp/locked.png
 
-# convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked2.png
+convert -composite /tmp/locked.png ~/.scripts/rick2.png -gravity Southeast -geometry +450+0 /tmp/locked.png
+
+
+
+
+convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked2.png
 
 # Pause music (mocp, mpd and send the pause key to all mpv videos):
 # mocp -P &>/dev/null
@@ -18,6 +24,6 @@ rm -f /tmp/locked.png
 
 i3lock -e -f -c 000000 -i /tmp/locked.png
 
-# In five seconds, turn off display unless key press in last 4 seconds.
-# sleep 5 && [[ 4000 -lt $(xssstate -i) ]] &&  wpgrep -x i3lock && xset dpms force off
-sleep 5 && xset dpms force off
+# # In five seconds, turn off display unless key press in last 4 seconds.
+# # sleep 5 && [[ 4000 -lt $(xssstate -i) ]] &&  wpgrep -x i3lock && xset dpms force off
+sleep 10 && xset dpms force off

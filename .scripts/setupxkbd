@@ -1,6 +1,10 @@
 #!/bin/bash
 
 setxkbmap -layout de,bg -variant "deadacute, phonetic"
-setxkbmap -option caps:ctrl_modifier
+setxkbmap -option caps:f13
 notify-send "Changing language" "Keyboard layout has been configured"
 pkill -RTMIN+9 i3blocks
+
+setxkbmap -option # reset everything to default state!
+xmodmap -e "remove Lock = Caps_Lock"
+xmodmap -e "keysym Caps_Lock = F13"

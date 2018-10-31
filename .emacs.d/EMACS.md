@@ -1,17 +1,17 @@
 # Abstract
 
-This is the cofiguration of my EmonkeysMACS-Editor written in [Org mode](https://orgmode.org/) in [literate style programming](https://en.wikipedia.org/wiki/Literate_programming). I've sort of hoarded a lot of different packages and different `.emacs` files from all over the internet and just stucked them together. Using the configuraion as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey&#x2026;this is EMACS. Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use `[[https://github.com/jwiegley/use-package][use-package]]` as I found that it actually makes my emacs slugish on windows and I actually prefer to have everything in my local config all the time. Download the repo with
+This is the configuration of my EMACS-Editor written in [Org mode](https://orgmode.org/) in [literate style programming](https://en.wikipedia.org/wiki/Literate_programming). I've sort of hoarded a lot of different packages and different `.emacs` files from all over the internet and just stucked them together. Using the configuration as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey&#x2026;this is EMACS. Still, you may found some hidden gems in here that can greatly simplify your work with the editor. I don't use `[[https://github.com/jwiegley/use-package][use-package]]` as I found that it actually makes my emacs sluggish on windows and I actually prefer to have everything in my local config all the time. Download the repo with
 
     git clone https://github.com/palikar/dotfiles
 
-and setupe emacs
+and setup emacs
 
     . setup-emacs.sh
 
 // I've drawn a lot of inspiration for my Emacs configuration form:
 
 -   [here](https://github.com/zamansky/using-emacs) (for the genera concept of the configuration file)
--   [also here](https://sriramkswamy.github.io/dotemacs/) (for the all of the *hydras*)
+-   [also here](https://sriramkswamy.github.io/dotemacs/) (for some of my *hydras*)
 
 
 # Key bindings custom map
@@ -32,7 +32,7 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 ```
 
 
-# Repos and packages
+# Repositories and packages
 
 The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. ~~MELPA is configured in the .emacs file but here we also add ELPA for good measures~~ Everything is here now! *Edit:* It's anoying when starting emacs it takes so long to connect to all the sites for the packages and I don't need `package-install` that regularly. With the current setup I fist have to call `setup-packages` in order to install new one but the emacs init time significantly lower. You may or may not care about that time if you run emacs like `emacs --daemon`.
 
@@ -95,13 +95,13 @@ I use a lot of additional packages and like to keep them local and installed. I'
 Making the whole `emacs` experience a tiny bit better with those fixes of the interface of the editor
 
 -   Startup screen is anoying
--   The toolbar is wasting sapce
+-   The toolbar is wasting space
 -   `f5` should function as a refresh in firefox
 -   Fringes waste space
 -   Numbered lines come in handy
 -   Highlighting the current line is pretty `übersichtlich`
 -   Pretty sybols like &lambda; over the whole place is pretty cool
--   [nlinum](https://elpa.gnu.org/packages/nlinum.html) - a mode to display the linenumbers but it's much more efficient than the build in *linum*-mode. *nlinum* can handle big files without a hicup while scrolling.
+-   [nlinum](https://elpa.gnu.org/packages/nlinum.html) - a mode to display the line numbers but it's much more efficient than the build in *linum*-mode. *nlinum* can handle big files without a hiccup while scrolling.
 
 ```emacs-lisp
 (setq inhibit-startup-message t)
@@ -145,7 +145,7 @@ Making the whole `emacs` experience a tiny bit better with those fixes of the in
 
 # Behavioral tweaks
 
-Some quick fixes for intuitinve and streight forwawrd editing. Generally I strive for the cleanest designf the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
+Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 
 ```emacs-lisp
 (setq-default indent-tabs-mode nil)
@@ -381,7 +381,7 @@ When you run Emacs as daemon and you connect clients to it, hitting `C-x C-c` wi
 
 ## Common settings
 
-Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old *writting*. Therefore some basic org-mode configuration comes at handy when working with `.org` files (this .init file is written in org-mode so&#x2026;yeah!!). The `org-bullets` makes the heading look pretty. I have couple of extra exporterrs for `.org` files that just make my life easier.
+Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old *writing*. Therefore some basic org-mode configuration comes at handy when working with `.org` files (this .init file is written in org-mode so&#x2026;yeah!!). The `org-bullets` makes the heading look pretty. I have couple of extra exporters for `.org` files that just make my life easier.
 
 ```emacs-lisp
 (require 'org-bullets)
@@ -448,7 +448,7 @@ Some extra export backends for org-mode that come in handy.
 
 -   Beamer - for making those awesome-ish presentations
 -   twbs(Tweeter Bootstrap) - quickly make your org files look really pretty
--   hugo - I use Hugo for blogging and the exporter allowes me to write every single content page in *org-mode*
+-   hugo - I use Hugo for blogging and the exporter allows me to write every single content page in *org-mode*
 -   gfm (Github Flavored Markdown) - this makes writing *README.md* files easy (i.e. writing them in org-mode)
 
 ```emacs-lisp
@@ -638,7 +638,7 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 -   [Swiper](https://github.com/abo-abo/swiper)
 -   [Anzu](https://github.com/syohex/emacs-anzu)
 
-*Note:* I do also sometimes use *helm-occur-from-isearch* in order to find something. I still like to have different possablities while performing an action and picking the best one in each individual case. *Update*: I've switched back to **isearch** for now
+*Note:* I do also sometimes use *helm-occur-from-isearch* in order to find something. I still like to have different possibilities while performing an action and picking the best one in each individual case. *Update*: I've switched back to **isearch** for now
 
 ```emacs-lisp
 
@@ -666,7 +666,7 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 
 # Helm goodies
 
-The best and the most fully fledged completion engine for emacs IMO. I cannot be productive in my emacs without this. When you are in minibuffer and start typing, things just appear as you type, you can select multiple items, perform actions on all of the (example: open multiple files with single `C-x C-f`) and many more features that I should probalby use on more regular basis.
+The best and the most fully fledged completion engine for emacs IMO. I cannot be productive in my emacs without this. When you are in minibuffer and start typing, things just appear as you type, you can select multiple items, perform actions on all of the (example: open multiple files with single `C-x C-f`) and many more features that I should probably use on more regular basis.
 
 -   [helm](https://github.com/emacs-helm/helm)
 
@@ -747,7 +747,7 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 
 # Iy
 
-Go to next CHAR which is similar to "f" and "t" in *vim*. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression `int funcName(int a, int b)`, the cursor is at the beginnign of the epxresison and you type `C-SPC C-c f (` you wno't mark everything till the `(`. Still useful though.
+Go to next CHAR which is similar to "f" and "t" in *vim*. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression `int funcName(int a, int b)`, the cursor is at the beginning of the expression and you type `C-SPC C-c f (` you won't mark everything till the `(` (now I believer this sentence to be lie). Still useful though.
 
 -   [iy-go-to-char](https://github.com/doitian/iy-go-to-char)
 
@@ -774,7 +774,7 @@ I often alternate between these two and can't really decide which is my favorite
 
 # Fly-check
 
-Syntax error-checking on the fly(haha!) while working on code. It's conventient to avoid small errors that screw up yoour compilation and are just being anoying.
+Syntax error-checking on the fly (haha!) while working on code. It's convenient to avoid small errors that screw up your compilation and are just being anoying.
 
 -   [flycheck](http://www.flycheck.org/en/latest/)
 
@@ -854,7 +854,7 @@ One of the most useful packages that is pretty much a must for a emacs configura
 
 # Misc packages
 
-Those pacakges add some minor tweak to EMACS to make text editing easier.
+These packages add some minor tweak to EMACS to make text editing easier.
 
 -   [beacon](https://github.com/Malabarba/beacon) - flashes your cursor after the cursor has been re-positioned.
 -   <https://github.com/nflath/hungry-delete> - deletes all of the white spaces that are 'on the way' after hitting *delete* or *backspace*. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
@@ -986,7 +986,7 @@ Another 'standard feature' of most editors but in emacs we have to set it up bec
 
 # Web Mode
 
-From time to time I ahave to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but&#x2026;. come on, it web-programming&#x2026;no offense. There are a lot Key bindings that come with `web-mode` that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
+From time to time I have to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but&#x2026;. come on, it web-programming&#x2026;no offense. There are a lot Key bindings that come with `web-mode` that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
 
 -   [emmet-mode](https://github.com/smihica/emmet-mode) - `C-j` Expands the emmet code given the minor mode is active
 
@@ -1068,7 +1068,7 @@ Get it here -> [PROJECTILE!!!](https://github.com/bbatsov/projectile)
 
 # Neotree
 
-My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their low level plebian 'web-apps')
+My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their 'web-apps')
 
 -   [neotree](https://github.com/jaypei/emacs-neotree)
 
@@ -1104,7 +1104,7 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 
 # PDF-Tools
 
-Viewing pdf files in emacs! Not really intented for big and heavy files but when I have to check on something is does the trick.
+Viewing pdf files in emacs! Not really indented for big and heavy files but when I have to check on something is does the trick.
 
 -   [pdf-tools](https://github.com/politza/pdf-tools)
 
@@ -1138,7 +1138,7 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
 ```
 
 
-# Sessios persistence
+# Session persistence
 
 Sometimes it gets really annoying when I close my emacs and have a bunch of buffers opened, the next time I launch the program, the buffers are gone and I have to open them again. Mind-blowing, I know, "So why do you close emacs?" - shut up, that's not the point . This package addresses my issues. I can even have custom sessions and open whole groups of tabs all at once From the documentation:
 
@@ -1200,7 +1200,7 @@ I don't really use EMACS for java development as it can be tedious and the packa
 
 # Markdown
 
-Markdown is not as pretty as Org-mode but is widely used throughout the Internet. I often have to open *.md* files and therefore it's woorth making them look pretty in my emacs. The `markdown-mode` provies exaclty that. -[markdown-mode](https://jblevins.org/projects/markdown-mode/)
+Markdown is not as pretty as Org-mode but is widely used throughout the Internet. I often have to open *.md* files and therefore it's worth making them look pretty in my emacs. The `markdown-mode` provies exaclty that. -[markdown-mode](https://jblevins.org/projects/markdown-mode/)
 
 ```emacs-lisp
 (autoload 'markdown-mode "markdown-mode"
@@ -1337,7 +1337,7 @@ For some reason I must set the right *python* command each time I start emacs. T
 
 # Spellchecking
 
-Yes, I am a hirroble speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find `C-c s` to be most intuitive for correcting misspelled words. **flyspell-popup** is a handy little thing that is pretty much company for showing a list of possible **correct** words. [flyspell-popup](https://github.com/xuchunyang/flyspell-popup)
+Yeso, I am a ~~hirroble~~ horrible speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find `C-c s` to be most intuitive for correcting misspelled words. **flyspell-popup** is a handy little thing that is pretty much company for showing a list of possible **correct** words. [flyspell-popup](https://github.com/xuchunyang/flyspell-popup)
 
 ```emacs-lisp
 (require 'flyspell)
@@ -1404,7 +1404,7 @@ A minimal Cmake setup, more or less to make my *CMakeLists.txt* files pleasant t
 (setq cmake-tab-width 4)
 
 (setq auto-mode-alist
-      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+      (append '(("CMakeLdists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 ```
@@ -1957,10 +1957,16 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 # IMenu
 
+IMenu is like that one thingy that nobody uses but its in almost every IDE. IMenu can create a buffer showing the "structure" of what you are currently editing. If you are writing a C++ class, it will show you all the member functions and fields. If you are working on \Latex document, the IMenu buffer will contain the sections and the subsections. The whole thing is occasionally useful but certainly does not need to clutter your workspace the whole time.
+
+-   <https://github.com/bmag/imenu-list>
+
 ```emacs-lisp
 (require 'imenu-list)
 
 (define-key my-keys-mode-map (kbd "<f12>") 'imenu-list-smart-toggle)
+(setq imenu-list-auto-resize t)
+(setq imenu-list-after-jump-hook nil)
 ```
 
 
@@ -2108,4 +2114,31 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 ```emacs-lisp
 (require 'iedit)
 (define-key my-keys-mode-map (kbd "M-i") 'iedit-mode)
+```
+
+
+# Vimacs
+
+*Vim+Emacs*
+
+
+
+Yes, from time to time I do find myself saying "Ugh, vim has that one nice feature which can so usefull here in Emacsland". For that reason, I've created a binding that allows me to quickly jump in and out of [evil-mode](https://github.com/emacs-evil/evil). Evil &#x2013; or emulating vim layers as they call it &#x2013; is more or less full blown vim simulated in Emacs. The modal editing commands of vim are supported and are a joy to be used from time to time, even when one is hardcore Emacs fanboy.
+
+```emacs-lisp
+(defun quick-evil () 
+  (interactive)
+  (if (bound-and-true-p evil-local-mode)
+    (progn
+      (evil-local-mode (or -1 1))
+      (undo-tree-mode (or -1 1))
+      (set-cursor-color "#d0d0d0")
+    )
+    (progn
+      (evil-local-mode (or 1 1))
+      (set-variable 'cursor-type 'box)
+      (set-cursor-color "#8968cd"))))
+
+(define-key my-keys-mode-map (kbd "<f13>") 'quick-evil)
+
 ```
