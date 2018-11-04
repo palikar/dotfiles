@@ -85,6 +85,7 @@ exec --no-startup-id compton --config ~/.config/compton/compton.conf
 exec --no-startup-id unclutter
 exec --no-startup-id dunst
 exec --no-startup-id i3xautolock
+exec --no-startup-id wal -R
 
 
 # #---- Bindings ----# #
@@ -130,6 +131,11 @@ bindsym $mod+h                  split h
 bindsym $mod+t                  layout tabbed
 bindsym $mod+Shift+t            layout toggle split
 
+bindsym $mod+r               exec --no-startup-id $term -e ranger
+bindsym $mod+e               exec --no-startup-id emacsclient -c
+bindsym $mod+w               exec --no-startup-id firefox
+bindsym $mod+u               exec --no-startup-id nautilus
+
 bindsym --release Print exec gnome-screenshot
 bindsym --release Shift+Print exec gnome-screenshot -a
 
@@ -138,22 +144,6 @@ bindsym --release Shift+Print exec gnome-screenshot -a
 bindsym $mod+Shift+Prior		gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+Next		        gaps inner current set 15; gaps outer current set
 
-# ----- Modes ----- #
-
-set $emacs-frames-laucher Launcher
-mode "  " {
-     bindsym 2               split v
-     bindsym 3               split h
-     bindsym 0               kill
-     
-     
-     bindsym Escape mode "default"
-}
-bindsym $mod+x          mode "  "
-
-bindsym $mod+r               exec --no-startup-id $term -e ranger
-bindsym $mod+e               exec --no-startup-id emacsclient -c
-bindsym $mod+w               exec --no-startup-id $term -e firefox
 
 # set $stacking-mode Window
 mode "  " {

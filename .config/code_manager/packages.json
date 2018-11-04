@@ -288,12 +288,11 @@
         "opencv": {
             "download": "git",
             "URL": "https://github.com/opencv/opencv",
+            "tag": "3.2.0",
             "install": "cmake",
-            "cmake_args": "-DCMAKE_BUILD_TYPE=Release",
+            "cmake_args": "-DCMAKE_OPENCV_ENABLE_NONFREE=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=OFF -DWITH_CUDA=OFF -DBUILD_CUDA_STUBS=OFF -DWITH_OPENMP=ON -DWITH_QT=OFF -DWITH_VTK=ON  -DOPENCV_EXTRA_MODULES_PATH='~/core.d/code/opencv-contrib/modules -DBUILD_TIFF=ON -DBUILD_JASPER=ON -DWITH_V4L=OFF -DBUILD_opencv_aruco=ON -DBUILD_opencv_sfm=OFF -DBUILD_opencv_dnn=OFF -DBUILD_opencv_cnn_3dobj=OFF'",
             "make_args": "-j4",
-            "dependencies": [
-                "opencv-contrib"
-            ],
+            "dependencies": ["opencv-contrib"],
             "deb_packages": ["gcc","cmake","pkg-config", "libgtk2.0-dev", "ffmpeg",
                              "libtbb-dev","libdc1394",
                              "libjpeg-dev", "libpng-dev", "libtiff-dev", "libjasper-dev",
@@ -302,9 +301,10 @@
         "opencv-contrib": {
             "download": "git",
             "URL": "https://github.com/opencv/opencv_contrib",
+            "commit": "tags/3.2.0",
             "install": "command",
-            "command": "make && sudo make install",
-            "reinstall_command": "make clean && make && sudo make install"
+            "command": "echo 'No command'",
+            "reinstall_command": "echo 'No command'"
         },
         "easyloggingpp": {
             "download": "git",

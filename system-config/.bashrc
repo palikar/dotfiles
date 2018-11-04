@@ -59,3 +59,9 @@ complete -o default -F _pip_completion pip
 
 export WALLPAPER="${DOTFILES_DIR}/screens/wall.*"
 source ~/.shortcuts
+
+# pywall thing
+
+if [ -f  ~/.cache/wal/sequences ]; then
+    (cat ~/.cache/wal/sequences &)
+fi

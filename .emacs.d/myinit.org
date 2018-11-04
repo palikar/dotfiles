@@ -112,6 +112,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 - Pretty sybols like \lambda over the whole place is pretty cool
 - [[https://elpa.gnu.org/packages/nlinum.html][nlinum]] - a mode to display the line numbers but it's much more efficient than the build in /linum/-mode. /nlinum/ can handle big files without a hiccup while scrolling.
 #+BEGIN_SRC emacs-lisp :results none
+
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (define-key my-keys-mode-map (kbd "<f10>") 'tool-bar-mode)
@@ -144,9 +145,9 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
               100)
          '(85 . 80) '(100 . 100)))))
 (define-key my-keys-mode-map (kbd "C-<f1>") 'toggle-transparency)
+(set-fill-column 80)
+(define-key my-keys-mode-map (kbd "M-<f8>") 'fci-mode)
 
-(set-fill-column 100)
-(turn-on-fci-mode)
 
 #+END_SRC
 
@@ -640,18 +641,12 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 (define-key my-keys-mode-map (kbd "M-x") 'helm-M-x)
 (define-key my-keys-mode-map (kbd "C-x b") 'helm-mini)
 (define-key my-keys-mode-map (kbd "C-c b") 'helm-semantic-or-imenu)
-
 (define-key my-keys-mode-map (kbd "M-s") 'helm-projectile-ag)
-
-
-;;search and install apt packages through Emacs...crazy, I know!!!
-(define-key my-keys-mode-map (kbd "C-x c C-a") 'helm-apt)
+(define-key my-keys-mode-map (kbd "C-x c C-a") 'helm-apt) ;;search and install apt packages through Emacs...crazy, I know!!!
 (define-key my-keys-mode-map (kbd "C-x c M-m") 'helm-complete-file-name-at-point)
-
 (define-key my-keys-mode-map (kbd "C-x c C-s") 'helm-occur-from-isearch)
-
 (define-key my-keys-mode-map (kbd "C-x r h") 'helm-register)
-
+;; (define-key my-keys-mode-map (kbd "C-x r b") 'helm-register)
 (define-key my-keys-mode-map (kbd "M-y") 'helm-show-kill-ring)
 
 (helm-mode 1)
@@ -677,7 +672,7 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 (define-key my-keys-mode-map (kbd "C-c C-f") 'avy-goto-char)
 #+END_SRC
 * Iy
-Go to next CHAR which is similar to "f" and "t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginning of the expression and you type =C-SPC C-c f (= you won't mark everything till the =(= (now I believer this sentence to be lie). Still useful though. 
+Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginning of the expression and you type =C-SPC C-c f (= you won't mark everything till the =(= (now I believer this sentence to be lie). Still useful though. 
 - [[https://github.com/doitian/iy-go-to-char][iy-go-to-char]]
 #+BEGIN_SRC emacs-lisp
 (require 'iy-go-to-char)
@@ -706,17 +701,29 @@ Syntax error-checking on the fly (haha!) while working on code. It's convenient 
 * Python
 I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess emacs is that good with python by default. 
 #+BEGIN_SRC emacs-lisp :results none
-(add-hook 'python-mode-hook 'jedi:setup)
 
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
 
-(setq jedi:tooltip-method nil)
+(require 'elpy)
+
 
 (setq elpy-rpc-backend "jedi")
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+(setq jedi:tooltip-method nil)
 (setq jedi:get-in-function-call-delay 0)
 
 (add-hook 'python-mode-hook 'jedi:ac-setup)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'elpy-enable)
+
+
+(define-key elpy-mode-map [remap elpy-nav-forward-block] nil)
+(define-key elpy-mode-map [remap elpy-nav-backward-block] nil)
+(define-key elpy-mode-map [remap elpy-nav-backward-indent] nil)
+(define-key elpy-mode-map [remap elpy-nav-forward-indent] nil)
+
+
+(add-to-list 'auto-mode-alist '("\\.py\\'" .  python-mode))
 
 
 
@@ -733,8 +740,8 @@ I use Python a lot these days. Yet, my python setup in /Emacs/ is less than mini
 
 (require 'anaconda-mode)
 
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+;; (add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
 (require 'py-yapf)
 
@@ -785,14 +792,21 @@ These packages add some minor tweak to EMACS to make text editing easier.
 #+BEGIN_SRC emacs-lisp :results none
 (require 'crux)
 
+(defun find-myinit-file ()
+  "Open the myinit.org file which is my actual configuration file."
+  (interactive)
+(find-file-other-window 
+ (concat 
+  (concat (file-name-directory user-init-file) ".emacs.d/") "myinit.org")))
+
 (define-key my-keys-mode-map (kbd "C-c o") 'crux-open-with)
 (define-key my-keys-mode-map (kbd "C-c r") 'crux-rename-file-and-buffer)
+(define-key my-keys-mode-map (kbd "C-c i") 'find-myinit-file)
 (define-key my-keys-mode-map (kbd "C-c I") 'crux-find-user-init-file)
+(define-key my-keys-mode-map (kbd "C-c 1") 'crux-create-scratch-buffer)
 (define-key my-keys-mode-map (kbd "C-c S") 'crux-find-shell-init-file)
 (define-key my-keys-mode-map (kbd "M-k") 'crux-kill-line-backwards)
 (define-key my-keys-mode-map (kbd "C-c t") 'crux-visit-term-buffer)
-
-
 
 #+END_SRC
 * Folding code
@@ -936,7 +950,6 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
-(define-key my-keys-mode-map [f4] 'projectile-find-other-file)
 (setq projectile-project-search-path '("~/code/" "~/core.d/code/"))
 #+END_SRC
 * Neotree
@@ -1104,9 +1117,9 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
            (mode . tex-mode)
            (mode . latex-mode)
            (name . ".tex")
-           (name . ".bib")
-           ))
-
+           (name . ".bib")))
+         ("4Chan"
+          (mode . q4))
          ("Text" (name . ".txt"))
          ("JS" 
           (or (mode . "JavaScript")
@@ -1148,7 +1161,6 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
 #+BEGIN_SRC emacs-lisp
 (require 'term)
 
-(define-key my-keys-mode-map [f3] 'term)
 
 (defun my/term-toggle-mode ()
   "Toggles term between line mode and char mode"
@@ -1173,7 +1185,7 @@ For some reason I must set the right /python/ command each time I start emacs. T
 (setq org-babel-python-command "~/anaconda3/bin/python3.6")
 #+END_SRC
 * Spellchecking
-Yeso, I am a +hirroble+ horrible speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find =C-c s= to be most intuitive for correcting misspelled words. *flyspell-popup* is a handy little thing that is pretty much company for showing a list of possible *correct* words.
+Yeso, I am a +hirroble+ horrible speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find =C-c s= to be most intuitive for correcting misspelled words. *flyspell-popup* is a handy little thing that is pretty much company for showing a list of possible *correct* words. The mode can be swithed on and off with =C-<f8>=
 [[https://github.com/xuchunyang/flyspell-popup][flyspell-popup]]
 #+BEGIN_SRC emacs-lisp
 (require 'flyspell)
@@ -1190,6 +1202,7 @@ Yeso, I am a +hirroble+ horrible speller. Thank god that there are tools that he
     ))
 
 (define-key my-keys-mode-map (kbd "<f8>")   'fd-switch-dictionary)
+(define-key my-keys-mode-map (kbd "C-<f8>") 'flyspell-mode)
 
 #+END_SRC
 * Google This
@@ -1262,6 +1275,8 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (define-key my-keys-mode-map (kbd "C-c l p") 'latex-preview-pane-mode)
 
 (define-key my-keys-mode-map (kbd "C-c l b") 'helm-bibtex-with-local-bibliography)
+
+(define-key my-keys-mode-map (kbd "C-c l M-p") 'latex-preview-pane-update)
 
 
 (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
@@ -1881,6 +1896,8 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 
 Yes, from time to time I do find myself saying "Ugh, vim has that one nice feature which can so usefull here in Emacsland". For that reason, I've created a binding that allows me to quickly jump in and out of [[https://github.com/emacs-evil/evil][evil-mode]]. Evil -- or emulating vim layers as they call it -- is more or less full blown vim simulated in Emacs. The modal editing commands of vim are supported and are a joy to be used from time to time, even when one is hardcore Emacs fanboy.
 #+BEGIN_SRC emacs-lisp :results none
+
+
 (defun quick-evil () 
   (interactive)
   (if (bound-and-true-p evil-local-mode)
@@ -1894,7 +1911,19 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
       (set-variable 'cursor-type 'box)
       (set-cursor-color "#8968cd"))))
 
+(evil-mode t)
+(evil-mode nil)
+
 (define-key my-keys-mode-map (kbd "<f13>") 'quick-evil)
+
+#+END_SRC
+* Q4
+Through this packages, I can browse 4chan (only /g of course!) threads in my Emacs. It uses the json API of 4chan and renders everything in the editor itself. It even provides some nifty features that are not available in the vanilla 4chan website. I can browser through the replies of a given post, quickly jump to replies of replies and then go back up and also download (through /wget/) images/webms from 4chan directly from here, in my editor. God, I love Emacs.
+- [[https://github.com/rosbo018/q4][q4]]
+
+#+BEGIN_SRC emacs-lisp :results none
+
+(load-file "/home/arnaud/core.d/code/q4-fork/q4.el")
 
 #+END_SRC
 

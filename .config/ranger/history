@@ -31,7 +31,6 @@ shell feh --bg-sacale fallen_by_wojciechfus-d96pri5.png
 search stock
 find st
 rename received_1978342988851803[a.jpeg
-delete
 search nsf
 open_with 0
 search py
@@ -42,9 +41,10 @@ rename
 search the
 shell 
 
-open_with 
 search_inc dot
 touch 
 shell mkdir screeshots
 search_inc poic
 search_inc pic
+delete
+open_with 
