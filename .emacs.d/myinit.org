@@ -77,7 +77,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-ycmd cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region exwm fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args god-mode golden-ratio google-this google-translate graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper volatile-highlights web-beautify web-mode websocket wgrep-helm wgrep workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
+(setq package-list '(which-key aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region exwm fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args god-mode golden-ratio google-this google-translate gradle-mode graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline powerline spacemacs-theme spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper volatile-highlights web-beautify web-mode websocket wgrep-helm wgrep workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yagist yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
 ; ending-packages
 
 (defun list-installed-packages ()
@@ -124,6 +124,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 ;; (set-cursor-color "#00ffbf")
 (global-nlinum-mode -1)
 (global-visual-line-mode 1)
+(diminish 'visual-line-mode)
 (global-hl-line-mode 1)    
 (global-prettify-symbols-mode +1)
 (setq frame-title-format '("Emacs " emacs-version))
@@ -212,8 +213,10 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (require 'super-save)
 (add-to-list 'super-save-triggers 'ace-window)
 (super-save-mode +1)
+(diminish 'super-save-mode)
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
+(diminish 'volatile-highlights-mode)
 (define-key my-keys-mode-map (kbd "M-n") 'forward-paragraph)
 (define-key my-keys-mode-map (kbd "M-p") 'backward-paragraph)
 
@@ -272,16 +275,13 @@ Those are pretty much a must when editing code...and also anything else
 (wrap-region-add-wrapper "<" ">")
 (wrap-region-add-wrapper ">" "<")
 
-
-
-
-
-
-
 (wrap-region-global-mode t)
+
+(diminish 'wrap-region-mode)
 
 (require 'smartparens)
 (smartparens-global-mode 1)
+(diminish 'smartparens-mode)
 
 
 
@@ -308,7 +308,7 @@ This function will bytecompile everything that it finds in the .emacs.d director
 
 
 #+END_SRC
-** Custom key bindings(some of it!) 
+** Custom key bindings(some of them!) 
 #+BEGIN_SRC emacs-lisp
 
 (define-key my-keys-mode-map (kbd "C-+") 'text-scale-increase)
@@ -1253,7 +1253,6 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 #+BEGIN_SRC emacs-lisp :results none
 (require 'tex)
 
-
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -1264,18 +1263,15 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (add-hook 'LaTeX-mode-hook 'pretty-mode)
 (add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
 
-
-
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
 (TeX-global-PDF-mode t)
 
 (require 'latex-preview-pane)
+
 (define-key my-keys-mode-map (kbd "C-c l p") 'latex-preview-pane-mode)
-
 (define-key my-keys-mode-map (kbd "C-c l b") 'helm-bibtex-with-local-bibliography)
-
 (define-key my-keys-mode-map (kbd "C-c l M-p") 'latex-preview-pane-update)
 
 
@@ -1291,7 +1287,7 @@ Not exactly what the heading suggests but I've recently learned some vim keybind
 Emacs is a nice Operating System but it lacks decent editor
 --- Someone big in the Emacs Community
 #+END_QUOTE
-This package adds some handy functionality to =M-w=. Basically, after the initial command, through key strokes one can select very precisely-ish what is to be put in the kill ring.
+This package adds some handy functionality to =M-w=. Basically, after the initial command, through key strokes one can select very precisely-ish what is to be put in the kill ring. You can for example hit =M-w= once to "select" the current region but then press =w= again to select the current word. After that you can continue pressing =w= to select one more word.
 - [[https://github.com/leoliu/easy-kill][easy-kill]]
 #+BEGIN_SRC emacs-lisp
 (require 'easy-kill)
@@ -1311,23 +1307,34 @@ When writing code I lot of times I mark the things I've just typed and hit /Tab/
                            (thing-at-point 'line)))))
 #+END_SRC
 * Modline
-Making the modeline a little bit prettier and more spece efficient than the default. =smart-mode-line= is the "main" package and =telephone-line= is there just to make the separators nicer.
+Making the modeline a little bit prettier and more spece efficient than the default. I should say that I am kind of guilty for liking the [[http://spacemacs.org][Spacemacs]] modeline a little too much. My current setup is more or less resembling that. The current package that I am using is [[https://github.com/TheBB/spaceline][spaceline]] which as far as I understand is created for people like me. 
+\\
+Some of the packages for modelines that I've gone over are:
   - [[https://github.com/dbordak/telephone-line][telephone-line]]
   - [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]]
  Preview:
  [[../mode-line.png]]
 #+BEGIN_SRC emacs-lisp :results none
-(require 'telephone-line)
-(telephone-line-mode 1)
+(require 'spaceline)
+(require 'spaceline-config)
 
-(require 'powerline)
-(powerline-revert)
-(powerline-center-theme)
+(spaceline-helm-mode)
+(spaceline-info-mode)
 
-;; (setq sml/no-confirm-load-theme t)
-;; (sml/setup)
-;; (setq sml/theme 'automatic)
+(setq powerline-default-separator 'wave)
+(setq powerline-height 23)
+
+(spaceline-highlight-face-default)
+(spaceline-toggle-version-control-on)
+(spaceline-toggle-buffer-modified-on)
+(spaceline-toggle-minor-modes-on)
+(spaceline-toggle-projectile-root-on)
+(spaceline-toggle-hud-off)
+(spaceline-toggle-buffer-encoding-abbrev-off)
+
+(spaceline-emacs-theme)
 #+END_SRC
+
 * Sexp on steroids
 As previously stated, I know tiny bit of vim key-bindings and holy cow those can do a lot of things in very few keystrokes. Emacs is not really like that. I've written some simple functions thal with saving, marking and killing /sexp/s. I really like that feature of vim "*d*elete *i*nside *(*-block" and it kills everything inside the parentesies....or copies it into kill ring or marks it, basically - it's pretty awesome and here I am trying to ripp off exxaclty that.\\
 The commands that come in handy a lot of the times and that I've written:
@@ -1768,6 +1775,8 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (global-company-mode t)
 (define-key my-keys-mode-map (kbd "M-m") 'company-complete)
 
+(define-key company-active-map (kbd "C-n") 'company-select-next-or-abort)
+(define-key company-active-map (kbd "C-p") 'company-select-previous-or-abort)
 
 (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend))
 (setq company-backends '())
@@ -1911,22 +1920,87 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
       (set-variable 'cursor-type 'box)
       (set-cursor-color "#8968cd"))))
 
-(evil-mode t)
-(evil-mode nil)
 
 (define-key my-keys-mode-map (kbd "<f13>") 'quick-evil)
 
+
 #+END_SRC
 * Q4
-Through this packages, I can browse 4chan (only /g of course!) threads in my Emacs. It uses the json API of 4chan and renders everything in the editor itself. It even provides some nifty features that are not available in the vanilla 4chan website. I can browser through the replies of a given post, quickly jump to replies of replies and then go back up and also download (through /wget/) images/webms from 4chan directly from here, in my editor. God, I love Emacs.
+Through this packages, I can browse 4chan (only =/g= of course!) threads in my Emacs. It uses the json API of 4chan and renders everything in the editor itself. It even provides some nifty features that are not available in the vanilla 4chan website. I can browser through the replies of a given post, quickly jump to replies of replies and then go back up and also download (through /wget/) images/webms from 4chan directly from here, in my editor. God, I love Emacs.
 - [[https://github.com/rosbo018/q4][q4]]
 
 #+BEGIN_SRC emacs-lisp :results none
-
+;; https://boards.4chan.org/r9k/thread/49101515#p49101515 this one !
 (load-file "/home/arnaud/core.d/code/q4-fork/q4.el")
+
+(define-key my-keys-mode-map (kbd "M-j q") 'q4/browse-board)
+#+END_SRC
+* Which key
+Now, I generally know my Emacs keybindings but from time to time I have to look somethings up. The [[https://github.com/justbur/emacs-which-key][which-key]] packages in awesome in this regard. If I the start of some keybinding, a popup will show me how can I follow the binding and which functions will be I executing if I type something.
+
+
+#+BEGIN_SRC emacs-lisp :results none
+
+(require 'which-key)
+(which-key-mode)
+(which-key-setup-side-window-bottom)
+
+;; the default setup for the package
+(setq which-key-idle-delay 1.0)
+(setq which-key-max-description-length 27)
+(setq which-key-add-column-padding 0)
+(setq which-key-max-display-columns nil)
+(setq which-key-separator " → " )
+(setq which-key-unicode-correction 3)
+(setq which-key-prefix-prefix "+" )
+(setq which-key-special-keys nil)
+(setq which-key-show-prefix 'left)
+(setq which-key-show-remaining-keys nil)
+
+#+END_SRC
+* Yagist
+
+
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'yagist)
+
+(define-key my-keys-mode-map (kbd "M-j g l") 'yagist-list)
+(define-key my-keys-mode-map (kbd "M-j g b") 'yagist-region)
+(define-key my-keys-mode-map (kbd "M-j g r") 'yagist-buffer)
+
 
 #+END_SRC
 
+* Diminish
+The modeline can get pretty cluttered with minor modes pretty quickly. To avoid that I use the [[https://github.com/emacsmirror/diminish][diminish]] package. It allows me to specify modes that will not have any text in the modeline.
+#+BEGIN_SRC emcas-lisp :results none
+(require 'diminish)
+#+END_SRC
+** Diminishing modes
+
+#+BEGIN_SRC emacs-lisp :results none
+(diminish 'isearch-mode)
+(diminish 'yas-minor-mode)
+(diminish 'google-this-mode)
+(diminish 'wg-mode)
+(diminish 'workgroups-mode)
+;; (diminish 'projectile-mode)
+(diminish 'drag-stuff-mode)
+(diminish 'flyspell-mode)
+(diminish 'helm-mode)
+(diminish 'eldoc-mode)
+(diminish 'global-framer-mode)
+(diminish 'framer-mode)
+(diminish 'anzu-mode)
+(diminish 'company-mode)
+(diminish 'beacon-mode)
+(diminish 'flycheck-mode)
+(diminish 'hungry-delete-mode)
+(diminish 'org-indent-mode)
+(diminish 'hs-minor-mode)
+(diminish 'which-key-mode)
+#+END_SRC
 
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!
@@ -1955,5 +2029,4 @@ CLOSED: [2018-06-17 Sun 19:42]
 ** TODO Steal someone's python setup
 ** TODO Steal someone's c++ setup
 ** TODO Put the whole thing on the blog
-
-
+** TODO Create a separate section with all of the defined functions

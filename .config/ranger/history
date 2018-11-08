@@ -1,4 +1,3 @@
-fin
 search mpl1
 refresh
 update_preview 
@@ -41,10 +40,11 @@ rename
 search the
 shell 
 
-search_inc dot
 touch 
 shell mkdir screeshots
 search_inc poic
 search_inc pic
 delete
 open_with 
+shell -p w
+search_inc dot

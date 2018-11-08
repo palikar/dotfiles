@@ -14,7 +14,7 @@ COMMANDS=()
 function gen_xrandr_only()
 {
     selected=$1
-
+    
     cmd="xrandr --output ${MONITORS[$selected]} --auto "
 
     for entry in $(seq 0 $((${NUM_MONITORS}-1)))

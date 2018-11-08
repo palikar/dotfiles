@@ -86,3 +86,5 @@
         email = stanislav_ts@abv.bg
 [credential]
 	helper = cache
+[github]
+	oauth-token = 1f28ce622d70d6b2e4a69d919c40238e9563de64
