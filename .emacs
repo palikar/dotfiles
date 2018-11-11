@@ -17,7 +17,7 @@
  '(helm-follow-mode-persistent t)
  '(neo-hide-cursor t)
  '(neo-mode-line-type (quote none))
- '(neo-smart-open t)
+ '(neo-smart-open nil)
  '(org-babel-load-languages (quote ((emacs-lisp . t) (org . t))))
  '(org-default-notes-file (concat org-directory "/notes.org"))
  '(org-directory "~/Dropbox/orgfiles")
@@ -27,7 +27,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (keyfreq typit typing xkcd wttrin visual-regexp-steroids visual-regexp modalka which-key yagist spaceline gradle-mode ov symbol-overlay esxml pip-requirements eslint-fix volatile-highlights super-save company-quickhelp jedi projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck epl editorconfig easy-kill diminish diff-hl discover-my-major browse-kill-ring beacon ace-window wgrep-helm wgrep helm-ag fill-column-indicator hide-mode-line iedit god-mode highlight-indent-guides helm-spotify-plus helm-spotify spotify tabbar firefox-controller fireplace helm-bibtexkey helm-bibtex yaml-mode bash-completion golden-ratio company-anaconda py-yapf anaconda-mode fontawesome mu4e-conversation imenu-list company-ycmd ycmd org-plus-contrib nlinum-relative nlinum pymacs ranger web-beautify fancy-battery google-this flyspell-popup flyspell-correct-popup popup-complete helm-flycheck helm-ispell company-irony-c-headers ibuffer-projectile telephone-line smart-mode-line-powerline-theme smart-mode-line easy-hugo hugo ctags-update meghanada atom-dark-theme monokai-theme molokai-theme smart-hungry-delete use-package wrap-region treemacs syntax-subword sublimity srefactor solarized-theme smartparens pretty-mode ox-twbs ox-hugo org2blog org-pdfview org-page org-bullets mvn lorem-ipsum latex-pretty-symbols helm-rtags helm-projectile haskell-mode flycheck-irony expand-region evil emmet-mode dumb-jump doom-themes crux company-rtags company-irony company-emacs-eclim company-c-headers cmake-ide clang-format auto-org-md auto-complete-nxml auto-complete-clang-async auto-complete-clang anzu))))
+    (company-web company-ghci helm-company sphinx-doc keyfreq typit typing xkcd wttrin visual-regexp-steroids visual-regexp modalka which-key yagist spaceline gradle-mode ov symbol-overlay esxml pip-requirements eslint-fix volatile-highlights super-save company-quickhelp jedi projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck epl editorconfig easy-kill diminish diff-hl discover-my-major browse-kill-ring beacon ace-window wgrep-helm wgrep helm-ag fill-column-indicator hide-mode-line iedit god-mode highlight-indent-guides helm-spotify-plus helm-spotify spotify tabbar firefox-controller fireplace helm-bibtexkey helm-bibtex yaml-mode bash-completion golden-ratio company-anaconda py-yapf anaconda-mode fontawesome mu4e-conversation imenu-list company-ycmd ycmd org-plus-contrib nlinum-relative nlinum pymacs ranger web-beautify fancy-battery google-this flyspell-popup flyspell-correct-popup popup-complete helm-flycheck helm-ispell company-irony-c-headers ibuffer-projectile telephone-line smart-mode-line-powerline-theme smart-mode-line easy-hugo hugo ctags-update meghanada atom-dark-theme monokai-theme molokai-theme smart-hungry-delete use-package wrap-region treemacs syntax-subword sublimity srefactor solarized-theme smartparens pretty-mode ox-twbs ox-hugo org2blog org-pdfview org-page org-bullets mvn lorem-ipsum latex-pretty-symbols helm-rtags helm-projectile haskell-mode flycheck-irony expand-region evil emmet-mode dumb-jump doom-themes crux company-rtags company-irony company-emacs-eclim company-c-headers cmake-ide clang-format auto-org-md auto-complete-nxml auto-complete-clang-async auto-complete-clang anzu))))
 
 
 ;;; Code:
@@ -65,3 +65,11 @@
 
 
 (put 'narrow-to-region 'disabled nil)
+
+
+
+
+
+
+
+

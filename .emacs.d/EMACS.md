@@ -14,7 +14,19 @@ and setup emacs
 -   [also here](https://sriramkswamy.github.io/dotemacs/) (for some of my *hydras*)
 
 
-# Key bindings custom map
+# Basic System
+
+
+## Personal Info
+
+Lets let Emacs know who I am. Probably not a good idea cut them CIA know everything but hey, we trust our "free software", right!
+
+```emacs-lisp
+(setq user-full-name "Stanislav Arnaudov")
+```
+
+
+## Key bindings setup
 
 Some major modes overwrite some of my custom keybindings. Therefore I define a custom global minor mode and use the key map of this mode to define my custom key bindings. This sets their precedence 'above' the precedence of the key bindings of other modes
 
@@ -24,7 +36,7 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
   :global t
   :keymap (make-sparse-keymap))
 
-
+(require 'bind-key)   
 (setf (cdr my-keys-mode-map) nil)
 
 
@@ -32,7 +44,7 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 ```
 
 
-# Repositories and packages
+## Repositories and packages
 
 The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. ~~MELPA is configured in the .emacs file but here we also add ELPA for good measures~~ Everything is here now! *Edit:* It's anoying when starting emacs it takes so long to connect to all the sites for the packages and I don't need `package-install` that regularly. With the current setup I fist have to call `setup-packages` in order to install new one but the emacs init time significantly lower. You may or may not care about that time if you run emacs like `emacs --daemon`.
 
@@ -41,20 +53,11 @@ The default packages repository for emacs is ELPA. ELPA is not super good, we al
 (package-initialize)
 
 (setq package-archives '())
-
-(defun setup-packages () 
-  (interactive)
-  (setq package-archives '())
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
-  (package-refresh-contents)
-  )
 (package-refresh-contents)
 ```
 
 
-## Installing packages
+### Installing packages
 
 I use a lot of additional packages and like to keep them local and installed. I've tried `use-package` but I had some issues and I've opted out for installing everything. The initial waiting when setting up emacs config from scratch is fine by me.
 
@@ -64,14 +67,10 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-ycmd cquery crux ctags-update dashboard doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region exwm fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args god-mode golden-ratio google-this google-translate graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority powerline smartparens solarized-theme spacemacs-theme spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper volatile-highlights web-beautify web-mode websocket wgrep-helm wgrep workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
+(setq package-list '(which-key aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region exwm fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args god-mode golden-ratio google-this google-translate gradle-mode graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mvn mvn-help neotree nlinum-relative nlinum noflet org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline powerline spacemacs-theme spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window avy projectile try undo-tree use-package bind-key vimrc-mode virtualenvwrapper volatile-highlights web-beautify web-mode websocket wgrep-helm wgrep workgroups workgroups2 f anaphora wrap-region xelb xml-rpc yagist yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize))
 ; ending-packages
 
-(defun list-installed-packages ()
-  "docstring"
-  (interactive)
-  (describe-variable 'package-activated-list)
-  )
+
 
 (define-key my-keys-mode-map (kbd "C-<Scroll_Lock>") 'list-installed-packages)
 ; activate all the packages (in particular autoloads)
@@ -90,7 +89,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 ```
 
 
-# Interface tweaks
+## Interface tweaks
 
 Making the whole `emacs` experience a tiny bit better with those fixes of the interface of the editor
 
@@ -104,89 +103,61 @@ Making the whole `emacs` experience a tiny bit better with those fixes of the in
 -   [nlinum](https://elpa.gnu.org/packages/nlinum.html) - a mode to display the line numbers but it's much more efficient than the build in *linum*-mode. *nlinum* can handle big files without a hiccup while scrolling.
 
 ```emacs-lisp
+
 (setq inhibit-startup-message t)
+(setq frame-title-format '("Emacs " emacs-version))
+(setq cursor-type 'box)
+(setq visible-bell 'nil)
 (tool-bar-mode -1)
-(define-key my-keys-mode-map (kbd "<f10>") 'tool-bar-mode)
 (menu-bar-mode -1)
-(define-key my-keys-mode-map (kbd "<f9>") 'menu-bar-mode)
 (fset 'yes-or-no-p 'y-or-n-p)
 (fringe-mode '(0 . 0))
-(setq-default cursor-type 'box)
-;; (set-cursor-color "#00ffbf")
 (global-nlinum-mode -1)
 (global-visual-line-mode 1)
 (global-hl-line-mode 1)    
 (global-prettify-symbols-mode +1)
-(setq frame-title-format '("Emacs " emacs-version))
 (scroll-bar-mode 0)
-(define-key my-keys-mode-map (kbd "C-<f10>") 'scroll-bar-mode)
-(define-key my-keys-mode-map (kbd "C-<f9>") 'hide-mode-line-mode)
-(define-key my-keys-mode-map (kbd "C-<f12>") 'nlinum-mode)
 (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
 (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
-(defun toggle-transparency ()
-  (interactive)
-  (let ((alpha (frame-parameter nil 'alpha)))
-    (set-frame-parameter
-     nil 'alpha
-     (if (eql (cond ((numberp alpha) alpha)
-                    ((numberp (cdr alpha)) (cdr alpha))
-                    ;; Also handle undocumented (<active> <inactive>) form.
-                    ((numberp (cadr alpha)) (cadr alpha)))
-              100)
-         '(85 . 80) '(100 . 100)))))
-(define-key my-keys-mode-map (kbd "C-<f1>") 'toggle-transparency)
+(set-fill-column 80)
 
-(set-fill-column 100)
-(turn-on-fci-mode)
 
 ```
 
 
-# Behavioral tweaks
+## Behavioral tweaks
 
 Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 
 ```emacs-lisp
-(setq-default indent-tabs-mode nil)
-(delete-selection-mode 1) ;; it's really weird working without that
+(setq indent-tabs-mode nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
-;; (cua-mode 1) I am pretty much a big deal pro and I don't need cua-mode 8)
-(load "~/.emacs.d/lisp/syntax-subword") 
-(global-syntax-subword-mode 1) ;; easy workings with camel case, snake case and pretty much anything else
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-follow-mouse nil)
 (setq scroll-step 1) ;;smooth-ish scrolling
 (setq confirm-kill-emacs 'y-or-n-p) ;; Sometimes I fat finger C-x C-c
 (setq save-interprogram-paste-before-kill t)
-(global-auto-revert-mode 1) ;; see changes on disc as quick as possible 
+(require 'saveplace) ;; saves your cursor's position in buffers and jumps to it on reopening
+(setq save-place t)
+(setq save-place-file (locate-user-emacs-file "places" ".emacs-places"))
+(setq save-place-forget-unreadable-files nil)
 (setq auto-revert-verbose nil) ;; everything is seemless
+(setq vc-follow-symlinks t) ;; it asks you everytime otherwise
+(delete-selection-mode 1) ;; it's really weird working without that
+(load "~/.emacs.d/lisp/syntax-subword") 
+(global-syntax-subword-mode 1) ;; easy workings with camel case, snake case and pretty much anything else
+(global-auto-revert-mode 1) ;; see changes on disc as quick as possible 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-(require 'saveplace) ;; saves your cursor's position in buffers and jumps to it on reopening
-(setq-default save-place t)
-(setq save-place-file (locate-user-emacs-file "places" ".emacs-places"))
-(setq save-place-forget-unreadable-files nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (define-key my-keys-mode-map (kbd "M-c") 'capitalize-dwim)
-(setq vc-follow-symlinks t) ;; it asks you everytime otherwise
-(define-key my-keys-mode-map (kbd "<f5>") 'revert-buffer)
-(global-unset-key  ( kbd "<prior>"))
-(global-unset-key  ( kbd "<next>"))
-(global-unset-key  ( kbd "<home>"))
-(global-unset-key  ( kbd "<end>"))
-(define-key my-keys-mode-map (kbd "C-<prior>") 'scroll-down-line)
-(define-key my-keys-mode-map (kbd "C-<next>") 'scroll-up-line)
-(define-key my-keys-mode-map (kbd "C-S-<prior>") 'scroll-down-line)
-(define-key my-keys-mode-map (kbd "C-S-<next>") 'scroll-up-line)
-(define-key my-keys-mode-map (kbd "C-c d") 'delete-file)
-(defun pass () "A function that does nothing" (interactive))
-(setq tab-always-indent 'complete)
 (define-key my-keys-mode-map (kbd "<deletechar>") 'hungry-delete-forward)
+(savehist-mode +1)
+(setq tab-always-indent 'complete)
 (setq require-final-newline t)
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
@@ -197,8 +168,10 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (setq savehist-additional-variables
       '(search-ring regexp-search-ring)
       savehist-autosave-interval 60)
-(savehist-mode +1)
 (require 'recentf) ;; save recent files
+(add-to-list 'recentf-exclude "\\.windows\\'")
+(add-to-list 'recentf-exclude "\\.revive\\'")
+(add-to-list 'recentf-exclude "\\/ssh:\\'")
 (setq recentf-max-saved-items 500
       recentf-max-menu-items 15
       recentf-auto-cleanup 'never)
@@ -208,14 +181,10 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (super-save-mode +1)
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
-(define-key my-keys-mode-map (kbd "M-n") 'forward-paragraph)
-(define-key my-keys-mode-map (kbd "M-p") 'backward-paragraph)
-
-
 ```
 
 
-## Copy line below
+### Copy line below
 
 Use `Alt-up/down` as in any other editor to copy lines
 
@@ -246,13 +215,10 @@ Use `Alt-up/down` as in any other editor to copy lines
     )
   )
 
-
-(define-key my-keys-mode-map [(control shift down)]  'duplicate-line-down)
-(define-key my-keys-mode-map [(control shift up)]  'duplicate-line-up) 
 ```
 
 
-## Making parenthesis smart
+### Making parenthesis smart
 
 Those are pretty much a must when editing code&#x2026;and also anything else
 
@@ -275,28 +241,20 @@ Those are pretty much a must when editing code&#x2026;and also anything else
 (wrap-region-add-wrapper "<" ">")
 (wrap-region-add-wrapper ">" "<")
 
-
-
-
-
-
-
 (wrap-region-global-mode t)
+
 
 (require 'smartparens)
 (smartparens-global-mode 1)
-
-
-
-
 ```
 
 
-## Bytecompiling everything
+### Bytecompiling everything
 
 This function will bytecompile everything that it finds in the .emacs.d directory. This could boots the performance of emacs
 
 ```emacs-lisp
+
 (defun byte-compile-init-dir ()
   "Byte-compile all your dotfiles."
   (interactive)
@@ -310,27 +268,11 @@ This function will bytecompile everything that it finds in the .emacs.d director
                   (delete-file (concat buffer-file-name "c"))))
             nil
             t))
-
 (add-hook 'emacs-lisp-mode-hook 'remove-elc-on-save)
-
-
 ```
 
 
-## Custom key bindings(some of it!)
-
-```emacs-lisp
-
-(define-key my-keys-mode-map (kbd "C-+") 'text-scale-increase)
-(define-key my-keys-mode-map (kbd "C--") 'text-scale-decrease)
-(define-key my-keys-mode-map (kbd "C-z") 'pass)
-(define-key my-keys-mode-map (kbd "C-x r e") 'eval-region)
-(define-key my-keys-mode-map (kbd "<f5>") 'revert-buffer)
-
-```
-
-
-## Smart moving to the beginning of as line
+### Smart moving to the beginning of as line
 
 ```emacs-lisp
 (defun smarter-move-beginning-of-line (arg)
@@ -355,24 +297,220 @@ point reaches the beginning or end of the buffer, stop there."
     (move-beginning-of-line 1)
     (when (= orig-point (point))
       (back-to-indentation))))
+```
 
-(define-key my-keys-mode-map (kbd "C-a") 'smarter-move-beginning-of-line)
+-   Keybindings
+
+```emacs-lisp
+(bind-key* "C-a" 'smarter-move-beginning-of-line)
 ```
 
 
-## Preventing closing Emacsclient
+### Preventing closing Emacsclient
 
 When you run Emacs as daemon and you connect clients to it, hitting `C-x C-c` will close the client without asking even though `confirm-kill-emacs` is set to *true*. This snippet will notice if Emacs is ran as daemon and will always ask me to close the current client.
 
 ```emacs-lisp
+(when (daemonp)
+  (bind-key* "C-x C-c" 'ask-before-closing))
+```
+
+
+## Applications
+
+
+### GDB
+
+```emacs-lisp
+(setq gdb-many-windows t
+      gdb-show-main t)
+```
+
+
+### Ediff
+
+```emacs-lisp
+(setq ediff-window-setup-function 'ediff-setup-windows-plain
+      ediff-split-window-function 'split-window-horizontally)
+```
+
+
+### Tramp
+
+```emacs-lisp
+(tramp-unload-tramp)
+;; (require 'tramp)
+;; (setq tramp-default-method "ssh"
+;;       tramp-backup-directory-alist backup-directory-alist
+;;       tramp-ssh-controlmaster-options "ssh")
+```
+
+
+### Docview
+
+```emacs-lisp
+(setq doc-view-continuous t)
+```
+
+
+### Dired
+
+```emacs-lisp
+(require 'dired)
+
+  (setq dired-dwim-target t
+        dired-recursive-copies 'top
+        dired-recursive-deletes 'top
+        dired-listing-switches "-alh")
+
+  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+
+```
+
+
+## Function Definitions
+
+```emacs-lisp
+
+(defun display-startup-echo-area-message ()
+  (message "Let the games begin!"))
+
 (defun ask-before-closing ()
   "Close only if y was pressed."
   (interactive)
   (if (y-or-n-p (format "Are you sure you want to close this frame? ")) (save-buffers-kill-emacs)
     (message "Canceled frame close")))
 
-(when (daemonp)
-  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+
+(defun setup-packages () 
+  (interactive)
+  (setq package-archives '())
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
+  (package-refresh-contents)
+  )
+
+(defun list-installed-packages ()
+  "docstring"
+  (interactive)
+  (describe-variable 'package-activated-list)
+  )
+
+(defun transpose-windows (arg) ;; yes, I know, there is also a crux-function that does the exact same thing...still...!!!
+  "Transpose the buffers shown in two windows."
+  (interactive "p")
+  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+    (while (/= arg 0)
+      (let ((this-win (window-buffer))
+            (next-win (window-buffer (funcall selector))))
+        (set-window-buffer (selected-window) next-win)
+        (set-window-buffer (funcall selector) this-win)
+        (select-window (funcall selector)))
+      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+
+(defun find-myinit-file ()
+  "Open the myinit.org file which is my actual configuration file."
+  (interactive)
+(find-file-other-window 
+ (concat 
+  (concat (file-name-directory user-init-file) ".emacs.d/") "myinit.org")))
+
+(defun comment-or-uncomment-region-or-line ()
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive)
+  (save-excursion 
+    (let (beg end)
+      (if (region-active-p)
+          (setq beg (region-beginning) end (region-end))
+        (setq beg (line-beginning-position) end (line-end-position)))
+      (comment-or-uncomment-region beg end))))
+
+(defun my/term-toggle-mode ()
+  "Toggles term between line mode and char mode"
+  (interactive)
+  (if (term-in-line-mode)
+      (term-char-mode)
+    (term-line-mode)))
+
+(defun fd-switch-dictionary()
+  (interactive)
+  (let* ((dic ispell-current-dictionary)
+    	 (change (if (string= dic "deutsch8") "english" "deutsch8")))
+    (ispell-change-dictionary change)
+    (message "Dictionary switched from %s to %s" dic change)
+    ))
+
+(defun toggle-transparency ()
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(85 . 80) '(100 . 100)))))
+
+(defun hot-expand (str)
+  "Expand org template."
+  (insert str)
+  (org-try-structure-completion))
+
+
+(defun pass () "A function that does nothing" (interactive))
+```
+
+
+## Keybindings
+
+```emacs-lisp
+(bind-key* "C-<f1>" 'toggle-transparency)
+(bind-key* "M-<f8>" 'fci-mode)
+(bind-key* "<f9>" 'menu-bar-mode)
+(bind-key* "C-<f9>" 'hide-mode-line-mode)
+(bind-key* "<f10>" 'tool-bar-mode)
+(bind-key* "C-<f10>" 'scroll-bar-mode)
+(bind-key* "C-<f12>" 'nlinum-mode)
+
+(define-key my-keys-mode-map (kbd "M-n") 'forward-paragraph)
+(define-key my-keys-mode-map (kbd "M-p") 'backward-paragraph)
+(define-key my-keys-mode-map (kbd "<f5>") 'revert-buffer)
+
+(bind-key* "C-<prior>" 'scroll-down-line)
+(bind-key* "C-<next>" 'scroll-up-line)
+(bind-key* "C-S-<prior>" 'scroll-down-line)
+(bind-key* "C-S-<next>" 'scroll-up-line)
+(bind-key* "C-c d" 'delete-file)
+
+(bind-key* "C-S-<down>"  'duplicate-line-down)
+(bind-key* "C-S-<up>"  'duplicate-line-up)
+
+
+(bind-key* "C-+" 'text-scale-increase)
+(bind-key* "C--" 'text-scale-decrease)
+(bind-key* "C-z" 'pass)
+(bind-key* "C-x r e" 'eval-region)
+(bind-key* "<f5>" 'revert-buffer)
+
+```
+
+Disable some keybindgs cuz' those are just annoying
+
+```emacs-lisp
+(global-unset-key  ( kbd "<prior>"))
+(global-unset-key  ( kbd "<next>"))
+(global-unset-key  ( kbd "<home>"))
+(global-unset-key  ( kbd "<end>"))
+(global-unset-key  ( kbd "<insert>"))
+```
+
+
+# Modalka
+
+```emacs-lisp
+(require 'modalka)
+(bind-key* "<f13>" 'modalka-mode)
 ```
 
 
@@ -408,9 +546,6 @@ Org-mode is awesome not just for note taking but also for general text editing, 
  '(org-startup-folded (quote overview))
  '(org-startup-indented t)
  )
-
-(define-key global-map "\C-ca" 'org-agenda)
-(define-key global-map "\C-cc" 'org-capture)
 
 (setq org-log-done 'time)
 
@@ -464,8 +599,7 @@ Some extra export backends for org-mode that come in handy.
 ## Org-extras
 
 ```emacs-lisp
-;; (require 'ox-extra)
-;; (ox-extras-activate '(ignore-headlines))
+(require 'ox-extra)
 
 (defun org-remove-headlines (backend)
   "Remove headlines with :no_title: tag."
@@ -480,13 +614,6 @@ Some extra export backends for org-mode that come in handy.
 
 ```emacs-lisp
 (setq org-reverse-note-order t)
-
-(defun capture-file (path)
-  (interactive)
-  (let ((name (read-string "Name: ")))
-    (expand-file-name name path)))
-
-;; (write-region "New file\n" nil (capture-file "~/Dropbox/orgfiles/works/"))
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Captured TODOS")
@@ -592,42 +719,61 @@ For some reasons I have to call this after I've *require*-d all the exporters' b
 ```
 
 
+## Keybinds
+
+```emacs-lisp
+(bind-key* "C-c a" 'org-agenda)
+(bind-key* "C-c c" 'org-capture)
+```
+
+    org-capture
+
+
 # Windowing
 
 Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using `C-x o` so `windmove` is set up to work with `C-c` and the arrow keys
 
+
+## Ace window
+
+For easy navigation between several monitors.
+
 ```emacs-lisp
-(defun transpose-windows (arg) ;; yes, I know, there is also a crux-function that does the exact same thing...still...!!!
-  "Transpose the buffers shown in two windows."
-  (interactive "p")
-  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-    (while (/= arg 0)
-      (let ((this-win (window-buffer))
-            (next-win (window-buffer (funcall selector))))
-        (set-window-buffer (selected-window) next-win)
-        (set-window-buffer (funcall selector) this-win)
-        (select-window (funcall selector)))
-      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
-
-(define-key ctl-x-4-map (kbd "t") 'transpose-windows)
-
-(define-key my-keys-mode-map (kbd "C-c <left>")  'windmove-left)
-(define-key my-keys-mode-map (kbd "C-c <right>") 'windmove-right)
-(define-key my-keys-mode-map (kbd "C-c <up>")    'windmove-up)
-(define-key my-keys-mode-map (kbd "C-c <down>")  'windmove-down)
-
-
 ;; when working with two monitors this is really helpful
 (require 'ace-window)
-(define-key my-keys-mode-map (kbd "C-x o") 'ace-window)
+```
 
+
+## Framer
+
+My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs&#x2026; functionality that already exist.
+
+```emacs-lisp
 (load "~/.emacs.d/lisp/arnaud-framer.el")
 (require 'arnaud-framer)
 (global-framer-mode nil)
+```
 
 
+## Golder Ration
+
+When used, it keeps the focused window the biggest while still having the other ones in a "golder ratioed" size.
+
+```emacs-lisp
 (require 'golden-ratio)
+```
 
+
+## Keybindgs
+
+```emacs-lisp
+(bind-key* "C-x 4 t" 'transpose-windows)
+(bind-key* "C-c <left>"  'windmove-left)
+(bind-key* "C-c <right>" 'windmove-right)
+(bind-key* "C-c <up>"    'windmove-up)
+(bind-key* "C-c <down>"  'windmove-down)
+
+(bind-key* "C-x o" 'ace-window)
 ```
 
 
@@ -645,22 +791,23 @@ Couple of minor setups that make working with frames a little bit easier. In a l
 (setq search-whitespace-regexp ".*?")
 
 (require 'swiper)
-(define-key my-keys-mode-map (kbd "C-c M-s")  'swiper)
-(define-key my-keys-mode-map (kbd "C-s")  'isearch-forward)
-
-
-
 
 (require 'ivy)
 (setq ivy-display-style (quote fancy))
 
 
-
 (require 'anzu)
 (global-anzu-mode +1)
-(global-set-key (kbd "M-%") 'anzu-query-replace)
-(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
+```
 
+
+## Keybindgs
+
+```emacs-lisp
+(bind-key* "C-c M-s"  'swiper)
+(bind-key* "C-s"  'isearch-forward)
+(bind-key* "M-%" 'anzu-query-replace)
+(bind-key* "C-M-%" 'anzu-query-replace-regexp)
 ```
 
 
@@ -673,7 +820,6 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 ```emacs-lisp
 (require 'helm)
 (require 'helm-config)
-
 
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
@@ -692,28 +838,11 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 (setq helm-M-x-fuzzy-match t)
 
 (setq helm-exit-idle-delay 0)
+(setq helm-ag-fuzzy-match t)
 
-
-(define-key my-keys-mode-map (kbd "C-x C-f") 'helm-find-files)  
 (setq helm-autoresize-max-height 0)
 (setq helm-autoresize-min-height 50)
 (helm-autoresize-mode 1)
-(define-key my-keys-mode-map (kbd "M-x") 'helm-M-x)
-(define-key my-keys-mode-map (kbd "C-x b") 'helm-mini)
-(define-key my-keys-mode-map (kbd "C-c b") 'helm-semantic-or-imenu)
-
-(define-key my-keys-mode-map (kbd "M-s") 'helm-projectile-ag)
-
-
-;;search and install apt packages through Emacs...crazy, I know!!!
-(define-key my-keys-mode-map (kbd "C-x c C-a") 'helm-apt)
-(define-key my-keys-mode-map (kbd "C-x c M-m") 'helm-complete-file-name-at-point)
-
-(define-key my-keys-mode-map (kbd "C-x c C-s") 'helm-occur-from-isearch)
-
-(define-key my-keys-mode-map (kbd "C-x r h") 'helm-register)
-
-(define-key my-keys-mode-map (kbd "M-y") 'helm-show-kill-ring)
 
 (helm-mode 1)
 (helm-autoresize-mode 1)
@@ -721,16 +850,34 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 ```
 
 
+## Keybindgs
+
+```emacs-lisp
+(bind-key* "C-x C-f" 'helm-find-files)  
+(bind-key* "M-x" 'helm-M-x)
+(bind-key* "C-x b" 'helm-mini)
+(bind-key* "C-c b" 'helm-semantic-or-imenu)
+(bind-key* "M-s" 'helm-projectile-ag)
+(bind-key* "C-x c C-a" 'helm-apt)
+(bind-key* "C-x c M-m" 'helm-complete-file-name-at-point)
+(bind-key* "C-x c C-s" 'helm-occur-from-isearch)
+(bind-key* "C-x r h" 'helm-register)
+(bind-key* "M-y" 'helm-show-kill-ring)
+```
+
+
 # Undo tree
 
 ```emacs-lisp
 (require 'undo-tree)
-
-(define-key my-keys-mode-map (kbd "C-x u") 'undo-tree-visualize)
-
 ```
 
-    undo-tree-visualize
+
+## Keybindgs
+
+```emacs-lisp
+(bind-key* "C-x u" 'undo-tree-visualize)
+```
 
 
 # Avy
@@ -741,20 +888,32 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 
 ```emacs-lisp
 (require 'avy)
-(define-key my-keys-mode-map (kbd "C-c C-f") 'avy-goto-char)
+```
+
+
+## Keybindgs
+
+```emacs-lisp
+(bind-key* "C-c C-f" 'avy-goto-char)
 ```
 
 
 # Iy
 
-Go to next CHAR which is similar to "f" and "t" in *vim*. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression `int funcName(int a, int b)`, the cursor is at the beginning of the expression and you type `C-SPC C-c f (` you won't mark everything till the `(` (now I believer this sentence to be lie). Still useful though.
+Go to next CHAR which is similar to "f" and " t" in *vim*. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression `int funcName(int a, int b)`, the cursor is at the beginning of the expression and you type `C-SPC C-c f (` you won't mark everything till the `(` (now I believer this sentence to be lie). Still useful though.
 
 -   [iy-go-to-char](https://github.com/doitian/iy-go-to-char)
 
 ```emacs-lisp
 (require 'iy-go-to-char)
-(define-key my-keys-mode-map (kbd "C-c f") 'iy-go-up-to-char)
-(define-key my-keys-mode-map (kbd "C-c F") 'iy-go-up-to-char-backward)
+```
+
+
+## Keybindgs
+
+```emacs-lisp
+(bind-key* "C-c f" 'iy-go-up-to-char)
+(bind-key* "C-c F" 'iy-go-up-to-char-backward)
 ```
 
 
@@ -786,45 +945,55 @@ Syntax error-checking on the fly (haha!) while working on code. It's convenient 
 
 # Python
 
-I use Python a lot these days. Yet, my python setup in *Emacs* is less than minimal. I don't know what to say to you. I guess emacs is that good with python by default.
+I use Python a lot these days. Yet, my python setup in *Emacs* is less than minimal. I don't know what to say to you. I guess Emacs is that good with python by default. Myeah, that was a lie from the past. My python setup has evolved since then. I use quite a few packages that transform my Emacs into fully fledged python IDE.
 
 ```emacs-lisp
-(add-hook 'python-mode-hook 'jedi:setup)
 
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
+(require 'anaconda-mode)
+(require 'py-yapf)
+(require 'pip-requirements)
+(require 'sphinx-doc)
+(require 'elpy)
 
-(setq jedi:tooltip-method nil)
+(add-to-list 'auto-mode-alist '("\\.py\\'" .  python-mode))
+(add-to-list 'auto-mode-alist '("\\requirements.txt\\'" . pip-requirements-mode))
+
 
 (setq elpy-rpc-backend "jedi")
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+(setq jedi:tooltip-method nil)
 (setq jedi:get-in-function-call-delay 0)
-
-(add-hook 'python-mode-hook 'jedi:ac-setup)
-
-
-
-
-(defun my-python-setup ()
-  (interactive)
-  (setq indent-tabs-mode t
-	python-indent-offset 4
-	electric-indent-chars (delq ?: electric-indent-chars)))
-;; (add-hook 'python-mode-hook 'my-python-setup)
+(setq elpy-company-add-completion-from-shell t)
 
 (setq python-shell-interpreter "python"
       python-shell-interpreter-args "-i")
 
-(require 'anaconda-mode)
-
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
-(require 'py-yapf)
-
-(require 'pip-requirements)
-(add-to-list 'auto-mode-alist '("\\requirements.txt\\'" . pip-requirements-mode))
+```
 
 
+## Hooks
+
+```emacs-lisp
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'elpy-enable)
+(add-hook 'python-mode-hook 'sphinx-doc-mod)
+```
+
+
+## Keybindings
+
+```emacs-lisp
+(define-key elpy-mode-map [remap elpy-nav-forward-block] nil)
+(define-key elpy-mode-map [remap elpy-nav-backward-block] nil)
+(define-key elpy-mode-map [remap elpy-nav-backward-indent] nil)
+(define-key elpy-mode-map [remap elpy-nav-forward-indent] nil)
+
+(bind-key* "M-j e d" 'sphinx-doc)
+(bind-key* "M-j e t" 'elpy-test)
+(bind-key* "M-j e f" 'elpy-format-code)
+(bind-key* "M-j e ." 'elpy-goto-definition)
 ```
 
 
@@ -880,14 +1049,16 @@ These packages add some minor tweak to EMACS to make text editing easier.
 ```emacs-lisp
 (require 'crux)
 
+
+
 (define-key my-keys-mode-map (kbd "C-c o") 'crux-open-with)
 (define-key my-keys-mode-map (kbd "C-c r") 'crux-rename-file-and-buffer)
+(define-key my-keys-mode-map (kbd "C-c i") 'find-myinit-file)
 (define-key my-keys-mode-map (kbd "C-c I") 'crux-find-user-init-file)
+(define-key my-keys-mode-map (kbd "C-c 1") 'crux-create-scratch-buffer)
 (define-key my-keys-mode-map (kbd "C-c S") 'crux-find-shell-init-file)
 (define-key my-keys-mode-map (kbd "M-k") 'crux-kill-line-backwards)
 (define-key my-keys-mode-map (kbd "C-c t") 'crux-visit-term-buffer)
-
-
 
 ```
 
@@ -935,15 +1106,7 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 -   [function-args](https://github.com/abo-abo/function-args) - package that provies smart completion for function arguments. Works perfectly with **yasnippets**.
 
 ```emacs-lisp
-(defun comment-or-uncomment-region-or-line ()
-  "Comments or uncomments the region or the current line if there's no active region."
-  (interactive)
-  (save-excursion 
-    (let (beg end)
-      (if (region-active-p)
-          (setq beg (region-beginning) end (region-end))
-        (setq beg (line-beginning-position) end (line-end-position)))
-      (comment-or-uncomment-region beg end))))
+
 
 (define-key my-keys-mode-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
 (setq c-default-style
@@ -1061,7 +1224,6 @@ Get it here -> [PROJECTILE!!!](https://github.com/bbatsov/projectile)
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
-(define-key my-keys-mode-map [f4] 'projectile-find-other-file)
 (setq projectile-project-search-path '("~/code/" "~/core.d/code/"))
 ```
 
@@ -1073,8 +1235,10 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 -   [neotree](https://github.com/jaypei/emacs-neotree)
 
 ```emacs-lisp
-(require 'neotree)
-(require 'all-the-icons)
+;; (require 'neotree)
+;; (require 'all-the-icons)
+
+(load-file "/home/arnaud/code/neotree/neotree.el")
 
 (define-key my-keys-mode-map [f1] 'neotree-toggle)
 (define-key my-keys-mode-map [f2] 'neotree-find)
@@ -1260,9 +1424,9 @@ This package makes your `C-x C-b` (*list-buffers*) pretty. You can even specify 
            (mode . tex-mode)
            (mode . latex-mode)
            (name . ".tex")
-           (name . ".bib")
-           ))
-
+           (name . ".bib")))
+         ("4Chan"
+          (mode . q4))
          ("Text" (name . ".txt"))
          ("JS" 
           (or (mode . "JavaScript")
@@ -1306,14 +1470,8 @@ My choice of terminal envinroment in my emacs is *Terminal Emulator/(term). Ther
 ```emacs-lisp
 (require 'term)
 
-(define-key my-keys-mode-map [f3] 'term)
 
-(defun my/term-toggle-mode ()
-  "Toggles term between line mode and char mode"
-  (interactive)
-  (if (term-in-line-mode)
-      (term-char-mode)
-    (term-line-mode)))
+
 
 (define-key term-mode-map (kbd "C-c C-j") 'my/term-toggle-mode)
 (define-key term-mode-map (kbd "C-c C-k") 'my/term-toggle-mode)
@@ -1337,23 +1495,16 @@ For some reason I must set the right *python* command each time I start emacs. T
 
 # Spellchecking
 
-Yeso, I am a ~~hirroble~~ horrible speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find `C-c s` to be most intuitive for correcting misspelled words. **flyspell-popup** is a handy little thing that is pretty much company for showing a list of possible **correct** words. [flyspell-popup](https://github.com/xuchunyang/flyspell-popup)
+Yeso, I am a ~~hirroble~~ horrible speller. Thank god that there are tools that help me live my miserable uneducated life. I often have to write in german too so I have custom dictionary switching key-binding. Other than that, I find `C-c s` to be most intuitive for correcting misspelled words. **flyspell-popup** is a handy little thing that is pretty much company for showing a list of possible **correct** words. The mode can be swithed on and off with `C-<f8>` [flyspell-popup](https://github.com/xuchunyang/flyspell-popup)
 
 ```emacs-lisp
 (require 'flyspell)
 (define-key flyspell-mode-map (kbd "C-c s") #'flyspell-popup-correct)
 
-;,(add-hook 'flyspell-mode-hook #'flyspell-popup-auto-correct-mode)
 
-(defun fd-switch-dictionary()
-  (interactive)
-  (let* ((dic ispell-current-dictionary)
-    	 (change (if (string= dic "deutsch8") "english" "deutsch8")))
-    (ispell-change-dictionary change)
-    (message "Dictionary switched from %s to %s" dic change)
-    ))
 
 (define-key my-keys-mode-map (kbd "<f8>")   'fd-switch-dictionary)
+(define-key my-keys-mode-map (kbd "C-<f8>") 'flyspell-mode)
 
 ```
 
@@ -1420,7 +1571,6 @@ I used to use [*TexMaker*](http://www.xm1math.net/texmaker/TexMaker/) for writin
 ```emacs-lisp
 (require 'tex)
 
-
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -1431,18 +1581,18 @@ I used to use [*TexMaker*](http://www.xm1math.net/texmaker/TexMaker/) for writin
 (add-hook 'LaTeX-mode-hook 'pretty-mode)
 (add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
 
-
-
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
 (TeX-global-PDF-mode t)
 
 (require 'latex-preview-pane)
+
 (define-key my-keys-mode-map (kbd "C-c l p") 'latex-preview-pane-mode)
-
 (define-key my-keys-mode-map (kbd "C-c l b") 'helm-bibtex-with-local-bibliography)
+(define-key my-keys-mode-map (kbd "C-c l M-p") 'latex-preview-pane-update)
 
+(define-key my-keys-mode-map (kbd "C-c l") 'TeX-command-master)
 
 (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
 (setq TeX-view-program-selection '((output-pdf "Evince")))
@@ -1458,7 +1608,7 @@ Not exactly what the heading suggests but I've recently learned some vim keybind
 
 > Emacs is a nice Operating System but it lacks decent editor &#x2014; Someone big in the Emacs Community
 
-This package adds some handy functionality to `M-w`. Basically, after the initial command, through key strokes one can select very precisely-ish what is to be put in the kill ring.
+This package adds some handy functionality to `M-w`. Basically, after the initial command, through key strokes one can select very precisely-ish what is to be put in the kill ring. You can for example hit `M-w` once to "select" the current region but then press `w` again to select the current word. After that you can continue pressing `w` to select one more word.
 
 -   [easy-kill](https://github.com/leoliu/easy-kill)
 
@@ -1483,12 +1633,13 @@ When writing code I lot of times I mark the things I've just typed and hit *Tab*
  '(and (derived-mode-p 'c++-mode)
        (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
                            (thing-at-point 'line)))))
+
 ```
 
 
 # Modline
 
-Making the modeline a little bit prettier and more spece efficient than the default. `smart-mode-line` is the "main" package and `telephone-line` is there just to make the separators nicer.
+Making the modeline a little bit prettier and more spece efficient than the default. I should say that I am kind of guilty for liking the [Spacemacs](http://spacemacs.org) modeline a little too much. My current setup is more or less resembling that. The current package that I am using is [spaceline](https://github.com/TheBB/spaceline) which as far as I understand is created for people like me. Some of the packages for modelines that I've gone over are:
 
 -   [telephone-line](https://github.com/dbordak/telephone-line)
 -   [smart-mode-line](https://github.com/Malabarba/smart-mode-line)
@@ -1496,16 +1647,26 @@ Making the modeline a little bit prettier and more spece efficient than the defa
 Preview: ![img](../mode-line.png)
 
 ```emacs-lisp
-(require 'telephone-line)
-(telephone-line-mode 1)
+(require 'spaceline)
+(require 'spaceline-config)
 
-(require 'powerline)
-(powerline-revert)
-(powerline-center-theme)
+(spaceline-helm-mode)
+(spaceline-info-mode)
 
-;; (setq sml/no-confirm-load-theme t)
-;; (sml/setup)
-;; (setq sml/theme 'automatic)
+(setq powerline-default-separator 'wave)
+(setq powerline-height 23)
+
+(spaceline-highlight-face-default)
+
+(spaceline-toggle-projectile-root-on)
+(spaceline-toggle-version-control-on)
+(spaceline-toggle-buffer-modified-on)
+(spaceline-toggle-minor-modes-on)
+(spaceline-toggle-projectile-root-on)
+(spaceline-toggle-hud-off)
+(spaceline-toggle-buffer-encoding-abbrev-off)
+
+(spaceline-emacs-theme)
 ```
 
 
@@ -1730,10 +1891,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to `C
 ## Org templates expansions
 
 ```emacs-lisp
-(defun hot-expand (str)
-  "Expand org template."
-  (insert str)
-  (org-try-structure-completion))
+
 
 (defhydra arnaud-hydra-org-template (:color blue
                                  :hint nil)
@@ -1976,6 +2134,9 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 
 -   [company](http://company-mode.github.io/)
 
+
+## Basic setup
+
 ```emacs-lisp
 
 (setq company-minimum-prefix-length 3
@@ -1985,21 +2146,21 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
       company-show-numbers nil
       company-echo-truncate-lines nil)
 (global-company-mode t)
+
 (define-key my-keys-mode-map (kbd "M-m") 'company-complete)
+(define-key company-active-map (kbd "C-n") 'company-select-next-or-abort)
+(define-key company-active-map (kbd "C-p") 'company-select-previous-or-abort)
 
-
-(setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend))
 (setq company-backends '())
+(setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend))
+(setq company-tooltip-maximum-width 100)
+(setq company-tooltip-minimum-width 100)
 
 
 (face-spec-set 'company-preview '((t (:background "#444444" :foreground "light sky blue"))))
 (face-spec-set 'company-tooltip '((t (:background "#444444" :foreground "light sky blue"))))
 (face-spec-set 'company-tooltip-annotation '((t (:foreground "deep sky blue"))))
 
-
-
-(setq company-tooltip-maximum-width 100)
-(setq company-tooltip-minimum-width 100)
 
 (require 'company-meghanada)
 (require 'company)
@@ -2009,92 +2170,166 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (require 'company-irony)
 (require 'company-nxml)
 (require 'company-anaconda)
+```
+
+In my experience, setting up the backends of company properly is not the easiest thing. I've tried a lot of things and I've finally come up with this approach. I've defined a function that sets up the right backends for each task of mine. The functions are first bound to hooks so that the whole thing is kinda automatic. This, however, does not seem to work in one hundred percent of the cases. Therefore, I also can call the functions through some keybindings and/or hydra.
+
+
+## Function definitions
+
+The definitions of all the functions for the backends setups.
+
+-   basic packages variable - I use the backends in this variable across all modes
+
+```emacs-lisp
+(defvar basic-company-backends '(company-files         
+                                 company-capf
+                                 company-dabbrev-code
+                                 company-keywords
+                                 company-dabbrev))
+```
+
+-   functions
+
+```emacs-lisp
+(defun my-company-basic-backends (args)
+  (interactive)
+  (setq company-backends `(,basic-company-backends)))
+
+(defun  my-company-nxml-backends ()
+  (interactive)
+  (message "Basic backends engaged.")
+  (setq company-backends `(company-capf
+                           ,basic-company-backends)))
+
+(defun  my-company-nxml-backends ()
+  (interactive)
+  (message "xXML backends engaged.")
+  (setq company-backends `(company-capf
+                           ,basic-company-backends)))
+
+(defun my-company-java-backends ()
+  (interactive)
+  (message "Java backends engaged.")
+  (setq company-backends `(company-meghanada
+                           ,basic-company-backends)))
 
 
 
+(defun my-company-c++-backends ()
+  (interactive)
+  (message "C++ backends engaged.")
+  (setq company-backends `(company-irony
+                           company-c-headers
+                           company-irony-c-headers
+                           ,basic-company-backends)))
 
-(setq company-backends '((company-files         
-                          company-dabbrev-code
-                          company-keywords
-                          company-dabbrev
-                          )
-                         company-capf))
 
-
-
-(defun my/nxml-mode-hook ()
-  (setq company-backends '(company-nxml
-                           (company-files         
-                            company-dabbrev-code
-                            company-keywords)
-                           company-dabbrev
-                           company-capf)))
-(add-hook 'prog-mode-hook 'my/nxml-mode-hook)
+(defun my-company-cmake-backends ()
+  (interactive)
+  (message "CMake backends engaged.")
+  (setq company-backends `(company-cmake
+                           ,basic-company-backends)))
 
 
 
-
-(defun my/meghanada-mode-hook ()
-  (setq company-backends '(company-meghanada
-                           (company-files         
-                            company-dabbrev-code
-                            company-keywords)
-                           company-dabbrev
-                           company-capf)))
-(add-hook 'meghanada-mode-hook 'my/meghanada-mode-hook)
-
-(defun my/irony-mode-hook ()
-  (setq company-backends '(                         
-                           company-irony
-                           (
-                            company-files         
-                            company-dabbrev-code
-                            company-keywords )
-                           company-dabbrev
-                           company-capf
-                           )))
-(add-hook 'iorny-mode-hook 'my/irony-mode-hook)
-
-(defun my/cmake-mode-hook ()
-  (setq company-backends '(company-cmake
-                           (company-files         
-                            company-dabbrev-code
-                            company-keywords)
-                           company-dabbrev
-                           company-capf)))
-(add-hook 'cmake-mode-hook 'my/cmake-mode-hook)
+(defun my-company-python-backends ()
+  (interactive)
+  (message "Python backends engaged.")
+  (setq company-backends `(elpy-company-backend
+                           (company-anaconda
+                            company-jedi)
+                           ,basic-company-backends)))
 
 
-(defun my/python-mode-hook ()
-  (setq company-backends '(
-                           company-anaconda
-                           company-jedi
-                           (company-files         
-                            company-dabbrev-code
-                            company-keywords)
-                           company-dabbrev
-                           company-capf))
-  ((looking-at )mbda () (setq jedi-mode t))
-)
-(add-hook 'python-mode-hook 'my/python-mode-hook)
+(defun my-company-latex-backends ()
+  (interactive)
+  (message "Latex backends engaged.")
+  (setq company-backends `( (company-auctex-bibs
+                             company-auctex-macros
+                             company-auctex-labels
+                             company-auctex-symbols
+                             company-auctex-environments)
+                            ,basic-company-backends)))
 
-(defun my/latex-mode-hook ()
-  (setq company-backends
-        '( company-auctex-bibs
-           company-auctex-macros
-           company-auctex-labels
-           company-auctex-symbols
-           company-auctex-environments
-           (company-files         
-            company-dabbrev-code
-            company-keywords)
-           company-dabbrev
-           company-capf)))
-(add-hook 'cmake-mode-hook 'my/latex-mode-hook)
+(defun my-company-elisp-backends ()
+  (interactive)
+  (message "ELisp backends engaged.")
+  (setq company-backends `(company-capf
+                           ,basic-company-backends)))
+
+```
 
 
+## Hooks
+
+Automation&#x2026;60% of the time it works every time!
+
+```emacs-lisp
+(add-hook 'python-mode-hook 'my-company-python-backends)
+(add-hook 'nxml-mode-hook 'my-company-nxml-backends)
+(add-hook 'meghanada-mode-hook 'my-company-java-backends)
+(add-hook 'cmake-mode-hook 'my-company-latex-backends)
+(add-hook 'cmake-mode-hook 'my-company-cmake-backends)
+(add-hook 'c++-mode-hook 'my-company-c++-backends)
+(add-hook 'emacs-lisp-mode-hook 'my-company-elisp-backends)
+```
 
 
+## Hydra
+
+Hooks are nice but sometimes I want some finer control of which backends are activated in company.
+
+```emacs-lisp
+
+(defhydra arnaud-hydra-company (:color red
+                                       :hint nil)
+  "
+                       Company backends
+----------------------------------------------------------
+
+ _p_: Python   _l_: Latex     _e_: ELisp
+ _x_: nXML     _m_: CMake    
+ _j_: Java     _c_: C++            
+
+_b_: Basic
+
+ _q_: quit
+
+"
+  ("p" my-company-python-backends)
+  ("x" my-company-nxml-backends  )
+  ("j" my-company-java-backends  )
+  ("l" my-company-latex-backends )
+  ("m" my-company-cmake-backends )
+  ("c" my-company-c++-backends   )
+  ("e" my-company-elisp-backends )
+  ("b" my-company-basic-backends )
+  ("q" nil :color blue))
+```
+
+
+## Keybindgs
+
+Hydras are nice but sometimes I just want hit some keys and have what I want
+
+-   Quick keybinds to swtich backends
+
+```emacs-lisp
+(bind-key* "M-j c p" 'my-company-python-backends)
+(bind-key* "M-j c x" 'my-company-nxml-backends  )
+(bind-key* "M-j c j" 'my-company-java-backends  )
+(bind-key* "M-j c l" 'my-company-latex-backends )
+(bind-key* "M-j c m" 'my-company-cmake-backends )
+(bind-key* "M-j c c" 'my-company-c++-backends   )
+(bind-key* "M-j c e" 'my-company-elisp-backends )
+(bind-key* "M-j c b" 'my-company-basic-backends )
+```
+
+-   The Hydry-thingy
+
+```emacs-lisp
+(bind-key* "C-c h c" 'arnaud-hydra-company/body)
 ```
 
 
@@ -2105,7 +2340,10 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 ```
 
 
-# IEdit
+# Searching and replacing
+
+
+## IEdit
 
 IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with `M-i` and while editing the marked region, all other occurrences will be changed accordingly.
 
@@ -2113,7 +2351,23 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 
 ```emacs-lisp
 (require 'iedit)
-(define-key my-keys-mode-map (kbd "M-i") 'iedit-mode)
+```
+
+
+## Visual Regexp
+
+```emacs-lisp
+(require 'visual-regexp)
+(require 'visual-regexp-steroids)
+```
+
+
+## Keybindings
+
+```emacs-lisp
+(bind-key* "M-I" 'vr/select-query-replace)
+(bind-key* "M-i" 'iedit-mode)
+
 ```
 
 
@@ -2126,6 +2380,7 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 Yes, from time to time I do find myself saying "Ugh, vim has that one nice feature which can so usefull here in Emacsland". For that reason, I've created a binding that allows me to quickly jump in and out of [evil-mode](https://github.com/emacs-evil/evil). Evil &#x2013; or emulating vim layers as they call it &#x2013; is more or less full blown vim simulated in Emacs. The modal editing commands of vim are supported and are a joy to be used from time to time, even when one is hardcore Emacs fanboy.
 
 ```emacs-lisp
+
 (defun quick-evil () 
   (interactive)
   (if (bound-and-true-p evil-local-mode)
@@ -2141,4 +2396,170 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
 
 (define-key my-keys-mode-map (kbd "<f13>") 'quick-evil)
 
+
+```
+
+
+# Q4
+
+Through this packages, I can browse 4chan (only `/g` of course!) threads in my Emacs. It uses the json API of 4chan and renders everything in the editor itself. It even provides some nifty features that are not available in the vanilla 4chan website. I can browser through the replies of a given post, quickly jump to replies of replies and then go back up and also download (through *wget*) images/webms from 4chan directly from here, in my editor. God, I love Emacs.
+
+-   [q4](https://github.com/rosbo018/q4)
+
+```emacs-lisp
+;; https://boards.4chan.org/r9k/thread/49101515#p49101515 this one !
+(load-file "/home/arnaud/core.d/code/q4-fork/q4.el")
+
+(define-key my-keys-mode-map (kbd "M-j q") 'q4/browse-board)
+```
+
+
+# Which key
+
+Now, I generally know my Emacs keybindings but from time to time I have to look somethings up. The [which-key](https://github.com/justbur/emacs-which-key) packages in awesome in this regard. If I the start of some keybinding, a popup will show me how can I follow the binding and which functions will be I executing if I type something.
+
+```emacs-lisp
+
+(require 'which-key)
+(which-key-mode)
+(which-key-setup-side-window-bottom)
+
+;; the default setup for the package
+(setq which-key-idle-delay 1.0)
+(setq which-key-max-description-length 27)
+(setq which-key-add-column-padding 0)
+(setq which-key-max-display-columns nil)
+(setq which-key-separator " → " )
+(setq which-key-unicode-correction 3)
+(setq which-key-prefix-prefix "+" )
+(setq which-key-special-keys nil)
+(setq which-key-show-prefix 'left)
+(setq which-key-show-remaining-keys nil)
+
+```
+
+
+# Yagist
+
+```emacs-lisp
+(require 'yagist)
+
+(define-key my-keys-mode-map (kbd "M-j g l") 'yagist-list)
+(define-key my-keys-mode-map (kbd "M-j g b") 'yagist-region)
+(define-key my-keys-mode-map (kbd "M-j g r") 'yagist-buffer)
+
+
+```
+
+
+# Diminish
+
+The modeline can get pretty cluttered with minor modes pretty quickly. To avoid that I use the [diminish](https://github.com/emacsmirror/diminish) package. It allows me to specify modes that will not have any text in the modeline.
+
+```emcas-lisp
+(require 'diminish)
+```
+
+
+## Diminishing modes
+
+```emacs-lisp
+;; (diminish 'projectile-mode)
+(diminish 'smartparens-mode)
+(diminish 'wrap-region-mode)
+(diminish 'super-save-mode)
+(diminish 'volatile-highlights-mode)
+(diminish 'isearch-mode)
+(diminish 'yas-minor-mode)
+(diminish 'google-this-mode)
+(diminish 'wg-mode)
+(diminish 'workgroups-mode)
+(diminish 'drag-stuff-mode)
+(diminish 'flyspell-mode)
+(diminish 'helm-mode)
+(diminish 'eldoc-mode)
+(diminish 'global-framer-mode)
+(diminish 'framer-mode)
+(diminish 'anzu-mode)
+(diminish 'company-mode)
+(diminish 'beacon-mode)
+(diminish 'flycheck-mode)
+(diminish 'hungry-delete-mode)
+(diminish 'org-indent-mode)
+(diminish 'hs-minor-mode)
+(diminish 'which-key-mode)
+(diminish 'iedit-mode)
+(diminish 'modalka-mode "μ")
+(diminish 'visual-line-mode)
+(diminish 'hs-minor-mode)
+(diminish 'aggressive-indent-mode)
+(diminish 'org-indent-mode)
+(diminish 'sphinx-doc-mode)
+
+```
+
+
+# Funsies
+
+The world is full of useless things! We should use them all!! Emacs agrees!!
+
+
+## Weather
+
+That one cool site - [wttr](http://wttr.in/) - that I even use in my system setup to get weather information. It can also be used in Emacs so why the hell not.
+
+```emacs-lisp
+(require 'wttrin)
+(setq wttrin-default-cities '("Karlsruhe"
+                              "Sliven"
+                              "Sofia"))
+(setq wttrin-default-accept-language 
+      '("Accept-Language" . "en-US"))
+
+(bind-key* "M-j w"  'wttrin)
+
+```
+
+
+## XKCD
+
+This cute little thing with those cool little nerdy cody comics
+
+```emacs-lisp
+(require 'xkcd)
+(bind-key* "M-j x" 'xkcd)
+```
+
+
+## Touch typing
+
+I&#x2026; am not exactly a fast typist but I've really put time and effort into it. I regularly use [this](https://typing-speed-test.aoeu.eu/) one but Emacs is Emacs and everything should be Emacs. Just put everything in Emacs they said! So, [typit](https://github.com/mrkkrp/typit) is a small package that lets you practice touch typing right here into Emacs.
+
+```emacs-lisp
+(require 'typit)
+(bind-key* "M-j t b" 'typit-basic-test)
+(bind-key* "M-j t a" 'typit-advanced-test)
+```
+
+
+## Commands frequency
+
+This things will track which command is being run and how many times&#x2026; I just think it's cool.
+
+```elisp
+(require 'keyfreq)
+
+(setq keyfreq-excluded-commands
+        '(self-insert-command
+          org-self-insert-command
+          company-ignore
+          abort-recursive-edit
+          forward-char
+          modalka-mode
+          backward-char
+          previous-line
+          next-line))
+
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
 ```

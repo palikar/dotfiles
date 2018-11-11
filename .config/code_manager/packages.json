@@ -50,7 +50,8 @@
             "keras",
             "linux-4.19",
             "ov.el",
-            "cask"
+            "cask",
+            "company-smart-elisp"
         ]
         
     ],
@@ -472,6 +473,13 @@
             "install": "command",
             "command": "python go",
             "reinstall_command": "python go"
+        },
+        "company-smart-elisp": {
+            "download": "curl",
+            "URL": "https://github.com/Wilfred/company-smart-elisp",
+            "install": "command",
+            "command": "echo 'No command'",
+            "reinstall_command": "echo 'No command'"
         }
         
     }

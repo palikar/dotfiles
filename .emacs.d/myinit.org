@@ -1,4 +1,3 @@
-
 #+startup: overview
 
 #+title: Configuration file for my EMACS
@@ -82,7 +81,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 
 
-(define-key my-keys-mode-map (kbd "C-<Scroll_Lock>") 'list-installed-packages)
+(bind-key* "C-<Scroll_Lock>" 'list-installed-packages)
 ; activate all the packages (in particular autoloads)
 (package-initialize)
 
@@ -156,8 +155,8 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (set-keyboard-coding-system 'utf-8)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-(define-key my-keys-mode-map (kbd "M-c") 'capitalize-dwim)
-(define-key my-keys-mode-map (kbd "<deletechar>") 'hungry-delete-forward)
+(bind-key* "M-c" 'capitalize-dwim)
+(bind-key* "<deletechar>" 'hungry-delete-forward)
 (savehist-mode +1)
 (setq tab-always-indent 'complete)
 (setq require-final-newline t)
@@ -434,9 +433,9 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 (bind-key* "C-<f10>" 'scroll-bar-mode)
 (bind-key* "C-<f12>" 'nlinum-mode)
 
-(define-key my-keys-mode-map (kbd "M-n") 'forward-paragraph)
-(define-key my-keys-mode-map (kbd "M-p") 'backward-paragraph)
-(define-key my-keys-mode-map (kbd "<f5>") 'revert-buffer)
+(bind-key* "M-n" 'forward-paragraph)
+(bind-key* "M-p" 'backward-paragraph)
+(bind-key* "<f5>" 'revert-buffer)
 
 (bind-key* "C-<prior>" 'scroll-down-line)
 (bind-key* "C-<next>" 'scroll-up-line)
@@ -812,11 +811,19 @@ Syntax error-checking on the fly (haha!) while working on code. It's convenient 
 #+END_SRC
 
 * Python
-I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess emacs is that good with python by default. 
+I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess Emacs is that good with python by default. 
+\\
+Myeah, that was a lie from the past. My python setup has evolved since then. I use quite a few packages that transform my Emacs into fully fledged python IDE.
 #+BEGIN_SRC emacs-lisp :results none
 
-
+(require 'anaconda-mode)
+(require 'py-yapf)
+(require 'pip-requirements)
+(require 'sphinx-doc)
 (require 'elpy)
+
+(add-to-list 'auto-mode-alist '("\\.py\\'" .  python-mode))
+(add-to-list 'auto-mode-alist '("\\requirements.txt\\'" . pip-requirements-mode))
 
 
 (setq elpy-rpc-backend "jedi")
@@ -824,32 +831,32 @@ I use Python a lot these days. Yet, my python setup in /Emacs/ is less than mini
 (setq jedi:complete-on-dot t)
 (setq jedi:tooltip-method nil)
 (setq jedi:get-in-function-call-delay 0)
+(setq elpy-company-add-completion-from-shell t)
 
+(setq python-shell-interpreter "python"
+      python-shell-interpreter-args "-i")
+
+#+END_SRC
+
+** Hooks
+#+BEGIN_SRC emacs-lisp
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook 'elpy-enable)
+(add-hook 'python-mode-hook 'sphinx-doc-mod)
+#+END_SRC
+** Keybindings
 
-
+#+BEGIN_SRC emacs-lisp
 (define-key elpy-mode-map [remap elpy-nav-forward-block] nil)
 (define-key elpy-mode-map [remap elpy-nav-backward-block] nil)
 (define-key elpy-mode-map [remap elpy-nav-backward-indent] nil)
 (define-key elpy-mode-map [remap elpy-nav-forward-indent] nil)
 
-
-(add-to-list 'auto-mode-alist '("\\.py\\'" .  python-mode))
-
-(setq python-shell-interpreter "python"
-      python-shell-interpreter-args "-i")
-
-(require 'anaconda-mode)
-
-
-(require 'py-yapf)
-
-(require 'pip-requirements)
-(add-to-list 'auto-mode-alist '("\\requirements.txt\\'" . pip-requirements-mode))
-
-
+(bind-key* "M-j e d" 'sphinx-doc)
+(bind-key* "M-j e t" 'elpy-test)
+(bind-key* "M-j e f" 'elpy-format-code)
+(bind-key* "M-j e ." 'elpy-goto-definition)
 #+END_SRC
 * Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
@@ -858,14 +865,14 @@ One of the most useful packages that is pretty much a must for a emacs configura
 (require 'yasnippet)
 (require 'yasnippet-snippets)
 (yas-global-mode 1)
-(define-key my-keys-mode-map (kbd "C-c y n" ) 'yas/new-snippet)
-(define-key my-keys-mode-map (kbd "C-c y v" ) 'yas/visit-snippet-file)
-(define-key my-keys-mode-map (kbd "C-c y r" ) 'yas/reload-all)
+(bind-key* "C-c y n"  'yas/new-snippet)
+(bind-key* "C-c y v"  'yas/visit-snippet-file)
+(bind-key* "C-c y r"  'yas/reload-all)
 
 
 (require 'helm-c-yasnippet)
 (setq helm-yas-space-match-any-greedy t)
-(define-key my-keys-mode-map (kbd "C-c y h") 'helm-yas-complete)
+(bind-key* "C-c y h" 'helm-yas-complete)
 
 (setq yas-triggers-in-field t)
 
@@ -884,7 +891,7 @@ These packages add some minor tweak to EMACS to make text editing easier.
 (global-hungry-delete-mode)
 
 (require 'expand-region)
-(define-key my-keys-mode-map (kbd "C-c =") 'er/expand-region)
+(bind-key* "C-c =" 'er/expand-region)
 #+END_SRC
 ** CRUX
 ...is an abrabiation for /A Collection of Ridiculously Useful eXtensions for Emacs/, so yeah, pretty self-explenatory.
@@ -894,23 +901,23 @@ These packages add some minor tweak to EMACS to make text editing easier.
 
 
 
-(define-key my-keys-mode-map (kbd "C-c o") 'crux-open-with)
-(define-key my-keys-mode-map (kbd "C-c r") 'crux-rename-file-and-buffer)
-(define-key my-keys-mode-map (kbd "C-c i") 'find-myinit-file)
-(define-key my-keys-mode-map (kbd "C-c I") 'crux-find-user-init-file)
-(define-key my-keys-mode-map (kbd "C-c 1") 'crux-create-scratch-buffer)
-(define-key my-keys-mode-map (kbd "C-c S") 'crux-find-shell-init-file)
-(define-key my-keys-mode-map (kbd "M-k") 'crux-kill-line-backwards)
-(define-key my-keys-mode-map (kbd "C-c t") 'crux-visit-term-buffer)
+(bind-key* "C-c o" 'crux-open-with)
+(bind-key* "C-c r" 'crux-rename-file-and-buffer)
+(bind-key* "C-c i" 'find-myinit-file)
+(bind-key* "C-c I" 'crux-find-user-init-file)
+(bind-key* "C-c 1" 'crux-create-scratch-buffer)
+(bind-key* "C-c S" 'crux-find-shell-init-file)
+(bind-key* "M-k" 'crux-kill-line-backwards)
+(bind-key* "C-c t" 'crux-visit-term-buffer)
 
 #+END_SRC
 * Folding code
 A standard IDE feature that comes out of the box with emacs. Just a little tweak to give it nice keybindings. To note is that I use german QWERTZ keyboard so this won't work for all you QWERTY-Normies out there.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'prog-mode-hook 'hs-minor-mode)
-(define-key my-keys-mode-map (kbd "M-ü") 'hs-show-all)
-(define-key my-keys-mode-map (kbd "C-M-ü") 'hs-hide-all)
-(define-key my-keys-mode-map (kbd "C-ü") 'hs-toggle-hiding)
+(bind-key* "M-ü" 'hs-show-all)
+(bind-key* "C-M-ü" 'hs-hide-all)
+(bind-key* "C-ü" 'hs-toggle-hiding)
 #+END_SRC
 * C++
 At my work I use this emacs-configuration for a lot of c++ programming. Yet, similar to other sections, the c++ tweaks are...pretty much nothing. Emacs is just that good with no special c++ tweaks.
@@ -940,7 +947,7 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 #+BEGIN_SRC emacs-lisp
 
 
-(define-key my-keys-mode-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
+(bind-key* "C-/" 'comment-or-uncomment-region-or-line)
 (setq c-default-style
       '((java-mode . "java") (other . "awk")))
 (setq-default c-default-style "awk")
@@ -967,8 +974,8 @@ Another 'standard feature' of most editors but in emacs we have to set it up bec
 #+BEGIN_SRC emacs-lisp
 (require 'drag-stuff)
 (drag-stuff-global-mode)
-(define-key my-keys-mode-map (kbd "M-<up>") 'drag-stuff-up)
-(define-key my-keys-mode-map (kbd "M-<down>") 'drag-stuff-down)
+(bind-key* "M-<up>" 'drag-stuff-up)
+(bind-key* "M-<down>" 'drag-stuff-down)
 #+END_SRC
 * Web Mode
 From time to time I have to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
@@ -1048,8 +1055,8 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 
 (load-file "/home/arnaud/code/neotree/neotree.el")
 
-(define-key my-keys-mode-map [f1] 'neotree-toggle)
-(define-key my-keys-mode-map [f2] 'neotree-find)
+(bind-key* "<f1>" 'neotree-toggle)
+(bind-key* "<f2>" 'neotree-find)
 
 
 (setq neo-model-line-type 'none)
@@ -1168,7 +1175,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'ibuffer)
 (require 'ibuffer-projectile)
-(define-key my-keys-mode-map (kbd "C-x C-b") 'ibuffer)
+(bind-key* "C-x C-b" 'ibuffer)
 ;;(autoload 'ibuffer "ibuffer" "List buffers." t)
 (setq ibuffer-expert t)
 (setq ibuffer-show-empty-filter-groups nil)
@@ -1257,7 +1264,7 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
 (define-key term-mode-map (kbd "C-c C-k") 'my/term-toggle-mode)
 (define-key term-raw-map (kbd "C-c C-j") 'my/term-toggle-mode)
 (define-key term-raw-map (kbd "C-c C-k") 'my/term-toggle-mode)
-(define-key my-keys-mode-map (kbd "C-<f5>") 'compile)
+(bind-key* "C-<f5>" 'compile)
 
 
 
@@ -1277,8 +1284,8 @@ Yeso, I am a +hirroble+ horrible speller. Thank god that there are tools that he
 
 
 
-(define-key my-keys-mode-map (kbd "<f8>")   'fd-switch-dictionary)
-(define-key my-keys-mode-map (kbd "C-<f8>") 'flyspell-mode)
+(bind-key* "<f8>"   'fd-switch-dictionary)
+(bind-key* "C-<f8>" 'flyspell-mode)
 
 #+END_SRC
 * Google This
@@ -1302,11 +1309,11 @@ I also frequanlty use Zeal. It's an application housing tons of usefull document
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "firefox")
 (google-this-mode 1)
-(define-key my-keys-mode-map (kbd "C-c g") 'google-this-mode-submap)
-(define-key my-keys-mode-map (kbd "C-c g c") 'google-this-cpp-reference)
+(bind-key* "C-c g" 'google-this-mode-submap)
+(bind-key* "C-c g c" 'google-this-cpp-reference)
 
 
-(define-key my-keys-mode-map (kbd "C-c g z ") 'zeal-at-point)
+(bind-key* "C-c g z " 'zeal-at-point)
 
 
 #+END_SRC
@@ -1346,11 +1353,11 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 
 (require 'latex-preview-pane)
 
-(define-key my-keys-mode-map (kbd "C-c l p") 'latex-preview-pane-mode)
-(define-key my-keys-mode-map (kbd "C-c l b") 'helm-bibtex-with-local-bibliography)
-(define-key my-keys-mode-map (kbd "C-c l M-p") 'latex-preview-pane-update)
+(bind-key* "C-c l p" 'latex-preview-pane-mode)
+(bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography)
+(bind-key* "C-c l M-p" 'latex-preview-pane-update)
 
-(define-key my-keys-mode-map (kbd "C-c l") 'TeX-command-master)
+(bind-key* "C-c l" 'TeX-command-master)
 
 (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
 (setq TeX-view-program-selection '((output-pdf "Evince")))
@@ -1403,6 +1410,8 @@ Some of the packages for modelines that I've gone over are:
 (setq powerline-height 23)
 
 (spaceline-highlight-face-default)
+
+(spaceline-toggle-projectile-root-on)
 (spaceline-toggle-version-control-on)
 (spaceline-toggle-buffer-modified-on)
 (spaceline-toggle-minor-modes-on)
@@ -1438,15 +1447,15 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 (load "~/.emacs.d/lisp/arnaud-sexp")
 (require 'arnaud-sexp)
 
-(define-key my-keys-mode-map (kbd "C-M-y") 'sp-backward-up-sexp)
-(define-key my-keys-mode-map (kbd "C-M-x") 'sp-up-sexp)
+(bind-key* "C-M-y" 'sp-backward-up-sexp)
+(bind-key* "C-M-x" 'sp-up-sexp)
 
-(define-key my-keys-mode-map (kbd "C-M-SPC") 'arnaud-mark-sexp)
-(define-key my-keys-mode-map (kbd "C-M-k") 'arnaud-kill-sexp)
-(define-key my-keys-mode-map (kbd "C-M-S-SPC") 'arnaud-mark-sexp-whole)
-(define-key my-keys-mode-map (kbd "C-M-S-k") 'arnaud-kill-sexp-whole)
-(define-key my-keys-mode-map (kbd "C-M-w") 'arnaud-kill-save-sexp)
-(define-key my-keys-mode-map (kbd "C-M-S-w") 'arnaud-kill-save-sexp-whole)
+(bind-key* "C-M-SPC" 'arnaud-mark-sexp)
+(bind-key* "C-M-k" 'arnaud-kill-sexp)
+(bind-key* "C-M-S-SPC" 'arnaud-mark-sexp-whole)
+(bind-key* "C-M-S-k" 'arnaud-kill-sexp-whole)
+(bind-key* "C-M-w" 'arnaud-kill-save-sexp)
+(bind-key* "C-M-S-w" 'arnaud-kill-save-sexp-whole)
 #+END_SRC
 * Hydra
 /Hydra/ is a package that allows you to create hydras. Those are like munues with keybindings that popout on the bottom of the buffer and prompt you to type one(or more) of the listed keybindings. This provides really cool way of structuring commands in a menu-like fashion. There are some predifined hydras that come with the package but those are not that good and therefore I've 'borrowed' a few from the mighty internet.
@@ -1501,7 +1510,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("o" ace-window)
   ("q" nil :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h w") 'arnaud-hydra-windowing/body)
+(bind-key* "C-c h w" 'arnaud-hydra-windowing/body)
 #+END_SRC
 ** Bookmarks navigation
 #+BEGIN_SRC emacs-lisp :results none
@@ -1515,7 +1524,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("j" bookmark-jump)
   ("d" bookmark-delete)
   ("q" nil :color blue))
-(define-key my-keys-mode-map (kbd "C-c h b") 'arnaud-hydra-bookmarks/body)
+(bind-key* "C-c h b" 'arnaud-hydra-bookmarks/body)
 #+END_SRC
 
 ** Editing rectangle
@@ -1545,7 +1554,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
          (rectangle-mark-mode 1)) nil)
   ("q" keyboard-quit :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h r") 'arnaud-hydra-rectangle/body)
+(bind-key* "C-c h r" 'arnaud-hydra-rectangle/body)
 #+END_SRC
 ** Registers
 #+BEGIN_SRC emacs-lisp :results none
@@ -1568,7 +1577,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("p" point-to-register)
   ("h" helm-register)
   ("q" nil :color blue))
-(define-key my-keys-mode-map (kbd "C-c h R") 'arnaud-hydra-registers/body)
+(bind-key* "C-c h R" 'arnaud-hydra-registers/body)
 #+END_SRC
 ** Modes toggling
 #+BEGIN_SRC emacs-lisp :results none
@@ -1595,7 +1604,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("q" nil :color blue))
 
 
-(define-key my-keys-mode-map (kbd "C-c h M") 'arnaud-hydra-active-modes/body)
+(bind-key* "C-c h M" 'arnaud-hydra-active-modes/body)
 #+END_SRC
 ** Org trees movement
 #+BEGIN_SRC emacs-lisp :results none
@@ -1614,7 +1623,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("<up>" org-metaup)
   ("q" nil :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h C-o m") 'arnaud-hydra-org-organize/body)
+(bind-key* "C-c h C-o m" 'arnaud-hydra-org-organize/body)
 #+END_SRC
 ** Org templates expansions
 #+BEGIN_SRC emacs-lisp :results none
@@ -1669,7 +1678,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("<" self-insert-command)
   ("q" nil :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h C-o t") 'arnaud-hydra-org-template/body)
+(bind-key* "C-c h C-o t" 'arnaud-hydra-org-template/body)
 #+END_SRC
 ** Formatting
 #+BEGIN_SRC emacs-lisp :results none
@@ -1691,7 +1700,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("p" py-yapf-buffer)
   ("P" py-yapf-enable-on-save)
   ("q" nil :color blue))
-(define-key my-keys-mode-map (kbd "C-c h f") 'arnaud-hydra-format/body)
+(bind-key* "C-c h f" 'arnaud-hydra-format/body)
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp :results none
@@ -1742,7 +1751,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("`"   hydra-projectile-other-window/body "other window" :color blue)
   ("q"   nil "cancel" :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h p") 'arnaud-hydra-projectile/body)
+(bind-key* "C-c h p" 'arnaud-hydra-projectile/body)
 #+END_SRC
 ** Magit
 
@@ -1774,7 +1783,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 
 
-(define-key my-keys-mode-map (kbd "C-c h m") 'arnaud-hydra-magit/body)
+(bind-key* "C-c h m" 'arnaud-hydra-magit/body)
 #+END_SRC
 ** Files
 
@@ -1795,7 +1804,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("i" (find-file "~/code/dotfiles/.emacs.d/myinit.org"))
   ("q" nil "Cancel" :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h F") 'arnaud-hydra-files/body)
+(bind-key* "C-c h F" 'arnaud-hydra-files/body)
 #+END_SRC
 
 ** Hydras
@@ -1824,7 +1833,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("F" arnaud-hydra-files/body)
   ("q" nil "Cancel" :color blue))
 
-(define-key my-keys-mode-map (kbd "C-c h h") 'arnaud-hydra-hydras/body)
+(bind-key* "C-c h h" 'arnaud-hydra-hydras/body)
 #+END_SRC
 * IMenu
 IMenu is like that one thingy that nobody uses but its in almost every IDE. IMenu can create a buffer showing the "structure" of what you are currently editing. If you are writing a C++ class, it will show you all the member functions and fields. If you are working on \Latex document, the  IMenu buffer will contain the sections and the subsections. The whole thing is occasionally useful but certainly does not need to clutter your workspace the whole time. 
@@ -1833,13 +1842,15 @@ IMenu is like that one thingy that nobody uses but its in almost every IDE. IMen
 #+BEGIN_SRC emacs-lisp :results none
 (require 'imenu-list)
 
-(define-key my-keys-mode-map (kbd "<f12>") 'imenu-list-smart-toggle)
+(bind-key* "<f12>" 'imenu-list-smart-toggle)
 (setq imenu-list-auto-resize t)
 (setq imenu-list-after-jump-hook nil)
 #+END_SRC
 * Company
 Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The ~company-idle-delay~ makes the automatic popup +impossible+ immediate so that I +would+ wouldn't have to call it manually through =M-m=. 
 - [[http://company-mode.github.io/][company]]
+
+** Basic setup
 #+BEGIN_SRC emacs-lisp :results none
 
 (setq company-minimum-prefix-length 3
@@ -1849,23 +1860,21 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
       company-show-numbers nil
       company-echo-truncate-lines nil)
 (global-company-mode t)
-(define-key my-keys-mode-map (kbd "M-m") 'company-complete)
 
+(bind-key* "M-m" 'company-complete)
 (define-key company-active-map (kbd "C-n") 'company-select-next-or-abort)
 (define-key company-active-map (kbd "C-p") 'company-select-previous-or-abort)
 
-(setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend))
 (setq company-backends '())
+(setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend))
+(setq company-tooltip-maximum-width 100)
+(setq company-tooltip-minimum-width 100)
 
 
 (face-spec-set 'company-preview '((t (:background "#444444" :foreground "light sky blue"))))
 (face-spec-set 'company-tooltip '((t (:background "#444444" :foreground "light sky blue"))))
 (face-spec-set 'company-tooltip-annotation '((t (:foreground "deep sky blue"))))
 
-
-
-(setq company-tooltip-maximum-width 100)
-(setq company-tooltip-minimum-width 100)
 
 (require 'company-meghanada)
 (require 'company)
@@ -1875,94 +1884,148 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (require 'company-irony)
 (require 'company-nxml)
 (require 'company-anaconda)
-
-
-
-
-(setq company-backends '((company-files         
-                          company-dabbrev-code
-                          company-keywords
-                          company-dabbrev
-                          )
-                         company-capf))
-
-
-
-(defun my/nxml-mode-hook ()
-  (setq company-backends '(company-nxml
-                           (company-files         
-                            company-dabbrev-code
-                            company-keywords)
-                           company-dabbrev
-                           company-capf)))
-(add-hook 'prog-mode-hook 'my/nxml-mode-hook)
-
-
-
-
-(defun my/meghanada-mode-hook ()
-  (setq company-backends '(company-meghanada
-                           (company-files         
-                            company-dabbrev-code
-                            company-keywords)
-                           company-dabbrev
-                           company-capf)))
-(add-hook 'meghanada-mode-hook 'my/meghanada-mode-hook)
-
-(defun my/irony-mode-hook ()
-  (setq company-backends '(                         
-                           company-irony
-                           (
-                            company-files         
-                            company-dabbrev-code
-                            company-keywords )
-                           company-dabbrev
-                           company-capf
-                           )))
-(add-hook 'iorny-mode-hook 'my/irony-mode-hook)
-
-(defun my/cmake-mode-hook ()
-  (setq company-backends '(company-cmake
-                           (company-files         
-                            company-dabbrev-code
-                            company-keywords)
-                           company-dabbrev
-                           company-capf)))
-(add-hook 'cmake-mode-hook 'my/cmake-mode-hook)
-
-
-(defun my/python-mode-hook ()
-  (setq company-backends '(
-                           company-anaconda
-                           company-jedi
-                           (company-files         
-                            company-dabbrev-code
-                            company-keywords)
-                           company-dabbrev
-                           company-capf))
-  ((looking-at )mbda () (setq jedi-mode t))
-)
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
-(defun my/latex-mode-hook ()
-  (setq company-backends
-        '( company-auctex-bibs
-           company-auctex-macros
-           company-auctex-labels
-           company-auctex-symbols
-           company-auctex-environments
-           (company-files         
-            company-dabbrev-code
-            company-keywords)
-           company-dabbrev
-           company-capf)))
-(add-hook 'cmake-mode-hook 'my/latex-mode-hook)
-
-
-
-
 #+END_SRC
 
+\\
+In my experience, setting up the backends of company properly is not the easiest thing. I've tried a lot of things and  I've finally come up with this approach. I've defined a function that sets up the right backends for each task of mine. The functions are first bound to hooks so that the whole thing is kinda automatic. This, however, does not seem to work in one hundred percent of the cases. Therefore, I also can call the functions through some keybindings and/or hydra.
+** Function definitions
+The definitions of all the functions for the backends setups.
+- basic packages variable - I  use the backends in this variable across all modes
+#+BEGIN_SRC emacs-lisp :results none
+(defvar basic-company-backends '(company-files         
+                                 company-capf
+                                 company-dabbrev-code
+                                 company-keywords
+                                 company-dabbrev))
+#+END_SRC
+- functions
+#+BEGIN_SRC emacs-lisp :results none
+(defun my-company-basic-backends (args)
+  (interactive)
+  (setq company-backends `(,basic-company-backends)))
+
+(defun  my-company-nxml-backends ()
+  (interactive)
+  (message "Basic backends engaged.")
+  (setq company-backends `(company-capf
+                           ,basic-company-backends)))
+
+(defun  my-company-nxml-backends ()
+  (interactive)
+  (message "xXML backends engaged.")
+  (setq company-backends `(company-capf
+                           ,basic-company-backends)))
+
+(defun my-company-java-backends ()
+  (interactive)
+  (message "Java backends engaged.")
+  (setq company-backends `(company-meghanada
+                           ,basic-company-backends)))
+
+
+
+(defun my-company-c++-backends ()
+  (interactive)
+  (message "C++ backends engaged.")
+  (setq company-backends `(company-irony
+                           company-c-headers
+                           company-irony-c-headers
+                           ,basic-company-backends)))
+
+
+(defun my-company-cmake-backends ()
+  (interactive)
+  (message "CMake backends engaged.")
+  (setq company-backends `(company-cmake
+                           ,basic-company-backends)))
+
+
+
+(defun my-company-python-backends ()
+  (interactive)
+  (message "Python backends engaged.")
+  (setq company-backends `(elpy-company-backend
+                           (company-anaconda
+                            company-jedi)
+                           ,basic-company-backends)))
+
+
+(defun my-company-latex-backends ()
+  (interactive)
+  (message "Latex backends engaged.")
+  (setq company-backends `( (company-auctex-bibs
+                             company-auctex-macros
+                             company-auctex-labels
+                             company-auctex-symbols
+                             company-auctex-environments)
+                            ,basic-company-backends)))
+
+(defun my-company-elisp-backends ()
+  (interactive)
+  (message "ELisp backends engaged.")
+  (setq company-backends `(company-capf
+                           ,basic-company-backends)))
+
+#+END_SRC
+** Hooks
+Automation...60% of the time it works every time!
+#+BEGIN_SRC emacs-lisp :results none
+(add-hook 'python-mode-hook 'my-company-python-backends)
+(add-hook 'nxml-mode-hook 'my-company-nxml-backends)
+(add-hook 'meghanada-mode-hook 'my-company-java-backends)
+(add-hook 'cmake-mode-hook 'my-company-latex-backends)
+(add-hook 'cmake-mode-hook 'my-company-cmake-backends)
+(add-hook 'c++-mode-hook 'my-company-c++-backends)
+(add-hook 'emacs-lisp-mode-hook 'my-company-elisp-backends)
+#+END_SRC
+** Hydra
+Hooks are nice but sometimes I want some finer control of which backends are activated in company.
+#+BEGIN_SRC emacs-lisp :results none
+
+(defhydra arnaud-hydra-company (:color red
+                                       :hint nil)
+  "
+                       Company backends
+----------------------------------------------------------
+
+ _p_: Python   _l_: Latex     _e_: ELisp
+ _x_: nXML     _m_: CMake    
+ _j_: Java     _c_: C++            
+
+_b_: Basic
+
+ _q_: quit
+
+"
+  ("p" my-company-python-backends)
+  ("x" my-company-nxml-backends  )
+  ("j" my-company-java-backends  )
+  ("l" my-company-latex-backends )
+  ("m" my-company-cmake-backends )
+  ("c" my-company-c++-backends   )
+  ("e" my-company-elisp-backends )
+  ("b" my-company-basic-backends )
+  ("q" nil :color blue))
+#+END_SRC
+
+
+** Keybindgs
+Hydras are nice but sometimes I just want hit some keys and have what I want
+- Quick keybinds to swtich backends
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "M-j c p" 'my-company-python-backends)
+(bind-key* "M-j c x" 'my-company-nxml-backends  )
+(bind-key* "M-j c j" 'my-company-java-backends  )
+(bind-key* "M-j c l" 'my-company-latex-backends )
+(bind-key* "M-j c m" 'my-company-cmake-backends )
+(bind-key* "M-j c c" 'my-company-c++-backends   )
+(bind-key* "M-j c e" 'my-company-elisp-backends )
+(bind-key* "M-j c b" 'my-company-basic-backends )
+#+END_SRC
+- The Hydry-thingy
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "C-c h c" 'arnaud-hydra-company/body)
+#+END_SRC
 * Magit
 
 #+BEGIN_SRC emacs-lisp
@@ -2009,7 +2072,7 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
       (set-variable 'cursor-type 'box)
       (set-cursor-color "#8968cd"))))
 
-(define-key my-keys-mode-map (kbd "<f13>") 'quick-evil)
+(bind-key* "<f13>" 'quick-evil)
 
 
 #+END_SRC
@@ -2021,7 +2084,7 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
 ;; https://boards.4chan.org/r9k/thread/49101515#p49101515 this one !
 (load-file "/home/arnaud/core.d/code/q4-fork/q4.el")
 
-(define-key my-keys-mode-map (kbd "M-j q") 'q4/browse-board)
+(bind-key* "M-j q" 'q4/browse-board)
 #+END_SRC
 * Which key
 Now, I generally know my Emacs keybindings but from time to time I have to look somethings up. The [[https://github.com/justbur/emacs-which-key][which-key]] packages in awesome in this regard. If I the start of some keybinding, a popup will show me how can I follow the binding and which functions will be I executing if I type something.
@@ -2046,17 +2109,15 @@ Now, I generally know my Emacs keybindings but from time to time I have to look 
 (setq which-key-show-remaining-keys nil)
 
 #+END_SRC
-* Yagist
-
+* Easy Github Gist control
 
 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'yagist)
 
-(define-key my-keys-mode-map (kbd "M-j g l") 'yagist-list)
-(define-key my-keys-mode-map (kbd "M-j g b") 'yagist-region)
-(define-key my-keys-mode-map (kbd "M-j g r") 'yagist-buffer)
-
+(bind-key* "M-j g l" 'yagist-list)
+(bind-key* "M-j g r" 'yagist-region)
+(bind-key* "M-j g b" 'yagist-buffer)
 
 #+END_SRC
 
@@ -2068,6 +2129,7 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 ** Diminishing modes
 
 #+BEGIN_SRC emacs-lisp :results none
+;; (diminish 'projectile-mode)
 (diminish 'smartparens-mode)
 (diminish 'wrap-region-mode)
 (diminish 'super-save-mode)
@@ -2077,7 +2139,6 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 (diminish 'google-this-mode)
 (diminish 'wg-mode)
 (diminish 'workgroups-mode)
-;; (diminish 'projectile-mode)
 (diminish 'drag-stuff-mode)
 (diminish 'flyspell-mode)
 (diminish 'helm-mode)
@@ -2098,9 +2159,11 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 (diminish 'hs-minor-mode)
 (diminish 'aggressive-indent-mode)
 (diminish 'org-indent-mode)
+(diminish 'sphinx-doc-mode)
 
 #+END_SRC
-* Funsies
+* Things just for fun
+The world is full of useless things! We should use them all!! Emacs agrees!!
 ** Weather
 That one cool site - [[http://wttr.in/][wttr]] - that I even use in my system setup to get weather information. It can also be used in Emacs so why the hell not.
 #+BEGIN_SRC emacs-lisp
