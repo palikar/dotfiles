@@ -1,3 +1,4 @@
+
 #+startup: overview
 
 #+title: Configuration file for my EMACS
@@ -118,7 +119,6 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (fringe-mode '(0 . 0))
 (global-nlinum-mode -1)
 (global-visual-line-mode 1)
-(diminish 'visual-line-mode)
 (global-hl-line-mode 1)    
 (global-prettify-symbols-mode +1)
 (scroll-bar-mode 0)
@@ -171,6 +171,9 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
       '(search-ring regexp-search-ring)
       savehist-autosave-interval 60)
 (require 'recentf) ;; save recent files
+(add-to-list 'recentf-exclude "\\.windows\\'")
+(add-to-list 'recentf-exclude "\\.revive\\'")
+(add-to-list 'recentf-exclude "\\/ssh:\\'")
 (setq recentf-max-saved-items 500
       recentf-max-menu-items 15
       recentf-auto-cleanup 'never)
@@ -306,9 +309,11 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 #+END_SRC
 *** Tramp
 #+BEGIN_SRC emacs-lisp :results none
-(setq tramp-default-method "ssh"
-      tramp-backup-directory-alist backup-directory-alist
-      tramp-ssh-controlmaster-options "ssh")
+(tramp-unload-tramp)
+;; (require 'tramp)
+;; (setq tramp-default-method "ssh"
+;;       tramp-backup-directory-alist backup-directory-alist
+;;       tramp-ssh-controlmaster-options "ssh")
 #+END_SRC
 *** Docview
 #+BEGIN_SRC emacs-lisp :results none
@@ -439,8 +444,9 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 (bind-key* "C-S-<next>" 'scroll-up-line)
 (bind-key* "C-c d" 'delete-file)
 
-(bind-key* "C-S-<donw>"  'duplicate-line-down)
+(bind-key* "C-S-<down>"  'duplicate-line-down)
 (bind-key* "C-S-<up>"  'duplicate-line-up)
+
 
 (bind-key* "C-+" 'text-scale-increase)
 (bind-key* "C--" 'text-scale-decrease)
@@ -1037,8 +1043,10 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their 'web-apps')
 - [[https://github.com/jaypei/emacs-neotree][neotree]]
 #+BEGIN_SRC emacs-lisp :results none
-(require 'neotree)
-(require 'all-the-icons)
+;; (require 'neotree)
+;; (require 'all-the-icons)
+
+(load-file "/home/arnaud/code/neotree/neotree.el")
 
 (define-key my-keys-mode-map [f1] 'neotree-toggle)
 (define-key my-keys-mode-map [f2] 'neotree-find)
@@ -2086,8 +2094,59 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 (diminish 'which-key-mode)
 (diminish 'iedit-mode)
 (diminish 'modalka-mode "μ")
+(diminish 'visual-line-mode)
+(diminish 'hs-minor-mode)
+(diminish 'aggressive-indent-mode)
+(diminish 'org-indent-mode)
 
 #+END_SRC
+* Funsies
+** Weather
+That one cool site - [[http://wttr.in/][wttr]] - that I even use in my system setup to get weather information. It can also be used in Emacs so why the hell not.
+#+BEGIN_SRC emacs-lisp
+(require 'wttrin)
+(setq wttrin-default-cities '("Karlsruhe"
+                              "Sliven"
+                              "Sofia"))
+(setq wttrin-default-accept-language 
+      '("Accept-Language" . "en-US"))
+
+(bind-key* "M-j w"  'wttrin)
+
+#+END_SRC
+** XKCD
+This cute little thing with those cool little nerdy cody comics
+#+BEGIN_SRC emacs-lisp
+(require 'xkcd)
+(bind-key* "M-j x" 'xkcd)
+#+END_SRC
+** Touch typing
+I... am not exactly a fast typist but I've really put time and effort into it. I regularly use [[https://typing-speed-test.aoeu.eu/][this]] one but Emacs is Emacs and everything should be Emacs. Just put everything in Emacs they said! So, [[https://github.com/mrkkrp/typit][typit]] is a small package that lets you practice touch typing right here into Emacs.
+#+BEGIN_SRC emacs-lisp
+(require 'typit)
+(bind-key* "M-j t b" 'typit-basic-test)
+(bind-key* "M-j t a" 'typit-advanced-test)
+#+END_SRC
+** Commands frequency 
+This things will track which command is being run and how many times... I just think it's cool.
+#+BEGIN_SRC elisp
+(require 'keyfreq)
+
+(setq keyfreq-excluded-commands
+        '(self-insert-command
+          org-self-insert-command
+          company-ignore
+          abort-recursive-edit
+          forward-char
+          modalka-mode
+          backward-char
+          previous-line
+          next-line))
+
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+#+END_SRC
+
 * Things that need to be done in the dot-files                     :no_export:
 Don't look at that, it's not for you!!!
 ** DONE Configure better web-mode support
