@@ -1,7 +1,4 @@
 ;;; package --- Summery
-
-;;; Commentary:
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -17,7 +14,7 @@
  '(helm-follow-mode-persistent t)
  '(neo-hide-cursor t)
  '(neo-mode-line-type (quote none))
- '(neo-smart-open nil)
+ '(neo-smart-open t)
  '(org-babel-load-languages (quote ((emacs-lisp . t) (org . t))))
  '(org-default-notes-file (concat org-directory "/notes.org"))
  '(org-directory "~/Dropbox/orgfiles")
@@ -27,21 +24,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (company-web company-ghci helm-company sphinx-doc keyfreq typit typing xkcd wttrin visual-regexp-steroids visual-regexp modalka which-key yagist spaceline gradle-mode ov symbol-overlay esxml pip-requirements eslint-fix volatile-highlights super-save company-quickhelp jedi projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck epl editorconfig easy-kill diminish diff-hl discover-my-major browse-kill-ring beacon ace-window wgrep-helm wgrep helm-ag fill-column-indicator hide-mode-line iedit god-mode highlight-indent-guides helm-spotify-plus helm-spotify spotify tabbar firefox-controller fireplace helm-bibtexkey helm-bibtex yaml-mode bash-completion golden-ratio company-anaconda py-yapf anaconda-mode fontawesome mu4e-conversation imenu-list company-ycmd ycmd org-plus-contrib nlinum-relative nlinum pymacs ranger web-beautify fancy-battery google-this flyspell-popup flyspell-correct-popup popup-complete helm-flycheck helm-ispell company-irony-c-headers ibuffer-projectile telephone-line smart-mode-line-powerline-theme smart-mode-line easy-hugo hugo ctags-update meghanada atom-dark-theme monokai-theme molokai-theme smart-hungry-delete use-package wrap-region treemacs syntax-subword sublimity srefactor solarized-theme smartparens pretty-mode ox-twbs ox-hugo org2blog org-pdfview org-page org-bullets mvn lorem-ipsum latex-pretty-symbols helm-rtags helm-projectile haskell-mode flycheck-irony expand-region evil emmet-mode dumb-jump doom-themes crux company-rtags company-irony company-emacs-eclim company-c-headers cmake-ide clang-format auto-org-md auto-complete-nxml auto-complete-clang-async auto-complete-clang anzu))))
-
-
-;;; Code:
-
-;; Added by Package.el.  This must come before configurations ofli
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-
-
-
-
-
-
+    (spaceline-all-the-icons company-web company-ghci helm-company sphinx-doc keyfreq typit typing xkcd wttrin visual-regexp-steroids visual-regexp modalka which-key yagist spaceline gradle-mode ov symbol-overlay esxml pip-requirements eslint-fix volatile-highlights super-save company-quickhelp jedi projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck epl editorconfig easy-kill diminish diff-hl discover-my-major browse-kill-ring beacon ace-window wgrep-helm wgrep helm-ag fill-column-indicator hide-mode-line iedit god-mode highlight-indent-guides helm-spotify-plus helm-spotify spotify tabbar firefox-controller fireplace helm-bibtexkey helm-bibtex yaml-mode bash-completion golden-ratio company-anaconda py-yapf anaconda-mode fontawesome mu4e-conversation imenu-list company-ycmd ycmd org-plus-contrib nlinum-relative nlinum pymacs ranger web-beautify fancy-battery google-this flyspell-popup flyspell-correct-popup popup-complete helm-flycheck helm-ispell company-irony-c-headers ibuffer-projectile telephone-line smart-mode-line-powerline-theme smart-mode-line easy-hugo hugo ctags-update meghanada atom-dark-theme monokai-theme molokai-theme smart-hungry-delete use-package wrap-region treemacs syntax-subword sublimity srefactor solarized-theme smartparens pretty-mode ox-twbs ox-hugo org2blog org-pdfview org-page org-bullets mvn lorem-ipsum latex-pretty-symbols helm-rtags helm-projectile haskell-mode flycheck-irony expand-region evil emmet-mode dumb-jump doom-themes crux company-rtags company-irony company-emacs-eclim company-c-headers cmake-ide clang-format auto-org-md auto-complete-nxml auto-complete-clang-async auto-complete-clang anzu))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -53,12 +36,13 @@
  '(highlight-indentation-current-column-face ((t (:background "gray"))))
  '(secondary-selection ((t (:background "light sky blue" :foreground "black")))))
 
-(let ((file-name-handler-alist nil))
-  (setq gc-cons-threshold 100000000)
-  (package-initialize)
-  (setq vc-follow-symlinks t)
 
-  (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org")))
+(let ((file-name-handler-alist nil))
+     (setq gc-cons-threshold 100000000)
+     (package-initialize)
+     (setq vc-follow-symlinks t)
+     
+     (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org")))
 (provide '.emacs)
 
 ;;; .emacs ends here
@@ -72,4 +56,19 @@
 
 
 
+
+
+
+
+
+
+
+;; this 'load-file' added by code-manager 
+
+
+;; it loads the packages installed by code-manager
+
+
+;; do not delete
+(load-file "~/.emacs.d/code-manager-packages.el")
 

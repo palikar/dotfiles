@@ -51,7 +51,8 @@
             "linux-4.19",
             "ov.el",
             "cask",
-            "company-smart-elisp"
+            "company-smart-elisp",
+            "all-the-icons"
         ]
         
     ],
@@ -475,11 +476,16 @@
             "reinstall_command": "python go"
         },
         "company-smart-elisp": {
-            "download": "curl",
+            "download": "git",
             "URL": "https://github.com/Wilfred/company-smart-elisp",
-            "install": "command",
-            "command": "echo 'No command'",
-            "reinstall_command": "echo 'No command'"
+            "install": "emacs",
+            "el_files": ["company-smart-elisp.el"]
+        },
+        "all-the-icons": {
+            "download": "git",
+            "URL": "https://github.com/domtronn/all-the-icons.el",
+            "install": "emacs",
+            "el_files": ["all-the-icons.el", "all-the-icons-faces.el"]
         }
         
     }
