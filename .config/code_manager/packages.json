@@ -52,7 +52,9 @@
             "ov.el",
             "cask",
             "company-smart-elisp",
-            "all-the-icons"
+            "all-the-icons",
+            "pystache",
+            "vue-mode"
         ]
         
     ],
@@ -486,6 +488,18 @@
             "URL": "https://github.com/domtronn/all-the-icons.el",
             "install": "emacs",
             "el_files": ["all-the-icons.el", "all-the-icons-faces.el"]
+        }
+        "pystache": {
+            "download": "git",
+            "URL": "https://github.com/defunkt/pystache",
+            "install": "setup.py",
+            "setup_args": "--verbose --user"
+        },
+        "vue-mode": {
+            "download": "git",
+            "URL": "https://github.com/AdamNiederer/vue-mode",
+            "install": "emacs",
+            "el_files": ["vue-mode.el"]
         }
         
     }

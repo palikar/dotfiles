@@ -778,7 +778,7 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 #+END_SRC
 ** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-c C-f" 'avy-goto-char)
+(bind-key* "<f13>" 'avy-goto-char)
 #+END_SRC
 
 * Iy
@@ -831,7 +831,8 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 (setq jedi:complete-on-dot t)
 (setq jedi:tooltip-method nil)
 (setq jedi:get-in-function-call-delay 0)
-(setq elpy-company-add-completion-from-shell t)
+
+ (setq elpy-company-add-completion-from-shell t)
 
 (setq python-shell-interpreter "python"
       python-shell-interpreter-args "-i")
@@ -840,24 +841,28 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 
 ** Hooks
 #+BEGIN_SRC emacs-lisp
-(add-hook 'python-mode-hook 'jedi:ac-setup)
 (add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook 'elpy-enable)
-(add-hook 'python-mode-hook 'sphinx-doc-mod)
+;; (add-hook 'python-mode-hook 'jedi:ac-setup)
+;; (add-hook 'python-mode-hook 'elpy-mode)
+(add-hook 'python-mode-hook 'sphinx-doc-mode)
 #+END_SRC
+
 ** Keybindings
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (define-key elpy-mode-map [remap elpy-nav-forward-block] nil)
 (define-key elpy-mode-map [remap elpy-nav-backward-block] nil)
 (define-key elpy-mode-map [remap elpy-nav-backward-indent] nil)
 (define-key elpy-mode-map [remap elpy-nav-forward-indent] nil)
+
 
 (bind-key* "M-j e d" 'sphinx-doc)
 (bind-key* "M-j e t" 'elpy-test)
 (bind-key* "M-j e f" 'elpy-format-code)
 (bind-key* "M-j e ." 'elpy-goto-definition)
 #+END_SRC
+
+
 * Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
 - [[https://github.com/joaotavora/yasnippet][yasnippets]]
@@ -1053,9 +1058,17 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 ;; (require 'neotree)
 ;; (require 'all-the-icons)
 
-(load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons.el")
-(load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons-faces.el")
+;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons.el")
+;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons-faces.el")
 (load-file "/home/arnaud/code/neotree/neotree.el")
+
+(add-hook 'neo-after-create-hook
+   #'(lambda (_)
+       (with-current-buffer (get-buffer neo-buffer-name)
+         (setq truncate-lines t)
+         (setq word-wrap nil)
+         (make-local-variable 'auto-hscroll-mode)
+         (setq auto-hscroll-mode nil))))
 
 (bind-key* "<f1>" 'neotree-toggle)
 (bind-key* "<f2>" 'neotree-find)
@@ -1411,24 +1424,29 @@ Some of the packages for modelines that I've gone over are:
 
 (setq powerline-default-separator 'wave)
 (setq powerline-height 20)
+(setq spaceline-all-the-icons-separator-type 'wave)
 
 (spaceline-highlight-face-default)
 
 
 (spaceline-toggle-all-the-icons-minor-modes-off)
 (spaceline-toggle-all-the-icons-hud-on)
+(spaceline-toggle-projectile-root-on)
+(spaceline-toggle-version-control-on)
+(spaceline-toggle-buffer-modified-on)
+(spaceline-toggle-minor-modes-on)
+(spaceline-toggle-projectile-root-on)
+(spaceline-toggle-hud-off)
+(spaceline-toggle-buffer-encoding-abbrev-off)
 
 (spaceline-emacs-theme)
 
-(spaceline-all-the-icons--setup-anzu) 
-(spaceline-all-the-icons--setup-package-updates)
-(spaceline-all-the-icons--setup-git-ahead)
-(spaceline-all-the-icons--setup-neotree) 
 
-(setq spaceline-all-the-icons-separator-type 'wave)
-
-
-(spaceline-all-the-icons-theme)
+;; (spaceline-all-the-icons--setup-anzu) 
+;; (spaceline-all-the-icons--setup-package-updates)
+;; (spaceline-all-the-icons--setup-git-ahead)
+;; (spaceline-all-the-icons--setup-neotree)
+;; (spaceline-all-the-icons-theme)
 #+END_SRC
 
 * Sexp on steroids
@@ -1982,7 +2000,7 @@ Automation...60% of the time it works every time!
 (add-hook 'python-mode-hook 'my-company-python-backends)
 (add-hook 'nxml-mode-hook 'my-company-nxml-backends)
 (add-hook 'meghanada-mode-hook 'my-company-java-backends)
-(add-hook 'cmake-mode-hook 'my-company-latex-backends)
+(add-hook 'latex-mode-hook 'my-company-latex-backends)
 (add-hook 'cmake-mode-hook 'my-company-cmake-backends)
 (add-hook 'c++-mode-hook 'my-company-c++-backends)
 (add-hook 'emacs-lisp-mode-hook 'my-company-elisp-backends)
@@ -2081,12 +2099,13 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
       (set-variable 'cursor-type 'box)
       (set-cursor-color "#8968cd"))))
 
-(bind-key* "<f13>" 'quick-evil)
+(bind-key* "M-<f13>" 'quick-evil)
 
 
 #+END_SRC
 * Q4
 Through this packages, I can browse 4chan (only =/g= of course!) threads in my Emacs. It uses the json API of 4chan and renders everything in the editor itself. It even provides some nifty features that are not available in the vanilla 4chan website. I can browser through the replies of a given post, quickly jump to replies of replies and then go back up and also download (through /wget/) images/webms from 4chan directly from here, in my editor. God, I love Emacs.
+
 - [[https://github.com/rosbo018/q4][q4]]
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -2171,6 +2190,24 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 (diminish 'sphinx-doc-mode)
 
 #+END_SRC
+* Highlight Symbol
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'highlight-symbol)
+
+(highlight-symbol-nav-mode)
+#+END_SRC
+
+** Keybindgs
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "M-o o" 'highlight-symbol)
+
+(bind-key* "M-n" 'highlight-symbol-next)
+(bind-key* "M-p" 'highlight-symbol-prev)
+
+(bind-key* "M-o c" 'highlight-symbol-remove-all)
+#+END_SRC
+
 * Things just for fun
 The world is full of useless things! We should use them all!! Emacs agrees!!
 ** Weather

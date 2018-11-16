@@ -1,7 +1,7 @@
 [Added Associations]
 text/html=org.gnome.gedit.desktop;vim.desktop;
 text/csv=org.gnome.gedit.desktop;libreoffice-calc.desktop;
-application/octet-stream=eog.desktop;shotwell.desktop;evince.desktop;org.gnome.gedit.desktop;
+application/octet-stream=org.gnome.gedit.desktop;eog.desktop;shotwell.desktop;evince.desktop;
 image/png=shotwell-viewer.desktop;eog.desktop;display-im6.q16hdri.desktop;pqiv.desktop;display-im6.q16.desktop;
 image/jpeg=shotwell-viewer.desktop;gimp.desktop;pqiv.desktop;display-im6.q16hdri.desktop;display-im6.q16.desktop;
 video/x-matroska=vlc.desktop;
@@ -52,6 +52,7 @@ text/plain=org.gnome.gedit.desktop;
 application/xml=org.gnome.gedit.desktop;
 application/x-shellscript=org.gnome.gedit.desktop;
 text/x-java=vim.desktop;
+text/x-makefile=org.gnome.gedit.desktop;
 
 [Default Applications]
 video/x-ogm+ogg=vlc.desktop
