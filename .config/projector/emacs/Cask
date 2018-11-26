@@ -1,0 +1,4 @@
+(source melpa)
+
+(package-file "{{main_file}}.el")
+

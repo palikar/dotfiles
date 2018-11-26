@@ -47,6 +47,9 @@ URxvt.perl-ext-common:          default,matcher,resize-font,url-select,keyboard-
 # urxvt.font:                   xft:Inconsolata:pixelsize=8
 URxvt.colorUL:		        #4682B4
 
+! URxvt.font: xft:FuraCode Nerd Font:style=Regular:size=11
+
+
 !! url-select
 URxvt.keysym.M-l:                       perl:url-select:select_next
 URxvt.url-select.launcher:              linkhandler

@@ -1,0 +1,44 @@
+{
+    "name": "{{project_name}}",
+    "version": "1.0.0",
+    "description": "{{description}}",
+    "main": "{{main_file}}",
+    "bugs" :{
+        "url" : "https://github.com/palikar/{{project_name}}/issues",
+        "email" : "{{author_email}}"
+    },
+    "scripts": {
+        "test": "mocha",
+        "start": "node ./{{main_file}}.js",
+        "lint": "./node_modules/.bin/eslint **.js"
+    },
+    "bin": {
+        "{{main_file}}": "./{{main_file}}.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/palikar/{{project_name}}"
+    },
+    "keywords": [
+    ],
+    "author": "{{author_name}}",
+    "license": "GPL-3.0-or-later",
+    "bugs": {
+        "url": "https://github.com/palikar/{{project_name}}/issues"
+    },
+    "homepage": "https://github.com/palikar/{{project_name}}#readme",
+    "files": [
+        "lib/",
+        "scripts/",
+        "LICENSE"
+    ],
+    "dependencies": {
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "eslint": "^5.7.0",
+        "mocha": "^5.2.0",
+        "rewire": "^4.0.1",
+        "sinon": "^7.1.0"
+    }
+}

@@ -54,7 +54,9 @@
             "company-smart-elisp",
             "all-the-icons",
             "pystache",
-            "vue-mode"
+            "vue-mode",
+            "mlpack",
+			"armadillo"
         ]
         
     ],
@@ -65,7 +67,7 @@
          "ntpstat", "sudo", "net-tools", "inetutils-ping", "curl", "wget","libglew-dev",
          "libxt-dev","libgtk-3-dev"],
         ["feh","i3blocks","i3lock","dmunu","rofi", "ibus",
-         "libgtk2.0-dev"]
+         "libgtk2.0-dev", "youtube-dl"]
     ],
     "packages": {
         "arnaud-framer": {
@@ -488,7 +490,7 @@
             "URL": "https://github.com/domtronn/all-the-icons.el",
             "install": "emacs",
             "el_files": ["all-the-icons.el", "all-the-icons-faces.el"]
-        }
+        },
         "pystache": {
             "download": "git",
             "URL": "https://github.com/defunkt/pystache",
@@ -500,7 +502,21 @@
             "URL": "https://github.com/AdamNiederer/vue-mode",
             "install": "emacs",
             "el_files": ["vue-mode.el"]
-        }
+        },
+        "mlpack": {
+            "download": "git",
+            "URL": "https://github.com/mlpack/mlpack",
+            "install": "cmake",
+            "cmake_args": "",
+            "make_args": "-j3"
+        },
+		"armadillo": {
+            "download": "git",
+            "URL": "https://gitlab.com/conradsnicta/armadillo-code",
+            "install": "cmake",
+            "cmake_args": "",
+            "make_args": "-j3"
+		}
         
     }
 }

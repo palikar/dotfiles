@@ -279,9 +279,10 @@ point reaches the beginning or end of the buffer, stop there."
       (forward-line (1- arg))))
 
   (let ((orig-point (point)))
-    (move-beginning-of-line 1)
+    (back-to-indentation)
     (when (= orig-point (point))
-      (back-to-indentation))))
+      (move-beginning-of-line 1))))
+
 #+END_SRC
 
 - Keybindings
@@ -425,6 +426,11 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 ** Keybindings
 
 #+BEGIN_SRC emacs-lisp :results none
+
+(global-unset-key (kbd "<insert>"))
+(global-unset-key (kbd "C-<home>"))
+(global-unset-key (kbd "C-<end>"))
+
 (bind-key* "C-<f1>" 'toggle-transparency)
 (bind-key* "M-<f8>" 'fci-mode)
 (bind-key* "<f9>" 'menu-bar-mode)
@@ -452,6 +458,12 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 (bind-key* "C-z" 'pass)
 (bind-key* "C-x r e" 'eval-region)
 (bind-key* "<f5>" 'revert-buffer)
+
+(bind-key* "M-j <f1>" 'customize-group)
+(bind-key* "M-j <f2>" 'setup-packages)
+(bind-key* "M-j <f3>" 'package-install)
+
+
 
 #+END_SRC
 Disable some keybindgs cuz' those are just annoying
@@ -643,13 +655,12 @@ For some reasons I have to call this after I've /require/-d all the exporters' b
 #+END_SRC
 ** Keybinds
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c a" 'org-agenda)
 (bind-key* "C-c c" 'org-capture)
+(bind-key* "C-c C-x s" 'org-attach-screenshot)
 #+END_SRC
 
-#+RESULTS:
-: org-capture
 
 * Windowing
 Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
@@ -862,7 +873,6 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 (bind-key* "M-j e ." 'elpy-goto-definition)
 #+END_SRC
 
-
 * Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
 - [[https://github.com/joaotavora/yasnippet][yasnippets]]
@@ -933,6 +943,12 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+(setq c-default-style "linux"
+      c-basic-offset 4)
+
+(setq-default c-basic-offset 4
+              tab-width 4
+              indent-tabs-mode t)
 
 ;;(setq c-default-style "linux" c-basic-offset 4)
 ;;(add-to-list 'c-default-style '(c-mode "bsd"))
@@ -1060,7 +1076,7 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 
 ;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons.el")
 ;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons-faces.el")
-(load-file "/home/arnaud/code/neotree/neotree.el")
+(load-file "/home/arnaud/code/emacs-neotree/neotree.el")
 
 (add-hook 'neo-after-create-hook
    #'(lambda (_)
@@ -1070,7 +1086,28 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
          (make-local-variable 'auto-hscroll-mode)
          (setq auto-hscroll-mode nil))))
 
+
+
+;;(advice-add 'display-graphic-p :override (lambda () t))  
+;; (setq neo-theme  'icons)
+
+
+(defun neotree-project-dir ()
+    "Open NeoTree using the projectile."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find vc project root."))))
+
 (bind-key* "<f1>" 'neotree-toggle)
+(bind-key* "C-<f1>" 'neotree-project-dir)
+
 (bind-key* "<f2>" 'neotree-find)
 
 
@@ -2151,7 +2188,7 @@ Now, I generally know my Emacs keybindings but from time to time I have to look 
 
 * Diminish
 The modeline can get pretty cluttered with minor modes pretty quickly. To avoid that I use the [[https://github.com/emacsmirror/diminish][diminish]] package. It allows me to specify modes that will not have any text in the modeline.
-#+BEGIN_SRC emcas-lisp :results none
+#+BEGIN_SRC emacs-lisp :results none
 (require 'diminish)
 #+END_SRC
 ** Diminishing modes

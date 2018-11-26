@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+
+project({{project_name}} LANGUAGES CXX)
+
+message(STATUS "Build for project ${PROJECT_NAME}")
+include(GNUInstallDirs)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+set(CMAKE_INSTALL_PREFIX "/usr/local/")
+include(cmake/git_revision.cmake)
+
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wpedantic -g3 -o0")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
+
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+
+include(ModuleDefinitions.cmake)
