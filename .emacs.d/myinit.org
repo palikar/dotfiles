@@ -44,28 +44,15 @@ Lets let Emacs know who I am. Probably not a good idea cut them CIA know everyth
 #+BEGIN_SRC emacs-lisp :results none
 (setq user-full-name "Stanislav Arnaudov")
 #+END_SRC
-** Key bindings setup 
-Some major modes overwrite some of my custom keybindings. Therefore I define a custom global minor mode and use the key map of this mode to define my custom key bindings. This sets their precedence 'above' the precedence of the key bindings of other modes
-#+BEGIN_SRC emacs-lisp :results none
-(define-minor-mode my-keys-mode
-  "Minor mode for my personal keybindings."
-  :global t
-  :keymap (make-sparse-keymap))
 
-(require 'bind-key)   
-(setf (cdr my-keys-mode-map) nil)
-
-
-(my-keys-mode t)
-#+END_SRC
 ** Repositories and packages
 The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
 /Edit:/ It's anoying when starting emacs it takes so long to connect to all the sites for the packages and I don't need =package-install= that regularly. With the current setup I fist have to call =setup-packages= in order to install new one but the emacs init time significantly lower. You may or may not care about that time if you run emacs like =emacs --daemon=.
 #+BEGIN_SRC emacs-lisp :results none
 (require 'package)
-(package-initialize)
-
 (setq package-archives '())
+
+(package-initialize)
 (package-refresh-contents)
 #+END_SRC
 *** Installing packages
@@ -96,6 +83,21 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 
 #+END_SRC
+** Key bindings setup 
+Some major modes overwrite some of my custom keybindings. Therefore I define a custom global minor mode and use the key map of this mode to define my custom key bindings. This sets their precedence 'above' the precedence of the key bindings of other modes
+#+BEGIN_SRC emacs-lisp :results none
+(define-minor-mode my-keys-mode
+  "Minor mode for my personal keybindings."
+  :global t
+  :keymap (make-sparse-keymap))
+
+(require 'bind-key)
+(setf (cdr my-keys-mode-map) nil)
+
+
+(my-keys-mode t)
+#+END_SRC
+
 ** Interface tweaks
 Making the whole =emacs= experience a tiny bit better with those fixes of the interface of the editor
 - Startup screen is anoying
@@ -124,6 +126,8 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
 (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
 (set-fill-column 80)
+
+(face-spec-set 'secondary-selection '((t (:background "light sky blue" :foreground "black"))))
 
 
 #+END_SRC
@@ -423,6 +427,12 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 
 (defun pass () "A function that does nothing" (interactive))
 #+END_SRC
+** Customs files
+
+#+BEGIN_SRC emacs-lisp
+ (setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+#+END_SRC
 ** Keybindings
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -660,7 +670,6 @@ For some reasons I have to call this after I've /require/-d all the exporters' b
 (bind-key* "C-c c" 'org-capture)
 (bind-key* "C-c C-x s" 'org-attach-screenshot)
 #+END_SRC
-
 
 * Windowing
 Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
@@ -1120,6 +1129,10 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 ;;(setq projectile-switch-project-action 'neotree-projectile-action)
 (setq neo-theme 'icons)
 
+(setq neo-hidden-regexp-list (quote ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "__pycache__")))
+
+
+
 
 
 (face-spec-set 'neo-button-face '((t (:foreground "gold" :underline nil))))
@@ -1409,7 +1422,7 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography)
 (bind-key* "C-c l M-p" 'latex-preview-pane-update)
 
-(bind-key* "C-c l" 'TeX-command-master)
+(bind-key* "C-c l l" 'TeX-command-master)
 
 (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
 (setq TeX-view-program-selection '((output-pdf "Evince")))
@@ -1922,7 +1935,9 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
       company-tooltip-flip-when-above nil
       company-idle-delay 0
       company-show-numbers nil
-      company-echo-truncate-lines nil)
+      company-echo-truncate-lines nil
+      company-tooltip-maximum-width 100
+     company-tooltip-minimum-width 100)
 (global-company-mode t)
 
 (bind-key* "M-m" 'company-complete)
@@ -2071,7 +2086,14 @@ _b_: Basic
   ("b" my-company-basic-backends )
   ("q" nil :color blue))
 #+END_SRC
+** Faces
+#+BEGIN_SRC elisp :results none
 
+(face-spec-set 'company-preview '((t (:background "#444444" :foreground "light sky blue"))))
+(face-spec-set 'company-tooltip '((t (:background "#444444" :foreground "light sky blue"))))
+(face-spec-set 'company-tooltip-annotation '((t (:foreground "deep sky blue"))))
+
+#+END_SRC
 
 ** Keybindgs
 Hydras are nice but sometimes I just want hit some keys and have what I want
@@ -2095,12 +2117,12 @@ Hydras are nice but sometimes I just want hit some keys and have what I want
 #+BEGIN_SRC emacs-lisp
 #+END_SRC
 * Searching and replacing
-
 ** IEdit
 IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with ~M-i~ and while editing the marked region, all other occurrences will be changed accordingly.
 - [[https://github.com/victorhge/iedit][iedit]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'iedit)
+(face-spec-set 'iedit-occurrence '((t (:background "pale green" :foreground "black"))))
 #+END_SRC
 
 ** Visual Regexp
@@ -2111,7 +2133,7 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 
 ** Keybindings
 #+BEGIN_SRC emacs-lisp
-(bind-key* "M-I" 'vr/select-query-replace)
+(bind-key* "M-%" 'vr/select-query-replace)
 (bind-key* "M-i" 'iedit-mode)
 
 #+END_SRC
@@ -2191,7 +2213,9 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'diminish)
 #+END_SRC
-** Diminishing modes
+
+**  Diminishing modes
+
 
 #+BEGIN_SRC emacs-lisp :results none
 ;; (diminish 'projectile-mode)
@@ -2231,8 +2255,12 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'highlight-symbol)
-
 (highlight-symbol-nav-mode)
+#+END_SRC
+** Faces
+#+BEGIN_SRC elisp :results none
+(face-spec-set 'highlight-indentation-current-column-face '((t (:background "gray"))))
+(face-spec-set 'highlight-symbol-face '((t (:background "light blue"))))
 #+END_SRC
 
 ** Keybindgs
@@ -2293,7 +2321,7 @@ This things will track which command is being run and how many times... I just t
 (keyfreq-autosave-mode 1)
 #+END_SRC
 
-* Things that need to be done in the dot-files                     :no_export:
+* Things that need to be done in the dot-files                     :no_exporlt:
 Don't look at that, it's not for you!!!
 ** DONE Configure better web-mode support
 CLOSED: [2018-05-02 Wed 12:53]

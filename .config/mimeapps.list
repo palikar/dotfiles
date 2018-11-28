@@ -56,6 +56,7 @@ text/x-makefile=org.gnome.gedit.desktop;
 text/x-c++src=org.gnome.gedit.desktop;
 text/x-tex=org.gnome.gedit.desktop;
 text/x-csrc=org.gnome.gedit.desktop;
+application/epub+zip=org.gnome.Evince.desktop;
 
 [Default Applications]
 video/x-ogm+ogg=vlc.desktop
