@@ -15,17 +15,17 @@ interval=once
 command=i3weather
 interval=3600
 
-[player]
-label=🎧 
-command=i3playerctrl
-signal=3
-interval=once
+# [player]
+# label=🎧 
+# command=i3playerctrl
+# signal=3
+# interval=once
 
 
-[volume]
-interval=once
-command=i3volume
-signal=10
+# [volume]
+# interval=once
+# command=i3volume
+# signal=10
 
 
 [battery]

@@ -1,5 +1,5 @@
 [Added Associations]
-text/html=org.gnome.gedit.desktop;vim.desktop;
+text/html=firefox-esr.desktop;org.gnome.gedit.desktop;vim.desktop;
 text/csv=org.gnome.gedit.desktop;libreoffice-calc.desktop;
 application/octet-stream=org.gnome.gedit.desktop;eog.desktop;shotwell.desktop;evince.desktop;
 image/png=shotwell-viewer.desktop;eog.desktop;display-im6.q16hdri.desktop;pqiv.desktop;display-im6.q16.desktop;
@@ -57,6 +57,7 @@ text/x-c++src=org.gnome.gedit.desktop;
 text/x-tex=org.gnome.gedit.desktop;
 text/x-csrc=org.gnome.gedit.desktop;
 application/epub+zip=org.gnome.Evince.desktop;
+audio/mpeg=org.gnome.Totem.desktop;org.gnome.gedit.desktop;caja-browser.desktop;
 
 [Default Applications]
 video/x-ogm+ogg=vlc.desktop

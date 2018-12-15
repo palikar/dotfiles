@@ -1,5 +1,3 @@
-search vo
-open_with e
 search code
 search voi
 rename README.md
@@ -12,7 +10,6 @@ filter u
 find 
 shell -p
 search doc
-shell -p 
 search web
 find we
 find w
@@ -38,7 +35,6 @@ touch
 shell mkdir screeshots
 search_inc poic
 search_inc pic
-delete
 open_with 
 shell -p w
 search_inc code
@@ -48,3 +44,7 @@ search_inc ani
 search_inc sla
 search_inc ns
 search_inc nsf
+delete
+shell -p 
+search_inc sc
+search_inc scrit
