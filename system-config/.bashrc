@@ -44,9 +44,6 @@ if [ -n "$DISPLAY" ]; then
     xset b off
 fi
 
-# added by travis gem
-[ -f /home/arnaud/.travis/travis.sh ] && source /home/arnaud/.travis/travis.sh
-
 # pip bash completion start
 _pip_completion()
 {
@@ -57,11 +54,7 @@ _pip_completion()
 complete -o default -F _pip_completion pip
 # pip bash completion end
 
-export WALLPAPER="${DOTFILES_DIR}/screens/wall.*"
-source ~/.shortcuts
-
 # pywall thing
-
 if [ -f  ~/.cache/wal/sequences ]; then
     (cat ~/.cache/wal/sequences &)
 fi

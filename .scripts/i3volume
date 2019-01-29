@@ -1,12 +1,38 @@
 #!/bin/bash
 
+
+
+printpastatus() {
+    [[ $(/home/arnaud/core.d/code/pamixer/pamixer --get-mute) = "true" ]] && echo -n 🔇 && exit
+    VOLUME=$(/home/arnaud/core.d/code/pamixer/pamixer --get-volume)
+    lessecho "🔊 ${VOLUME}%"
+}
+
+
+notify() {
+    VOLUME=$(/home/arnaud/core.d/code/pamixer/pamixer --get-volume)
+    notify-send.py -t 1000 -r 0 --replaces-process "volumeID" -u normal -a "volume" "Volume level" " 🔊 ${VOLUME} %"
+    printpastatus
+}
+
 case $BLOCK_BUTTON in
-    1) pavucontrol ;;
-    3) pamixer -t ;;
-    4) pamixer -i 5 ;;
-    5) pamixer -d 5 ;;
+    1)
+        pavucontrol
+        printpastatus ;;
+    3)
+        pamixer -t
+        notify
+        printpastatus ;;
+    4)
+        pamixer -i 5
+        notify
+        printpastatus;;
+    5)
+        pamixer -d 5
+        notify
+        printpastatus;;
 esac
 
-printpastatus() { [[ $(/home/arnaud/core.d/code/pamixer/pamixer --get-mute) = "true" ]] && echo -n 🔇 && exit
-                  echo 🔊 $(/home/arnaud/core.d/code/pamixer/pamixer --get-volume)% ;}
+
 printpastatus
+

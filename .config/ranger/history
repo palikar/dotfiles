@@ -1,41 +1,13 @@
-search code
-search voi
-rename README.md
-rename LICENSE
-search cat
-search 
-rename code_mamager.py
-open_with 2
-filter u
-find 
-shell -p
-search doc
-search web
-find we
-find w
-search red
-open_with 1
-shell feh --bg-scale $@
-shell ls
-shell feh --bg-sacale fallen_by_wojciechfus-d96pri5.png
-search stock
-find st
-rename received_1978342988851803[a.jpeg
-search nsf
-open_with 0
 search py
 [1;5B[1;5A
 [1;5B[1;5B
 rename anaconda3
 rename 
 search the
-shell 
-
 touch 
 shell mkdir screeshots
 search_inc poic
 search_inc pic
-open_with 
 shell -p w
 search_inc code
 search_inc dot
@@ -44,7 +16,35 @@ search_inc ani
 search_inc sla
 search_inc ns
 search_inc nsf
-delete
-shell -p 
 search_inc sc
 search_inc scrit
+search_inc pe
+search_inc peak
+shell ls 
+
+shell mv %1f 
+shell -p 
+shell -p e
+search_inc slav
+search_inc red
+rename 1541828527678.webm
+rename edgy_boy_alert.webm
+rename 1544364014255.webm
+rename seems_pretty_gay_to_me.webm
+rename 1542008293680[a.webm
+rename notice_me_senpai.webm
+rename meme_fetish.webm
+delete
+search_inc anu
+search_inc papes
+search_inc anime
+search_inc fo9r
+search_inc fore
+shell sxiv -tf
+shell 
+search_inc .vimrc
+search_inc .emacs
+search_inc book
+open_with 
+open_with vim
+search_inc jbp

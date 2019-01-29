@@ -4,11 +4,18 @@ newvol="pkill -RTMIN+10 i3blocks"
 newplayer="pkill -RTMIN+3 i3blocks"
 newsong="pkill -RTMIN+4 i3blocks"
 
+notify() {
+    VOLUME=$(/home/arnaud/core.d/code/pamixer/pamixer --get-volume)
+    notify-send.py -t 1000 -r 0 --replaces-process "volumeID" -u normal -a "volume" "Volume level" " 🔊 ${VOLUME} %"
+}
+
+                
+
 
 case "$1" in
-    "up") pamixer --allow-boost -i "$2" ; $newvol ;;
-    "down") pamixer --allow-boost -d "$2" ; $newvol ;;
-    "mute") pamixer --allow-boost -t ; $newvol ;;
+    "up") pamixer --allow-boost -i "$2" ; $newvol ; notify  ;;
+    "down") pamixer --allow-boost -d "$2" ; $newvol  ; notify ;;
+    "mute") pamixer --allow-boost -t ; $newvol ; notify ;;
     "truemute") pamixer --allow-boost -m && $newsong; $newvol ;;
     "toggle") playerctl play-pause && $newplayer && $newsong;;
     "pause") playerctl pause  && $newplayer && $newsong;;

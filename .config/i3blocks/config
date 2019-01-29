@@ -1,45 +1,82 @@
 # command=/usr/bin/i3blocks
-separator_block_width=15
+separator_block_width=3
 markup=pango
 separator=true
 
+full_text=|
+align=center
+
+separator=false
+# separator_block_width=7
 
 
-[Song]
-command=i3currentsong
-align=left
-signal=4
-interval=once
+
+# [Song]
+# command=i3currentsong
+# align=left
+# signal=4
+# interval=once
+
+
+
 
 [weather]
 command=i3weather
 interval=3600
 
-# [player]
-# label=🎧 
-# command=i3playerctrl
-# signal=3
-# interval=once
+[separator]
 
+[player]
+label=🎧 
+command=i3playerctrl
+signal=3
+interval=once
 
-# [volume]
-# interval=once
-# command=i3volume
-# signal=10
+[separator]
 
+[volume]
+interval=once
+command=i3volume
+signal=10
+
+[separator]
 
 [battery]
 command=i3battery
 interval=5
 
+[separator]
+
 [ip]
 command=i3ipadress
 interval=3600
 label=🖧
+color=#50C878
+
+
+[separator]
 
 [systeminfo]
 command=i3systeminfo
 interval=5
+
+[separator]
+
+[disky_root]
+label=:
+command=i3disk $HOME
+interval=30
+color=#859900
+
+[separator]
+
+[disky_core]
+label=:
+command=i3disk $HOME/core.d
+interval=30
+color=#1793D1
+
+[separator]
 
 [time]
 label=📅
@@ -54,13 +91,17 @@ interval=30
 interval=30
 
 
+[separator]
+
 [wifi]
 command=i3wifi
 interval=10
 
 
+[separator]
+
 [layout]
-label=
+label=🎹
 command=xkblayout-state print "%s"
 interval=once
 signal=9

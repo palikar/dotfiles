@@ -39,14 +39,17 @@ bar {
         inactive_workspace $darkblack $darkblack $white
         urgent_workspace   $darkblack $darkblack $white
     }
-     status_command i3blocks
-     position top
-     mode dock
-     modifier None
-     tray_output             primary
-     workspace_buttons       yes
-     strip_workspace_numbers yes
+
+    status_command i3blocks
+    position top
+    mode dock
+    modifier None
+    # tray_output             primary
+    tray_output             none
+    workspace_buttons       yes
+    strip_workspace_numbers yes
 }
+
 
 # #---- Basic setup ----# #
 for_window [class="^.*"] border pixel 0
@@ -65,16 +68,16 @@ set $hibernate sudo -A systemctl hibernate
 set $suspend sudo -A systemctl suspend
 
 # define names for workspaces
-set $ws1    "1:  Laptop"
-set $ws2    "2:  Code"
-set $ws3    "3:  Terminal"
-set $ws4    "4:  Internet"
-set $ws5    "5:  Files"
-set $ws6    "6:  Documents"
-set $ws7    "7:  Media"
-set $ws8    "8:  Documents"
-set $ws9    "9:  Chat"
-set $ws10   "10:  General"
+set $ws1    "1: "
+set $ws2    "2: "
+set $ws3    "3: "
+set $ws4    "4: "
+set $ws5    "5: "
+set $ws6    "6: "
+set $ws7    "7: "
+set $ws8    "8: "
+set $ws9    "9: "
+set $ws10   "10: "
 
 # #---- System setup ----# #
 exec_always --no-startup-id feh --bg-scale $WALLPAPER
@@ -86,6 +89,9 @@ exec --no-startup-id unclutter
 exec --no-startup-id dunst
 exec --no-startup-id i3xautolock
 exec --no-startup-id wal -R
+
+exec --no-startup-i xinput set-prop 12 287 1
+
 
 
 # #---- Bindings ----# #
@@ -121,7 +127,7 @@ bindsym $mod+Shift+c            reload
 
 bindsym $mod+Shift+l	        exec --no-startup-id lockscreen
 
-bindsym $mod+b			bar mode toggle
+bindsym $mod+b                  bar mode toggle
 
 bindsym $mod+space              exec --no-startup-id i3changelayout
 
@@ -142,6 +148,9 @@ bindsym $mod+o                 exec --no-startup-id spotify
 bindsym $mod+m                 exec --no-startup-id gnome-system-monitor
 
 Bindsym $mod+Shift+s         exec --no-startup-id screensetup
+
+bindsym $mod+Shift+e            exec --no-startup-id dmenuunicode
+
 
 bindsym --release Print       exec gnome-screenshot
 bindsym --release Shift+Print exec gnome-screenshot -a
@@ -321,3 +330,4 @@ bindsym XF86AudioStop		exec --no-startup-id lmc toggle
 # ##bindsym XF86Bluetooth	exec
 # # bindsym XF86WLAN		exec $netrefresh
 
+_

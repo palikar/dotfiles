@@ -1,6 +1,7 @@
 export CODE_DIR="/home/arnaud/code"
 export DOTFILES_DIR="${CODE_DIR}/dotfiles"
 export WALLPAPER="${DOTFILES_DIR}/screens/wall.*"
+export WALLPAPER_DIR="/home/arnaud/core.d/wallpapers/papes"
 
 export EDITOR='emacsclient -t';
 export TERMINAL='rxvt-unicode';
