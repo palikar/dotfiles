@@ -20,6 +20,8 @@
 # #+OPTIONS: toc:2
 #+OPTIONS: toc:nil
 
+
+
 * Abstract
 This is the configuration of my EMACS-Editor written in [[https://orgmode.org/][Org mode]] in [[https://en.wikipedia.org/wiki/Literate_programming][literate style programming]]. I've sort of hoarded a lot of different packages and different =.emacs= files from all over the internet and just stucked them together.\\
 Using the configuration as is it is is not really advisable. Some things may seem weird and 'wrongly' configured, but hey...this is EMACS.\\
@@ -184,6 +186,9 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (super-save-mode +1)
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
+(setq mouse-yank-at-point t)
+(setq create-lockfiles nil)
+(auto-compression-mode t) 
 #+END_SRC
 *** Copy line below
 Use =Alt-up/down= as in any other editor to copy lines 
@@ -298,6 +303,22 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 (when (daemonp)
   (bind-key* "C-x C-c" 'ask-before-closing))
 #+END_SRC
+*** Scrolling 
+The default scrolling behavior of Emacs is god awful. This fixes more of the issues.
+#+BEGIN_SRC emacs-lisp :results none
+(setq scroll-margin 7)
+(setq scroll-conservatively 0)
+(setq scroll-up-aggressively 0.01)
+(setq scroll-down-aggressively 0.01) 
+
+(setq-default scroll-up-aggressively 0.01
+              scroll-down-aggressively 0.01)
+
+(scroll-all-mode -1)
+(setq scroll-conservatively most-positive-fixnum)
+(setq scroll-preserve-screen-position t) 
+#+END_SRC
+
 ** Applications
 *** GDB
 #+BEGIN_SRC emacs-lisp :results none
@@ -446,8 +467,42 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
   (move-beginning-of-line 'nil)
   (kill-line))
 
+(defun replace-or-delete-pair (open)
+  "Replace pair at point by OPEN and its corresponding closing character.
+The closing character is lookup in the syntax table or asked to
+the user if not found."
+  (interactive
+   (list
+    (read-char
+     (format "Replacing pair %c%c by (or hit RET to delete pair):"
+             (char-after)
+             (save-excursion
+               (forward-sexp 1)
+               (char-before))))))
+  (if (memq open '(?\n ?\r))
+      (delete-pair)
+    (let ((close (cdr (aref (syntax-table) open))))
+      (when (not close)
+        (setq close
+              (read-char
+               (format "Don't know how to close character %s (#%d) ; please provide a closing character: "
+                       (single-key-description open 'no-angles)
+                       open))))
+      (replace-pair open close))))
 
-
+(defun replace-pair (open close)
+  "Replace pair at point by respective chars OPEN and CLOSE.
+If CLOSE is nil, lookup the syntax table. If that fails, signal
+an error."
+  (let ((close (or close
+                   (cdr-safe (aref (syntax-table) open))
+                   (error "No matching closing char for character %s (#%d)"
+                          (single-key-description open t)
+                          open)))
+        (parens-require-spaces))
+    (insert-pair 1 open close))
+  (delete-pair)
+  (backward-char 1)) 
 
 (defun pass () "A function that does nothing" (interactive))
 #+END_SRC
@@ -497,11 +552,12 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
 (bind-key* "M-j <f2>" 'setup-packages)
 (bind-key* "M-j <f3>" 'package-install)
 
-(bind-key* "C-c w w" 'kill-whole-word)
-(bind-key* "C-c w l" 'kill-whole-line)
-
 (bind-key* "C-x k" 'kill-this-buffer)
 (bind-key* "C-x K" 'kill-buffer)
+
+(bind-key* "C-c w r" 'replace-or-delete-pair)
+(bind-key* "C-c w w" 'kill-whole-word)
+(bind-key* "C-c w l" 'kill-whole-line)
 
 #+END_SRC
 
@@ -536,7 +592,13 @@ When used, it keeps the focused window the biggest while still having the other 
 #+BEGIN_SRC emacs-lisp
 (require 'golden-ratio)
 #+END_SRC
-
+** General tweaks
+*** Zygospore
+Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config that I actually don't necessarily wanted destroyed. This package fixes this "issue". If I hit =C-x 1= again, I was just where I was before
+#+BEGIN_SRC emacs-lisp :results none
+(require 'zygospore)
+(global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows) 
+#+END_SRC
 ** Keybindgs
 #+BEGIN_SRC emacs-lisp
 (bind-key* "C-x 4 t" 'transpose-windows)
@@ -648,11 +710,6 @@ Viewing pdf files in emacs! Not really indented for big and heavy files but when
 Surprisingly I don't have all that much tweaks in here. Commenting out regions or lines is probably the thing I use the most. The other things are just very minor things that are standard in every other IDE. 
 - [[https://github.com/abo-abo/function-args][function-args]] - package that provies smart completion for function arguments. Works perfectly with *yasnippets*.
 #+BEGIN_SRC emacs-lisp
-(require 'function-args)
-(require 'ycmd)
-(require 'company-ycmd)
-(require 'flycheck-ycmd)
-
 (setq c-default-style '((java-mode . "java") (other . "awk")))
 (setq-default c-default-style "awk")
 (setq-default indent-tabs-mode nil)
@@ -661,20 +718,9 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 (add-hook 'proge-mode-hook 'semmantic-highlight-func-mode)
 (show-paren-mode 1)
 
-
-(fa-config-default)
 (set-default 'semantic-case-fold t)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (set-default 'semantic-case-fold t)
-
-(add-hook 'c++-mode-hook 'function-args-mode)
-
-(set-variable 'ycmd-server-command '("python" "/home/arnaud/core.d/code/ycmd/ycmd"))
-(set-variable 'ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
-(set-variable 'ycmd-global-config "~/.ycm_extra_conf.py")
-
-(company-ycmd-setup)
-(flycheck-ycmd-setup)
 
 #+END_SRC
 
@@ -697,30 +743,67 @@ A standard IDE feature that comes out of the box with emacs. Just a little tweak
 ** C++
 At my work I use this emacs-configuration for a lot of c++ programming. Yet, similar to other sections, the c++ tweaks are...pretty much nothing. Emacs is just that good with no special c++ tweaks.
 /Note:/ At some time I plan to experiment with *[[https://github.com/cquery-project/cquery][cquery]]*
+
 #+BEGIN_SRC emacs-lisp :results none
 (require' irony)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(require 'ycmd)
+(require 'company-ycmd)
+(require 'flycheck-ycmd)
+(require 'function-args)
+(require 'modern-cpp-font-lock)
 
-(setq c-default-style "linux"
-      c-basic-offset 4)
 
-(setq-default c-basic-offset 4
-              tab-width 4
-              indent-tabs-mode t)
+(modern-c++-font-lock-global-mode t)
 
-;;(setq c-default-style "linux" c-basic-offset 4)
-;;(add-to-list 'c-default-style '(c-mode "bsd"))
+;; (add-hook 'c++-mode-hook 'irony-mode)
+;; (add-hook 'c-mode-hook 'irony-mode)
+;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-;; (add-to-list 'c-offsets-alist '(substatement-open . 0))
-;; (require 'cquery)
+(fa-config-default)
 
-;; (require 'cquery)
-;; (setq cquery-executable "/home/arnaud/code/cquery/build/release/bin/cquery")
-;; (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
+(set-variable 'ycmd-server-command '("python" "/home/arnaud/core.d/code/ycmd/ycmd"))
+(set-variable 'ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
+(set-variable 'ycmd-global-config "~/.ycm_extra_conf.py")
+
+(add-hook 'c++-mode-hook 'ycmd-mode)
+(add-hook 'c++-mode-hook 'company-ycmd-setup)
+(add-hook 'c++-mode-hook 'flycheck-ycmd-setup)
+(add-hook 'c++-mode-hook 'function-args-mode)
+
+(setq c-default-style "linux")
+(setq c-basic-offset 4)
+
+(setq-default c-basic-offset 4)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode t)
+#+END_SRC
+
+*** Functions
+
+#+BEGIN_SRC emacs-lisp :results none
+
+
+(defun generate-tags-and-classes ()
+  "Documentation."
+  (interactive)
+  (if (projectile-project-root)
+      (progn
+        (if (not (file-exists-p (concat (projectile-project-root) "BROWSE")))
+            (shell-command-to-string (format "find %s -name '*.cpp' -o -name '*.hpp' | ebrowse -o '%s/BROWSE'" (projectile-project-root) (projectile-project-root))))
+        (if (not (file-exists-p (concat (projectile-project-root) "TAGS")))
+            (shell-command-to-string (format "find %s -name '*.cpp' -o -name '*.hpp' | xargs etags --append -o '%s/TAGS'" (projectile-project-root) (projectile-project-root)))))
+    (progn
+      (message "Currently not in project!"))))
+
+;; (add-hook 'c++-mode-hook 'function-args-mode)
+
+
 
 #+END_SRC
+
+#+RESULTS:
+: generate-tags-and-classes
+
 
 
 ** CMake
@@ -745,7 +828,6 @@ I use Python a lot these days. Yet, my python setup in /Emacs/ is less than mini
 \\
 Myeah, that was a lie from the past. My python setup has evolved since then. I use quite a few packages that transform my Emacs into fully fledged python IDE.
 #+BEGIN_SRC emacs-lisp :results none
-
 (require 'anaconda-mode)
 (require 'py-yapf)
 (require 'pip-requirements)
@@ -762,10 +844,10 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 (setq jedi:tooltip-method nil)
 (setq jedi:get-in-function-call-delay 0)
 
- (setq elpy-company-add-completion-from-shell t)
+(setq elpy-company-add-completion-from-shell t)
 
-(setq python-shell-interpreter "python"
-      python-shell-interpreter-args "-i")
+(setq python-shell-interpreter "python")
+(setq python-shell-interpreter-args "-i")
 
 #+END_SRC
 
@@ -813,7 +895,6 @@ I don't really use EMACS for java development as it can be tedious and the packa
 
 
 #+END_SRC
-
 
 ** Web Mode
 From time to time I have to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
@@ -895,6 +976,7 @@ Syntax error-checking on the fly (haha!) while working on code. It's convenient 
 (global-flycheck-mode t)
 #+END_SRC
 
+
 ** Aggressive Indent
 When writing code I lot of times I mark the things I've just typed and hit /Tab/ to indent it properly. This packages help me not to do that so often as it indents things right before your eyes in the moment you write them. It gets annoying at times but you get used to it pretty quickly.
 - [[https://github.com/Malabarba/aggressive-indent-mode][agrssive-indent]]
@@ -909,6 +991,7 @@ When writing code I lot of times I mark the things I've just typed and hit /Tab/
                            (thing-at-point 'line)))))
 
 #+END_SRC
+
 
 * Text editing
 ** Alt-moving selection
@@ -985,6 +1068,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 (bind-key* "C-M-w" 'arnaud-kill-save-sexp)
 (bind-key* "C-M-S-w" 'arnaud-kill-save-sexp-whole)
 #+END_SRC
+
 
 * QOL
 Extensions/Applications/Packages for Emacs that just plainly do by life easier. The key to getting the job done in an effective manner in having the right tools for it. And you know the Emacs philosophy... "Put _everything_ in your editor!"
@@ -1226,10 +1310,81 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 
 ** Magit
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
+(require 'magit)
+;; Open magit window full-screen
+(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+;; When calling magit-status, save all buffers without further ado
+(setq magit-save-repository-buffers 'dontask)
+;; Anything longer will be highlighted
+(setq git-commit-summary-max-length 70)
+(setq magit-commit-show-diff t)
+ 
+(setq magit-status-sections-hook '(
+			;;magit-insert-status-headers
+			magit-insert-unstaged-changes
+			magit-insert-staged-changes
+			magit-insert-untracked-files
+			magit-insert-merge-log
+			magit-insert-rebase-sequence magit-insert-am-sequence
+			magit-insert-sequencer-sequence magit-insert-bisect-output
+			magit-insert-bisect-rest magit-insert-bisect-log
+			magit-insert-stashes
+			magit-insert-unpulled-from-upstream
+			magit-insert-unpulled-from-pushremote
+			magit-insert-unpushed-to-upstream
+			magit-insert-unpushed-to-pushremote))
+
+;; make [MASTER] appear at the end of the summary line
+(setq magit-log-show-refname-after-summary t)
+
+(defun my-magit-browse-github ()
+    "Browse to the project's github URL, if available"
+    (interactive)
+    (let ((url (with-temp-buffer
+                 (unless (zerop (call-process-shell-command
+                                 "git remote -v" nil t))
+                   (error "Failed: 'git remote -v'"))
+                 (goto-char (point-min))
+                 (when (re-search-forward
+                        "github\\.com[:/]\\(.+?\\)\\.git" nil t)
+                   (format "https://github.com/%s" (match-string 1))))))
+      (unless url
+        (error "Can't find repository URL"))
+      (browse-url url))
+	  (with-temp-buffer
+		(insert "bind_raise_or_run_web()")
+		(call-process-region (point-min) (point-max) "awesome-client" t)))
+
+
+(setqg magit-repository-directories
+		'(
+		  ("~/core.d/code"        . 1)
+		  ("~/core.d/code_home/"      . 1))
+		magit-repolist-columns
+		'(
+		  ("Name"    25 magit-repolist-column-ident                  nil)
+		  ("Version" 25 magit-repolist-column-version                nil)
+		  ("Push"    4 magit-repolist-column-unpushed-to-upstream   (:right-align t))
+		  ("Path"    99 magit-repolist-column-path)))
+
 #+END_SRC
 
+*** Keybindgs
 
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "M-j m g" 'my-magit-browse-github magit-mode-map)
+(bind-key* "M-j m l" 'magit-list-repositories)
+(bind-key* "M-j m s" 'magit-status)
+(bind-key* "M-j m c" 'magit-commit)
+(bind-key* "M-j m i" 'magit-init)
+(bind-key* "M-j m c" 'magit-checkout)
+(bind-key* "M-j m C" 'magit-checkout-file)
+
+;; (bind-key "q" 'my--kill-buffer-and-window magit-mode-map)
+#+END_SRC
+
+ 
 ** Hydra
 /Hydra/ is a package that allows you to create hydras. Those are like munues with keybindings that popout on the bottom of the buffer and prompt you to type one(or more) of the listed keybindings. This provides really cool way of structuring commands in a menu-like fashion. There are some predifined hydras that come with the package but those are not that good and therefore I've 'borrowed' a few from the mighty internet.
 \\
@@ -2141,6 +2296,7 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (bind-key* "C-c l M-p" 'latex-preview-pane-update)
 (bind-key* "C-c l l" 'TeX-command-master)
 #+END_SRC
+
 
 * Editor enhancing
 
