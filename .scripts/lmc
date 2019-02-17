@@ -8,7 +8,6 @@ notify() {
     VOLUME=$(/home/arnaud/core.d/code/pamixer/pamixer --get-volume)
     notify-send.py -t 1000 -r 0 --replaces-process "volumeID" -u normal -a "volume" "Volume level" " 🔊 ${VOLUME} %"
 }
-
                 
 
 

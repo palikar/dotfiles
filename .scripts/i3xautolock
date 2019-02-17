@@ -1,4 +1,4 @@
 #!/bin/bash
 
+xautolock -detectsleep -time 10 -locker "lockscreen"  -notify 10 -notifier "notify-send 'Locking' 'Locking computer in 10 seconds' -u critical -t 10000 " & $(sleep 0.08 && pkill -RTMIN+6 i3blocks)
 
-xautolock -detectsleep -time 10 -locker "lockscreen"  -notify 10 -notifier "notify-send 'Locking' 'Locking computer in 10 seconds' -u critical -t 10000 " &

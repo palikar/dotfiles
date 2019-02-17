@@ -109,6 +109,8 @@ bindsym $mod+Shift+F11		exec --no-startup-id prompt "Are you sure you want to su
 
 bindsym $mod+Shift+F10		exec --no-startup-id prompt "Are you sure you want to hibernate?" "$hibernate"
 
+bindsym $mod+Shift+F8		exec --no-startup-id toggleautolocking
+
 bindsym $mod+Return		exec $term
 bindsym $mod+Shift+Return	exec samedir
 

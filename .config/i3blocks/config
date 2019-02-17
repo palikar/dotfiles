@@ -93,10 +93,17 @@ interval=30
 
 [separator]
 
+[autolock]
+signal=6
+command=i3autolockind
+interval=once
+
+
+[separator]
+
 [wifi]
 command=i3wifi
 interval=10
-
 
 [separator]
 
@@ -105,6 +112,3 @@ label=🎹
 command=xkblayout-state print "%s"
 interval=once
 signal=9
-
-
-

@@ -874,6 +874,7 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 (bind-key* "M-j e ." 'elpy-goto-definition)
 #+END_SRC
 
+
 ** Java
 I don't really use EMACS for java development as it can be tedious and the packages are not really on part with some other modern IDEs (like Netbeans ;) ). Still, I do have some basic setup for =meghanada= to make my life easier if I have to edit some java program really quick through emacs.
 - [[https://github.com/mopemope/meghanada-emacs][meghanada]] 
@@ -895,6 +896,7 @@ I don't really use EMACS for java development as it can be tedious and the packa
 
 
 #+END_SRC
+
 
 ** Web Mode
 From time to time I have to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
@@ -953,18 +955,20 @@ One of the most useful packages that is pretty much a must for a emacs configura
 #+BEGIN_SRC emacs-lisp
 (require 'yasnippet)
 (require 'yasnippet-snippets)
+(require 'helm-c-yasnippet)
+
 (yas-global-mode 1)
+(setq helm-yas-space-match-any-greedy t)
+(setq yas-triggers-in-field t)
+#+END_SRC
+
+*** Keybindgs
+
+#+BEGIN_SRC elisp :results none
 (bind-key* "C-c y n"  'yas/new-snippet)
 (bind-key* "C-c y v"  'yas/visit-snippet-file)
 (bind-key* "C-c y r"  'yas/reload-all)
-
-
-(require 'helm-c-yasnippet)
-(setq helm-yas-space-match-any-greedy t)
-(bind-key* "C-c y h" 'helm-yas-complete)
-
-(setq yas-triggers-in-field t)
-
+(bind-key* "C-<tab>" 'helm-yas-complete)
 #+END_SRC
 
 
@@ -990,6 +994,108 @@ When writing code I lot of times I mark the things I've just typed and hit /Tab/
        (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
                            (thing-at-point 'line)))))
 
+#+END_SRC
+
+
+** Json
+
+*** Keybindgs
+
+#+BEGIN_SRC elisp :results none
+(bind-key* "M-j j b" 'json-pretty-print-buffer)
+(bind-key* "M-j j r" 'json-pretty-print)
+#+END_SRC
+
+
+** Templates
+
+
+#+BEGIN_SRC elisp  :results none
+
+(define-skeleton c++-basic-skeleton
+  ""
+  ""
+  "#inlcude <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+
+int main(int argc, char *argv[])
+{
+	std::cout << \"Starting the program\" << \"\\n\";
+    return 0;
+}")
+
+(define-skeleton python-basic-skeleton
+  ""
+  ""
+  "\#!\/usr\/bin\/python
+import sys
+import os
+import json
+
+def main():
+    print(\"The program works\")
+
+
+if __name__ == \'__main__\':
+    main()")
+
+(define-skeleton json-basic-skeleton
+  ""
+  ""
+  "{
+	\"field_1\": \"value\",
+	\"field_2\": {
+		\"field_3\": \"value\"
+	}
+}")
+
+
+
+(defmacro buffer-from-template (name macro mode)
+  ""
+  `(let ((new-buff (generate-new-buffer ,name)))
+	 (switch-to-buffer  new-buff)
+	 (,macro)
+	 (,mode)))
+
+#+END_SRC
+
+*** Keybindgs
+#+BEGIN_SRC elisp :results none
+(bind-key* "C-c 2" '@(buffer-from-template "*c++*" c++-basic-skeleton c++-mode))
+(bind-key* "C-c 3" '@(buffer-from-template "*python*" python-basic-skeleton python-mode))
+(bind-key* "C-c 4" '@(buffer-from-template "*json*" json-basic-skeleton json-mode))
+#+END_SRC
+
+
+** Quickrun
+
+#+BEGIN_SRC elisp :results none
+(require 'quickrun)
+
+(defun my/quickrun-hook ()
+  (goto-char (point-min)))
+(add-hook 'quickrun-after-run-hook 'my/quickrun-hook)
+
+(quickrun-add-command "c++/warnings"
+  '((:command . "g++")
+    (:exec    . (
+				 "%c -std=c++17 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic  %o -o %e %s"
+				 "%e %a"))
+    (:remove  . ("%e"))
+	(:description "Compile C++ file with g++ and all of the warnings."))
+  :default "c++")
+
+#+END_SRC
+
+*** Keybindgs
+
+#+BEGIN_SRC elisp :results none
+(bind-key* "M-j r h" 'helm-quickrun)
+(bind-key* "M-j r r" 'quickrun-with-arg)
+(bind-key* "<f7>" 'quickrun)
 #+END_SRC
 
 
@@ -1357,7 +1463,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 		(call-process-region (point-min) (point-max) "awesome-client" t)))
 
 
-(setqg magit-repository-directories
+(setq magit-repository-directories
 		'(
 		  ("~/core.d/code"        . 1)
 		  ("~/core.d/code_home/"      . 1))
@@ -1784,15 +1890,16 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 
 *** Basic setup
 #+BEGIN_SRC emacs-lisp :results none
+(global-auto-complete-mode 'nil)
 
 (setq company-minimum-prefix-length 3
-      company-tooltip-align-annotations nil
-      company-tooltip-flip-when-above nil
-      company-idle-delay 0
-      company-show-numbers nil
-      company-echo-truncate-lines nil
-      company-tooltip-maximum-width 100
-     company-tooltip-minimum-width 100)
+	  company-tooltip-align-annotations nil
+	  company-tooltip-flip-when-above nil
+	  company-idle-delay 0
+	  company-show-numbers nil
+	  company-echo-truncate-lines nil
+	  company-tooltip-maximum-width 100
+	  company-tooltip-minimum-width 100)
 (global-company-mode t)
 
 (bind-key* "M-m" 'company-complete)
@@ -2047,14 +2154,37 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 
 ** Yagist
 
-
 #+BEGIN_SRC emacs-lisp :results none
 (require 'yagist)
 
 (bind-key* "M-j g l" 'yagist-list)
 (bind-key* "M-j g r" 'yagist-region)
 (bind-key* "M-j g b" 'yagist-buffer)
+#+END_SRC
 
+
+** Sunrise Commander
+
+#+BEGIN_SRC emacs-lisp
+;; (load "~/.emacs.d/lisp/sunrise-commander.el")
+;; (require 'sunrise-commander)
+;; (require 'sunrise-x-buttons)
+;; (require 'sunrise-x-modeline)
+ 
+#+END_SRC
+
+
+
+** Gitignore templates
+
+#+BEGIN_SRC elisp
+(require 'gitignore-templates)
+#+END_SRC
+
+*** Keybindgs
+#+BEGIN_SRC elisp
+(bind-key* "M-j i i" 'gitignore-templates-insert)
+(bind-key* "M-j i f" 'gitignore-templates-new-file)
 #+END_SRC
 
 
@@ -2490,6 +2620,7 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
   (diminish 'function-args-mode)
   (diminish 'abbrev-mode)
   (diminish 'sphinx-doc-mode)
+  (diminish 'org-indent-mode)
   (message "The modes should be away now!"))
 
 (diminish-em-all)

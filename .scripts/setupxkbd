@@ -5,6 +5,17 @@ setxkbmap -option caps:f13
 notify-send "Changing language" "Keyboard layout has been configured"
 pkill -RTMIN+9 i3blocks
 
+
 setxkbmap -option # reset everything to default state!
 xmodmap -e "remove Lock = Caps_Lock"
 xmodmap -e "keysym Caps_Lock = F13"
+
+
+
+TOUCH_ID=$(xinput list | grep "ELAN0511:00 04F3:3041 Touchpad" | grep "id=[0-9]*" -o | sed -e "s/id=\(.*\)/\1/g")
+TAP_ID=$( xinput list-props 15 | grep "libinput Tapping Enabled ([0-9]*)" -o | sed -e "s/libinput Tapping Enabled (\([0-9]*\))/\1/g")
+xinput set-prop ${TOUCH_ID} ${TAP_ID} 1
+
+
+
+
