@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+if [ $(pgrep xautolock) ]
+then
+	color="#228b22"
+else
+	color="#Ff0000"
+fi
+
+echo "<span color='$color'>  </span>"
+
