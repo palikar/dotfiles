@@ -63,7 +63,7 @@ set $term --no-startup-id rxvt-unicode
 set $mod Mod4
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
-set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
+yset $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl hibernate
 set $suspend sudo -A systemctl suspend
 

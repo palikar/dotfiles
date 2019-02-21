@@ -42,15 +42,12 @@ URxvt.cursorColor:	white
 
 
 !! Extensions
-URxvt.perl-lib:                 /home/arnaud/.urxvt-perls/
-URxvt.perl-ext-common:          default,matcher,resize-font,url-select,keyboard-select,clipboard,font-sizee
-# urxvt.font:                   xft:Inconsolata:pixelsize=8
-URxvt.colorUL:		        #4682B4
+URxvt.perl-lib:							/home/arnaud/.urxvt-perls/
+URxvt.perl-ext-common:			        default,matcher,resize-font,url-select,keyboard-select,clipboard,font-sizee
+ 
+URxvt.font:								xft:SauceCodePro Nerd Font Mono:style=Bold:size=12
+URxvt.colorUL:							#4682B4	
 
-! URxvt.font: xft:FuraCode Nerd Font:style=Regular:size=11
-
-
-!! url-select
 URxvt.keysym.M-l:                       perl:url-select:select_next
 URxvt.url-select.launcher:              linkhandler
 URxvt.url-select.underline:             true

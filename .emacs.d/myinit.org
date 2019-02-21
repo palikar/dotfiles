@@ -39,7 +39,7 @@ I've drawn a lot of inspiration for my Emacs configuration form:
 - [[https://github.com/zamansky/using-emacs][here]] (for the genera concept of the configuration file)
 - [[https://sriramkswamy.github.io/dotemacs/][also here]] (for some of my /hydras/)
 
-
+  
 * Basic System
 ** Personal Info
 Lets let Emacs know who I am. Probably not a good idea cut them CIA know everything but hey, we trust our "free software", right!
@@ -66,7 +66,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region exwm fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company modalka moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment python-x folding pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window projectile try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize zzz-to-char avy))
+(setq package-list '(quickrun java-file-create template aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region exwm eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment python-x folding pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window projectile try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
 
 
@@ -721,7 +721,6 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 (set-default 'semantic-case-fold t)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (set-default 'semantic-case-fold t)
-
 #+END_SRC
 
 ** Keybindgs
@@ -1001,7 +1000,7 @@ When writing code I lot of times I mark the things I've just typed and hit /Tab/
 
 *** Keybindgs
 
-#+BEGIN_SRC elisp :results none
+#+BEGIN_SRC emacs-lisp :results none
 (bind-key* "M-j j b" 'json-pretty-print-buffer)
 (bind-key* "M-j j r" 'json-pretty-print)
 #+END_SRC
@@ -1010,7 +1009,7 @@ When writing code I lot of times I mark the things I've just typed and hit /Tab/
 ** Templates
 
 
-#+BEGIN_SRC elisp  :results none
+#+BEGIN_SRC emacs-lisp  :results none
 
 (define-skeleton c++-basic-skeleton
   ""
@@ -1027,9 +1026,9 @@ int main(int argc, char *argv[])
 }")
 
 (define-skeleton python-basic-skeleton
-  ""
-  ""
-  "\#!\/usr\/bin\/python
+""
+""
+"\#!\/usr\/bin\/python
 import sys
 import os
 import json
@@ -1040,7 +1039,7 @@ def main():
 
 if __name__ == \'__main__\':
     main()")
-
+    
 (define-skeleton json-basic-skeleton
   ""
   ""
@@ -1050,6 +1049,29 @@ if __name__ == \'__main__\':
 		\"field_3\": \"value\"
 	}
 }")
+
+(define-skeleton org-basic-skeleton 
+""
+""
+"#+OPTIONS: ':t *:t -:t ::t <:t H:3 \\n:nil ^:t arch:headline author:t
+#+OPTIONS: broken-links:nil c:nil creator:nil d:(not \"LOGBOOK\")
+#+OPTIONS: date:t e:t email:nil f:t inline:t num:t p:nil pri:nil
+#+OPTIONS: prop:nil stat:t tags:t tasks:t tex:t timestamp:t title:t
+#+OPTIONS: toc:t todo:t |:t
+#+TITLE: Title
+#+AUTHOR: Stanislav Arnaudov
+#+EMAIL: arnaud@localhost
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.13)
+
+
+
+
+\* Title 1
+
+\* Title 2")
 
 
 
@@ -1063,16 +1085,17 @@ if __name__ == \'__main__\':
 #+END_SRC
 
 *** Keybindgs
-#+BEGIN_SRC elisp :results none
+#+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c 2" '@(buffer-from-template "*c++*" c++-basic-skeleton c++-mode))
 (bind-key* "C-c 3" '@(buffer-from-template "*python*" python-basic-skeleton python-mode))
 (bind-key* "C-c 4" '@(buffer-from-template "*json*" json-basic-skeleton json-mode))
+(bind-key* "C-c 5" '@(buffer-from-template "*org*" org-basic-skeleton org-mode))
 #+END_SRC
 
 
 ** Quickrun
 
-#+BEGIN_SRC elisp :results none
+#+BEGIN_SRC emacs-lisp :results none
 (require 'quickrun)
 
 (defun my/quickrun-hook ()
@@ -1092,7 +1115,7 @@ if __name__ == \'__main__\':
 
 *** Keybindgs
 
-#+BEGIN_SRC elisp :results none
+#+BEGIN_SRC emacs-lisp :results none
 (bind-key* "M-j r h" 'helm-quickrun)
 (bind-key* "M-j r r" 'quickrun-with-arg)
 (bind-key* "<f7>" 'quickrun)
@@ -1392,26 +1415,21 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
          )))
 
 
-;;(add-hook 'ibuffer-hook
-;;          (lambda ()
-;;          (ibuffer-projectile-set-filter-groups)
-;;            (unless (eq ibuffer-sorting-mode 'alphabetic)
-;;              (ibuffer-do-sort-by-alphabetic))))
-
-
 (add-hook 'ibuffer-mode-hook
 	  '(lambda ()
 	     (ibuffer-auto-mode 1)
 	     (ibuffer-switch-to-saved-filter-groups "home")))
 
-
-
+;;(add-hook 'ibuffer-hook
+;;          (lambda ()
+;;          (ibuffer-projectile-set-filter-groups)
+;;            (unless (eq ibuffer-sorting-mode 'alphabetic)
+;;              (ibuffer-do-sort-by-alphabetic))))
 ;;(require 'ibuf-ext)
 ;;(add-to-list 'ibuffer-never-show-predicates "^\\*")
 
-#+END_SRC
 
-----------------------
+#+END_SRC
 
 
 ** Magit

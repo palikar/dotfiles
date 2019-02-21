@@ -1,24 +1,3 @@
-search_inc slac
-search_inc ani
-search_inc sla
-search_inc ns
-search_inc nsf
-search_inc sc
-search_inc scrit
-search_inc pe
-search_inc peak
-shell ls 
-shell mv %1f 
-shell -p 
-shell -p e
-search_inc slav
-search_inc red
-rename 1541828527678.webm
-rename edgy_boy_alert.webm
-rename 1544364014255.webm
-rename seems_pretty_gay_to_me.webm
-rename 1542008293680[a.webm
-rename notice_me_senpai.webm
 rename meme_fetish.webm
 search_inc anu
 search_inc papes
@@ -26,7 +5,6 @@ search_inc anime
 search_inc fo9r
 search_inc fore
 shell sxiv -tf
-shell 
 search_inc .vimrc
 search_inc .emacs
 search_inc book
@@ -38,13 +16,35 @@ open_with 2
 rename baa.webm
 rename prayer_in_c.webm
 rename prayer_in_slav.webm
-open_with 
 mkdir Books
 rename Proseminar
 rename Phone Content
 rename Orgfiles
-find 
 search_inc com
-
+rename Chapters
+mkdir Phototos
+search_inc pho
+shell -p'
+ar
+abort 
+shell atool unpack %f
+search_inc mese
 bulkrename 
+shell 
+shell -p e
+search_inc .profile
+search_inc .googo
+find 
+search_inc .goog
+search_inc .pro
+mkdir Dropbox
+open_with 
+q1
+q
+
+rename Downloads
+rename Mesen_0.9.6.zip
+touch 
+touch new_arch
 delete
+rename Hamilton The musical
