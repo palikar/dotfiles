@@ -1,6 +1,6 @@
 {
     "vars" : {
-        "arnaud_base" : "git@github.com:palikar"
+        "arnaud_base" : "git@github.com:palikar",
         "github_base" : "git@github.com:"
     },
 

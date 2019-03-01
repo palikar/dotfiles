@@ -1,7 +1,7 @@
 [Added Associations]
 text/html=firefox-esr.desktop;org.gnome.gedit.desktop;vim.desktop;
 text/csv=org.gnome.gedit.desktop;libreoffice-calc.desktop;
-application/octet-stream=org.gnome.gedit.desktop;eog.desktop;shotwell.desktop;evince.desktop;
+application/octet-stream=org.gnome.Evince.desktop;org.gnome.gedit.desktop;eog.desktop;shotwell.desktop;evince.desktop;
 image/png=shotwell-viewer.desktop;eog.desktop;display-im6.q16hdri.desktop;pqiv.desktop;display-im6.q16.desktop;
 image/jpeg=shotwell-viewer.desktop;gimp.desktop;pqiv.desktop;display-im6.q16hdri.desktop;display-im6.q16.desktop;
 video/x-matroska=vlc.desktop;

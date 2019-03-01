@@ -1,4 +1,3 @@
-
 #Theming
 set $darkblack		#1b1918
 set $black		#766e6b
@@ -75,8 +74,8 @@ set $ws4    "4: "
 set $ws5    "5: "
 set $ws6    "6: "
 set $ws7    "7: "
-set $ws8    "8: "
-set $ws9    "9: "
+set $ws8    "8: "
+set $ws9    "9: "
 set $ws10   "10: "
 
 # #---- System setup ----# #
@@ -154,7 +153,7 @@ Bindsym $mod+Shift+s         exec --no-startup-id screensetup
 bindsym $mod+Shift+e            exec --no-startup-id dmenuunicode
 
 
-bindsym --release Print       exec gnome-screenshot
+bindsym --release Print       exec gnome-screenshot 
 bindsym --release Shift+Print exec gnome-screenshot -a
 
 # #---- Gaps ----# #
@@ -202,6 +201,8 @@ for_window [class="Emacs"] move workspace $ws2
 for_window [class="Nautilus"] move workspace $ws5
 for_window [class="Evince"] move workspace $ws6
 for_window [class="Spotify"] move workspace $ws7
+for_window [class="discord"] move workspace $ws8
+
 
 
 

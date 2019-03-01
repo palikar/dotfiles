@@ -1,3 +1,8 @@
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
 stty -ixon
 shopt -s histappend
 shopt -s checkwinsize

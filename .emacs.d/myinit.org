@@ -132,6 +132,16 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (face-spec-set 'secondary-selection '((t (:background "light sky blue" :foreground "black"))))
 #+END_SRC
 
+*** Fonts
+#+BEGIN_SRC emacs-lisp :results none
+
+;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=14")
+;; (set-frame-font "SauceCodePro Nerd Font Mono:size=14" nil t)
+
+;; (set-default-font "xft:SauceCodePro Nerd Font Mono:size=12")
+
+#+END_SRC
+
 ** Behavioral tweaks
 Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp :results none

@@ -133,6 +133,7 @@ file_node_extensions = {
 }
 
 dir_node_exact_matches = {
+  
 # English
     '.git'                             : '',
     'Desktop'                          : '',
@@ -144,6 +145,13 @@ dir_node_exact_matches = {
     'Public'                           : '',
     'Templates'                        : '',
     'Videos'                           : '',
+    'code_home'                        : '\uf668',
+    'core.d'                           : '\ue5fc',
+    'Books'                            : '\uf5bb',
+    'code'                             : '\uf668',
+    'code_home'                        : '\uf668',
+    'core.d'                           : '\ue5fc',
+  
 # Spanish
     'Escritorio'                       : '',
     'Documentos'                       : '',

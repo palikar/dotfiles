@@ -1,23 +1,7 @@
-export CODE_DIR="/home/arnaud/code"
-export DOTFILES_DIR="${CODE_DIR}/dotfiles"
-export WALLPAPER="${DOTFILES_DIR}/screens/wall.*"
-export WALLPAPER_DIR="/home/arnaud/core.d/wallpapers/papes"
 
-export EDITOR='emacsclient -t';
-export TERMINAL='rxvt-unicode';
-export BROWSER="firefox";
-export READER="evince"
-
-export GOOGLE_APPLICATION_CREDENTIALS="${HOME}/.google.json"
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/arnaud/core.d/usr/bin:$HOME/.scripts:/$HOME/.local/bin"
-export PATH="/home/arnaud/.cask/bin:$PATH"
-
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/arnaud/core.d/usr/lib"
-export CPATH="/home/arnaud/core.d/usr/include:/usr/local/include/openni2"
-
-export OPENNI2_INCLUDE="/usr/include/openni2"
-export OPENNI2_REDIST="/usr/lib"
+if [ -f ~/.env ]; then
+    . ~/.env
+fi
 
 
 . setupxkbd

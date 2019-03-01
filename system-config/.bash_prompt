@@ -3,10 +3,29 @@
 PROMPT_COMMAND=smile_prompt
 GIT_PROMPT_ONLY_IN_REPO=1
 
+
+function set_virtualenv () {
+	
+	if test -z "$VIRTUAL_ENV" ; then
+		PYTHON_VIRTUALENV=""
+		
+	else
+		PYTHON_VIRTUALENV="${BLUE}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+	fi
+
+	# if  test -z "$CONDA_DEFAULT_ENV" ; then
+	# 	PYTHON_VIRTUALENV=""
+	# else
+	# 	PYTHON_VIRTUALENV="${BLUE}[`basename \"$CONDA_DEFAULT_ENV\"`]${COLOR_NONE} "
+	# fi
+
+}
+
 function smile_prompt
 {
     
-
+	set_virtualenv
+	
     if [ "$?" -eq "0" ]
     then
         #smiley
@@ -17,6 +36,6 @@ function smile_prompt
     fi
 
     
-    export PS1=$"\[\\033[38;5;015m\]╭─\[\\033[38;5;197m\]\u\[\\033[38;5;015m\] at \[\\033[38;5;208m\]\h\[\\033[38;5;015m\] in \[\\033[38;5;118m\]$(pwd)\[\\033[38;5;081m\] $SC  \r\n\[\\033[38;5;015m\]╰─\[\\033[38;5;081m\]λ ➝ \[\\033[38;5;082m\]\[\033[0m\]"
+    export PS1=$"\[\\033[38;5;015m\]╭─\[\\033[38;5;197m\]\u\[\\033[38;5;015m\] at \[\\033[38;5;208m\]\h\[\\033[38;5;015m\] in \[\\033[38;5;118m\]$(pwd)\[\\033[38;5;081m\] ${PYTHON_VIRTUALENV}$SC  \r\n\[\\033[38;5;015m\]╰─\[\\033[38;5;081m\]λ ➝ \[\\033[38;5;082m\]\[\033[0m\] "
     export PS2=$'➝ '
 }

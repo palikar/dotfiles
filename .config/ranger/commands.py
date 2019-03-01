@@ -89,6 +89,28 @@ import re
 from ranger.api.commands import Command
 
 
+
+class copy_to_bookmark(Command):
+    """
+    Copy/cut file(s) to bookmark
+    """    
+
+    def execute(self):
+        key = self.arg(1)
+        if key in self.fm.bookmarks:
+            destination = str(self.fm.bookmarks[str(key)])
+
+            if self.arg(2) == '-c':
+                self.fm.copy(mode='set')
+            elif self.arg(2) == '-d':
+                self.fm.cut(mode='set')    
+            self.fm.paste(dest=destination)
+            self.fm.uncut()
+        else:
+            self.fm.notify('The key isn\'t bound to bookmark!')
+        
+
+
 class alias(Command):
     """:alias <newcommand> <oldcommand>
 
@@ -1825,16 +1847,3 @@ class yank(Command):
             in sorted(self.modes.keys())
             if mode
         )
-
-
-class extract(Command):
-    """
-    
-    """
-
-
-    def execute(self):
-        pass
-
-    def tab(self, tabnum):
-        pass
