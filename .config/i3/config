@@ -39,11 +39,11 @@ bar {
         urgent_workspace   $darkblack $darkblack $white
     }
 
-    status_command i3blocks
+	status_command i3blocks
     position top
     mode dock
     modifier None
-    # tray_output             primary
+    tray_output             primary
     tray_output             none
     workspace_buttons       yes
     strip_workspace_numbers yes
@@ -54,7 +54,7 @@ bar {
 for_window [class="^.*"] border pixel 0
 gaps inner 15
 gaps outer 15
-smart_gaps off
+
 
 floating_modifier $mod
 
@@ -62,7 +62,7 @@ set $term --no-startup-id rxvt-unicode
 set $mod Mod4
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
-yset $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
+set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl hibernate
 set $suspend sudo -A systemctl suspend
 
@@ -280,10 +280,12 @@ bindsym XF86AudioRaiseVolume	exec --no-startup-id lmc up 5
 # ##bindsym XF86Back		exec
 # ##bindsym XF86Forward		exec
 # bindsym XF86Eject		exec --no-startup-id dmenuumount
+
 bindsym XF86AudioNext		exec --no-startup-id lmc next
 bindsym XF86AudioPlay		exec --no-startup-id lmc toggle
 bindsym XF86AudioPrev		exec --no-startup-id lmc prev
 bindsym XF86AudioStop		exec --no-startup-id lmc toggle
+
 # ##bindsym XF86AudioRecord
 # bindsym XF86AudioRewind		exec --no-startup-id lmc back 10
 # bindsym XF86AudioForward	exec --no-startup-id lmc forward 10
@@ -322,15 +324,13 @@ bindsym XF86AudioStop		exec --no-startup-id lmc toggle
 # bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
 # bindsym XF86AudioMedia		exec --no-startup-id st -e ncmpcpp
 # bindsym XF86Display		exec --no-startup-id arandr
-# #bindsym XF86KbdLightOnOff	exec
+# bindsym XF86KbdLightOnOff	exec
 # bindsym XF86KbdBrightnessDown	exec --no-startup-id python3.6 ~/.scripts/kb-lights.py -
 # bindsym XF86KbdBrightnessUp	exec --no-startup-id python3.6 ~/.scripts/kb-lights.py +
-# ##bindsym XF86Reply		exec
-# ##bindsym XF86MailForward	exec
-# ##bindsym XF86Save		exec
-# # bindsym XF86Documents	exec $term -e ranger ~/Documents
-# ##bindsym XF86Battery		exec
-# ##bindsym XF86Bluetooth	exec
+# #bindsym XF86Reply		exec
+# #bindsym XF86MailForward	exec
+# bindsym XF86Save		exec
+#  bindsym XF86Documents	exec $term -e ranger ~/Documents
+# #bindsym XF86Battery		exec
+# #bindsym XF86Bluetooth	exec
 # # bindsym XF86WLAN		exec $netrefresh
-
-_

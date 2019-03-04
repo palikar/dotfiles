@@ -1,4 +1,4 @@
 #!/bin/bash
 
-printf "<span color='red'>🌡</span> $(sensors | grep -P "Core [0-9]:\s*[+]*[0-9]*" -o | grep "+[0-9]*" -o | grep "[0-9]*" -o | sort -n | sed -e '$!d') C°\n"
+printf "<span color='red'>🌡️</span>$(sensors | grep -P "Core [0-9]:\s*[+]*[0-9]*" -o | grep "+[0-9]*" -o | grep "[0-9]*" -o | sort -n | sed -e '$!d') C°\n"
 

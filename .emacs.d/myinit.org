@@ -66,7 +66,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(quickrun java-file-create template aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region exwm eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode markdown-mode maven-test-mode meghanada company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment python-x folding pythonic pyvenv ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line treemacs-projectile treemacs ht hydra pfuture ace-window projectile try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd request-deferred request deferred s zeal-at-point zerodark-theme flycheck pkg-info epl magit magit-popup git-commit with-editor ghub dash async all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
 
 
@@ -80,6 +80,14 @@ I use a lot of additional packages and like to keep them local and installed. I'
   (package-refresh-contents))
 
 ; install the missing packages
+;; (setq package-archives '())
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
+;; (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+
+(package-refresh-contents)
+
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
@@ -134,11 +142,11 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 
 *** Fonts
 #+BEGIN_SRC emacs-lisp :results none
-
 ;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=14")
-;; (set-frame-font "SauceCodePro Nerd Font Mono:size=14" nil t)
 
-;; (set-default-font "xft:SauceCodePro Nerd Font Mono:size=12")
+;;(set-frame-font "SauceCodePro Nerd Font Mono:size=15" nil t)
+;;(set-default-font "SauceCodePro Nerd Font Mono:size=15")
+
 
 #+END_SRC
 
@@ -676,9 +684,10 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
 
 #+BEGIN_SRC emacs-lisp :results none
 ;; https://boards.4chan.org/r9k/thread/49101515#p49101515 this one !
-(load-file "/home/arnaud/core.d/code/q4-fork/q4.el")
+;; (load-file "/home/arnaud/core.d/code/q4-fork/q4.el")
+;; (require 'q4)
 
-(bind-key* "M-j q" 'q4/browse-board)
+;; (bind-key* "M-j q" 'q4/browse-board)
 #+END_SRC
 
 ** Google This
@@ -770,7 +779,7 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 
 (fa-config-default)
 
-(set-variable 'ycmd-server-command '("python" "/home/arnaud/core.d/code/ycmd/ycmd"))
+(set-variable 'ycmd-server-command '("python" "/home/arnaud/code_ext/ycmd/ycmd"))
 (set-variable 'ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
 (set-variable 'ycmd-global-config "~/.ycm_extra_conf.py")
 
@@ -1239,9 +1248,12 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'projectile)
 (setq projectile-completion-system 'helm)
-(setq projectile-project-search-path '("/home/arnaud/code" "/home/arnaud/core.d/code"))
+(setq projectile-project-search-path '("/home/arnaud/code" "/home/arnaud/code_ext"))
 (setq projectile-indexing-method 'native)
 (setq projectile-enable-caching t)
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 (projectile-mode)
 #+END_SRC
 
@@ -1250,68 +1262,68 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their 'web-apps')
 - [[https://github.com/jaypei/emacs-neotree][neotree]]
 #+BEGIN_SRC emacs-lisp :results none
-;; (require 'neotree)
-;; (require 'all-the-icons)
+  (require 'neotree)
+  (require 'all-the-icons)
 
-;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons.el")
-;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons-faces.el")
-(load-file "/home/arnaud/code/emacs-neotree/neotree.el")
+  ;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons.el")
+  ;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons-faces.el")
+  ;; (load-file "/home/arnaud/code/emacs-neotree/neotree.el")
 
-(add-hook 'neo-after-create-hook
-   #'(lambda (_)
-       (with-current-buffer (get-buffer neo-buffer-name)
-         (setq truncate-lines t)
-         (setq word-wrap nil)
-         (make-local-variable 'auto-hscroll-mode)
-         (setq auto-hscroll-mode nil))))
-
-
-
-;;(advice-add 'display-graphic-p :override (lambda () t))  
-;; (setq neo-theme  'icons)
-
-
-(defun neotree-project-dir ()
-    "Open NeoTree using the projectile."
-    (interactive)
-    (let ((project-dir (projectile-project-root))
-          (file-name (buffer-file-name)))
-      (neotree-toggle)
-      (if project-dir
-          (if (neo-global--window-exists-p)
-              (progn
-                (neotree-dir project-dir)
-                (neotree-find file-name)))
-        (message "Could not find vc project root."))))
-
-(bind-key* "<f1>" 'neotree-toggle)
-(bind-key* "C-<f1>" 'neotree-project-dir)
-
-(bind-key* "<f2>" 'neotree-find)
-
-
-(setq neo-model-line-type 'none)
-
-(setq neo-window-width 40)
-(setq neo-window-fixed-size nil)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-(setq neo-show-hidden-files t)
-;;(setq projectile-switch-project-action 'neotree-projectile-action)
-(setq neo-theme 'icons)
-
-(setq neo-hidden-regexp-list (quote ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "__pycache__")))
+  (add-hook 'neo-after-create-hook
+	 #'(lambda (_)
+		 (with-current-buffer (get-buffer neo-buffer-name)
+		   (setq truncate-lines t)
+		   (setq word-wrap nil)
+		   (make-local-variable 'auto-hscroll-mode)
+		   (setq auto-hscroll-mode nil))))
 
 
 
+  ;;(advice-add 'display-graphic-p :override (lambda () t))  
+  ;; (setq neo-theme  'icons)
 
 
-(face-spec-set 'neo-button-face '((t (:foreground "gold" :underline nil))))
-(face-spec-set 'neo-button-face '((t (:inherit bold :foreground "#268bd2" :underline t :height 1.1 :width semi-condensed))))
-(face-spec-set 'neo-file-link-face '((t (:foreground "light sky blue"))))
-(face-spec-set 'neo-open-dir-link-face '((t (:foreground "gold" :underline t :height 1.1))))
-(face-spec-set 'neo-dir-link-face '((t (:underline t :height 1.1))))
-(face-spec-set 'neo-dir-icon-face '((t (:foreground "light sky blue"))))
-(face-spec-set 'neo-open-dir-icon-face '((t (:foreground "gold"))))
+  (defun neotree-project-dir ()
+	  "Open NeoTree using the projectile."
+	  (interactive)
+	  (let ((project-dir (projectile-project-root))
+			(file-name (buffer-file-name)))
+		(neotree-toggle)
+		(if project-dir
+			(if (neo-global--window-exists-p)
+				(progn
+				  (neotree-dir project-dir)
+				  (neotree-find file-name)))
+		  (message "Could not find vc project root."))))
+
+  (bind-key* "<f1>" 'neotree-toggle)
+  (bind-key* "C-<f1>" 'neotree-project-dir)
+
+  (bind-key* "<f2>" 'neotree-find)
+
+
+  (setq neo-model-line-type 'none)
+
+  (setq neo-window-width 40)
+  (setq neo-window-fixed-size nil)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  (setq neo-show-hidden-files t)
+  ;;(setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq neo-theme 'icons)
+
+  (setq neo-hidden-regexp-list (quote ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "__pycache__")))
+
+
+
+
+
+  (face-spec-set 'neo-button-face '((t (:foreground "gold" :underline nil))))
+  (face-spec-set 'neo-button-face '((t (:inherit bold :foreground "#268bd2" :underline t :height 1.1 :width semi-condensed))))
+  (face-spec-set 'neo-file-link-face '((t (:foreground "light sky blue"))))
+  (face-spec-set 'neo-open-dir-link-face '((t (:foreground "gold" :underline t :height 1.1))))
+  (face-spec-set 'neo-dir-link-face '((t (:underline t :height 1.1))))
+  (face-spec-set 'neo-dir-icon-face '((t (:foreground "light sky blue"))))
+  (face-spec-set 'neo-open-dir-icon-face '((t (:foreground "gold"))))
 
 #+END_SRC
 
@@ -1362,6 +1374,9 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 (bind-key* "C-x r h" 'helm-register)
 (bind-key* "M-y" 'helm-show-kill-ring)
 #+END_SRC
+
+#+RESULTS:
+: helm-show-kill-ring
 
 
 ** IBuffer
@@ -1493,8 +1508,8 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 
 (setq magit-repository-directories
 		'(
-		  ("~/core.d/code"        . 1)
-		  ("~/core.d/code_home/"      . 1))
+		  ("~/code"        . 1)
+		  ("~/code_ext/"      . 1))
 		magit-repolist-columns
 		'(
 		  ("Name"    25 magit-repolist-column-ident                  nil)

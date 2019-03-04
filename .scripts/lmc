@@ -4,11 +4,11 @@ newvol="pkill -RTMIN+10 i3blocks"
 newplayer="pkill -RTMIN+3 i3blocks"
 newsong="pkill -RTMIN+4 i3blocks"
 
+
 notify() {
     VOLUME=$(/home/arnaud/core.d/code/pamixer/pamixer --get-volume)
-    notify-send.py -t 1000 -r 0 --replaces-process "volumeID" -u normal -a "volume" "Volume level" " 🔊 ${VOLUME} %"
+    # notify-send -t 1000 -r 0 --replaces-process "volumeID" -u normal -a "volume" "Volume level" " 🔊 ${VOLUME} %"
 }
-                
 
 
 case "$1" in

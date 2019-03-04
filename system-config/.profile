@@ -4,7 +4,7 @@ if [ -f ~/.env ]; then
 fi
 
 
-. setupxkbd
+source setupxkbd
 
 addtopath () {
     if [ -f $1 ] || [ -d $1 ] ; then

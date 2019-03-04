@@ -1,12 +1,10 @@
 #!/bin/bash
 
 
+
 if [ $(pgrep xautolock) ]
 then
 	stopautolock
 else
 	startautolock
 fi
-
-
-

@@ -22,9 +22,6 @@ fi
 
 set bell-style none
 
-. "${DOTFILES_DIR}"/fzf/completion.bash
-. "${DOTFILES_DIR}"/fzf/key-bindings.bash
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -49,12 +46,18 @@ if [ -n "$DISPLAY" ]; then
     xset b off
 fi
 
+
+source "${DOTFILES_DIR}"/fzf/completion.bash
+source "${DOTFILES_DIR}"/fzf/key-bindings.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
 # pip bash completion start
 _pip_completion()
 {
     COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                   COMP_CWORD=$COMP_CWORD \
-                   PIP_AUTO_COMPLETE=1 $1 ) )
+							 COMP_CWORD=$COMP_CWORD \
+							 PIP_AUTO_COMPLETE=1 $1 ) )
 }
 complete -o default -F _pip_completion pip
 # pip bash completion end
@@ -63,3 +66,5 @@ complete -o default -F _pip_completion pip
 if [ -f  ~/.cache/wal/sequences ]; then
     (cat ~/.cache/wal/sequences &)
 fi
+
+

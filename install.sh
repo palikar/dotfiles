@@ -19,8 +19,8 @@ set_dot_files() {
         ln -s "${DIR}/$dot" "${HOME}/$dot"
     done
     
-    rm "${HOME}.gitconfig"
-    ln -s "${DIR}/.gitconfig" "${HOME}.gitconfig"
+#    rm "${HOME}/.gitconfig"
+    ln -s "${DIR}/.gitconfig" "${HOME}/.gitconfig"
 
     rm -rf ~/.vim ~/.vimrc
     ln -s "$DIR/.vimrc" "${HOME}/.vimrc"
@@ -35,7 +35,7 @@ set_dot_files() {
     rm "${HOME}/.paths" 
     ln -s "$DIR/.paths" "${HOME}/.paths"
 
-    ln -s "$DIR/.emacs" "${HOME}/.emacs"
+#    ln -s "$DIR/.emacs" "${HOME}/.emacs"
     cp "$DIR/.emacs.d"  "${HOME}/" -b -R
     rm -f "${HOME}/.emacs.d/myinit.org"
     ln -s "$DIR/.emacs.d/myinit.org" "${HOME}/.emacs.d/myinit.org"
@@ -80,7 +80,7 @@ serviceinit(){
     done ;
 }
 
-set_package_sources
+#set_package_sources
 
 set_dot_files
 
@@ -90,8 +90,8 @@ set_config_dir
 
 
 
-source "${DIR}/.profile"
-source "${DIR}/.bashrc"
+source "${HOME}/.profile"
+source "${HOME}/.bashrc"
 
 if ! [ -d "${HOME}/code" ];
 then 

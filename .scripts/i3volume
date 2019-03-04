@@ -3,14 +3,14 @@
 
 
 printpastatus() {
-    [[ $(/home/arnaud/core.d/code/pamixer/pamixer --get-mute) = "true" ]] && echo -n 🔇 && exit
-    VOLUME=$(/home/arnaud/core.d/code/pamixer/pamixer --get-volume)
+    [[ $(/home/arnaud/code_ext/pamixer/pamixer --get-mute) = "true" ]] && echo -n 🔇 && exit
+    VOLUME=$(/home/arnaud/code_ext/pamixer/pamixer --get-volume)
     lessecho "🔊 ${VOLUME}%"
 }
 
 
 notify() {
-    VOLUME=$(/home/arnaud/core.d/code/pamixer/pamixer --get-volume)
+    VOLUME=$(/home/arnaud/code_ext/pamixer/pamixer --get-volume)
     notify-send.py -t 1000 -r 0 --replaces-process "volumeID" -u normal -a "volume" "Volume level" " 🔊 ${VOLUME} %"
     printpastatus
 }

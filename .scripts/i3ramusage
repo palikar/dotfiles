@@ -5,4 +5,4 @@ res=$(free -m | awk '{print (NR==1?"Type":""), $1, $2, $3, (NR==1?"":$4)}' | col
 total="$(echo $res | cut -d" " -f1).0"
 used="$(echo $res | cut -d" " -f2).0"
 per=$(bc -l <<< "100 * ($used / $total)")
-printf " ${per%.*}%%\n"
+printf "<span color='red'></span> ${per%.*}%%\n"

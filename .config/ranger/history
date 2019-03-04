@@ -1,5 +1,3 @@
-ar
-abort 
 shell atool unpack %f
 search_inc mese
 bulkrename 
@@ -45,6 +43,8 @@ paste dest=/home/arnaud/
 
 paste dest=/dslkfj/kjadshO
 save_copy_buffer 
-delete
 open_with 
 search_inc W
+search_inc .config
+search_inc confi
+delete

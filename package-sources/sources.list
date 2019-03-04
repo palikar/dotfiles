@@ -10,6 +10,6 @@ deb http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 
 deb-src http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 
-deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main  contrib non-free
+deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main contrib non-free
 
 deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main contrib non-free

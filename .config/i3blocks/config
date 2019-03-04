@@ -72,7 +72,7 @@ color=#859900
 
 [disky_core]
 label=:
-command=i3disk $HOME/core.d
+command=i3disk $HOME
 interval=30
 color=#1793D1
 
@@ -85,7 +85,7 @@ interval=30
 
 
 [calendar]
-label=🕓
+label=🕒
 command=echo $(date '+%H:%M')
 interval=30
 interval=30

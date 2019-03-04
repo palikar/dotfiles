@@ -42,7 +42,7 @@ google() {
 
 
 alias emacsd='emacs --daemon'
-alias emacsp='emacs -q --load ~/core.d/code/prelude/init.el'
+# alias emacsp='emacs -q --load ~/core.d/code/prelude/init.el'
 alias emt='emacsclient -t'
 alias emc='emacsclient -c'
 alias em='emacsclient'
