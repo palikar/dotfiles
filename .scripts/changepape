@@ -1,15 +1,19 @@
 #!/bin/bash
 
+
+
+
 while getopts c:b:s: option
 do
     case "${option}"
     in
         c)  
-            cp $1 "${WALLPAPER_DIR}/"
-            wal -c && wal -a 85 -i %f && cp $1 ${WALLPAPER} ;;
-        b)            
-            cp $1 "${WALLPAPER_DIR}/"
-            cp $1 ${WALLPAPER} && feh --bg-scale ${WALLPAPER} ;;
+            cp $2 "${WALLPAPER_DIR}/"
+            wal -c && wal -a 85 -i %f && cp $2 ${WALLPAPER} ;;
+        b)
+			notify-send $2
+            cp $2 "${WALLPAPER_DIR}/"
+            cp $2 ${WALLPAPER} && feh --bg-scale ${WALLPAPER} ;;
         s)
             PAPE=$(ls "${WALLPAPER_DIR}/"*.{jpg,png,bmp} | sxiv -tio)
             cp "${PAPE}" ${WALLPAPER} && feh --bg-scale ${WALLPAPER} ;;

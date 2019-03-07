@@ -1,0 +1,42 @@
+#!/bin/bash
+
+
+save_git_dirs() {
+	if [ -f "${DOTFILES_DIR}/setuper/$2" ]; then
+		rm "${DOTFILES_DIR}/setuper/$2"			
+	fi
+	
+	for dir in $(ls $1)
+	do
+		cd $1/$dir
+
+		if [ -d ./.git ]; then
+			echo $(git config --get remote.origin.url) >> ${DOTFILES_DIR}/setuper/$2
+		fi
+	done
+}
+
+
+if [ $(emacsclient -e '(message "1")') != "\"1\"" ];
+then
+    echo "Emacs dameon must be running!"
+fi
+
+
+echo "$(emacsclient -e "(symbol-value 'package-activated-list)" | sed "s#(##g" | sed "s#)##g")" > $DOTFILES_DIR/setuper/emacs_packges
+
+apt-mark showmanual > ${DOTFILES_DIR}/setuper/apt_packages
+
+pip3 freeze > ${DOTFILES_DIR}/setuper/python_packages
+
+save_git_dirs $CODE_DIR_EXT "ext_codes"
+
+save_git_dirs $CODE_DIR_SYS "sys_codes"
+
+save_git_dirs $CODE_DIR "codes"
+
+updateemacspack
+
+
+
+

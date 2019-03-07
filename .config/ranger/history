@@ -1,5 +1,3 @@
-shell atool unpack %f
-search_inc mese
 bulkrename 
 shell 
 shell -p e
@@ -48,3 +46,5 @@ search_inc W
 search_inc .config
 search_inc confi
 delete
+search_inc dot
+search_inc yasni
