@@ -8,6 +8,8 @@ save_git_dirs() {
 	
 	for dir in $(ls $1)
 	do
+		[ -d $1/$dir ] || continue
+		
 		cd $1/$dir
 
 		if [ -d ./.git ]; then
@@ -29,11 +31,11 @@ apt-mark showmanual > ${DOTFILES_DIR}/setuper/apt_packages
 
 pip3 freeze > ${DOTFILES_DIR}/setuper/python_packages
 
-save_git_dirs $CODE_DIR_EXT "ext_codes"
+save_git_dirs "$CODE_DIR_EXT" "ext_codes"
 
-save_git_dirs $CODE_DIR_SYS "sys_codes"
+save_git_dirs "$CODE_DIR_SYS" "sys_codes"
 
-save_git_dirs $CODE_DIR "codes"
+save_git_dirs "$CODE_DIR" "codes"
 
 updateemacspack
 

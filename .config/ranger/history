@@ -1,9 +1,3 @@
-bulkrename 
-shell 
-shell -p e
-search_inc .profile
-search_inc .googo
-search_inc .goog
 search_inc .pro
 mkdir Dropbox
 q1
@@ -21,7 +15,6 @@ rename phone_1
 rename phone_2
 cd UNI
 shell -p
-search_inc pho
 to_bookmark
 to_bo
 bookma
@@ -41,10 +34,17 @@ paste dest=/home/arnaud/
 
 paste dest=/dslkfj/kjadshO
 save_copy_buffer 
-open_with 
 search_inc W
 search_inc .config
 search_inc confi
-delete
 search_inc dot
 search_inc yasni
+search_inc pho
+mkdir
+mkdir Free Solo
+mkdir Free_Solo_2018
+search_inc /vid
+search_inc 
+search_inc vid
+open_with 
+delete

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 
@@ -6,25 +6,11 @@ case $BLOCK_BUTTON in
     1) lmc toggle ;;
 esac
 
-STATUS=$(playerctl status)
+STATUS="$(playerctl status)"
 
-echo $STATUS
 
-if ! [ "$STATUS" == "No players found"]; then
+if  [ "$STATUS" = "" ] ; then
 	STATUS="Stopped"
-
 fi
-
-
 echo $STATUS
-
-
-
-# if $STATUS
-# then
-# 	echo $STATUS
-# else
-# 	echo "Off"
-# fi
-
 

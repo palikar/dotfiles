@@ -155,8 +155,8 @@ bindsym $mod+Shift+e            exec --no-startup-id dmenuunicode
 bindsym $mod+Shift+a            exec --no-startup-id i3swap
 
 
-bindsym --release Print       exec gnome-screenshot 
-bindsym --release Shift+Print exec gnome-screenshot -a
+bindsym --release Print       exec scrot -z "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
+bindsym --release Shift+Print exec scrot -z -s "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
 
 # #---- Gaps ----# #
 

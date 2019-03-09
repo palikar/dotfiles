@@ -1,61 +1,35 @@
 #!/bin/bash
 
-BCK_FILE="/home/arnaud/.bck"
 
-MEDIA_UUID="B87026207025E63A"
-BACKUP_UUID="6F507B000FFAF620"
-
-MEDIA_LOCATION="/media/arnaud/Media"
-BACKUP_LOCATION="/media/arnaud/Backup"
-
-if [ ! -d "${MEDIA_LOCATION}" ]; then
-	mkdir "${MEDIA_LOCATION}"
-fi
+DIR=$(dirname "$(readlink -f "$0")")
 
 
-if [ ! -d "${BACKUP_LOCATION}" ]; then
-	mkdir "${BACKUP_LOCATION}"
-fi
+check_drive()
+{
+	
+	return 1
+}
 
 
-if [ ! mountpoint -q ${BACKUP_LOCATION} ]; then
-	sudo mount "/dev/disk/by-uuid/${BACKUP_UUID}" ${BACKUP_LOCATION}
-	fi
+sync()
+{
+	while read -r line; do
+		back=$(echo $line | sed -e 's/#.*$//' -e '/^$/d')
 
+		[ -n "$back" ] || continue;
 
-if [ ! mountpoint -q ${MEDIA_LOCATION} ]; then
-	sudo mount "/dev/disk/by-uuid/${MEDIA_UUID}" ${MEDIA_LOCATION}
-fi
+		FOLDER=$(echo $back | awk '{print $1}')
+		POINT=$(echo $back | awk '{print $2}')
 
+		echo "$FOLDER -> $POINT"
 
-# while IFS='' read -r line || [[ -n "$line" ]]; do
+		rsync --exclude ".git" --ignore-existing --stats --human-readable -aLuzv "${FOLDER}/" "${POINT}/" | pv -lep -s 42 >/dev/null
 
-#     SRC=$(echo $line | cut -d ":" -f 1)
-#     DST=$(echo $line | cut -d ":" -f 2)
-# 	rsync --exclude ".git" -aLuzv ${SRC}/  ${BACKUP_LOCATION}/{DST}/
-
-# done < ${BCK_FILE}
-
-# rsync --exclude ".git" -aLuzv ${PICTURES}/    ${BACKUP_LOCATION}/PICTURES/
-rsync --exclude ".git" -aLuzv ${DOCUMENTS}/   ${BACKUP_LOCATION}/DOCUMENTS/
-rsync --exclude ".git" -aLuzv ${VIDEOS}/      ${BACKUP_LOCATION}/VIDEOS/
-rsync --exclude ".git" -aLuzv ${DROPBOX}/     ${BACKUP_LOCATION}/DROPBOX/
-rsync --exclude ".git" -aLuzv ${ORGFILES}/    ${BACKUP_LOCATION}/ORGFILES/
-rsync --exclude ".git" -aLuzv ${UNI}/         ${BACKUP_LOCATION}/UNI/
-rsync --exclude ".git" -aLuzv  ${CODE_DIR}/    ${BACKUP_LOCATION}/CODE_HOME/
-rsync --exclude ".git" -aLuzv  ${CODE_DIR_2}/  ${BACKUP_LOCATION}/CODE_CORE/
-
-rsync --exclude ".git" -aLuzv  ~/core.d/wallpapers/  ${BACKUP_LOCATION}/WALL/
-rsync --exclude ".git" -aLuzv  ~/core.d/webms/  ${BACKUP_LOCATION}/WEBM/
+	done < $DIR/conf/backups	
+}
 
 
 
+freezesystem
 
-# if [  mountpoint -q ${BACKUP_LOCATION} ]; then
-# 	umount ${BACKUP_LOCATION}
-# fi
-
-
-# if [  mountpoint -q ${BACKUP_LOCATION} ]; then
-# 	umount ${MEDIA_LOCATION}
-# fi
+sync

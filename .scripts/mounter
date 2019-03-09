@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DIR=$(dirname "$(readlink -f "$0")")
+
+
+for point in $(cat $DIR/conf/mounts); do
+
+	if [ -b "/dev/disk/by-label/$point" ] ; then
+		[ -d "$HOME/core.d/$point" ] || mkdir "$HOME/core.d/$point"
+		sudo mount "/dev/disk/by-label/$point" "$HOME/core.d/$point"
+	fi
+
+done
