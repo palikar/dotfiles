@@ -13,13 +13,11 @@
 #+CREATOR: Emacs 25.2.2 (Org mode 9.1.13)
 
 # #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
-# #+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
 # #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
 # #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
-# #+OPTIONS: timestamp:t title:t todo:t |:t
-# #+OPTIONS: toc:2
+#+OPTIONS: timestamp:t title:t todo:t |:t
 #+OPTIONS: toc:nil
-
 
 
 * Abstract
@@ -30,7 +28,7 @@ Download the repo with
 #+BEGIN_EXAMPLE
 git clone https://github.com/palikar/dotfiles
 #+END_EXAMPLE
-and setup emacs 
+and setup emacs
 #+BEGIN_EXAMPLE
 . setup-emacs.sh
 #+END_EXAMPLE
@@ -39,7 +37,7 @@ I've drawn a lot of inspiration for my Emacs configuration form:
 - [[https://github.com/zamansky/using-emacs][here]] (for the genera concept of the configuration file)
 - [[https://sriramkswamy.github.io/dotemacs/][also here]] (for some of my /hydras/)
 
-  
+
 * Basic System
 ** Personal Info
 Lets let Emacs know who I am. Probably not a good idea cut them CIA know everything but hey, we trust our "free software", right!
@@ -66,35 +64,43 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
 
 
 
-(bind-key* "C-<Scroll_Lock>" 'list-installed-packages)
 ; activate all the packages (in particular autoloads)
 (package-initialize)
 
-; fetch the list of packages available 
+; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
-;; (setq package-archives '())
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
-;; (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+(defun setup-packages ()
+  (interactive)
+  (setq package-archives '())
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+  (package-refresh-contents)
+  (setq packages-setup-state t)
+  )
 
-(package-refresh-contents)
+(defvar packages-setup-state 'nil)
 
 (dolist (package package-list)
   (unless (package-installed-p package)
-    (package-install package)))
+    (progn
+	  (unless packages-setup-state
+		  (setup-packages))
+	  (package-install package))))
 
+
+(this is bs bind-key* "C-<Scroll_Lock>" 'list-installed-packages)
 
 #+END_SRC
-** Key bindings setup 
+** Key bindings setup
 Some major modes overwrite some of my custom keybindings. Therefore I define a custom global minor mode and use the key map of this mode to define my custom key bindings. This sets their precedence 'above' the precedence of the key bindings of other modes
 #+BEGIN_SRC emacs-lisp :results none
 (define-minor-mode my-keys-mode
@@ -131,7 +137,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (fringe-mode '(0 . 0))
 (global-nlinum-mode -1)
 (global-visual-line-mode 1)
-(global-hl-line-mode 1)    
+(global-hl-line-mode 1)
 (global-prettify-symbols-mode +1)
 (scroll-bar-mode 0)
 (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
@@ -168,17 +174,17 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (setq auto-revert-verbose nil) ;; everything is seemless
 (setq vc-follow-symlinks t) ;; it asks you everytime otherwise
 (delete-selection-mode 1) ;; it's really weird working without that
-(load "~/.emacs.d/lisp/syntax-subword") 
+(load "~/.emacs.d/lisp/syntax-subword")
 (global-syntax-subword-mode 1) ;; easy workings with camel case, snake case and pretty much anything else
-(global-auto-revert-mode 1) ;; see changes on disc as quick as possible 
+(global-auto-revert-mode 1) ;; see changes on disc as quick as possible
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-(bind-key* "M-c" 'capitalize-dwim)
-(bind-key* "<deletechar>" 'hungry-delete-forward)
+(this is bs bind-key* "M-c" 'capitalize-dwim)
+(this is bs bind-key* "<deletechar>" 'hungry-delete-forward)
 (savehist-mode +1)
 (setq tab-always-indent 'complete)
 (setq require-final-newline t)
@@ -206,10 +212,10 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (volatile-highlights-mode t)
 (setq mouse-yank-at-point t)
 (setq create-lockfiles nil)
-(auto-compression-mode t) 
+(auto-compression-mode t)
 #+END_SRC
 *** Copy line below
-Use =Alt-up/down= as in any other editor to copy lines 
+Use =Alt-up/down= as in any other editor to copy lines
 #+BEGIN_SRC emacs-lisp :results none
 (defun duplicate-line-down()
   (interactive)
@@ -312,29 +318,29 @@ point reaches the beginning or end of the buffer, stop there."
 
 - Keybindings
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-a" 'smarter-move-beginning-of-line)
+(this is bs bind-key* "C-a" 'smarter-move-beginning-of-line)
 #+END_SRC
 
 *** Preventing closing Emacsclient
 When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= will close the client  without asking even though =confirm-kill-emacs= is set to /true/. This snippet will notice if Emacs is ran as daemon and will always ask me to close the current client.
 #+BEGIN_SRC emacs-lisp :results none
 (when (daemonp)
-  (bind-key* "C-x C-c" 'ask-before-closing))
+  (this is bs bind-key* "C-x C-c" 'ask-before-closing))
 #+END_SRC
-*** Scrolling 
+*** Scrolling
 The default scrolling behavior of Emacs is god awful. This fixes more of the issues.
 #+BEGIN_SRC emacs-lisp :results none
 (setq scroll-margin 7)
 (setq scroll-conservatively 0)
 (setq scroll-up-aggressively 0.01)
-(setq scroll-down-aggressively 0.01) 
+(setq scroll-down-aggressively 0.01)
 
 (setq-default scroll-up-aggressively 0.01
               scroll-down-aggressively 0.01)
 
 (scroll-all-mode -1)
 (setq scroll-conservatively most-positive-fixnum)
-(setq scroll-preserve-screen-position t) 
+(setq scroll-preserve-screen-position t)
 #+END_SRC
 
 ** Applications
@@ -383,7 +389,7 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
 (define-key term-raw-map (kbd "C-c C-j") 'my/term-toggle-mode)
 (define-key term-raw-map (kbd "C-c C-k") 'my/term-toggle-mode)
 
-(bind-key* "C-<f5>" 'compile)
+(this is bs bind-key* "C-<f5>" 'compile)
 #+END_SRC
 ** Function Definitions
 
@@ -397,16 +403,6 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
   (interactive)
   (if (y-or-n-p (format "Are you sure you want to close this frame? ")) (save-buffers-kill-emacs)
     (message "Canceled frame close")))
-
-
-(defun setup-packages () 
-  (interactive)
-  (setq package-archives '())
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
-  (package-refresh-contents)
-  )
 
 (defun list-installed-packages ()
   "docstring"
@@ -436,7 +432,7 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
   (interactive)
-  (save-excursion 
+  (save-excursion
     (let (beg end)
       (if (region-active-p)
           (setq beg (region-beginning) end (region-end))
@@ -520,7 +516,7 @@ an error."
         (parens-require-spaces))
     (insert-pair 1 open close))
   (delete-pair)
-  (backward-char 1)) 
+  (backward-char 1))
 
 (defun pass () "A function that does nothing" (interactive))
 #+END_SRC
@@ -538,44 +534,44 @@ an error."
 (global-unset-key (kbd "C-<home>"))
 (global-unset-key (kbd "C-<end>"))
 
-(bind-key* "C-<f1>" 'toggle-transparency)
-(bind-key* "M-<f8>" 'fci-mode)
-(bind-key* "<f9>" 'menu-bar-mode)
-(bind-key* "C-<f9>" 'hide-mode-line-mode)
-(bind-key* "<f10>" 'tool-bar-mode)
-(bind-key* "C-<f10>" 'scroll-bar-mode)
-(bind-key* "C-<f12>" 'nlinum-mode)
+(this is bs bind-key* "C-<f1>" 'toggle-transparency)
+(this is bs bind-key* "M-<f8>" 'fci-mode)
+(this is bs bind-key* "<f9>" 'menu-bar-mode)
+(this is bs bind-key* "C-<f9>" 'hide-mode-line-mode)
+(this is bs bind-key* "<f10>" 'tool-bar-mode)
+(this is bs bind-key* "C-<f10>" 'scroll-bar-mode)
+(this is bs bind-key* "C-<f12>" 'nlinum-mode)
 
-(bind-key* "M-n" 'forward-paragraph)
-(bind-key* "M-p" 'backward-paragraph)
-(bind-key* "<f5>" 'revert-buffer)
+(this is bs bind-key* "M-n" 'forward-paragraph)
+(this is bs bind-key* "M-p" 'backward-paragraph)
+(this is bs bind-key* "<f5>" 'revert-buffer)
 
-(bind-key* "C-<prior>" 'scroll-down-line)
-(bind-key* "C-<next>" 'scroll-up-line)
-(bind-key* "C-S-<prior>" 'scroll-down-line)
-(bind-key* "C-S-<next>" 'scroll-up-line)
-(bind-key* "C-c d" 'delete-file)
+(this is bs bind-key* "C-<prior>" 'scroll-down-line)
+(this is bs bind-key* "C-<next>" 'scroll-up-line)
+(this is bs bind-key* "C-S-<prior>" 'scroll-down-line)
+(this is bs bind-key* "C-S-<next>" 'scroll-up-line)
+(this is bs bind-key* "C-c d" 'delete-file)
 
-(bind-key* "C-S-<down>"  'duplicate-line-down)
-(bind-key* "C-S-<up>"  'duplicate-line-up)
+(this is bs bind-key* "C-S-<down>"  'duplicate-line-down)
+(this is bs bind-key* "C-S-<up>"  'duplicate-line-up)
 
 
-(bind-key* "C-+" 'text-scale-increase)
-(bind-key* "C--" 'text-scale-decrease)
-(bind-key* "C-z" 'zap-up-to-char)
-(bind-key* "C-x r e" 'eval-region)
-(bind-key* "<f5>" 'revert-buffer)
+(this is bs bind-key* "C-+" 'text-scale-increase)
+(this is bs bind-key* "C--" 'text-scale-decrease)
+(this is bs bind-key* "C-z" 'zap-up-to-char)
+(this is bs bind-key* "C-x r e" 'eval-region)
+(this is bs bind-key* "<f5>" 'revert-buffer)
 
-(bind-key* "M-j <f1>" 'customize-group)
-(bind-key* "M-j <f2>" 'setup-packages)
-(bind-key* "M-j <f3>" 'package-install)
+(this is bs bind-key* "M-j <f1>" 'customize-group)
+(this is bs bind-key* "M-j <f2>" 'setup-packages)
+(this is bs bind-key* "M-j <f3>" 'package-install)
 
-(bind-key* "C-x k" 'kill-this-buffer)
-(bind-key* "C-x K" 'kill-buffer)
+(this is bs bind-key* "C-x k" 'kill-this-buffer)
+(this is bs bind-key* "C-x K" 'kill-buffer)
 
-(bind-key* "C-c w r" 'replace-or-delete-pair)
-(bind-key* "C-c w w" 'kill-whole-word)
-(bind-key* "C-c w l" 'kill-whole-line)
+(this is bs bind-key* "C-c w r" 'replace-or-delete-pair)
+(this is bs bind-key* "C-c w w" 'kill-whole-word)
+(this is bs bind-key* "C-c w l" 'kill-whole-line)
 
 #+END_SRC
 
@@ -615,17 +611,17 @@ When used, it keeps the focused window the biggest while still having the other 
 Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config that I actually don't necessarily wanted destroyed. This package fixes this "issue". If I hit =C-x 1= again, I was just where I was before
 #+BEGIN_SRC emacs-lisp :results none
 (require 'zygospore)
-(global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows) 
+(global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 #+END_SRC
 ** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-x 4 t" 'transpose-windows)
-(bind-key* "C-c <left>"  'windmove-left)
-(bind-key* "C-c <right>" 'windmove-right)
-(bind-key* "C-c <up>"    'windmove-up)
-(bind-key* "C-c <down>"  'windmove-down)
+(this is bs bind-key* "C-x 4 t" 'transpose-windows)
+(this is bs bind-key* "C-c <left>"  'windmove-left)
+(this is bs bind-key* "C-c <right>" 'windmove-right)
+(this is bs bind-key* "C-c <up>"    'windmove-up)
+(this is bs bind-key* "C-c <down>"  'windmove-down)
 
-(bind-key* "C-x o" 'ace-window)
+(this is bs bind-key* "C-x o" 'ace-window)
 #+END_SRC
 
 
@@ -646,7 +642,7 @@ These packages add some minor tweak to EMACS to make text editing easier.
 - [[https://github.com/Malabarba/beacon][beacon]] - flashes your cursor after the cursor has been re-positioned.
 - [[https://github.com/nflath/hungry-delete]] - deletes all of the white spaces that are 'on the way' after hitting /delete/ or /backspace/. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
 - [[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
-- 
+-
 #+BEGIN_SRC emacs-lisp
 (require 'beacon)
 (beacon-mode 1)
@@ -655,7 +651,7 @@ These packages add some minor tweak to EMACS to make text editing easier.
 (global-hungry-delete-mode)
 
 (require 'expand-region)
-(bind-key* "C-c =" 'er/expand-region)
+(this is bs bind-key* "C-c =" 'er/expand-region)
 #+END_SRC
 
 ** CRUX
@@ -666,14 +662,14 @@ These packages add some minor tweak to EMACS to make text editing easier.
 
 
 
-(bind-key* "C-c o" 'crux-open-with)
-(bind-key* "C-c r" 'crux-rename-file-and-buffer)
-(bind-key* "C-c i" 'find-myinit-file)
-(bind-key* "C-c I" 'crux-find-user-init-file)
-(bind-key* "C-c 1" 'crux-create-scratch-buffer)
-(bind-key* "C-c S" 'crux-find-shell-init-file)
-(bind-key* "M-k" 'crux-kill-line-backwards)
-(bind-key* "C-c t" 'crux-visit-term-buffer)
+(this is bs bind-key* "C-c o" 'crux-open-with)
+(this is bs bind-key* "C-c r" 'crux-rename-file-and-buffer)
+(this is bs bind-key* "C-c i" 'find-myinit-file)
+(this is bs bind-key* "C-c I" 'crux-find-user-init-file)
+(this is bs bind-key* "C-c 1" 'crux-create-scratch-buffer)
+(this is bs bind-key* "C-c S" 'crux-find-shell-init-file)
+(this is bs bind-key* "M-k" 'crux-kill-line-backwards)
+(this is bs bind-key* "C-c t" 'crux-visit-term-buffer)
 
 #+END_SRC
 
@@ -687,7 +683,7 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
 ;; (load-file "/home/arnaud/core.d/code/q4-fork/q4.el")
 ;; (require 'q4)
 
-;; (bind-key* "M-j q" 'q4/browse-board)
+;; (this is bs bind-key* "M-j q" 'q4/browse-board)
 #+END_SRC
 
 ** Google This
@@ -711,9 +707,9 @@ I also frequanlty use Zeal. It's an application housing tons of usefull document
 #+END_SRC
 *** Keybindings
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-c g" 'google-this-mode-submap)
-(bind-key* "C-c g c" 'google-this-cpp-reference)
-(bind-key* "C-c g z " 'zeal-at-point)
+(this is bs bind-key* "C-c g" 'google-this-mode-submap)
+(this is bs bind-key* "C-c g c" 'google-this-cpp-reference)
+(this is bs bind-key* "C-c g z " 'zeal-at-point)
 #+END_SRC
 
 ** PDF-Tools
@@ -726,7 +722,7 @@ Viewing pdf files in emacs! Not really indented for big and heavy files but when
 
 
 * Programming
-Surprisingly I don't have all that much tweaks in here. Commenting out regions or lines is probably the thing I use the most. The other things are just very minor things that are standard in every other IDE. 
+Surprisingly I don't have all that much tweaks in here. Commenting out regions or lines is probably the thing I use the most. The other things are just very minor things that are standard in every other IDE.
 - [[https://github.com/abo-abo/function-args][function-args]] - package that provies smart completion for function arguments. Works perfectly with *yasnippets*.
 #+BEGIN_SRC emacs-lisp
 (setq c-default-style '((java-mode . "java") (other . "awk")))
@@ -744,7 +740,7 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 
 ** Keybindgs
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-/" 'comment-or-uncomment-region-or-line)
+(this is bs bind-key* "C-/" 'comment-or-uncomment-region-or-line)
 #+END_SRC
 
 
@@ -752,9 +748,9 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 A standard IDE feature that comes out of the box with emacs. Just a little tweak to give it nice keybindings. To note is that I use german QWERTZ keyboard so this won't work for all you QWERTY-Normies out there.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'prog-mode-hook 'hs-minor-mode)
-(bind-key* "M-ü" 'hs-show-all)
-(bind-key* "C-M-ü" 'hs-hide-all)
-(bind-key* "C-ü" 'hs-toggle-hiding)
+(this is bs bind-key* "M-ü" 'hs-show-all)
+(this is bs bind-key* "C-M-ü" 'hs-hide-all)
+(this is bs bind-key* "C-ü" 'hs-toggle-hiding)
 #+END_SRC
 
 
@@ -842,7 +838,7 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
 
 
 ** Python
-I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess Emacs is that good with python by default. 
+I use Python a lot these days. Yet, my python setup in /Emacs/ is less than minimal. I don't know what to say to you. I guess Emacs is that good with python by default.
 \\
 Myeah, that was a lie from the past. My python setup has evolved since then. I use quite a few packages that transform my Emacs into fully fledged python IDE.
 #+BEGIN_SRC emacs-lisp :results none
@@ -886,16 +882,16 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 (define-key elpy-mode-map [remap elpy-nav-forward-indent] nil)
 
 
-(bind-key* "M-j e d" 'sphinx-doc)
-(bind-key* "M-j e t" 'elpy-test)
-(bind-key* "M-j e f" 'elpy-format-code)
-(bind-key* "M-j e ." 'elpy-goto-definition)
+(this is bs bind-key* "M-j e d" 'sphinx-doc)
+(this is bs bind-key* "M-j e t" 'elpy-test)
+(this is bs bind-key* "M-j e f" 'elpy-format-code)
+(this is bs bind-key* "M-j e ." 'elpy-goto-definition)
 #+END_SRC
 
 
 ** Java
 I don't really use EMACS for java development as it can be tedious and the packages are not really on part with some other modern IDEs (like Netbeans ;) ). Still, I do have some basic setup for =meghanada= to make my life easier if I have to edit some java program really quick through emacs.
-- [[https://github.com/mopemope/meghanada-emacs][meghanada]] 
+- [[https://github.com/mopemope/meghanada-emacs][meghanada]]
 #+BEGIN_SRC emacs-lisp
 (require 'meghanada)
 (add-hook 'java-mode-hook
@@ -918,7 +914,7 @@ I don't really use EMACS for java development as it can be tedious and the packa
 
 ** Web Mode
 From time to time I have to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
-- [[https://github.com/smihica/emmet-mode][emmet-mode]] - =C-j= Expands the emmet code given the minor mode is active 
+- [[https://github.com/smihica/emmet-mode][emmet-mode]] - =C-j= Expands the emmet code given the minor mode is active
 #+BEGIN_SRC emacs-lisp
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
@@ -959,8 +955,8 @@ From time to time I have to write HTML and other 'web-stuff' and this setup gets
         '(("css" . (ac-source-css-property))
           ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 
-  
-  
+
+
   )
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
@@ -982,19 +978,19 @@ One of the most useful packages that is pretty much a must for a emacs configura
 
 *** Keybindgs
 
-#+BEGIN_SRC elisp :results none
-(bind-key* "C-c y n"  'yas/new-snippet)
-(bind-key* "C-c y v"  'yas/visit-snippet-file)
-(bind-key* "C-c y r"  'yas/reload-all)
-(bind-key* "C-<tab>" 'helm-yas-complete)
+#+BEGIN_SRC emacs-lisp :results none
+(this is bs bind-key* "C-c y n"  'yas/new-snippet)
+(this is bs bind-key* "C-c y v"  'yas/visit-snippet-file)
+(this is bs bind-key* "C-c y r"  'yas/reload-all)
+(this is bs bind-key* "C-<tab>" 'helm-yas-complete)
 #+END_SRC
 
 
 ** Fly-check
-Syntax error-checking on the fly (haha!) while working on code. It's convenient to avoid small errors that screw up your compilation and are just being anoying. 
+Syntax error-checking on the fly (haha!) while working on code. It's convenient to avoid small errors that screw up your compilation and are just being anoying.
 - [[http://www.flycheck.org/en/latest/][flycheck]]
 #+BEGIN_SRC emacs-lisp
-(require 'flycheck)  
+(require 'flycheck)
 (global-flycheck-mode t)
 #+END_SRC
 
@@ -1020,8 +1016,8 @@ When writing code I lot of times I mark the things I've just typed and hit /Tab/
 *** Keybindgs
 
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "M-j j b" 'json-pretty-print-buffer)
-(bind-key* "M-j j r" 'json-pretty-print)
+(this is bs bind-key* "M-j j b" 'json-pretty-print-buffer)
+(this is bs bind-key* "M-j j r" 'json-pretty-print)
 #+END_SRC
 
 
@@ -1058,7 +1054,7 @@ def main():
 
 if __name__ == \'__main__\':
     main()")
-    
+
 (define-skeleton json-basic-skeleton
   ""
   ""
@@ -1069,7 +1065,7 @@ if __name__ == \'__main__\':
 	}
 }")
 
-(define-skeleton org-basic-skeleton 
+(define-skeleton org-basic-skeleton
 ""
 ""
 "#+OPTIONS: ':t *:t -:t ::t <:t H:3 \\n:nil ^:t arch:headline author:t
@@ -1105,10 +1101,10 @@ if __name__ == \'__main__\':
 
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c 2" '@(buffer-from-template "*c++*" c++-basic-skeleton c++-mode))
-(bind-key* "C-c 3" '@(buffer-from-template "*python*" python-basic-skeleton python-mode))
-(bind-key* "C-c 4" '@(buffer-from-template "*json*" json-basic-skeleton json-mode))
-(bind-key* "C-c 5" '@(buffer-from-template "*org*" org-basic-skeleton org-mode))
+(this is bs bind-key* "C-c 2" '@(buffer-from-template "*c++*" c++-basic-skeleton c++-mode))
+(this is bs bind-key* "C-c 3" '@(buffer-from-template "*python*" python-basic-skeleton python-mode))
+(this is bs bind-key* "C-c 4" '@(buffer-from-template "*json*" json-basic-skeleton json-mode))
+(this is bs bind-key* "C-c 5" '@(buffer-from-template "*org*" org-basic-skeleton org-mode))
 #+END_SRC
 
 
@@ -1135,9 +1131,9 @@ if __name__ == \'__main__\':
 *** Keybindgs
 
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "M-j r h" 'helm-quickrun)
-(bind-key* "M-j r r" 'quickrun-with-arg)
-(bind-key* "<f7>" 'quickrun)
+(this is bs bind-key* "M-j r h" 'helm-quickrun)
+(this is bs bind-key* "M-j r r" 'quickrun-with-arg)
+(this is bs bind-key* "<f7>" 'quickrun)
 #+END_SRC
 
 
@@ -1148,8 +1144,8 @@ Another 'standard feature' of most editors but in emacs we have to set it up bec
 #+BEGIN_SRC emacs-lisp
 (require 'drag-stuff)
 (drag-stuff-global-mode)
-(bind-key* "M-<up>" 'drag-stuff-up)
-(bind-key* "M-<down>" 'drag-stuff-down)
+(this is bs bind-key* "M-<up>" 'drag-stuff-up)
+(this is bs bind-key* "M-<down>" 'drag-stuff-down)
 #+END_SRC
 
 
@@ -1176,8 +1172,8 @@ Yeso, I am a +hirroble+ horrible speller. Thank god that there are tools that he
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "<f8>"   'fd-switch-dictionary)
-(bind-key* "C-<f8>" 'flyspell-mode)
+(this is bs bind-key* "<f8>"   'fd-switch-dictionary)
+(this is bs bind-key* "C-<f8>" 'flyspell-mode)
 #+END_SRC
 
 
@@ -1206,15 +1202,15 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 (load "~/.emacs.d/lisp/arnaud-sexp")
 (require 'arnaud-sexp)
 
-(bind-key* "C-M-y" 'sp-backward-up-sexp)
-(bind-key* "C-M-x" 'sp-up-sexp)
+(this is bs bind-key* "C-M-y" 'sp-backward-up-sexp)
+(this is bs bind-key* "C-M-x" 'sp-up-sexp)
 
-(bind-key* "C-M-SPC" 'arnaud-mark-sexp)
-(bind-key* "C-M-k" 'arnaud-kill-sexp)
-(bind-key* "C-M-S-SPC" 'arnaud-mark-sexp-whole)
-(bind-key* "C-M-S-k" 'arnaud-kill-sexp-whole)
-(bind-key* "C-M-w" 'arnaud-kill-save-sexp)
-(bind-key* "C-M-S-w" 'arnaud-kill-save-sexp-whole)
+(this is bs bind-key* "C-M-SPC" 'arnaud-mark-sexp)
+(this is bs bind-key* "C-M-k" 'arnaud-kill-sexp)
+(this is bs bind-key* "C-M-S-SPC" 'arnaud-mark-sexp-whole)
+(this is bs bind-key* "C-M-S-k" 'arnaud-kill-sexp-whole)
+(this is bs bind-key* "C-M-w" 'arnaud-kill-save-sexp)
+(this is bs bind-key* "C-M-S-w" 'arnaud-kill-save-sexp-whole)
 #+END_SRC
 
 
@@ -1227,7 +1223,7 @@ Extensions/Applications/Packages for Emacs that just plainly do by life easier. 
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-x u" 'undo-tree-visualize)
+(this is bs bind-key* "C-x u" 'undo-tree-visualize)
 #+END_SRC
 
 
@@ -1248,7 +1244,7 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'projectile)
 (setq projectile-completion-system 'helm)
-(setq projectile-project-search-path '("/home/arnaud/code" "/home/arnaud/code_ext"))
+(setq projectile-project-search-path '("/home/arnaud/code" "/home/arnaud/code_ext" "/home/arnaud/code_sys" ))
 (setq projectile-indexing-method 'native)
 (setq projectile-enable-caching t)
 
@@ -1262,68 +1258,69 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 My tree browser of choice. Was blown away when I found that emacs has the ability to pull of something like tree browser. This was probably the functionality that showed me that emacs can be a substitute for every other IDE/text editor(on which the hippsters web-developers write their 'web-apps')
 - [[https://github.com/jaypei/emacs-neotree][neotree]]
 #+BEGIN_SRC emacs-lisp :results none
-  (require 'neotree)
-  (require 'all-the-icons)
 
-  ;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons.el")
-  ;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons-faces.el")
-  ;; (load-file "/home/arnaud/code/emacs-neotree/neotree.el")
+;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons.el")
+;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons-faces.el")
+(load-file "/home/arnaud/code_sys/emacs-neotree-fork/neotree.el")
 
-  (add-hook 'neo-after-create-hook
-	 #'(lambda (_)
-		 (with-current-buffer (get-buffer neo-buffer-name)
-		   (setq truncate-lines t)
-		   (setq word-wrap nil)
-		   (make-local-variable 'auto-hscroll-mode)
-		   (setq auto-hscroll-mode nil))))
+(require 'neotree)
+(require 'all-the-icons)
 
-
-
-  ;;(advice-add 'display-graphic-p :override (lambda () t))  
-  ;; (setq neo-theme  'icons)
-
-
-  (defun neotree-project-dir ()
-	  "Open NeoTree using the projectile."
-	  (interactive)
-	  (let ((project-dir (projectile-project-root))
-			(file-name (buffer-file-name)))
-		(neotree-toggle)
-		(if project-dir
-			(if (neo-global--window-exists-p)
-				(progn
-				  (neotree-dir project-dir)
-				  (neotree-find file-name)))
-		  (message "Could not find vc project root."))))
-
-  (bind-key* "<f1>" 'neotree-toggle)
-  (bind-key* "C-<f1>" 'neotree-project-dir)
-
-  (bind-key* "<f2>" 'neotree-find)
-
-
-  (setq neo-model-line-type 'none)
-
-  (setq neo-window-width 40)
-  (setq neo-window-fixed-size nil)
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (setq neo-show-hidden-files t)
-  ;;(setq projectile-switch-project-action 'neotree-projectile-action)
-  (setq neo-theme 'icons)
-
-  (setq neo-hidden-regexp-list (quote ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "__pycache__")))
+(add-hook 'neo-after-create-hook
+   #'(lambda (_)
+	   (with-current-buffer (get-buffer neo-buffer-name)
+		 (setq truncate-lines t)
+		 (setq word-wrap nil)
+		 (make-local-variable 'auto-hscroll-mode)
+		 (setq auto-hscroll-mode nil))))
 
 
 
+;;(advice-add 'display-graphic-p :override (lambda () t))
+;; (setq neo-theme  'icons)
 
 
-  (face-spec-set 'neo-button-face '((t (:foreground "gold" :underline nil))))
-  (face-spec-set 'neo-button-face '((t (:inherit bold :foreground "#268bd2" :underline t :height 1.1 :width semi-condensed))))
-  (face-spec-set 'neo-file-link-face '((t (:foreground "light sky blue"))))
-  (face-spec-set 'neo-open-dir-link-face '((t (:foreground "gold" :underline t :height 1.1))))
-  (face-spec-set 'neo-dir-link-face '((t (:underline t :height 1.1))))
-  (face-spec-set 'neo-dir-icon-face '((t (:foreground "light sky blue"))))
-  (face-spec-set 'neo-open-dir-icon-face '((t (:foreground "gold"))))
+(defun neotree-project-dir ()
+	"Open NeoTree using the projectile."
+	(interactive)
+	(let ((project-dir (projectile-project-root))
+		  (file-name (buffer-file-name)))
+	  (neotree-toggle)
+	  (if project-dir
+		  (if (neo-global--window-exists-p)
+			  (progn
+				(neotree-dir project-dir)
+				(neotree-find file-name)))
+		(message "Could not find vc project root."))))
+
+(this is bs bind-key* "<f1>" 'neotree-toggle)
+(this is bs bind-key* "C-<f1>" 'neotree-project-dir)
+
+(this is bs bind-key* "<f2>" 'neotree-find)
+
+
+(setq neo-model-line-type 'none)
+
+(setq neo-window-width 40)
+(setq neo-window-fixed-size nil)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-show-hidden-files t)
+;;(setq projectile-switch-project-action 'neotree-projectile-action)
+(setq neo-theme 'icons)
+
+(setq neo-hidden-regexp-list (quote ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "__pycache__")))
+
+
+
+
+
+(face-spec-set 'neo-button-face '((t (:foreground "gold" :underline nil))))
+(face-spec-set 'neo-button-face '((t (:inherit bold :foreground "#268bd2" :underline t :height 1.1 :width semi-condensed))))
+(face-spec-set 'neo-file-link-face '((t (:foreground "light sky blue"))))
+(face-spec-set 'neo-open-dir-link-face '((t (:foreground "gold" :underline t :height 1.1))))
+(face-spec-set 'neo-dir-link-face '((t (:underline t :height 1.1))))
+(face-spec-set 'neo-dir-icon-face '((t (:foreground "light sky blue"))))
+(face-spec-set 'neo-open-dir-icon-face '((t (:foreground "gold"))))
 
 #+END_SRC
 
@@ -1363,16 +1360,16 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-x C-f" 'helm-find-files)  
-(bind-key* "M-x" 'helm-M-x)
-(bind-key* "C-x b" 'helm-mini)
-(bind-key* "C-c b" 'helm-semantic-or-imenu)
-(bind-key* "M-s" 'helm-projectile-ag)
-(bind-key* "C-x c C-a" 'helm-apt)
-(bind-key* "C-x c M-m" 'helm-complete-file-name-at-point)
-(bind-key* "C-x c C-s" 'helm-occur-from-isearch)
-(bind-key* "C-x r h" 'helm-register)
-(bind-key* "M-y" 'helm-show-kill-ring)
+(this is bs bind-key* "C-x C-f" 'helm-find-files)
+(this is bs bind-key* "M-x" 'helm-M-x)
+(this is bs bind-key* "C-x b" 'helm-mini)
+(this is bs bind-key* "C-c b" 'helm-semantic-or-imenu)
+(this is bs bind-key* "M-s" 'helm-projectile-ag)
+(this is bs bind-key* "C-x c C-a" 'helm-apt)
+(this is bs bind-key* "C-x c M-m" 'helm-complete-file-name-at-point)
+(this is bs bind-key* "C-x c C-s" 'helm-occur-from-isearch)
+(this is bs bind-key* "C-x r h" 'helm-register)
+(this is bs bind-key* "M-y" 'helm-show-kill-ring)
 #+END_SRC
 
 #+RESULTS:
@@ -1385,7 +1382,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'ibuffer)
 (require 'ibuffer-projectile)
-(bind-key* "C-x C-b" 'ibuffer)
+(this is bs bind-key* "C-x C-b" 'ibuffer)
 ;;(autoload 'ibuffer "ibuffer" "List buffers." t)
 (setq ibuffer-expert t)
 (setq ibuffer-show-empty-filter-groups nil)
@@ -1398,7 +1395,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 			     (filename . "myinit.org")))
          ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")))
-         ("Programming C++" 
+         ("Programming C++"
           (or
            (mode . c-mode)
            (mode . c++-mode)
@@ -1427,7 +1424,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
          ("4Chan"
           (mode . q4))
          ("Text" (name . ".txt"))
-         ("JS" 
+         ("JS"
           (or (mode . "JavaScript")
               (name . ".js")
               (mode . javascript-mode)))
@@ -1468,7 +1465,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 ;; Anything longer will be highlighted
 (setq git-commit-summary-max-length 70)
 (setq magit-commit-show-diff t)
- 
+
 (setq magit-status-sections-hook '(
 			;;magit-insert-status-headers
 			magit-insert-unstaged-changes
@@ -1522,18 +1519,18 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 *** Keybindgs
 
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "M-j m g" 'my-magit-browse-github magit-mode-map)
-(bind-key* "M-j m l" 'magit-list-repositories)
-(bind-key* "M-j m s" 'magit-status)
-(bind-key* "M-j m c" 'magit-commit)
-(bind-key* "M-j m i" 'magit-init)
-(bind-key* "M-j m c" 'magit-checkout)
-(bind-key* "M-j m C" 'magit-checkout-file)
+(this is bs bind-key* "M-j m g" 'my-magit-browse-github magit-mode-map)
+(this is bs bind-key* "M-j m l" 'magit-list-repositories)
+(this is bs bind-key* "M-j m s" 'magit-status)
+(this is bs bind-key* "M-j m c" 'magit-commit)
+(this is bs bind-key* "M-j m i" 'magit-init)
+(this is bs bind-key* "M-j m c" 'magit-checkout)
+(this is bs bind-key* "M-j m C" 'magit-checkout-file)
 
 ;; (bind-key "q" 'my--kill-buffer-and-window magit-mode-map)
 #+END_SRC
 
- 
+
 ** Hydra
 /Hydra/ is a package that allows you to create hydras. Those are like munues with keybindings that popout on the bottom of the buffer and prompt you to type one(or more) of the listed keybindings. This provides really cool way of structuring commands in a menu-like fashion. There are some predifined hydras that come with the package but those are not that good and therefore I've 'borrowed' a few from the mighty internet.
 \\
@@ -1573,10 +1570,10 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
  ^Ace-window^                        ^^
 ^^^^------------------------------------------------------------------
 ^ _s_: Select window^           ^ _o_: Ace^
-^ _d_: Delete window^           
-^ _m_: Maximize window^         
-^ _c_: Close other windows^    
-^ _t_: Transpose windows^       
+^ _d_: Delete window^
+^ _m_: Maximize window^
+^ _c_: Close other windows^
+^ _t_: Transpose windows^
 
 "
   ("s" ace-select-window)
@@ -1587,7 +1584,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("o" ace-window)
   ("q" nil :color blue))
 
-(bind-key* "C-c h w" 'arnaud-hydra-windowing/body)
+(this is bs bind-key* "C-c h w" 'arnaud-hydra-windowing/body)
 #+END_SRC
 *** Bookmarks navigation
 #+BEGIN_SRC emacs-lisp :results none
@@ -1601,7 +1598,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("j" bookmark-jump)
   ("d" bookmark-delete)
   ("q" nil :color blue))
-(bind-key* "C-c h b" 'arnaud-hydra-bookmarks/body)
+(this is bs bind-key* "C-c h b" 'arnaud-hydra-bookmarks/body)
 #+END_SRC
 
 *** Editing rectangle
@@ -1631,7 +1628,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
          (rectangle-mark-mode 1)) nil)
   ("q" keyboard-quit :color blue))
 
-(bind-key* "C-c h r" 'arnaud-hydra-rectangle/body)
+(this is bs bind-key* "C-c h r" 'arnaud-hydra-rectangle/body)
 #+END_SRC
 *** Registers
 #+BEGIN_SRC emacs-lisp :results none
@@ -1654,7 +1651,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("p" point-to-register)
   ("h" helm-register)
   ("q" nil :color blue))
-(bind-key* "C-c h R" 'arnaud-hydra-registers/body)
+(this is bs bind-key* "C-c h R" 'arnaud-hydra-registers/body)
 #+END_SRC
 *** Modes toggling
 #+BEGIN_SRC emacs-lisp :results none
@@ -1681,18 +1678,18 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("q" nil :color blue))
 
 
-(bind-key* "C-c h M" 'arnaud-hydra-active-modes/body)
+(this is bs bind-key* "C-c h M" 'arnaud-hydra-active-modes/body)
 #+END_SRC
 *** Org trees movement
 #+BEGIN_SRC emacs-lisp :results none
 (defhydra arnaud-hydra-org-organize (:color red
                                             :hint nil)
   "
-       ^Meta^                 
+       ^Meta^
 ^^--------------------------------------------------------------------
       ^ _<up>_ ^          _q_: quit
  _<right>_ ^+^ _<left>_
-      ^_<down>_^      
+      ^_<down>_^
 "
   ("<left>" org-metaleft)
   ("<right>" org-metaright)
@@ -1700,7 +1697,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("<up>" org-metaup)
   ("q" nil :color blue))
 
-(bind-key* "C-c h C-o m" 'arnaud-hydra-org-organize/body)
+(this is bs bind-key* "C-c h C-o m" 'arnaud-hydra-org-organize/body)
 #+END_SRC
 *** Org templates expansions
 #+BEGIN_SRC emacs-lisp :results none
@@ -1755,7 +1752,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("<" self-insert-command)
   ("q" nil :color blue))
 
-(bind-key* "C-c h C-o t" 'arnaud-hydra-org-template/body)
+(this is bs bind-key* "C-c h C-o t" 'arnaud-hydra-org-template/body)
 #+END_SRC
 *** Formatting
 #+BEGIN_SRC emacs-lisp :results none
@@ -1765,7 +1762,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
  ^Beautify^
 ^^^^^^^^^^--------------------------------------
  _h_: html        _c_: css       _j_: js        _q_: quit
- _H_: html buf    _C_: css buf   _J_: js buf    
+ _H_: html buf    _C_: css buf   _J_: js buf
  _p_: py buf      _P_: py on-sav
 "
   ("h" web-beautify-html)
@@ -1777,7 +1774,7 @@ There is also a 'special' Hydra that lists all other hydras and it's bound to =C
   ("p" py-yapf-buffer)
   ("P" py-yapf-enable-on-save)
   ("q" nil :color blue))
-(bind-key* "C-c h f" 'arnaud-hydra-format/body)
+(this is bs bind-key* "C-c h f" 'arnaud-hydra-format/body)
 #+END_SRC
 *** Projectile
 #+BEGIN_SRC emacs-lisp :results none
@@ -1828,7 +1825,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("`"   hydra-projectile-other-window/body "other window" :color blue)
   ("q"   nil "cancel" :color blue))
 
-(bind-key* "C-c h p" 'arnaud-hydra-projectile/body)
+(this is bs bind-key* "C-c h p" 'arnaud-hydra-projectile/body)
 #+END_SRC
 *** Magit
 
@@ -1840,7 +1837,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
  ^Status^      ^Remote^          ^Operations^
 ^^^^^^------------------------------------------------------------------------------------------
 _s_: Status      _f_: Pull       _c_  : Commit
-_l_: Log all     _p_: Push       _C-s_: Stage 
+_l_: Log all     _p_: Push       _C-s_: Stage
 _d_: Diff        _C-c_: Clone    _S_  : Stage modified
  ^^                 ^^           ^_C-f_: Stage file^
  ^^                 ^^           ^_M-f_: Unstage file^
@@ -1860,7 +1857,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 
 
 
-(bind-key* "C-c h m" 'arnaud-hydra-magit/body)
+(this is bs bind-key* "C-c h m" 'arnaud-hydra-magit/body)
 #+END_SRC
 *** Files
 
@@ -1869,7 +1866,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 "
     ^^                    ^Files^             ^^
 ^^^^^^------------------------------------------------------------------------
-^_n_^ : Notes         
+^_n_^ : Notes
 ^_t_^ : Todos
 ^_a_^ : About(Blog)
 ^_i_^ : Myinit
@@ -1881,7 +1878,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("i" (find-file "~/code/dotfiles/.emacs.d/myinit.org"))
   ("q" nil "Cancel" :color blue))
 
-(bind-key* "C-c h F" 'arnaud-hydra-files/body)
+(this is bs bind-key* "C-c h F" 'arnaud-hydra-files/body)
 #+END_SRC
 
 *** Hydras
@@ -1894,7 +1891,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 ^_b_^ : Bookmarks    ^_M_ ^    : Modes                ^_p_^ : Projectile
 ^_r_^ : Rectangle    ^_C-o m_^ : Org treee move       ^_m_^ : Magit
 ^_l_^ : LaTeX        ^_C-o t_^ : Org templates        ^_F_^ : Files
-    
+
 "
   ("w" arnaud-hydra-windowing/body)
   ("b" arnaud-hydra-bookmarks/body)
@@ -1910,25 +1907,25 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("F" arnaud-hydra-files/body)
   ("q" nil "Cancel" :color blue))
 
-(bind-key* "C-c h h" 'arnaud-hydra-hydras/body)
+(this is bs bind-key* "C-c h h" 'arnaud-hydra-hydras/body)
 #+END_SRC
 
 
 ** IMenu
-IMenu is like that one thingy that nobody uses but its in almost every IDE. IMenu can create a buffer showing the "structure" of what you are currently editing. If you are writing a C++ class, it will show you all the member functions and fields. If you are working on \Latex document, the  IMenu buffer will contain the sections and the subsections. The whole thing is occasionally useful but certainly does not need to clutter your workspace the whole time. 
+IMenu is like that one thingy that nobody uses but its in almost every IDE. IMenu can create a buffer showing the "structure" of what you are currently editing. If you are writing a C++ class, it will show you all the member functions and fields. If you are working on \Latex document, the  IMenu buffer will contain the sections and the subsections. The whole thing is occasionally useful but certainly does not need to clutter your workspace the whole time.
 
 - https://github.com/bmag/imenu-list
 #+BEGIN_SRC emacs-lisp :results none
 (require 'imenu-list)
 
-(bind-key* "<f12>" 'imenu-list-smart-toggle)
+(this is bs bind-key* "<f12>" 'imenu-list-smart-toggle)
 (setq imenu-list-auto-resize t)
 (setq imenu-list-after-jump-hook nil)
 #+END_SRC
 
 
 ** Company
-Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The ~company-idle-delay~ makes the automatic popup +impossible+ immediate so that I +would+ wouldn't have to call it manually through =M-m=. 
+Complete Anything! I am yet to find an effective setup that is as fast as well as feature rich. I've defined hooks for some of the major modes that I use so that I don't hold too many active backends at the start. A lot of times I found myself turning off company-mode because it just makes the typing slower at some moments. The ~company-idle-delay~ makes the automatic popup +impossible+ immediate so that I +would+ wouldn't have to call it manually through =M-m=.
 - [[http://company-mode.github.io/][company]]
 
 *** Basic setup
@@ -1945,7 +1942,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 	  company-tooltip-minimum-width 100)
 (global-company-mode t)
 
-(bind-key* "M-m" 'company-complete)
+(this is bs bind-key* "M-m" 'company-complete)
 (define-key company-active-map (kbd "C-n") 'company-select-next-or-abort)
 (define-key company-active-map (kbd "C-p") 'company-select-previous-or-abort)
 
@@ -1976,7 +1973,7 @@ In my experience, setting up the backends of company properly is not the easiest
 The definitions of all the functions for the backends setups.
 - basic packages variable - I  use the backends in this variable across all modes
 #+BEGIN_SRC emacs-lisp :results none
-(defvar basic-company-backends '(company-files         
+(defvar basic-company-backends '(company-files
                                  company-capf
                                  company-dabbrev-code
                                  company-keywords
@@ -2073,8 +2070,8 @@ Hooks are nice but sometimes I want some finer control of which backends are act
 ----------------------------------------------------------
 
  _p_: Python   _l_: Latex     _e_: ELisp
- _x_: nXML     _m_: CMake    
- _j_: Java     _c_: C++            
+ _x_: nXML     _m_: CMake
+ _j_: Java     _c_: C++
 
 _b_: Basic
 
@@ -2092,7 +2089,7 @@ _b_: Basic
   ("q" nil :color blue))
 #+END_SRC
 *** Faces
-#+BEGIN_SRC elisp :results none
+#+BEGIN_SRC emacs-lisp :results none
 
 (face-spec-set 'company-preview '((t (:background "#444444" :foreground "light sky blue"))))
 (face-spec-set 'company-tooltip '((t (:background "#444444" :foreground "light sky blue"))))
@@ -2104,18 +2101,18 @@ _b_: Basic
 Hydras are nice but sometimes I just want hit some keys and have what I want
 - Quick keybinds to swtich backends
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "M-j c p" 'my-company-python-backends)
-(bind-key* "M-j c x" 'my-company-nxml-backends  )
-(bind-key* "M-j c j" 'my-company-java-backends  )
-(bind-key* "M-j c l" 'my-company-latex-backends )
-(bind-key* "M-j c m" 'my-company-cmake-backends )
-(bind-key* "M-j c c" 'my-company-c++-backends   )
-(bind-key* "M-j c e" 'my-company-elisp-backends )
-(bind-key* "M-j c b" 'my-company-basic-backends )
+(this is bs bind-key* "M-j c p" 'my-company-python-backends)
+(this is bs bind-key* "M-j c x" 'my-company-nxml-backends  )
+(this is bs bind-key* "M-j c j" 'my-company-java-backends  )
+(this is bs bind-key* "M-j c l" 'my-company-latex-backends )
+(this is bs bind-key* "M-j c m" 'my-company-cmake-backends )
+(this is bs bind-key* "M-j c c" 'my-company-c++-backends   )
+(this is bs bind-key* "M-j c e" 'my-company-elisp-backends )
+(this is bs bind-key* "M-j c b" 'my-company-basic-backends )
 #+END_SRC
 - The Hydry-thingy
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c h c" 'arnaud-hydra-company/body)
+(this is bs bind-key* "C-c h c" 'arnaud-hydra-company/body)
 #+END_SRC
 
 
@@ -2127,20 +2124,20 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "<f13>" 'avy-goto-char)
+(this is bs bind-key* "<f13>" 'avy-goto-char)
 #+END_SRC
 
 
 ** Iy
-Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginning of the expression and you type =C-SPC C-c f (= you won't mark everything till the =(= (now I believer this sentence to be lie). Still useful though. 
+Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginning of the expression and you type =C-SPC C-c f (= you won't mark everything till the =(= (now I believer this sentence to be lie). Still useful though.
 - [[https://github.com/doitian/iy-go-to-char][iy-go-to-char]]
 #+BEGIN_SRC emacs-lisp
 (require 'iy-go-to-char)
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-c f" 'iy-go-up-to-char)
-(bind-key* "C-c F" 'iy-go-up-to-char-backward)
+(this is bs bind-key* "C-c f" 'iy-go-up-to-char)
+(this is bs bind-key* "C-c F" 'iy-go-up-to-char-backward)
 #+END_SRC
 
 
@@ -2164,10 +2161,10 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-c M-s"  'swiper)
-(bind-key* "C-s"  'isearch-forward)
-(bind-key* "M-%" 'anzu-query-replace)
-(bind-key* "C-M-%" 'anzu-query-replace-regexp)
+(this is bs bind-key* "C-c M-s"  'swiper)
+(this is bs bind-key* "C-s"  'isearch-forward)
+(this is bs bind-key* "M-%" 'anzu-query-replace)
+(this is bs bind-key* "C-M-%" 'anzu-query-replace-regexp)
 #+END_SRC
 
 
@@ -2188,9 +2185,9 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 
 *** Keybindings
 #+BEGIN_SRC emacs-lisp
-;; (bind-key* "M-%" 'vr/select-query-replace)
-(bind-key* "M-%" 'query-replace)
-(bind-key* "M-i" 'iedit-mode)
+;; (this is bs bind-key* "M-%" 'vr/select-query-replace)
+(this is bs bind-key* "M-%" 'query-replace)
+(this is bs bind-key* "M-i" 'iedit-mode)
 
 #+END_SRC
 
@@ -2200,9 +2197,9 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 #+BEGIN_SRC emacs-lisp :results none
 (require 'yagist)
 
-(bind-key* "M-j g l" 'yagist-list)
-(bind-key* "M-j g r" 'yagist-region)
-(bind-key* "M-j g b" 'yagist-buffer)
+(this is bs bind-key* "M-j g l" 'yagist-list)
+(this is bs bind-key* "M-j g r" 'yagist-region)
+(this is bs bind-key* "M-j g b" 'yagist-buffer)
 #+END_SRC
 
 
@@ -2213,21 +2210,21 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 ;; (require 'sunrise-commander)
 ;; (require 'sunrise-x-buttons)
 ;; (require 'sunrise-x-modeline)
- 
+
 #+END_SRC
 
 
 
 ** Gitignore templates
 
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
 (require 'gitignore-templates)
 #+END_SRC
 
 *** Keybindgs
-#+BEGIN_SRC elisp
-(bind-key* "M-j i i" 'gitignore-templates-insert)
-(bind-key* "M-j i f" 'gitignore-templates-new-file)
+#+BEGIN_SRC emacs-lisp
+(this is bs bind-key* "M-j i i" 'gitignore-templates-insert)
+(this is bs bind-key* "M-j i f" 'gitignore-templates-new-file)
 #+END_SRC
 
 
@@ -2248,34 +2245,27 @@ Markdown is not as pretty as Org-mode but is widely used throughout the Internet
 
 ** Org-mode
 *** Common settings
-Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writing/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this .init file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporters for =.org= files that just make my life easier. 
+Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writing/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this /init/ file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporters for =.org= files that just make my life easier.
+
 #+BEGIN_SRC emacs-lisp
 (require 'org-bullets)
+(require 'org-tempo)
 
 (setq org-support-shift-select (quote always))
 (setq org-startup-indented t)
 (setq org-hide-leading-stars t)
-
-
-(setq org-babel-python-command "~/anaconda3/bin/python3.6")        
-(setq org-default-notes-file (concat org-directory "/notes.org"))  
-(setq org-directory "~/Dropbox/orgfiles")                          
-(setq org-export-html-postamble nil)                               
-(setq org-startup-folded (quote overview))                         
-
-(add-hook 'org-mode-hook (lambda () 
-                           (org-bullets-mode 1)
-                           (flyspell-mode 1)))
-;; (custom-set-variables
-;;  '(org-directory "~/Dropbox/orgfiles")
-;;  '(org-default-notes-file (concat org-directory "/notes.org"))
-;;  '(org-export-html-postamble nil)
-;;  '(org-hide-leading-stars t)
-;;  '(org-startup-folded (quote overview))
-;;  '(org-startup-indented t)
-;;  )
-
+(setq org-babel-python-command "python")
+(setq org-directory "~/Documents/orgfiles")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-export-html-postamble nil)
+(setq org-startup-folded (quote overview))
 (setq org-log-done 'time)
+
+(setq org-pretty-entities t)
+(setq org-export-babel-evaluate nil)
+(setq org-export-with-smart-quotes t)
+(setq org-enable-priority-commands nil)
+(setq org-html-htmlize-output-type 'css)
 
 (setq org-latex-listings 'minted
       org-latex-packages-alist '(("" "minted"))
@@ -2283,24 +2273,20 @@ Org-mode is awesome not just for note taking but also for general text editing, 
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
-(setq org-pretty-entities t)
 
-(setq org-export-babel-evaluate nil)
-
-(setq org-export-with-smart-quotes t)
-
-(setq org-enable-priority-commands nil)
-
-(setq org-html-htmlize-output-type 'css)
+(add-hook 'org-mode-hook (lambda ()
+                           (org-bullets-mode 1)
+                           (flyspell-mode 1)))
 #+END_SRC
 The codeblocks should be formated with the native envinroment of the language
-#+BEGIN_SRC emacs-lisp
-(setq org-src-fontify-natively t
-      org-src-tab-acts-natively t
-      org-confirm-babel-evaluate nil
-      org-edit-src-content-indentation 0)
+#+BEGIN_SRC emacs-lisp :results none
 
-#+END_SRC 
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+(setq org-confirm-babel-evaluate nil)
+(setq org-edit-src-content-indentation 0)
+
+#+END_SRC
 *** Exporters
 Some extra export backends for org-mode that come in handy.
 - Beamer - for making those awesome-ish presentations
@@ -2312,15 +2298,12 @@ Some extra export backends for org-mode that come in handy.
 (require 'ox-twbs)
 (require 'ox-hugo)
 (require 'ox-gfm)
-
-
 #+END_SRC
 *** Org-extras
+Remove headlines with =:no_title:= tag.
 #+BEGIN_SRC emacs-lisp :results none
 (require 'ox-extra)
-
 (defun org-remove-headlines (backend)
-  "Remove headlines with :no_title: tag."
   (org-map-entries (lambda () (delete-region (point-at-bol) (point-at-eol)))
                    "no_title"))
 
@@ -2329,7 +2312,6 @@ Some extra export backends for org-mode that come in handy.
 *** Capture
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-reverse-note-order t)
-
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Captured TODOS")
          "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
@@ -2339,17 +2321,18 @@ Some extra export backends for org-mode that come in handy.
 
 #+END_SRC
 *** Reveal.js
-This style of presenting looks cool but I don't use it that much. Still, I want to have the possibility in my emacs. 
+This style of presenting looks cool but I don't use it that much. Still, I want to have the possibility in my emacs.
 #+BEGIN_SRC emacs-lisp
 (require 'ox-reveal)
+(require 'htmlize)
 
 (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
 (setq org-reveal-mathjax t)
 
-(require 'htmlize)
 #+END_SRC
 *** Babel Languages
 - Source block with this line in the header:
+
 #+BEGIN_EXAMPLE
 dot :file ./img/example1.png :cmdline -Kdot -Tpng
 #+END_EXAMPLE
@@ -2371,70 +2354,38 @@ will produce a graph-png at the end....it's awesome!
          (shell . t)
          (ledger . t)
          (org . t)
+		   (plantuml . t)
          (plantuml . t)
          (latex . t))))
-#+END_SRC
-*** Templates
-#+BEGIN_SRC emacs-lisp :results none
-;; More of those nice template expansion
-  (add-to-list 'org-structure-template-alist '("A" "#+DATE: ?"))
-  (add-to-list 'org-structure-template-alist '("C" "#+BEGIN_CENTER\n?\n#+END_CENTER\n"))
-  (add-to-list 'org-structure-template-alist '("D" "#+DESCRIPTION: ?"))
-  (add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE\n"))
-  (add-to-list 'org-structure-template-alist '("H" "#+LATEX_HEADER: ?"))
-  (add-to-list 'org-structure-template-alist '("I" ":INTERLEAVE_PDF: ?"))
-  (add-to-list 'org-structure-template-alist '("L" "#+BEGIN_LaTeX\n?\n#+END_LaTeX"))
-  (add-to-list 'org-structure-template-alist '("M" "#+LATEX_HEADER: \\usepackage{minted}\n"))
-  (add-to-list 'org-structure-template-alist '("N" "#+NAME: ?"))
-  (add-to-list 'org-structure-template-alist '("P" "#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"org.css\"/>\n"))
-  (add-to-list 'org-structure-template-alist '("S" "#+SUBTITLE: ?"))
-  (add-to-list 'org-structure-template-alist '("T" ":DRILL_CARD_TYPE: twosided"))
-  (add-to-list 'org-structure-template-alist '("V" "#+BEGIN_VERSE\n?\n#+END_VERSE"))
-  (add-to-list 'org-structure-template-alist '("X" "#+EXCLUDE_TAGS: reveal?"))
-  (add-to-list 'org-structure-template-alist '("a" "#+AUTHOR: ?"))
-  (add-to-list 'org-structure-template-alist '("c" "#+CAPTION: ?"))
-  (add-to-list 'org-structure-template-alist '("d" "#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \\n:nil ^:t arch:headline\n#+OPTIONS: author:t email:nil e:t f:t inline:t creator:nil d:nil date:t\n#+OPTIONS: toc:nil num:nil tags:nil todo:nil p:nil pri:nil stat:nil c:nil d:nil\n#+LATEX_HEADER: \\usepackage[margin=2cm]{geometry}\n#+LANGUAGE: en\n\n#+REVEAL_TRANS: slide\n#+REVEAL_THEME: white\n"))
-  (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
-  (add-to-list 'org-structure-template-alist '("f" "#+TAGS: @?"))
-  (add-to-list 'org-structure-template-alist '("h" "#+BEGIN_HTML\n?\n#+END_HTML\n"))
-  (add-to-list 'org-structure-template-alist '("i" "#+INTERLEAVE_PDF: ?"))
-  (add-to-list 'org-structure-template-alist '("k" "#+KEYWORDS: ?"))
-  (add-to-list 'org-structure-template-alist '("l" "#+LABEL: ?"))
-  (add-to-list 'org-structure-template-alist '("m" "#+BEGIN_SRC matlab\n?\n#+END_SRC"))
-  (add-to-list 'org-structure-template-alist '("n" "#+BEGIN_NOTES\n?\n#+END_NOTES"))
-  (add-to-list 'org-structure-template-alist '("o" "#+OPTIONS: ?"))
-  (add-to-list 'org-structure-template-alist '("p" "#+BEGIN_SRC python\n?\n#+END_SRC"))
-  (add-to-list 'org-structure-template-alist '("q" "#+BEGIN_QUOTE\n?\n#+END_QUOTE"))
-  (add-to-list 'org-structure-template-alist '("r" ":PROPERTIES:\n?\n:END:"))
-  (add-to-list 'org-structure-template-alist '("s" "#+BEGIN_SRC ?\n#+END_SRC\n"))
-  (add-to-list 'org-structure-template-alist '("t" "#+TITLE: ?"))
-  (add-to-list 'org-structure-template-alist '("v" "#+BEGIN_VERBATIM\n?\n#+END_VERBATIM"))
 
-#+END_SRC
-*** Reloading
-For some reasons I have to call this after I've /require/-d all the exporters' backends in order to make them available in the export dispatcher of /org-mode/.
-#+BEGIN_SRC emacs-lisp
-(require 'org)
-(org-reload)
+(setq org-plantuml-jar-path
+      (expand-file-name "~/code_ext/plantuml.jar"))
 
 #+END_SRC
 *** Keybinds
 
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c a" 'org-agenda)
-(bind-key* "C-c c" 'org-capture)
-(bind-key* "C-c C-x s" 'org-attach-screenshot)
+(this is bs bind-key* "C-c a" 'org-agenda)
+(this is bs bind-key* "C-c c" 'org-capture)
+(this is bs bind-key* "C-c C-x s" 'org-attach-screenshot)
 #+END_SRC
 
 *** Org-Babel
 For some reason I must set the right /python/ command each time I start emacs. This does the trick...sometimes. Running random snippets of code in /.org/ files...how bonkers is that. The answer is *pretty bonkers*!!(You know if you are into emacs if you get this "reference")
-#+BEGIN_SRC emacs-lisp
-(setq org-babel-python-command "~/anaconda3/bin/python3.6")
+#+BEGIN_SRC emacs-lisp :results none
+(setq org-babel-python-command "python")
 #+END_SRC
 
+*** Reloading
+For some reasons I have to call this after I've /require/-d all the exporters' backends in order to make them available in the export dispatcher of /org-mode/.
+#+BEGIN_SRC emacs-lisp :results none
+(require 'org)
+(org-reload)
+#+END_SRC
 ** Latex
+
 I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writing my $\LaTeX$ documents but recent changes to its interface have made me look for alternative. Also, recent changes with me and me loving /Emacs/ have made the choice pretty easy. By know I don't think I miss anything that /TexMaker/ could offer me that /Emacs/ cannot.
-- [[https://www.emacswiki.org/emacs/AUCTeX][auctex]] - full fledged environment for writing, editing and compiling /.tex/ documents. Almost everything comes out of the box. Only a simple setup and configuration is required. 
+- [[https://www.emacswiki.org/emacs/AUCTeX][auctex]] - full fledged environment for writing, editing and compiling /.tex/ documents. Almost everything comes out of the box. Only a simple setup and configuration is required.
 - [[https://www.emacswiki.org/emacs/LaTeXPreviewPane][latex-preview-pane]] - The very cool feature of Tex/Maker/ where your generated /pdf/-document is displayed on the side. Yes. Emacs can do it too...surprise, surprise!!
 #+BEGIN_SRC emacs-lisp :results none
 (require 'tex)
@@ -2464,10 +2415,24 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 
 *** Keybinds
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c l p" 'latex-preview-pane-mode)
-(bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography)
-(bind-key* "C-c l M-p" 'latex-preview-pane-update)
-(bind-key* "C-c l l" 'TeX-command-master)
+(this is bs bind-key* "C-c l p" 'latex-preview-pane-mode)
+(this is bs bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography)
+(this is bs bind-key* "C-c l M-p" 'latex-preview-pane-update)
+(this is bs bind-key* "C-c l l" 'TeX-command-master)
+#+END_SRC
+
+*** Templates
+#+BEGIN_SRC emacs-lisp :results none
+(setq org-structure-template-alist '(("a" . "export ascii")
+									 ("c" . "center")
+									 ("C" . "comment")
+									 ("e" . "example")
+									 ("E" . "export")
+									 ("h" . "export html")
+									 ("l" . "export latex")
+									 ("q" . "quote")
+									 ("s" . "src")
+									 ("v" . "verse")))
 #+END_SRC
 
 
@@ -2510,13 +2475,13 @@ From the documentation:
 - [[https://github.com/pashinin/workgroups2][workgroups2]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'workgroups2)
-(workgroups-mode 1)  
+(workgroups-mode 1)
 
 (setq wg-prefix-key (kbd "C-c z"))
 (setq wg-session-file "~/.emacs.d/.emacs_workgroups")
-(setq wg-emacs-exit-save-behavior           'save)    
+(setq wg-emacs-exit-save-behavior           'save)
 (setq wg-workgroups-mode-exit-save-behavior 'save)
-(setq wg-mode-line-display-on t)          
+(setq wg-mode-line-display-on t)
 (setq wg-flag-modified t)
 (setq wg-mode-line-decor-left-brace "["
       wg-mode-line-decor-right-brace "]"
@@ -2524,7 +2489,7 @@ From the documentation:
 #+END_SRC
 
 ** Modline
-Making the modeline a little bit prettier and more spece efficient than the default. I should say that I am kind of guilty for liking the [[http://spacemacs.org][Spacemacs]] modeline a little too much. My current setup is more or less resembling that. The current package that I am using is [[https://github.com/TheBB/spaceline][spaceline]] which as far as I understand is created for people like me. 
+Making the modeline a little bit prettier and more spece efficient than the default. I should say that I am kind of guilty for liking the [[http://spacemacs.org][Spacemacs]] modeline a little too much. My current setup is more or less resembling that. The current package that I am using is [[https://github.com/TheBB/spaceline][spaceline]] which as far as I understand is created for people like me.
 \\
 Some of the packages for modelines that I've gone over are:
   - [[https://github.com/dbordak/telephone-line][telephone-line]]
@@ -2559,7 +2524,7 @@ Some of the packages for modelines that I've gone over are:
 (spaceline-emacs-theme)
 
 
-;; (spaceline-all-the-icons--setup-anzu) 
+;; (spaceline-all-the-icons--setup-anzu)
 ;; (spaceline-all-the-icons--setup-package-updates)
 ;; (spaceline-all-the-icons--setup-git-ahead)
 ;; (spaceline-all-the-icons--setup-neotree)
@@ -2568,13 +2533,11 @@ Some of the packages for modelines that I've gone over are:
 
 ** Vimacs
 /Vim+Emacs/
-
 \\
-
-Yes, from time to time I do find myself saying "Ugh, vim has that one nice feature which can so usefull here in Emacsland". For that reason, I've created a binding that allows me to quickly jump in and out of [[https://github.com/emacs-evil/evil][evil-mode]]. Evil -- or emulating vim layers as they call it -- is more or less full blown vim simulated in Emacs. The modal editing commands of vim are supported and are a joy to be used from time to time, even when one is hardcore Emacs fanboy.
+Yes, from time to time I do find myself saying "Ugh, vim has that one nice feature which can so usefull here in Emacsland". For that reason, I've created a binding that allows me to quickly jump in and out of [[https://github.com/emacs-evil/evil][evil-mode]]. Evil -- or emulating vim layers as they call it -- is more or less full blown vim simulated in Emacs. The modal editing commands of vim are supported and are a joy to be used from time to time, even when one is hardcore Emacs fanboy. 
 #+BEGIN_SRC emacs-lisp :results none
 
-(defun quick-evil () 
+(defun quick-evil ()
   (interactive)
   (if (bound-and-true-p evil-local-mode)
     (progn
@@ -2583,13 +2546,12 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
       (set-cursor-color "#d0d0d0")
     )
     (progn
+	  (evil-mode)
       (evil-local-mode (or 1 1))
       (set-variable 'cursor-type 'box)
       (set-cursor-color "#8968cd"))))
 
-(bind-key* "M-<f13>" 'quick-evil)
-
-
+(this is bs bind-key* "M-<f13>" 'quick-evil)
 #+END_SRC
 
 ** Which key
@@ -2667,7 +2629,7 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
   (message "The modes should be away now!"))
 
 (diminish-em-all)
-(bind-key* "M-j d" 'diminish-em-all)
+(this is bs bind-key* "M-j d" 'diminish-em-all)
 
 #+END_SRC
 
@@ -2678,19 +2640,29 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 (highlight-symbol-nav-mode)
 #+END_SRC
 *** Faces
-#+BEGIN_SRC elisp :results none
-(face-spec-set 'highlight-indentation-current-column-face '((t (:background "gray"))))
-(face-spec-set 'highlight-symbol-face '((t (:background "light blue"))))
+#+BEGIN_SRC emacs-lisp :results none
+
+
+(setq highlight-symbol-colors (quote ("cyan")))
+
+;; (face-spec-set 'highlight-symbol-face '((t (:background "royal blue" :foreground "black"))))
+
+
+;; (face-spec-set 'highlight-indentation-current-column-face '((t (:background "gray"))))
+;; (face-spec-set 'highlight-symbol-face '((t (:background "light blue"))))
+
 #+END_SRC
 
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp :results none
 (bind-key* "M-o o" 'highlight-symbol)
+(bind-key* "M-o M-o" 'highlight-symbol)
 
 (bind-key* "M-n" 'highlight-symbol-next)
 (bind-key* "M-p" 'highlight-symbol-prev)
 
 (bind-key* "M-o c" 'highlight-symbol-remove-all)
+(bind-key* "M-o M-c" 'highlight-symbol-remove-all)
 #+END_SRC
 
 
@@ -2703,28 +2675,28 @@ That one cool site - [[http://wttr.in/][wttr]] - that I even use in my system se
 (setq wttrin-default-cities '("Karlsruhe"
                               "Sliven"
                               "Sofia"))
-(setq wttrin-default-accept-language 
+(setq wttrin-default-accept-language
       '("Accept-Language" . "en-US"))
 
-(bind-key* "M-j w"  'wttrin)
+(this is bs bind-key* "M-j w"  'wttrin)
 
 #+END_SRC
 ** XKCD
 This cute little thing with those cool little nerdy cody comics
 #+BEGIN_SRC emacs-lisp
 (require 'xkcd)
-(bind-key* "M-j x" 'xkcd)
+(this is bs bind-key* "M-j x" 'xkcd)
 #+END_SRC
 ** Touch typing
 I... am not exactly a fast typist but I've really put time and effort into it. I regularly use [[https://typing-speed-test.aoeu.eu/][this]] one but Emacs is Emacs and everything should be Emacs. Just put everything in Emacs they said! So, [[https://github.com/mrkkrp/typit][typit]] is a small package that lets you practice touch typing right here into Emacs.
 #+BEGIN_SRC emacs-lisp
 (require 'typit)
-(bind-key* "M-j t b" 'typit-basic-test)
-(bind-key* "M-j t a" 'typit-advanced-test)
+(this is bs bind-key* "M-j t b" 'typit-basic-test)
+(this is bs bind-key* "M-j t a" 'typit-advanced-test)
 #+END_SRC
-** Commands frequency 
+** Commands frequency
 This things will track which command is being run and how many times... I just think it's cool.
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
 (require 'keyfreq)
 
 (setq keyfreq-excluded-commands

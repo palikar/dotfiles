@@ -40,7 +40,7 @@ bar {
     }
 
 	status_command i3blocks
-    position top
+    Position top
     mode dock
     modifier None
     tray_output             primary
@@ -88,14 +88,29 @@ exec --no-startup-id unclutter
 exec --no-startup-id dunst
 exec --no-startup-id i3xautolock
 exec --no-startup-id wal -R
+exec --no-startup-id dropbox start
 
 exec --no-startup-i xinput set-prop 12 287 1
 
 
+# #---Dropdown Windows---# #
+# General scratchpad window traits. The order can matter.
+for_window [instance="^scratchpad$"] move scratchpad
+for_window [instance="^scratchpad$"] floating enable
+for_window [instance="^scratchpad$"] scratchpad show
+for_window [instance="^scratchpad$"] sticky enable
+for_window [instance="^scratchpad$"] border pixel 3
+for_window [instance="^scratchpad$"] resize set 725 550
+for_window [instance="^scratchpad$"] move position center
+for_window [instance="^scratchpad$"] move scratchpad
+
+exec_always flock -w1 ~/.config/i3/scratchpad/lockfile ~/.config/i3/scratchpad/perpetual_terminal.sh
 
 # #---- Bindings ----# #
 
-bindsym $mod+Shift+p            exec /home/arnaud/.scripts/setupxkbd
+bindsym $mod+Shift+u scratchpad show
+
+Bindsym $mod+Shift+p            exec /home/arnaud/.scripts/setupxkbd
 bindsym $mod+Shift+r            restart 
 
 bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Are you sure you want to reboot?" "$reboot"
@@ -135,24 +150,27 @@ bindsym $mod+space              exec --no-startup-id i3changelayout
 bindsym $mod+Shift+v            split v
 bindsym $mod+Shift+h            split h
 
-bindsym $mod+t                  layout tabbed
+
 bindsym $mod+Shift+t            layout toggle split
 
 bindsym $mod+Shift+w           exec --no-startup-id python3.6 $HOME/.scripts/networkmanager_dmenu
+
+Bindsym $mod+Shift+s           exec --no-startup-id screensetup
+bindsym $mod+Shift+e           exec --no-startup-id dmenuunicode
+bindsym $mod+Shift+a           exec --no-startup-id i3swap
 
 bindsym $mod+r                 exec --no-startup-id $term -e ranger
 bindsym $mod+e                 exec --no-startup-id emacsclient -c
 bindsym $mod+w                 exec --no-startup-id firefox
 bindsym $mod+u                 exec --no-startup-id nautilus
 bindsym $mod+o                 exec --no-startup-id spotify
-
+bindsym $mod+t                 exec --no-startup-id $term -e sudo htop
 bindsym $mod+m                 exec --no-startup-id gnome-system-monitor
+bindsym $mod+l            	   exec --no-startup-id openfolder
 
-Bindsym $mod+Shift+s         exec --no-startup-id screensetup
 
-bindsym $mod+Shift+e            exec --no-startup-id dmenuunicode
 
-bindsym $mod+Shift+a            exec --no-startup-id i3swap
+
 
 
 bindsym --release Print       exec scrot -z "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"

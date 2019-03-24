@@ -42,14 +42,22 @@ google() {
 
 
 alias emacsd='emacs --daemon'
-# alias emacsp='emacs -q --load ~/core.d/code/prelude/init.el'
-alias emt='emacsclient -t'
-alias emc='emacsclient -c'
 alias em='emacsclient'
+
+alias emacspd='emacs -q --load $HOME/code_sys/prelude/init.el --daemon'
+alias emacssd='emacs -q --load $HOME/code_sys/spacemacs/init.el'
 
 
 alias vim='vim'
 alias vi='vim'
+
+
+
+
+for env in $(ls "$HOME/Envs/"); do
+    alias "activate_$env"="source $HOME/Envs/$env/bin/activate"
+done
+
 
 human() {
   echo "
@@ -106,19 +114,4 @@ extract () {
       echo "'$1' is not a valid file!"
   fi
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

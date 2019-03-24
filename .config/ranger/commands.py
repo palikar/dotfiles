@@ -300,8 +300,13 @@ class chain(Command):
         if not self.rest(1).strip():
             self.fm.notify('Syntax: chain <command1>; <command2>; ...', bad=True)
             return
+        res = None
         for command in [s.strip() for s in self.rest(1).split(";")]:
-            self.fm.execute_console(command)
+            if res is not None:
+                command.replace('%r', res)
+            res = self.fm.execute_console(command)
+            # self.fm.LOG.debug("Res %s", res)
+            self.fm.notify(res)
 
 
 class shell(Command):
@@ -1786,64 +1791,64 @@ class linemode(default_linemode):
             col.need_redraw = True
 
 
-class yank(Command):
-    """:yank [name|dir|path]
+# class yank(Command):
+#     """:yank [name|dir|path]
 
-    Copies the file's name (default), directory or path into both the primary X
-    selection and the clipboard.
-    """
+#     Copies the file's name (default), directory or path into both the primary X
+#     selection and the clipboard.
+#     """
 
-    modes = {
-        '': 'basename',
-        'name_without_extension': 'basename_without_extension',
-        'name': 'basename',
-        'dir': 'dirname',
-        'path': 'path',
-    }
+#     modes = {
+#         '': 'basename',
+#         'name_without_extension': 'basename_without_extension',
+#         'name': 'basename',
+#         'dir': 'dirname',
+#         'path': 'path',
+#     }
 
-    def execute(self):
-        import subprocess
+#     def execute(self):
+#         import subprocess
 
-        def clipboards():
-            from ranger.ext.get_executables import get_executables
-            clipboard_managers = {
-                'xclip': [
-                    ['xclip'],
-                    ['xclip', '-selection', 'clipboard'],
-                ],
-                'xsel': [
-                    ['xsel'],
-                    ['xsel', '-b'],
-                ],
-                'pbcopy': [
-                    ['pbcopy'],
-                ],
-            }
-            ordered_managers = ['pbcopy', 'xclip', 'xsel']
-            executables = get_executables()
-            for manager in ordered_managers:
-                if manager in executables:
-                    return clipboard_managers[manager]
-            return []
+#         def clipboards():
+#             from ranger.ext.get_executables import get_executables
+#             clipboard_managers = {
+#                 'xclip': [
+#                     ['xclip'],
+#                     ['xclip', '-selection', 'clipboard'],
+#                 ],
+#                 'xsel': [
+#                     ['xsel'],
+#                     ['xsel', '-b'],
+#                 ],
+#                 'pbcopy': [
+#                     ['pbcopy'],
+#                 ],
+#             }
+#             ordered_managers = ['pbcopy', 'xclip', 'xsel']
+#             executables = get_executables()
+#             for manager in ordered_managers:
+#                 if manager in executables:
+#                     return clipboard_managers[manager]
+#             return []
 
-        clipboard_commands = clipboards()
+#         clipboard_commands = clipboards()
 
-        mode = self.modes[self.arg(1)]
-        selection = self.get_selection_attr(mode)
+#         mode = self.modes[self.arg(1)]
+#         selection = self.get_selection_attr(mode)
 
-        new_clipboard_contents = "\n".join(selection)
-        for command in clipboard_commands:
-            process = subprocess.Popen(command, universal_newlines=True,
-                                       stdin=subprocess.PIPE)
-            process.communicate(input=new_clipboard_contents)
+#         new_clipboard_contents = "\n".join(selection)
+#         for command in clipboard_commands:
+#             process = subprocess.Popen(command, universal_newlines=True,
+#                                        stdin=subprocess.PIPE)
+#             process.communicate(input=new_clipboard_contents)
 
-    def get_selection_attr(self, attr):
-        return [getattr(item, attr) for item in
-                self.fm.thistab.get_selection()]
+#     def get_selection_attr(self, attr):
+#         return [getattr(item, attr) for item in
+#                 self.fm.thistab.get_selection()]
 
-    def tab(self, tabnum):
-        return (
-            self.start(1) + mode for mode
-            in sorted(self.modes.keys())
-            if mode
-        )
+#     def tab(self, tabnum):
+#         return (
+#             self.start(1) + mode for mode
+#             in sorted(self.modes.keys())
+#             if mode
+#         )

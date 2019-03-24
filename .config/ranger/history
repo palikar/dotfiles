@@ -1,40 +1,3 @@
-search_inc .pro
-mkdir Dropbox
-q1
-q
-rename Downloads
-rename Mesen_0.9.6.zip
-touch 
-touch new_arch
-rename Hamilton The musical
-search_inc book
-search_inc me
-search_inc mtp
-search_inc mt
-rename phone_1
-rename phone_2
-cd UNI
-shell -p
-to_bookmark
-to_bo
-bookma
-book
-extract 
-bookmarkcopy y
-cp
-cp %f new.mkv
-mkdir temp
-find 
-search_inc pi
-paste dest='~/'
-paste
-paste 
-paste dest="/home/arnaud/"
-paste dest=/home/arnaud/
-
-paste dest=/dslkfj/kjadshO
-save_copy_buffer 
-search_inc W
 search_inc .config
 search_inc confi
 search_inc dot
@@ -46,5 +9,42 @@ mkdir Free_Solo_2018
 search_inc /vid
 search_inc 
 search_inc vid
-open_with 
 delete
+shell mounter
+search_inc sudp
+open_with 
+open_with vim
+substitute_macros 
+!
+shell sudo vim sudoers
+echo 
+echo
+echo &p
+echo %s
+echo %F
+echo %P
+echo %D
+echo %S
+echo %fq
+shell -p 
+echo %d
+echo %p
+echo %dateqwqq
+echo %%f
+echo %f
+echo %date
+shell -f mv %s
+find 
+echo :confdir
+echo %confdir>
+echo %confdir
+search_inc reac
+rename shooting_pepe.jpg
+search_inc Ricing
+mkdir Ricing
+ter
+shell texclear %f
+rename The-soul-of-the-universe.pdf
+
+shell S
+terminal 

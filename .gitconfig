@@ -82,9 +82,15 @@
 
 
 [user]
-        name = Stanislav Arnaudov
-        email = stanislav_ts@abv.bg
+	name = Stanislav Arnaudov
+	email = stanislav_ts@abv.bg
 [credential]
-	helper = cache
+	helper = store --file ~/.git-credentials
+	helper = cache --timeout 30000	
 [github]
 	oauth-token = 1f28ce622d70d6b2e4a69d919c40238e9563de64
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

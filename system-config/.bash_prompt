@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-PROMPT_COMMAND=smile_prompt
-GIT_PROMPT_ONLY_IN_REPO=1
-
+export PROMPT_COMMAND=smile_prompt
+export GIT_PROMPT_ONLY_IN_REPO=1
 
 function set_virtualenv () {
 	
@@ -24,9 +23,7 @@ function set_virtualenv () {
 function smile_prompt
 {
     
-	set_virtualenv
-	
-    if [ "$?" -eq "0" ]
+	if [ "$?" -eq "0" ]
     then
         #smiley
         SC="\\033[38;5;047m☺"
@@ -35,7 +32,9 @@ function smile_prompt
         SC="\\033[38;5;124m☹"
     fi
 
+	set_virtualenv
     
-    export PS1=$"\[\\033[38;5;015m\]╭─\[\\033[38;5;197m\]\u\[\\033[38;5;015m\] at \[\\033[38;5;208m\]\h\[\\033[38;5;015m\] in \[\\033[38;5;118m\]$(pwd)\[\\033[38;5;081m\] ${PYTHON_VIRTUALENV}$SC  \r\n\[\\033[38;5;015m\]╰─\[\\033[38;5;081m\]λ ➝ \[\\033[38;5;082m\]\[\033[0m\] "
-    export PS2=$'➝ '
+    export PS1=$"\[\\033[38;5;015m\]╭─\[\\033[38;5;197m\]\u\[\\033[38;5;015m\] at \[\\033[38;5;208m\]\h\[\\033[38;5;015m\] in \[\\033[38;5;118m\]$(pwd)\[\\033[38;5;081m\] ${PYTHON_VIRTUALENV}$SC  \r\n\[\\033[38;5;015m\]╰─\[\\033[38;5;081m\]λ ➝ \[\\033[38;5;082m\]\[\033[0m\]"
+    export PS2=$'➝'
 }
+

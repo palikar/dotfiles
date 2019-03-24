@@ -1,6 +1,10 @@
 #!/bin/bash
 
-
 SCRIPTDIR=$(dirname "$(readlink -f "$0")")
 
-grep -i "$(cat "$SCRIPTDIR/conf/folders" | sed -e "s/\(.*\)<br>\(.*\)/\2/g" | rofi -dmenu -i -p "Folder" )" "$SCRIPTDIR/conf/folders" | sed "s/\(.*\)<br>\(.*\)/\1/g"
+FOLDER_NAME=$(cat "$SCRIPTDIR/conf/folders" |\
+				  sed -e "s/\(.*\)<br>\(.*\)/\2/g" |\
+				  rofi -dmenu -i -p "Folder" )
+
+grep -i -E ".*<br>($FOLDER_NAME)" "$SCRIPTDIR/conf/folders"\
+	| sed "s/\(.*\)<br>\(.*\)/\1/g" | head -n 1

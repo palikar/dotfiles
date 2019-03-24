@@ -72,7 +72,7 @@ color=#859900
 
 [disky_core]
 label=:
-command=i3disk $HOME
+command=i3disk $HOME/core.d
 interval=30
 color=#1793D1
 

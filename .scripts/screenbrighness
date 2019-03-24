@@ -1,0 +1,18 @@
+#!/bin/bash
+
+XRANDR=$(which xrandr)
+
+
+res=""
+
+while [[ $res != "none" ]]; do
+	res=$(rofi -dmenu)
+
+	
+done
+
+
+
+
+# xrandr --output HDMI-1 --brightness 0.5
+# xrandr --output eDP-1 --brightness 0.5
