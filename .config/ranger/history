@@ -1,8 +1,3 @@
-search_inc .config
-search_inc confi
-search_inc dot
-search_inc yasni
-search_inc pho
 mkdir
 mkdir Free Solo
 mkdir Free_Solo_2018
@@ -34,7 +29,6 @@ echo %%f
 echo %f
 echo %date
 shell -f mv %s
-find 
 echo :confdir
 echo %confdir>
 echo %confdir
@@ -48,3 +42,9 @@ rename The-soul-of-the-universe.pdf
 
 shell S
 terminal 
+find 
+tab_new %f
+map tn tab_new %d
+tab_new ~
+tab_open "2"
+tab_open "1"

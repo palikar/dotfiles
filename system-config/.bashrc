@@ -42,9 +42,15 @@ if [ -f ~/.paths ]; then
     ~/.scripts/pathloader
 fi
 
+if [ -f ~/.git-completion.bash ]; then
+    source ~/.git-completion.bash
+fi
+
+
 if [ -n "$DISPLAY" ]; then
     xset b off
 fi
+
 
 
 source "${DOTFILES_DIR}"/fzf/completion.bash

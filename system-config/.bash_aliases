@@ -1,57 +1,31 @@
 # Shortcuts
-alias g="git"
-alias rr="rm -rf"
-alias paths='echo -e ${PATH//:/\\n}'
-
 
 alias ..="cd .."
 alias ~="cd ~"
-alias code='cd ~/code'
 alias core='cd ~/core.d'
+alias ext='cd ~/code_ext/'
+alias code='cd ~/code/'
+alias sys='cd ~/code_sys/'
 
 
-alias tree="tree -A"
-alias treed="tree -d"
 
-# Request using GET, POST, etc. method
-for METHOD in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-  alias "$METHOD"="lwp-request -m '$METHOD'"
-done
-unset METHOD
 
+
+alias paths='echo -e ${PATH//:/\\n}'
 alias week="date +%V"
 alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
-
 alias open="gio open"
-
 alias gitcred="git config --global credential.helper cache"
-
 alias ua_python="sudo update-alternatives --config python"
-
 alias urxvt="rxvt-unicode"
 
-
-google() {
-    search=""
-    echo "Googling: $@"
-    for term in $@; do
-        search="$search%20$term"
-    done
-    xdg-open "http://www.google.com/search?q=$search"
-}
 
 
 alias emacsd='emacs --daemon'
 alias em='emacsclient'
-
 alias emacspd='emacs -q --load $HOME/code_sys/prelude/init.el --daemon'
-alias emacssd='emacs -q --load $HOME/code_sys/spacemacs/init.el'
-
-
 alias vim='vim'
 alias vi='vim'
-
-
 
 
 for env in $(ls "$HOME/Envs/"); do
@@ -59,8 +33,13 @@ for env in $(ls "$HOME/Envs/"); do
 done
 
 
+for METHOD in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+	alias "$METHOD"="lwp-request -m '$METHOD'"
+done
+
+
 human() {
-  echo "
+	echo "
 mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
@@ -72,7 +51,6 @@ mmmmmmmmmmmmmmmmmmmyyo-------------yyhmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 mmmmmmmmmmmmmmmmmmmoo+-------------ooymmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 mmmmmmmmmmmmmmmmmmm------------------+mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 mmmmmmmmmmmmmmmmmmmhhs-------------hhdmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-
 mmmmmmmmmmmmmmmmmmmmmhss/-------+ssmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 mmmmmmmmmmmmmmmmmmmmmdddo//--://yddmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 mmmmmmmmmmmmmmmmmmmmmdhhdmm--+mmdhhmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
@@ -94,24 +72,33 @@ mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
 }
 
+google() {
+    search=""
+    echo "Googling: $@"
+    for term in $@; do
+        search="$search%20$term"
+    done
+    xdg-open "http://www.google.com/search?q=$search"
+}
+
 extract () {
-  if [ -f $1 ] ; then
-      case $1 in
-          *.tar.bz2)   tar xvjf $1    ;;
-          *.tar.gz)    tar xvzf $1    ;;
-          *.bz2)       bunzip2 $1     ;;
-          *.rar)       rar x $1       ;;
-          *.gz)        gunzip $1      ;;
-          *.tar)       tar xvf $1     ;;
-          *.tbz2)      tar xvjf $1    ;;
-          *.tgz)       tar xvzf $1    ;;
-          *.zip)       unzip $1       ;;
-          *.Z)         uncompress $1  ;;
-          *.7z)        7z x $1        ;;
-          *)           echo "don't know how to extract '$1'..." ;;
-      esac
-  else
-      echo "'$1' is not a valid file!"
-  fi
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2)   tar xvjf $1    ;;
+			*.tar.gz)    tar xvzf $1    ;;
+			*.bz2)       bunzip2 $1     ;;
+			*.rar)       rar x $1       ;;
+			*.gz)        gunzip $1      ;;
+			*.tar)       tar xvf $1     ;;
+			*.tbz2)      tar xvjf $1    ;;
+			*.tgz)       tar xvzf $1    ;;
+			*.zip)       unzip $1       ;;
+			*.Z)         uncompress $1  ;;
+			*.7z)        7z x $1        ;;
+			*)           echo "don't know how to extract '$1'..." ;;
+		esac
+	else
+		echo "'$1' is not a valid file!"
+	fi
 }
 

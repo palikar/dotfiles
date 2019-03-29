@@ -11,7 +11,6 @@
             "arnaud-sexp",
             "crypter",
             "dotfiles",
-            "exploits",
             "jgrapher",
             "MARS",
             "palikar.github.io",
@@ -70,17 +69,55 @@
         
     },
     
-    "debian_packages":[
-        ["libboost-all-dev","build-essential", "git", "cmake", "cmake-curses-gui",
-         "krb5-config", "krb5-user", "libfile-homedir-perl", "libpath-class-perl",
-         "libswitch-perl", "virtualenv", "htop", "gitk", "ssh", "ntp", "ntpdate",
-         "ntpstat", "sudo", "net-tools", "inetutils-ping", "curl", "wget","libglew-dev",
-         "libxt-dev","libgtk-3-dev"],
-        ["feh","i3blocks","i3lock","dmunu","rofi", "ibus",
-         "libgtk2.0-dev", "youtube-dl"]
-    ],
+    "debian_packages": [
+
+		{
+			"system" : [
+				"libboost-all-dev",
+				"build-essential",
+				"git",
+				"cmake",
+				"cmake-curses-gui",
+				"krb5-config",
+				"krb5-user",
+				"libfile-homedir-perl",
+				"libpath-class-perl",					
+				"libswitch-perl",
+				"virtualenv",
+				"htop",
+				"gitk",
+				"ssh",
+				"ntp",
+				"ntpdate",
+				"ntpstat",
+				"sudo",
+				"net-tools",
+				"inetutils-ping",
+				"curl",
+				"wget",
+				"libglew-dev",
+				"libxt-dev",
+				"libgtk-3-dev"
+			]
+		},
+		
+        {
+			"application": [
+				"feh",
+				"i3blocks",
+				"i3lock",
+				"dmunu",
+				"rofi",
+				"ibus",
+				"libgtk2.0-dev",
+				"youtube-dl"
+			]
+		}
+		
+    ],	
     
     "packages": {
+		
         "arnaud-framer": {
             "download": "git",
             "URL": "https://github.com/palikar/arnaud-framer.git",

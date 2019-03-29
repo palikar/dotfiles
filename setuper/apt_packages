@@ -444,6 +444,7 @@ tasksel
 tasksel-data
 testdisk
 texlive-full
+tmux
 totem
 totem-plugins
 tracker
@@ -478,6 +479,7 @@ xautolock
 xcb
 xclip
 xdg-user-dirs-gtk
+xdotool
 xinit
 xinput
 xsel
