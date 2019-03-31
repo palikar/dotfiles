@@ -571,6 +571,8 @@ an error."
 (bind-key* "C-c w w" 'kill-whole-word)
 (bind-key* "C-c w l" 'kill-whole-line)
 
+(bind-key* "M-<f1>" 'whitespace-cleanup)
+
 #+END_SRC
 
 Disable some keybindgs cuz' those are just annoying
@@ -856,11 +858,18 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 (setq jedi:complete-on-dot t)
 (setq jedi:tooltip-method nil)
 (setq jedi:get-in-function-call-delay 0)
-
 (setq elpy-company-add-completion-from-shell t)
 
 (setq python-shell-interpreter "python")
 (setq python-shell-interpreter-args "-i")
+
+; move quick-help tooltips to the minibuffer
+(setq jedi:tooltip-method nil)
+
+; disable all auto-completion unless explicitly invoked with M-tab
+(setq ac-auto-show-menu nil)
+(setq ac-auto-start nil)
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 
 #+END_SRC
 
@@ -873,7 +882,8 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 
 (add-hook 'python-mode-hook 'sphinx-doc-mode)
 
-(add-hook 'python-mode-hook (lambda () (auto-complete-mode -1)))
+
+(add-hook 'jedi-mode-hook (lambda () (auto-complete-mode -1)))
 #+END_SRC
 
 *** Keybindings
@@ -1527,8 +1537,9 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 (bind-key* "M-j m s" 'magit-status)
 (bind-key* "M-j m c" 'magit-commit)
 (bind-key* "M-j m i" 'magit-init)
-(bind-key* "M-j m c" 'magit-checkout)
 (bind-key* "M-j m C" 'magit-checkout-file)
+(bind-key* "M-j m M-c" 'magit-checkout)
+(bind-key* "M-j m p" 'magit-push)
 
 ;; (bind-key "q" 'my--kill-buffer-and-window magit-mode-map)
 #+END_SRC
@@ -2028,9 +2039,8 @@ The definitions of all the functions for the backends setups.
 (defun my-company-python-backends ()
   (interactive)
   (message "Python backends engaged.")
-  (setq company-backends `(elpy-company-backend
-                           (company-anaconda
-                            company-jedi)
+  (setq company-backends `(company-jedi
+						   elpy-company-backend
                            ,basic-company-backends)))
 
 
@@ -2187,13 +2197,14 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 #+END_SRC
 
 *** Keybindings
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 ;; (bind-key* "M-%" 'vr/select-query-replace)
 (bind-key* "M-%" 'query-replace)
-(bind-key* "M-i" 'iedit-mode)
+
+(bind-key* "M-i"   'iedit-mode)
+(bind-key* "C-M-i" 'iedit-mode-toggle-on-function)
 
 #+END_SRC
-
 
 ** Yagist
 

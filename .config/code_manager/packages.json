@@ -138,7 +138,7 @@
             "download": "git",
             "URL": "https://github.com/palikar/crypter",
             "install": "command",
-            "command": "echo 'No install command'",
+            "command": "echo 'No install command ' \\@",
             "reinstall_command": "echo 'No install command'"
         },
         

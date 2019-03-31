@@ -1,6 +1,16 @@
 [Config]
         code = ${HOME}/core.d/code
         usr = ${HOME}/core.d/usr
+        debug = true
+
+[Download]
+	git_ssh = true
         
 [Cache]
     cache = ${HOME}/.config/code_manager/cache
+
+[Logging]
+	direcory = /home/arnaud/.config/code_manager/logs
+
+[Common]
+	git_command = git
