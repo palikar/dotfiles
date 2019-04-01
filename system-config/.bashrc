@@ -51,6 +51,10 @@ if [ -n "$DISPLAY" ]; then
     xset b off
 fi
 
+if [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+fi
+
 
 
 source "${DOTFILES_DIR}"/fzf/completion.bash
