@@ -759,23 +759,21 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 /Note:/ At some time I plan to experiment with *[[https://github.com/cquery-project/cquery][cquery]]*
 
 #+BEGIN_SRC emacs-lisp :results none
-(require' irony)
+(require 'irony)
 (require 'ycmd)
 (require 'company-ycmd)
 (require 'flycheck-ycmd)
 (require 'function-args)
 (require 'modern-cpp-font-lock)
-
+(require 'flycheck-clangcheck)
+(require 'flycheck-clang-analyzer)
 
 (modern-c++-font-lock-global-mode t)
-
-;; (add-hook 'c++-mode-hook 'irony-mode)
-;; (add-hook 'c-mode-hook 'irony-mode)
-;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 (fa-config-default)
 
 (set-variable 'ycmd-server-command '("python" "/home/arnaud/code_ext/ycmd/ycmd"))
+
 (set-variable 'ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
 (set-variable 'ycmd-global-config "~/.ycm_extra_conf.py")
 
@@ -783,6 +781,22 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 (add-hook 'c++-mode-hook 'company-ycmd-setup)
 (add-hook 'c++-mode-hook 'flycheck-ycmd-setup)
 (add-hook 'c++-mode-hook 'function-args-mode)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
+(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup)
+(add-hook 'flycheck-mode-hook #'flycheck-clang-analyzer-setup)
+
+
+
+(defun flycheck-calng-check-setup ()
+  (flycheck-set-checker-executable 'c/c++-clangcheck "/usr/bin/clang-check-7")
+  (flycheck-select-checker 'c/c++-clangcheck))
+(add-hook 'c++-mode-hook #'flycheck-calng-check-setup)
+
+
+
 
 (setq c-default-style "linux")
 (setq c-basic-offset 4)
@@ -815,8 +829,14 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 
 #+END_SRC
 
-#+RESULTS:
-: generate-tags-and-classes
+*** Key-bindings
+
+#+BEGIN_SRC emacs-lisp :results none
+
+(bind-key* "M-j l" 'clang-format)
+
+#+End_SRC
+
 
 
 
@@ -831,7 +851,7 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
 (setq cmake-tab-width 4)
 
 (setq auto-mode-alist
-      (append '(("CMakeLdists\\.txt\\'" . cmake-mode)
+      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 #+END_SRC
@@ -842,34 +862,34 @@ I use Python a lot these days. Yet, my python setup in /Emacs/ is less than mini
 \\
 Myeah, that was a lie from the past. My python setup has evolved since then. I use quite a few packages that transform my Emacs into fully fledged python IDE.
 #+BEGIN_SRC emacs-lisp :results none
-(require 'anaconda-mode)
-(require 'py-yapf)
-(require 'pip-requirements)
-(require 'sphinx-doc)
-(require 'elpy)
+  (require 'anaconda-mode)
+  (require 'py-yapf)
+  (require 'pip-requirements)
+  (require 'sphinx-doc)
+  (require 'elpy)
 
-(add-to-list 'auto-mode-alist '("\\.py\\'" .  python-mode))
-(add-to-list 'auto-mode-alist '("\\requirements.txt\\'" . pip-requirements-mode))
+  (add-to-list 'auto-mode-alist '("\\.py\\'" .  python-mode))
+  (add-to-list 'auto-mode-alist '("\\requirements.txt\\'" . pip-requirements-mode))
 
 
 
-(setq elpy-rpc-backend "jedi")
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
-(setq jedi:tooltip-method nil)
-(setq jedi:get-in-function-call-delay 0)
-(setq elpy-company-add-completion-from-shell t)
+  (setq elpy-rpc-backend "jedi")
+  (setq jedi:setup-keys t)
+  (setq jedi:complete-on-dot t)
+  (setq jedi:tooltip-method nil)
+  (setq jedi:get-in-function-call-delay 0)
+  (setq elpy-company-add-completion-from-shell t)
 
-(setq python-shell-interpreter "python")
-(setq python-shell-interpreter-args "-i")
+  (setq python-shell-interpreter "python")
+  (setq python-shell-interpreter-args "-i")
 
-; move quick-help tooltips to the minibuffer
-(setq jedi:tooltip-method nil)
+  ; move quick-help tooltips to the minibuffer
+  (setq jedi:tooltip-method nil)
 
-; disable all auto-completion unless explicitly invoked with M-tab
-(setq ac-auto-show-menu nil)
-(setq ac-auto-start nil)
-(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+  ; disable all auto-completion unless explicitly invoked with M-tab
+  (setq ac-auto-show-menu nil)
+  (setq ac-auto-start nil)
+  ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 
 #+END_SRC
 
@@ -983,6 +1003,14 @@ One of the most useful packages that is pretty much a must for a emacs configura
 (require 'yasnippet)
 (require 'yasnippet-snippets)
 (require 'helm-c-yasnippet)
+
+(setq yas-snippet-dirs '())
+
+
+(setq yas-snippet-dirs `(
+						 ,(concat user-emacs-directory "snippets")
+						 ))
+
 
 (yas-global-mode 1)
 (setq helm-yas-space-match-any-greedy t)
@@ -1949,7 +1977,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (setq company-minimum-prefix-length 3
 	  company-tooltip-align-annotations nil
 	  company-tooltip-flip-when-above nil
-	  company-idle-delay 0
+	  company-idle-delay 'nil
 	  company-show-numbers nil
 	  company-echo-truncate-lines nil
 	  company-tooltip-maximum-width 100
@@ -2022,10 +2050,12 @@ The definitions of all the functions for the backends setups.
 (defun my-company-c++-backends ()
   (interactive)
   (message "C++ backends engaged.")
-  (setq company-backends `(company-irony
-                           company-c-headers
-                           company-irony-c-headers
-                           ,basic-company-backends)))
+  (setq company-backends `(
+						   company-ycmd
+						   company-irony
+						   company-c-headers
+						   company-irony-c-headers
+						   ,basic-company-backends)))
 
 
 (defun my-company-cmake-backends ()
@@ -2206,6 +2236,7 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 
 #+END_SRC
 
+
 ** Yagist
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -2239,6 +2270,26 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 #+BEGIN_SRC emacs-lisp
 (bind-key* "M-j i i" 'gitignore-templates-insert)
 (bind-key* "M-j i f" 'gitignore-templates-new-file)
+#+END_SRC
+
+
+** Prodigy
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'prodigy)
+
+
+(prodigy-define-service
+  :name "Python Server"
+  :command "python"
+  :args '("-m" "http.server" "6001")
+  :cwd "/home/arnaud/core.d/www"
+  :tags '(server)
+  :stop-signal 'sigkill
+  :kill-process-buffer-on-stop t)
+
+
+
 #+END_SRC
 
 
