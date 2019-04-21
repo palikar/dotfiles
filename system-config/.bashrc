@@ -1,3 +1,16 @@
+###########################################
+###########################################
+###########################################
+###   ____            _                 ###
+###  | __ )  __ _ ___| |__  _ __ ___    ###
+###  |  _ \ / _` / __| '_ \| '__/ __|   ###
+###  | |_) | (_| \__ \ | | | | | (__    ###
+###  |____/ \__,_|___/_| |_|_|  \___|   ###
+###                                     ###  
+###########################################
+###########################################
+###########################################
+
 case $- in
     *i*) ;;
     *) return;;
@@ -56,7 +69,6 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 
-
 source "${DOTFILES_DIR}"/fzf/completion.bash
 source "${DOTFILES_DIR}"/fzf/key-bindings.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -75,6 +87,15 @@ complete -o default -F _pip_completion pip
 # pywall thing
 if [ -f  ~/.cache/wal/sequences ]; then
     (cat ~/.cache/wal/sequences &)
+	
 fi
+
+if [ -f   ~/.cache/wal/colors-tty.sh ]; then
+    source ~/.cache/wal/colors-tty.sh
+	
+fi
+
+
+
 
 

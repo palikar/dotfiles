@@ -1,25 +1,27 @@
 #!/bin/bash
 
-ws1="1:  Laptop"
-ws2="2:  Code"
-ws3="3:  Terminal"
-ws4="4:  Internet"
-ws5="5:  Files"
-ws6="6:  Documents"
-ws7="7:  Media"
-ws8="8:  Documents"
-ws9="9:  Chat"
-ws10="10:  General"
+ws1="1: "
+ws2="2: "
+ws3="3: "
+ws4="4: "
+ws5="5: "
+ws6="6: "
+ws7="7: "
 
-if [ $(emacsclient -e '(message "1")') != "\"1\"" ]; then
-    emacs --daemon
+
+if [ ! $(emacsclient -e '(message "1")') ]; then
+	# echo "yes"
+	emacs --daemon
+	# else
+	# 	echo "no"
 fi
 
 i3-msg "workspace ${ws1}; exec /usr/bin/firefox"
+sleep 1
 i3-msg "workspace ${ws2}; exec emacsclient -c"
-i3-msg "workspace ${ws3}; exec rxvt-unicode; split h; exec rxvt-unicode;"
+i3-msg "workspace ${ws3}; exec rxvt-unicode"
 i3-msg "workspace ${ws4}; exec /usr/bin/firefox"
-i3-msg "workspace ${ws5}; exec  exec rxvt-unicode -e ranger; split h ; nautilus"
-i3-msg "workspace ${ws6}; exec evince"
+sleep 1
+i3-msg "workspace ${ws5}; exec rxvt-unicode -e ranger"
 i3-msg "workspace ${ws7}; exec spotify"
 

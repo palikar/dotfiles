@@ -64,7 +64,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-irony flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode py-yapf pymacs python-environment python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(ac-R aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
 
 
@@ -837,7 +837,18 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 
 #+End_SRC
 
+*** Doxymacs
 
+#+BEGIN_SRC emacs-lisp :results none
+(load-file "/home/arnaud/.emacs.d/lisp/tempo.el")
+(load-file "/home/arnaud/.emacs.d/lisp/xml-parse.el")
+(load-file "/home/arnaud/.emacs.d/lisp/doxymacs.el")
+(require 'doxymacs)
+
+(add-hook 'c-mode-common-hook 'doxymacs-mode)
+
+
+#+END_SRC
 
 
 ** CMake
@@ -851,7 +862,7 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
 (setq cmake-tab-width 4)
 
 (setq auto-mode-alist
-      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+      (append '(("CMakeLists.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 #+END_SRC
@@ -1006,7 +1017,7 @@ One of the most useful packages that is pretty much a must for a emacs configura
 
 (setq yas-snippet-dirs '())
 
-
+1
 (setq yas-snippet-dirs `(
 						 ,(concat user-emacs-directory "snippets")
 						 ))
@@ -2288,10 +2299,24 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
   :stop-signal 'sigkill
   :kill-process-buffer-on-stop t)
 
+(prodigy-define-service
+  :name "Hugo Local Blog"
+  :command "hugo"
+  :args '("server" "-D" )
+  :cwd "/home/arnaud/code/blog-hugo-files"
+  :tags '(server)
+  :stop-signal 'sigkill
+  :kill-process-buffer-on-stop t)
+
 
 
 #+END_SRC
 
+*** Keybindgs
+
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "M-j p" 'prodigy)
+#+END_SRC
 
 * Markup
 
@@ -2363,6 +2388,13 @@ Some extra export backends for org-mode that come in handy.
 (require 'ox-twbs)
 (require 'ox-hugo)
 (require 'ox-gfm)
+
+;; (setq org-hugo-external-file-extensions-allowed-for-copying 
+;; 	  '("png" "jpg" "jpeg" "pdf" "txt"))
+
+
+
+
 #+END_SRC
 *** Org-extras
 Remove headlines with =:no_title:= tag.
@@ -2506,13 +2538,21 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 ** Pretty startup screen
 A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that display on startup of/Emacs/ and gives quick access to recent files and projectile-projects. It works with sessions too but I haven't configured that yet. A image can also be displayed so I guess that is pretty. Custom startup message is a must of course!!
 - [[https://github.com/rakanalh/emacs-dashboard][dashboard]]
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 
 (require 'dashboard)
 
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+
 (setq dashboard-banner-logo-title "Welcome to the Emacs of Stanislav Arnaudov")
-(setq dashboard-startup-banner 'official)
+
+;; (setq dashboard-startup-banner 'official)
+;; (setq dashboard-banner-logo-title "W I T C H M A C S")
+
+(setq dashboard-startup-banner "~/.emacs.d/marivector.png")
+(setq dashboard-center-content t)
+(setq dashboard-show-shortcuts nil)
+
 (setq dashboard-items '((recents  . 10)
                         (bookmarks . 5)
                         (projects . 10)
@@ -2728,6 +2768,97 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 
 (bind-key* "M-o c" 'highlight-symbol-remove-all)
 (bind-key* "M-o M-c" 'highlight-symbol-remove-all)
+#+END_SRC
+
+
+* Mail
+
+** Mu4e
+
+#+BEGIN_SRC emacs-lisp :results none
+
+(add-to-list 'load-path "~/code_ext/mu/mu4e")
+(require 'mu4e)
+
+(setq mu4e-maildir "/home/arnaud/.mail")
+
+(setq
+ message-send-mail-function 'smtpmail-send-it
+ starttls-use-gnutls t
+ mu4e-sent-messages-behavior 'sent
+ user-mail-address "stanislav.arn@gmail.com"
+ user-full-name "Stanislav Arnaudov"
+ smtpmail-default-smtp-server "smtp.gmail.comg"
+ smtpmail-smtp-user "stanislav.arn"
+ smtpmail-smtp-server "smtp.gmail.com"
+ smtpmail-stream-type 'starttls
+ smtpmail-smtp-service 587)
+
+
+(setq mu4e-trash-folder "/mu4e/Trash"
+      mu4e-refile-folder "/mu4e/Archive"
+	  mu4e-sent-folder "/mu4e/Sent"
+	  mu4e-drafts-folder "/mu4e/Drafts"
+      mu4e-attachment-dir "/mu4e/Downloads"
+      mu4e-get-mail-command "offlineimap -q"
+      mu4e-update-interval 300 ;; second
+      mu4e-compose-signature-auto-include nil
+      mu4e-view-show-images t
+      mu4e-view-show-addresses t
+      mu4e-use-fancy-chars t
+	  )
+
+
+(setq mu4e-contexts
+    `( ,(make-mu4e-context
+	  :name "Gmail"
+	  :enter-func (lambda () (mu4e-message "Entering Gmail context"))
+      :leave-func (lambda () (mu4e-message "Leaving Gmail context"))
+	  ;; we match based on the contact-fields of the message
+	  :match-func (lambda (msg)
+			(when msg
+			  (string-match-p "^/Gmail" (mu4e-message-field msg :maildir))))
+	  :vars '( 
+			  (mu4e-trash-folder . "/Gmail/[Gmail].Bin/")
+			  ( user-mail-address	    . "stanislav.arn@gmail.com"  )
+			  ( user-full-name	    . "Stanislav Arnaudov" )))))
+
+
+
+(setq mu4e-context-policy 'pick-first)
+(setq mu4e-compose-context-policy nil)
+
+
+(require 'org-mu4e)
+(setq org-mu4e-convert-to-html t)
+(add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+
+;; (setq mu4e-maildir-shortcuts
+;;     '( ("/INBOX"               . ?i)
+;;        ("/[Gmail].Sent Mail"   . ?s)
+;;        ("/[Gmail].Trash"       . ?t)
+;;        ("/[Gmail].All Mail"    . ?a)))
+
+;; (setq
+;;    user-mail-address "USERNAME@gmail.com"
+;;    user-full-name  "Foo X. Bar"
+;;    mu4e-compose-signature
+;;     (concat
+;;       "Foo X. Bar\n"
+;;       "http://www.example.com\n"))
+
+
+(require 'mu4e-alert)
+
+
+#+END_SRC
+
+*** Keybindings
+
+#+BEGIN_SRC emacs-lisp :results none
+ 
+(bind-key* "C-x m" 'mu4e-compose-new)
+
 #+END_SRC
 
 

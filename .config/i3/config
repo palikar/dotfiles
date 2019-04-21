@@ -176,6 +176,8 @@ bindsym $mod+l            	   exec --no-startup-id openfolder
 bindsym --release Print       exec scrot -z "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
 bindsym --release Shift+Print exec scrot -z -s "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
 
+# bindsym --release Shift+Print exec gnome-screenshot -a
+
 # #---- Gaps ----# #
 
 bindsym $mod+Shift+Prior		gaps inner current set 0; gaps outer current set 0
@@ -201,10 +203,10 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+# bindsym $mod+h focus left
+# bindsym $mod+j focus down
+# bindsym $mod+k focus up
+# bindsym $mod+l focus right
 
 #Moving window
 bindsym $mod+Shift+Left move left
