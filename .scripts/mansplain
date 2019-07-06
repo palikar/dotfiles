@@ -1,0 +1,3 @@
+#!/bin/bash
+
+man -k . | dmenu -l 30 | awk '{print $1}'  | xargs -r man -Tpdf > /tmp/temp.pdf && evince /tmp/temp.pdf && rm /tmp/temp.pdf

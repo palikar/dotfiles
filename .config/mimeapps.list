@@ -59,6 +59,7 @@ text/x-csrc=org.gnome.gedit.desktop;
 application/epub+zip=org.gnome.Evince.desktop;
 audio/mpeg=org.gnome.Totem.desktop;org.gnome.gedit.desktop;caja-browser.desktop;
 text/x-chdr=org.gnome.gedit.desktop;
+application/x-bibtex=org.gnome.gedit.desktop;
 
 [Default Applications]
 video/x-ogm+ogg=vlc.desktop

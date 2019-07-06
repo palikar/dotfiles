@@ -2,11 +2,13 @@
 
 alias ..="cd .."
 alias ~="cd ~"
+
 alias core='cd ~/core.d'
 alias ext='cd ~/code_ext/'
 alias code='cd ~/code/'
 alias sys='cd ~/code_sys/'
 alias scripts='cd ~/code/scripts'
+alias uni='cd ~/Uni/Semesters/SS19'
 
 
 

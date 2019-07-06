@@ -25,7 +25,10 @@ client.focused_inactive	$transparent	$blue		$white		$darkblue		$darkblack
 client.urgent		$darkred	$darkred	$black		$darkred		$darkred
 client.background $black
 
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 #Status bar
+
 bar {
     font pango:mono 11
     separator_symbol "|"
@@ -39,7 +42,7 @@ bar {
         urgent_workspace   $darkblack $darkblack $white
     }
 
-	status_command i3blocks
+    status_command i3blocks
     Position top
     mode dock
     modifier None
@@ -108,7 +111,7 @@ exec_always flock -w1 ~/.config/i3/scratchpad/lockfile ~/.config/i3/scratchpad/p
 
 # #---- Bindings ----# #
 
-bindsym $mod+Shift+u scratchpad show
+bindsym $mod+Shift+u            scratchpad show
 
 Bindsym $mod+Shift+p            exec /home/arnaud/.scripts/setupxkbd
 bindsym $mod+Shift+r            restart 
@@ -153,30 +156,30 @@ bindsym $mod+Shift+h            split h
 
 bindsym $mod+Shift+t            layout toggle split
 
-bindsym $mod+Shift+w           exec --no-startup-id python3.6 $HOME/.scripts/networkmanager_dmenu
-
-Bindsym $mod+Shift+s           exec --no-startup-id screensetup
-bindsym $mod+Shift+e           exec --no-startup-id dmenuunicode
-bindsym $mod+Shift+a           exec --no-startup-id i3swap
-
-bindsym $mod+r                 exec --no-startup-id $term -e ranger
-bindsym $mod+e                 exec --no-startup-id emacsclient -c
-bindsym $mod+w                 exec --no-startup-id firefox
-bindsym $mod+u                 exec --no-startup-id nautilus
-bindsym $mod+o                 exec --no-startup-id spotify
-bindsym $mod+t                 exec --no-startup-id $term -e sudo htop
-bindsym $mod+m                 exec --no-startup-id gnome-system-monitor
-bindsym $mod+l            	   exec --no-startup-id openfolder
-
-
+bindsym $mod+Shift+w            exec --no-startup-id python3.6 $HOME/.scripts/networkmanager_dmenu
+                                
+Bindsym $mod+Shift+s            exec --no-startup-id screensetup
+bindsym $mod+Shift+e            exec --no-startup-id dmenuunicode
+bindsym $mod+Shift+a            exec --no-startup-id i3swap
+                                
+bindsym $mod+r                  exec --no-startup-id $term -e ranger
+bindsym $mod+e                  exec --no-startup-id emacsclient -c
+bindsym $mod+w                  exec --no-startup-id firefox
+bindsym $mod+u                  exec --no-startup-id nautilus
+bindsym $mod+o                  exec --no-startup-id spotify
+bindsym $mod+t                  exec --no-startup-id $term -e sudo htop
+bindsym $mod+m                  exec --no-startup-id gnome-system-monitor
+bindsym $mod+l            	exec --no-startup-id openfolder
 
 
 
 
-bindsym --release Print       exec scrot -z "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
-bindsym --release Shift+Print exec scrot -z -s "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
 
-# bindsym --release Shift+Print exec gnome-screenshot -a
+
+# bindsym --release Print       exec scrot -z "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
+# bindsym --release Shift+Print exec scrot -z -s "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
+bindsym --release Shift+Print exec gnome-screenshot -a
+
 
 # #---- Gaps ----# #
 
@@ -286,19 +289,19 @@ bindsym XF86AudioRaiseVolume	exec --no-startup-id lmc up 5
 # ##bindsym XF86Paste		exec
 # ##bindsym XF86Cut		exec
 # ##bindsym XF86MenuKB		exec
-# bindsym XF86Calculator		exec $term -e R -q
+# bindsym XF86Calculator	exec $term -e R -q
 # ##bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
 # ##bindsym XF86WakeUp		exec
 # bindsym XF86Explorer		exec $term -e ranger
 # ##bindsym XF86Send		exec
 # ##bindsym XF86Xfer		exec
-# bindsym XF86WWW			exec --no-startup-id $BROWSER
+# bindsym XF86WWW		exec --no-startup-id $BROWSER
 # ##bindsym XF86DOS		exec
-# bindsym XF86ScreenSaver		exec exec --no-startup-id lockscreen
+# bindsym XF86ScreenSaver	exec exec --no-startup-id lockscreen
 # ##bindsym XF86RotateWindows	exec
-# ##bindsym XF86TaskPane		exec
-# ##bindsym XF86Favorites		exec
-# bindsym XF86MyComputer		exec $term -e ranger
+# ##bindsym XF86TaskPane	exec
+# ##bindsym XF86Favorites	exec
+# bindsym XF86MyComputer	exec $term -e ranger
 # ##bindsym XF86Back		exec
 # ##bindsym XF86Forward		exec
 # bindsym XF86Eject		exec --no-startup-id dmenuumount
@@ -309,14 +312,14 @@ bindsym XF86AudioPrev		exec --no-startup-id lmc prev
 bindsym XF86AudioStop		exec --no-startup-id lmc toggle
 
 # ##bindsym XF86AudioRecord
-# bindsym XF86AudioRewind		exec --no-startup-id lmc back 10
+# bindsym XF86AudioRewind	exec --no-startup-id lmc back 10
 # bindsym XF86AudioForward	exec --no-startup-id lmc forward 10
 # ##bindsym XF86Phone		exec
 # ##bindsym XF86Tools		exec
 # bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
 # bindsym XF86Reload		restart
-# ##bindsym XF86ScrollUp		exec
-# ##bindsym XF86ScrollDown		exec
+# ##bindsym XF86ScrollUp        exec
+# ##bindsym XF86ScrollDown	exec
 # ##bindsym XF86New		exec
 # ##bindsym XF86LaunchA		exec
 # ##bindsym XF86LaunchB		exec
@@ -330,21 +333,21 @@ bindsym XF86AudioStop		exec --no-startup-id lmc toggle
 # ##bindsym XF86Launch9		exec
 # #bindsym XF86AudioMicMute	exec $micmute
 # bindsym XF86TouchpadToggle	exec --no-startup-id toggletouchpad
-# bindsym XF86TouchpadOn		exec --no-startup-id synclient TouchpadOff=0
-# bindsym XF86TouchpadOff		exec --no-startup-id synclient TouchpadOff=1
+# bindsym XF86TouchpadOn	exec --no-startup-id synclient TouchpadOff=0
+# bindsym XF86TouchpadOff	exec --no-startup-id synclient TouchpadOff=1
 # bindsym XF86Suspend		exec --no-startup-id lockscreen
 # bindsym XF86Close		kill
 # bindsym XF86WebCam		exec --no-startup-id camtoggle
 # bindsym XF86Mail		exec $term -e neomutt
 # bindsym XF86Messenger		exec $term -e weechat
 # bindsym XF86Search		exec $BROWSER https://duckduckgo.com
-# ##bindsym XF86Go			exec
+# ##bindsym XF86Go		exec
 # ##bindsym XF86Finance		exec
 # ##bindsym XF86Game		exec
 # bindsym XF86Shop		exec $BROWSER https://ebay.com
 # bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
 # bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
-# bindsym XF86AudioMedia		exec --no-startup-id st -e ncmpcpp
+# bindsym XF86AudioMedia        exec --no-startup-id st -e ncmpcpp
 # bindsym XF86Display		exec --no-startup-id arandr
 # bindsym XF86KbdLightOnOff	exec
 # bindsym XF86KbdBrightnessDown	exec --no-startup-id python3.6 ~/.scripts/kb-lights.py -
@@ -352,7 +355,7 @@ bindsym XF86AudioStop		exec --no-startup-id lmc toggle
 # #bindsym XF86Reply		exec
 # #bindsym XF86MailForward	exec
 # bindsym XF86Save		exec
-#  bindsym XF86Documents	exec $term -e ranger ~/Documents
-# #bindsym XF86Battery		exec
-# #bindsym XF86Bluetooth	exec
-# # bindsym XF86WLAN		exec $netrefresh
+# bindsym XF86Documents	        exec $term -e ranger ~/Documents
+# bindsym XF86Battery		exec
+# bindsym XF86Bluetooth	        exec
+# bindsym XF86WLAN		exec $netrefresh

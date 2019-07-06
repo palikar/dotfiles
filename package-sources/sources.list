@@ -10,9 +10,5 @@ deb http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 
 deb-src http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 
-deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main contrib non-free
-
-deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main contrib non-free
-
-deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ xenial main
-
+deb http://www.rabbitmq.com/debian/ testing main
+# deb-src http://www.rabbitmq.com/debian/ testing main

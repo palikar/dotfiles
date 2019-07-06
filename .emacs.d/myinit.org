@@ -12,12 +12,11 @@
 #+EXCLUDE_TAGS: no_export
 #+CREATOR: Emacs 25.2.2 (Org mode 9.1.13)
 
-# #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+
 #+OPTIONS: author:t broken-links:nil c:nil creator:nil
-# #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
-# #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t todo:t |:t
 #+OPTIONS: toc:nil
+
 
 
 * Abstract
@@ -39,12 +38,14 @@ I've drawn a lot of inspiration for my Emacs configuration form:
 
 
 * Basic System
+
 ** Personal Info
 Lets let Emacs know who I am. Probably not a good idea cut them CIA know everything but hey, we trust our "free software", right!
 
 #+BEGIN_SRC emacs-lisp :results none
 (setq user-full-name "Stanislav Arnaudov")
 #+END_SRC
+
 
 ** Repositories and packages
 The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
@@ -64,7 +65,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(ac-R aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dashboard diminish doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal org ox-twbs page-break-lines parsebib pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(ac-R aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org page-break-lines parsebib pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
 
 
@@ -97,9 +98,9 @@ I use a lot of additional packages and like to keep them local and installed. I'
 	  (package-install package))))
 
 
-(bind-key* "C-<Scroll_Lock>" 'list-installed-packages)
-
 #+END_SRC
+
+
 ** Key bindings setup
 Some major modes overwrite some of my custom keybindings. Therefore I define a custom global minor mode and use the key map of this mode to define my custom key bindings. This sets their precedence 'above' the precedence of the key bindings of other modes
 #+BEGIN_SRC emacs-lisp :results none
@@ -114,6 +115,7 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 
 (my-keys-mode t)
 #+END_SRC
+
 
 ** Interface tweaks
 Making the whole =emacs= experience a tiny bit better with those fixes of the interface of the editor
@@ -153,6 +155,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 ;;(set-frame-font "SauceCodePro Nerd Font Mono:size=15" nil t)
 ;; (set-default-font "SauceCodePro Nerd Font Mono:size=15")
 #+END_SRC
+
 
 ** Behavioral tweaks
 Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
@@ -341,6 +344,7 @@ The default scrolling behavior of Emacs is god awful. This fixes more of the iss
 (setq scroll-preserve-screen-position t)
 #+END_SRC
 
+
 ** Applications
 *** GDB
 #+BEGIN_SRC emacs-lisp :results none
@@ -368,12 +372,12 @@ The default scrolling behavior of Emacs is god awful. This fixes more of the iss
 #+BEGIN_SRC emacs-lisp :results none
 (require 'dired)
 
-  (setq dired-dwim-target t
-        dired-recursive-copies 'top
-        dired-recursive-deletes 'top
-        dired-listing-switches "-alh")
+(setq dired-dwim-target t)
+(setq dired-recursive-copies 'top)
+(setq dired-recursive-deletes 'top)
+(setq dired-listing-switches "-alh")
 
-  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 #+END_SRC
 *** Shell
@@ -389,6 +393,8 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
 
 (bind-key* "C-<f5>" 'compile)
 #+END_SRC
+
+
 ** Function Definitions
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -518,20 +524,19 @@ an error."
 
 (defun pass () "A function that does nothing" (interactive))
 #+END_SRC
+
+
 ** Customs files
 
 #+BEGIN_SRC emacs-lisp
- (setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 #+END_SRC
+
+
 ** Keybindings
 
 #+BEGIN_SRC emacs-lisp :results none
-
-(global-unset-key (kbd "<insert>"))
-(global-unset-key (kbd "C-<home>"))
-(global-unset-key (kbd "C-<end>"))
-
 (bind-key* "C-<f1>" 'toggle-transparency)
 (bind-key* "M-<f8>" 'fci-mode)
 (bind-key* "<f9>" 'menu-bar-mode)
@@ -573,6 +578,8 @@ an error."
 
 (bind-key* "M-<f1>" 'whitespace-cleanup)
 
+(bind-key* "C-<Scroll_Lock>" 'list-installed-packages)
+
 #+END_SRC
 
 Disable some keybindgs cuz' those are just annoying
@@ -582,6 +589,9 @@ Disable some keybindgs cuz' those are just annoying
 (global-unset-key  ( kbd "<home>"))
 (global-unset-key  ( kbd "<end>"))
 (global-unset-key  ( kbd "<insert>"))
+(global-unset-key  ( kbd "<insert>"))
+(global-unset-key  ( kbd "C-<home>"))
+(global-unset-key  ( kbd "C-<end>"))
 #+END_SRC
 
 
@@ -631,7 +641,14 @@ I often alternate between these two and can't really decide which is my favorite
 
 (setq custom-enabled-themes (quote (spacemacs-dark)))
 (setq custom-safe-themes t)
-(load-theme 'spacemacs-dark)
+
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+        (lambda (frame)
+            (with-selected-frame frame
+              (load-theme 'spacemacs-dark t))))
+    (load-theme 'spacemacs-dark t))
 
 ;; (load-theme 'monokai)
 #+END_SRC
@@ -744,6 +761,7 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 #+END_SRC
 
 
+
 ** Folding code
 A standard IDE feature that comes out of the box with emacs. Just a little tweak to give it nice keybindings. To note is that I use german QWERTZ keyboard so this won't work for all you QWERTY-Normies out there.
 #+BEGIN_SRC emacs-lisp
@@ -752,6 +770,7 @@ A standard IDE feature that comes out of the box with emacs. Just a little tweak
 (bind-key* "C-M-ü" 'hs-hide-all)
 (bind-key* "C-ü" 'hs-toggle-hiding)
 #+END_SRC
+
 
 
 ** C++
@@ -773,37 +792,56 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 (fa-config-default)
 
 (set-variable 'ycmd-server-command '("python" "/home/arnaud/code_ext/ycmd/ycmd"))
-
 (set-variable 'ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
 (set-variable 'ycmd-global-config "~/.ycm_extra_conf.py")
 
-(add-hook 'c++-mode-hook 'ycmd-mode)
-(add-hook 'c++-mode-hook 'company-ycmd-setup)
-(add-hook 'c++-mode-hook 'flycheck-ycmd-setup)
+;; (add-hook 'c++-mode-hook 'ycmd-mode)
+;; (add-hook 'c++-mode-hook 'flycheck-ycmd-setup)
+;; (add-hook 'c++-mode-hook 'company-ycmd-setup)
+
+
 (add-hook 'c++-mode-hook 'function-args-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
 (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
+
 (add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup)
+
 (add-hook 'flycheck-mode-hook #'flycheck-clang-analyzer-setup)
 
-
-
-(defun flycheck-calng-check-setup ()
-  (flycheck-set-checker-executable 'c/c++-clangcheck "/usr/bin/clang-check-7")
-  (flycheck-select-checker 'c/c++-clangcheck))
 (add-hook 'c++-mode-hook #'flycheck-calng-check-setup)
 
-
-
+(defun flycheck-calng-check-setup ()
+  (setq flycheck-clangcheck-extra-arg "-Wall -std=c++17 -x c++")
+  (flycheck-set-checker-executable 'c/c++-clangcheck "/usr/bin/clang-check-7")
+  (flycheck-clang-analyzer-setup))
 
 (setq c-default-style "linux")
 (setq c-basic-offset 4)
+(setq tab-width 4)
+(setq indent-tabs-mode t)
+(setq c-noise-macro-names '("constexpr"))
+;; (c-set-offset 'substatement-open 0)
+;; (c-set-offset 'inline-open '0)
 
-(setq-default c-basic-offset 4)
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode t)
+(defun vlad-cc-style()
+  (c-set-style "linux")
+  (c-set-offset 'innamespace '0)
+  (c-set-offset 'inextern-lang '0)
+  (c-set-offset 'inline-open '0)
+  (c-set-offset 'label '*)
+  (c-set-offset 'case-label '*)
+  (c-set-offset 'access-label '/)
+  (setq c-basic-offset 4)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+)
+(add-hook 'c++-mode-hook 'vlad-cc-style)
+
+
+
+
+
 #+END_SRC
 
 *** Functions
@@ -830,7 +868,6 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 #+END_SRC
 
 *** Key-bindings
-
 #+BEGIN_SRC emacs-lisp :results none
 
 (bind-key* "M-j l" 'clang-format)
@@ -845,15 +882,38 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 (load-file "/home/arnaud/.emacs.d/lisp/doxymacs.el")
 (require 'doxymacs)
 
+(setq doxymacs-doxygen-style "JavaDoc")
+(setq doxymacs-use-external-xml-parser 't)
+
 (add-hook 'c-mode-common-hook 'doxymacs-mode)
 
+(add-hook 'c-mode-common-hook 'doxymacs-mode)
+(defun my-doxymacs-font-lock-hook ()
+    (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+        (doxymacs-font-lock)))
+(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+
+#+END_SRC
+
+**** Keybindings
+
+#+BEGIN_SRC emacs-lisp :results none
+
+(bind-key* "M-j o o" 'doxymacs-insert-function-comment)
+(bind-key* "M-j o m" 'doxymacs-insert-member-comment)
+(bind-key* "M-j o f" 'doxymacs-insert-file-comment)
+(bind-key* "M-j o l" 'doxymacs-insert-blank-singleline-comment)
+(bind-key* "M-j o b" 'doxymacs-insert-blank-multiline-comment)
+(bind-key* "M-j o c" 'doxymacs-insert-command)
 
 #+END_SRC
 
 
+
 ** CMake
+
 A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant to the eyes. I don't really need more as I don't spend that much time writing /cmake/ scripts.
-#+BEGIN_SRC emacs-lisp :results none
+#+BEGIN_SRC emacs-lisp
 (require 'cmake-mode)
 
 (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
@@ -866,6 +926,8 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 #+END_SRC
+
+
 
 
 ** Python
@@ -900,21 +962,19 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
   ; disable all auto-completion unless explicitly invoked with M-tab
   (setq ac-auto-show-menu nil)
   (setq ac-auto-start nil)
-  ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+  ;; 
 
 #+END_SRC
 
 *** Hooks
 #+BEGIN_SRC emacs-lisp
-(add-hook 'python-mode-hook 'jedi:setup)
 
+(add-hook 'python-mode-hook 'jedi:setup)
 ;; (add-hook 'python-mode-hook 'jedi:ac-setup)
 ;; (add-hook 'python-mode-hook 'elpy-mode)
-
 (add-hook 'python-mode-hook 'sphinx-doc-mode)
+(add-hook 'jedi-mode-hook (lambda () (global-auto-complete-mode -1)))
 
-
-(add-hook 'jedi-mode-hook (lambda () (auto-complete-mode -1)))
 #+END_SRC
 
 *** Keybindings
@@ -925,11 +985,11 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 (define-key elpy-mode-map [remap elpy-nav-backward-indent] nil)
 (define-key elpy-mode-map [remap elpy-nav-forward-indent] nil)
 
-
 (bind-key* "M-j e d" 'sphinx-doc)
 (bind-key* "M-j e t" 'elpy-test)
 (bind-key* "M-j e f" 'elpy-format-code)
-(bind-key* "M-j e ." 'elpy-goto-definition)
+(bind-key* "M-." 'elpy-goto-definition python-mode-map)
+;; (bind-key* "M-TAB" 'auto-complete)
 #+END_SRC
 
 
@@ -957,10 +1017,39 @@ I don't really use EMACS for java development as it can be tedious and the packa
 
 
 ** Web Mode
+
 From time to time I have to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
 - [[https://github.com/smihica/emmet-mode][emmet-mode]] - =C-j= Expands the emmet code given the minor mode is active
 #+BEGIN_SRC emacs-lisp
 (require 'web-mode)
+(require 'emmet-mode)
+
+(defun my-web-mode-hook ()
+  
+  (emmet-mode 1)
+  
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-style-padding 1)
+  (setq web-mode-script-padding 1)
+  (setq web-mode-block-padding 0)
+  (setq web-mode-markup-indent-offset 2)
+  
+  (setq web-mode-extra-auto-pairs '(("erb"  . (("beg" "end")))
+                                    ("php"  . (("beg" "end")
+                                               ("beg" "end")))))
+  
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-current-column-highlight t)
+  
+  (setq web-mode-ac-sources-alist '(("css" . (ac-source-css-property))
+                                    ("html" . (ac-source-words-in-buffer ac-source-abbrev)))))
+
+#+END_SRC
+
+*** Auto-mode-alist
+#+BEGIN_SRC emacs-lisp :results none
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -971,39 +1060,10 @@ From time to time I have to write HTML and other 'web-stuff' and this setup gets
 (add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-
-(defun my-web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-
-  (require 'emmet-mode)
-  (emmet-mode 1)
-
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-style-padding 1)
-  (setq web-mode-script-padding 1)
-  (setq web-mode-block-padding 0)
-
-  (setq web-mode-extra-auto-pairs
-        '(("erb"  . (("beg" "end")))
-          ("php"  . (("beg" "end")
-                     ("beg" "end")))
-          ))
-  (setq web-mode-enable-auto-pairing t)
-  (setq web-mode-enable-current-column-highlight t)
-
-
-  (setq web-mode-ac-sources-alist
-        '(("css" . (ac-source-css-property))
-          ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
-
-
-
-  )
+#+END_SRC
+*** Hooks
+#+BEGIN_SRC emacs-lisp :results none
 (add-hook 'web-mode-hook  'my-web-mode-hook)
-
 #+END_SRC
 
 
@@ -1229,9 +1289,9 @@ Yeso, I am a +hirroble+ horrible speller. Thank god that there are tools that he
 #+END_SRC
 
 
-** Sexp on steroids
+** Vsexp
 As previously stated, I know tiny bit of vim key-bindings and holy cow those can do a lot of things in very few keystrokes. Emacs is not really like that. I've written some simple functions thal with saving, marking and killing /sexp/s. I really like that feature of vim "*d*elete *i*nside *(*-block" and it kills everything inside the parentesies....or copies it into kill ring or marks it, basically - it's pretty awesome and here I am trying to ripp off exxaclty that.\\
-The commands that come in handy a lot of the times and that I've written:
+The commands that come in handy in a lot of the times are:
 
 | Keystroke   | Description                                              |
 |-------------+----------------------------------------------------------|
@@ -1242,27 +1302,37 @@ The commands that come in handy a lot of the times and that I've written:
 | =C-M-S-SPC= | Mar the current /sexp/                                   |
 | =C-M-w=     | Save everything inside the current /sexp/ into kill ring |
 | =C-M-W=     | Save the current /sexp/ into kill ring                   |
+|-------------+----------------------------------------------------------|
+| =C-c w i=   | Mark inside thing                                        |
+| =C-c w o=   | Mark outside thing                                       |
+|             |                                                          |
 
 
-As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operations
+As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operations. The last two commands will first prompt you for character and will then mark the right region closed in the symbol. If the entered symbol is a bracket, the marked region will be between the corresponding brackets (just like in Vim).
 
-#+BEGIN_SRC emacs-lisp :results none
+#+Begin_src emacs-lisp :results none
 
 ;; (require 'load-directory)
 ;; (load-directory "~/.emacs.d/my-lisp")
 
-(load "~/.emacs.d/lisp/arnaud-sexp")
-(require 'arnaud-sexp)
+(load "~/.emacs.d/lisp/vsexp.el")
+(require 'vsexp)
 
 (bind-key* "C-M-y" 'sp-backward-up-sexp)
 (bind-key* "C-M-x" 'sp-up-sexp)
 
-(bind-key* "C-M-SPC" 'arnaud-mark-sexp)
-(bind-key* "C-M-k" 'arnaud-kill-sexp)
-(bind-key* "C-M-S-SPC" 'arnaud-mark-sexp-whole)
-(bind-key* "C-M-S-k" 'arnaud-kill-sexp-whole)
-(bind-key* "C-M-w" 'arnaud-kill-save-sexp)
-(bind-key* "C-M-S-w" 'arnaud-kill-save-sexp-whole)
+(bind-key* "C-M-SPC" 'vsexp-mark-sexp)
+(bind-key* "C-M-k" 'vsexp-kill-sexp)
+(bind-key* "C-M-S-SPC" 'vsexp-mark-sexp-whole)
+(bind-key* "C-M-S-k" 'vsexp-kill-sexp-whole)
+(bind-key* "C-M-w" 'vsexp-kill-save-sexp)
+(bind-key* "C-M-S-w" 'vsexp-kill-save-sexp-whole)
+
+(bind-key* "C-c w i" 'vsexp-mark-inside)
+(bind-key* "C-c w o" 'vsexp-mark-outside)
+
+
+
 #+END_SRC
 
 
@@ -1434,8 +1504,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'ibuffer)
 (require 'ibuffer-projectile)
-(bind-key* "C-x C-b" 'ibuffer)
-;;(autoload 'ibuffer "ibuffer" "List buffers." t)
+
 (setq ibuffer-expert t)
 (setq ibuffer-show-empty-filter-groups nil)
 
@@ -1452,15 +1521,25 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
            (mode . c-mode)
            (mode . c++-mode)
            ))
-
+         ("Python"
+          (mode . python-mode)
+          )
+         ("Configurations"
+          (or 
+           (mode . conf-mode)
+           (mode . conf-space-mode)
+           (name . ".json")
+           (name . ".yaml")
+           (name . ".yml")
+           ))
          ("Source Code"
           (or
-           (mode . python-mode)
            (mode . emacs-lisp-mode)
            (mode . shell-script-mode)
            (mode . json-mode)
-           ;; etc
            ))
+         ("Dired"
+          (mode . dired-mode))
          ("Sripts"
           (name . ".sh")
           )
@@ -1489,24 +1568,58 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
          )))
 
 
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
+
+
+(setq ibuffer-formats
+      '((mark modified read-only " "
+	      (name 18 18 :left :elide)
+	      " "
+	      (size-h 9 -1 :right)
+	      " "
+	      (mode 16 16 :left :elide)
+	      " "
+	      filename-and-process)))
+
+
+
 (add-hook 'ibuffer-mode-hook
 	  '(lambda ()
 	     (ibuffer-auto-mode 1)
 	     (ibuffer-switch-to-saved-filter-groups "home")))
 
-;;(add-hook 'ibuffer-hook
-;;          (lambda ()
-;;          (ibuffer-projectile-set-filter-groups)
-;;            (unless (eq ibuffer-sorting-mode 'alphabetic)
-;;              (ibuffer-do-sort-by-alphabetic))))
-;;(require 'ibuf-ext)
-;;(add-to-list 'ibuffer-never-show-predicates "^\\*")
+#+END_SRC
 
+*** Get rid of the title and summery
+#+BEGIN_SRC emacs-lisp :results none
+(defadvice ibuffer-update-title-and-summary (after remove-column-titles)
+  (with-current-buffer "*Ibuffer*"
+    (read-only-mode 1)
+    (goto-char 1)
+    (search-forward "-\n" nil t)
+    (delete-region 1 (point))
+    (let ((window-min-height 1))
+      (shrink-window-if-larger-than-buffer))
+    (toggle-read-only)))
 
+(ad-activate 'ibuffer-update-title-and-summary)
+#+END_SRC
+
+*** Keybindings
+
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "C-x C-b" 'ibuffer)
 #+END_SRC
 
 
 ** Magit
+
 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'magit)
@@ -1971,9 +2084,14 @@ IMenu is like that one thingy that nobody uses but its in almost every IDE. IMen
 #+BEGIN_SRC emacs-lisp :results none
 (require 'imenu-list)
 
-(bind-key* "<f12>" 'imenu-list-smart-toggle)
 (setq imenu-list-auto-resize t)
 (setq imenu-list-after-jump-hook nil)
+#+END_SRC
+
+*** Keybindings
+
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "<f12>" 'imenu-list-smart-toggle)
 #+END_SRC
 
 
@@ -2062,8 +2180,8 @@ The definitions of all the functions for the backends setups.
   (interactive)
   (message "C++ backends engaged.")
   (setq company-backends `(
-						   company-ycmd
 						   company-irony
+						   company-ycmd
 						   company-c-headers
 						   company-irony-c-headers
 						   ,basic-company-backends)))
@@ -2178,7 +2296,9 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "<f13>" 'avy-goto-char)
+(bind-key* "<f13>" 'avy-goto-word-1)
+(bind-key* "C-<f13>" 'avy-goto-char)
+
 #+END_SRC
 
 
@@ -2223,7 +2343,7 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 
 
 ** IEdit and Visual Regexp
-*** IEdit
+*** COMMENT IEdit
 IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with ~M-i~ and while editing the marked region, all other occurrences will be changed accordingly.
 - [[https://github.com/victorhge/iedit][iedit]]
 #+BEGIN_SRC emacs-lisp :results none
@@ -2318,6 +2438,7 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 (bind-key* "M-j p" 'prodigy)
 #+END_SRC
 
+
 * Markup
 
 ** Markdown
@@ -2333,13 +2454,15 @@ Markdown is not as pretty as Org-mode but is widely used throughout the Internet
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 #+END_SRC
 
+
 ** Org-mode
+
 *** Common settings
 Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writing/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this /init/ file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporters for =.org= files that just make my life easier.
 
 #+BEGIN_SRC emacs-lisp
 (require 'org-bullets)
-(require 'org-tempo)
+;; (require 'org-tempo)
 
 (setq org-support-shift-select (quote always))
 (setq org-startup-indented t)
@@ -2363,6 +2486,8 @@ Org-mode is awesome not just for note taking but also for general text editing, 
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
+(setq org-highlight-latex-and-related '(latex script entities))
+
 
 (add-hook 'org-mode-hook (lambda ()
                            (org-bullets-mode 1)
@@ -2377,6 +2502,21 @@ The codeblocks should be formated with the native envinroment of the language
 (setq org-edit-src-content-indentation 0)
 
 #+END_SRC
+*** Templates
+#+BEGIN_SRC emacs-lisp :results none
+;; (setq org-structure-template-alist '(("a" . "export ascii")
+;; 				     ("c" . "center")
+;; 				     ("C" . "comment")
+;; 				     ("e" . "example")
+;; 				     ("E" . "export")
+;; 				     ("h" . "export html")
+;; 				     ("l" . "export latex")
+;; 				     ("q" . "quote")
+;; 				     ("s" . "src")
+;; 				     ("v" . "verse")))
+
+(setq org-structure-template-alist '())
+#+END_SRC 
 *** Exporters
 Some extra export backends for org-mode that come in handy.
 - Beamer - for making those awesome-ish presentations
@@ -2405,14 +2545,17 @@ Remove headlines with =:no_title:= tag.
                    "no_title"))
 
 (add-hook 'org-export-before-processing-hook #'org-remove-headlines)
+
+(ox-extras-activate '(ignore-headlines))
+
 #+END_SRC
 *** Capture
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-reverse-note-order t)
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/Dropbox/orgfiles/todos/todos.org" "Captured TODOS")
+      '(("t" "Todo" entry (file+headline "~/Documents/orgfiles/todos/todos.org" "Captured TODOS")
          "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        ("i" "Idea" entry (file+headline "~/Dropbox/orgfiles/notes.org" "Someday/Maybe")
+        ("i" "Idea" entry (file+headline "~/Documents/orgfiles/notes.org" "Someday/Maybe")
          "* IDEA %?\nAdded: %U\n" :prepend t :kill-buffer t)
         ))
 
@@ -2425,6 +2568,23 @@ This style of presenting looks cool but I don't use it that much. Still, I want 
 
 (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
 (setq org-reveal-mathjax t)
+
+#+END_SRC
+*** Latex classes
+
+#+BEGIN_SRC emacs-lisp :results none
+
+
+(setq org-export-allow-bind-keywords 't)
+
+(add-to-list 'org-latex-classes
+                '("llncs"
+                  "\\documentclass{llncs}"
+                  ("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+
 
 #+END_SRC
 *** Babel Languages
@@ -2464,7 +2624,7 @@ will produce a graph-png at the end....it's awesome!
 #+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c a" 'org-agenda)
 (bind-key* "C-c c" 'org-capture)
-(bind-key* "C-c C-x s" 'org-attach-screenshot)
+(bind-key* "C-c C-x s" 'org-attach-screenshot org-mode-map)
 #+END_SRC
 
 *** Org-Babel
@@ -2473,12 +2633,65 @@ For some reason I must set the right /python/ command each time I start emacs. T
 (setq org-babel-python-command "python")
 #+END_SRC
 
+*** Include PDFs as image
+
+#+BEGIN_SRC emacs-lisp :results none
+
+
+(defun org-include-img-from-pdf (&rest _)
+  "Convert pdf files to image files in org-mode bracket links.
+
+    # ()convertfrompdf:t # This is a special comment; tells that the upcoming
+                         # link points to the to-be-converted-to file.
+    # If you have a foo.pdf that you need to convert to foo.png, use the
+    # foo.png file name in the link.
+    [[./foo.png]]
+"
+  (interactive)
+  (if (executable-find "convert")
+      (save-excursion
+        (goto-char (point-min))
+        (while (re-search-forward "^[ \t]*#\\s-+()convertfrompdf\\s-*:\\s-*t"
+                                  nil :noerror)
+          ;; Keep on going to the next line till it finds a line with bracketed
+          ;; file link.
+          (while (progn
+                   (forward-line 1)
+                   (not (looking-at org-bracket-link-regexp))))
+          ;; Get the sub-group 1 match, the link, from `org-bracket-link-regexp'
+          (let ((link (match-string-no-properties 1)))
+            (when (stringp link)
+              (let* ((imgfile (expand-file-name link))
+                     (pdffile (expand-file-name
+                               (concat (file-name-sans-extension imgfile)
+                                       "." "pdf")))
+                     (cmd (concat "convert -density 96 -quality 85 "
+                                  pdffile " " imgfile)))
+                (when (and (file-readable-p pdffile)
+                           (file-newer-than-file-p pdffile imgfile))
+                  ;; This block is executed only if pdffile is newer than
+                  ;; imgfile or if imgfile does not exist.
+                  (shell-command cmd)
+                  (message "%s" cmd)))))))
+    (user-error "`convert' executable (part of Imagemagick) is not found")))
+
+
+(defun my/org-include-img-from-pdf-before-save ()
+  "Execute `org-include-img-from-pdf' just before saving the file."
+  (add-hook 'before-save-hook #'org-include-img-from-pdf nil :local))
+
+;; Do not include this, it freezes when used in huge org buffers!
+;; (add-hook 'org-mode-hook #'my/org-include-img-from-pdf-before-save)
+
+#+END_SRC
 *** Reloading
 For some reasons I have to call this after I've /require/-d all the exporters' backends in order to make them available in the export dispatcher of /org-mode/.
 #+BEGIN_SRC emacs-lisp :results none
 (require 'org)
 (org-reload)
 #+END_SRC
+
+
 ** Latex
 
 I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writing my $\LaTeX$ documents but recent changes to its interface have made me look for alternative. Also, recent changes with me and me loving /Emacs/ have made the choice pretty easy. By know I don't think I miss anything that /TexMaker/ could offer me that /Emacs/ cannot.
@@ -2508,6 +2721,9 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 (setq TeX-source-correlate-start-server t)
 
+(setq org-latex-pdf-process (list
+   "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
+
 #+END_SRC
 
 *** Keybinds
@@ -2516,20 +2732,6 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography)
 (bind-key* "C-c l M-p" 'latex-preview-pane-update)
 (bind-key* "C-c l l" 'TeX-command-master)
-#+END_SRC
-
-*** Templates
-#+BEGIN_SRC emacs-lisp :results none
-(setq org-structure-template-alist '(("a" . "export ascii")
-									 ("c" . "center")
-									 ("C" . "comment")
-									 ("e" . "example")
-									 ("E" . "export")
-									 ("h" . "export html")
-									 ("l" . "export latex")
-									 ("q" . "quote")
-									 ("s" . "src")
-									 ("v" . "verse")))
 #+END_SRC
 
 
@@ -2626,7 +2828,14 @@ Some of the packages for modelines that I've gone over are:
 (spaceline-toggle-hud-off)
 (spaceline-toggle-buffer-encoding-abbrev-off)
 
-(spaceline-emacs-theme)
+
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+        (lambda (frame)
+          (with-selected-frame frame
+            (spaceline-emacs-theme))))
+    (spaceline-emacs-theme))
 
 
 ;; (spaceline-all-the-icons--setup-anzu)
@@ -2731,6 +2940,9 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
   (diminish 'abbrev-mode)
   (diminish 'sphinx-doc-mode)
   (diminish 'org-indent-mode)
+  (diminish 'ycmd-mode)
+  (diminish 'modern-c++-font-lock-mode)
+  (diminish 'doxymacs-mode)
   (message "The modes should be away now!"))
 
 (diminish-em-all)
@@ -2864,6 +3076,7 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 
 * Things just for fun
 The world is full of useless things! We should use them all!! Emacs agrees!!
+
 ** Weather
 That one cool site - [[http://wttr.in/][wttr]] - that I even use in my system setup to get weather information. It can also be used in Emacs so why the hell not.
 #+BEGIN_SRC emacs-lisp
@@ -2877,12 +3090,16 @@ That one cool site - [[http://wttr.in/][wttr]] - that I even use in my system se
 (bind-key* "M-j w"  'wttrin)
 
 #+END_SRC
+
+
 ** XKCD
 This cute little thing with those cool little nerdy cody comics
 #+BEGIN_SRC emacs-lisp
 (require 'xkcd)
 (bind-key* "M-j x" 'xkcd)
 #+END_SRC
+
+
 ** Touch typing
 I... am not exactly a fast typist but I've really put time and effort into it. I regularly use [[https://typing-speed-test.aoeu.eu/][this]] one but Emacs is Emacs and everything should be Emacs. Just put everything in Emacs they said! So, [[https://github.com/mrkkrp/typit][typit]] is a small package that lets you practice touch typing right here into Emacs.
 #+BEGIN_SRC emacs-lisp
@@ -2890,6 +3107,8 @@ I... am not exactly a fast typist but I've really put time and effort into it. I
 (bind-key* "M-j t b" 'typit-basic-test)
 (bind-key* "M-j t a" 'typit-advanced-test)
 #+END_SRC
+
+
 ** Commands frequency
 This things will track which command is being run and how many times... I just think it's cool.
 #+BEGIN_SRC emacs-lisp

@@ -4,7 +4,7 @@
         debug = true
 
 [Download]
-	git_ssh = true
+        git_ssh = true
         
 [Cache]
     cache = ${HOME}/.config/code_manager/cache
@@ -13,4 +13,4 @@
 	direcory = /home/arnaud/.config/code_manager/logs
 
 [Common]
-	git_command = git
+        git_command = git

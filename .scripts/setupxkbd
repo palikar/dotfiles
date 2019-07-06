@@ -13,7 +13,7 @@ xmodmap -e "keysym Caps_Lock = F13"
 
 
 TOUCH_ID=$(xinput list | grep "ELAN0511:00 04F3:3041 Touchpad" | grep "id=[0-9]*" -o | sed -e "s/id=\(.*\)/\1/g")
-TAP_ID=$( xinput list-props 15 | grep "libinput Tapping Enabled ([0-9]*)" -o | sed -e "s/libinput Tapping Enabled (\([0-9]*\))/\1/g")
+TAP_ID=$(xinput list-props "${TOUCH_ID}" | grep "libinput Tapping Enabled ([0-9]*)" -o | sed -e "s/libinput Tapping Enabled (\([0-9]*\))/\1/g")
 xinput set-prop ${TOUCH_ID} ${TAP_ID} 1
 
 
