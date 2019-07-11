@@ -11,4 +11,4 @@ deb http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 deb-src http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 
 deb http://www.rabbitmq.com/debian/ testing main
-# deb-src http://www.rabbitmq.com/debian/ testing main
+

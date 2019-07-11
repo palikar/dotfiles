@@ -8,4 +8,9 @@
 (setq vc-follow-symlinks t)
 (setq gc-cons-threshold 100000000)
 (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
-;; (load-file "~/.emacs.d/code-manager-packages.el")
+
+
+;; This 'load-file' is added by code-manager 
+;; It loads the packages installed by code-manager
+;; Do not delete the line nor the file
+(load-file "~/.emacs.d/code-manager-packages.el")

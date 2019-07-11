@@ -11,6 +11,7 @@ alias scripts='cd ~/code/scripts'
 alias uni='cd ~/Uni/Semesters/SS19'
 
 
+alias pip='pip3'
 
 
 

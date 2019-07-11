@@ -16,7 +16,7 @@
             "gameengine",
             "blog-hugo-files",
             "arnaud-framer",
-            "arnaud-sexp",
+            "vsexp",
             "dotfiles",
             "jgrapher",
             "MARS",
@@ -28,6 +28,12 @@
             "arffpar",
             "python-req-installer",
             "mflower"
+        ],
+        
+        "emacs" : [
+            "arnaud-framer",
+            "vsexp",
+            "python-req-installer"
         ],
         
         "system" : [
@@ -131,14 +137,13 @@
             "reinstall_command": "echo 'No install command'"
         },
         
-        "arnaud-sexp": {
+        "vsexp": {
             "fetch": "git",
             "git":{
                 "url" :  "https://github.com/palikar/arnaud-sexp"
             },
-            "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "install": "emacs",
+            "el_files" : ["vsexp.el"]            
         },
         
         
@@ -287,9 +292,11 @@
             "git":{
                 "url" :  "https://github.com/palikar/ArffPar"
             },
-            "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "install": ["cmake", "command", "make"],
+            "make_args" : "-j4",
+            "make_extra_targets": [],
+            "command" : "echo 'this is sick'"
+
         },
         
         "tictacminimax": {

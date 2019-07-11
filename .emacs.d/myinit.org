@@ -1065,8 +1065,15 @@ From time to time I have to write HTML and other 'web-stuff' and this setup gets
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 #+END_SRC
+** Vuejs
 
-
+#+BEGIN_SRC emacs-lisp :results none
+;; (require 'multi-web-mode)
+;; (setq mweb-default-major-mode 'web-mode)
+;; (setq mweb-tags '((js-mode "<script *>" "</script>")
+;;                   (css-mode "<style *>" "</style>")))
+;; (add-to-list 'auto-mode-alist '("\\.vue\\'" . multi-web-mode))
+#+END_SRC
 ** Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
 - [[https://github.com/joaotavora/yasnippet][yasnippets]]
@@ -2493,6 +2500,7 @@ Org-mode is awesome not just for note taking but also for general text editing, 
                            (org-bullets-mode 1)
                            (flyspell-mode 1)))
 #+END_SRC
+
 The codeblocks should be formated with the native envinroment of the language
 #+BEGIN_SRC emacs-lisp :results none
 
@@ -2500,8 +2508,17 @@ The codeblocks should be formated with the native envinroment of the language
 (setq org-src-tab-acts-natively t)
 (setq org-confirm-babel-evaluate nil)
 (setq org-edit-src-content-indentation 0)
-
 #+END_SRC
+
+#+BEGIN_SRC emacs-lisp :results none
+(defun org-summary-todo (n-done n-not-done)
+  "Switch entry to DONE when all subentries are done, to TODO otherwise."
+  (let (org-log-done org-log-states)   ; turn off logging
+    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+
+(add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+#+END_SRC
+
 *** Templates
 #+BEGIN_SRC emacs-lisp :results none
 ;; (setq org-structure-template-alist '(("a" . "export ascii")
