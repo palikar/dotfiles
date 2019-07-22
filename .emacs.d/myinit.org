@@ -62,13 +62,10 @@ I use a lot of additional packages and like to keep them local and installed. I'
 #+BEGIN_SRC emacs-lisp
 
 
-
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(ac-R aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-quickhelp company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org page-break-lines parsebib pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vue-html-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(ac-R aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-quickhelp company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-clangd lsp-css lsp-python lsp-ui lsp-vue lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org package-lint page-break-lines parsebib pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vsexp smartparens vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
-
-
 
 ; activate all the packages (in particular autoloads)
 (package-initialize)
@@ -111,7 +108,6 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 
 (require 'bind-key)
 (setf (cdr my-keys-mode-map) nil)
-
 
 (my-keys-mode t)
 #+END_SRC
@@ -160,6 +156,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 ** Behavioral tweaks
 Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp :results none
+(setq debug-on-error nil)
 (setq indent-tabs-mode nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
@@ -168,10 +165,6 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (setq scroll-step 1) ;;smooth-ish scrolling
 (setq confirm-kill-emacs 'y-or-n-p) ;; Sometimes I fat finger C-x C-c
 (setq save-interprogram-paste-before-kill t)
-(require 'saveplace) ;; saves your cursor's position in buffers and jumps to it on reopening
-(setq save-place t)
-(setq save-place-file (locate-user-emacs-file "places" ".emacs-places"))
-(setq save-place-forget-unreadable-files nil)
 (setq auto-revert-verbose nil) ;; everything is seemless
 (setq vc-follow-symlinks t) ;; it asks you everytime otherwise
 (delete-selection-mode 1) ;; it's really weird working without that
@@ -184,38 +177,67 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (set-keyboard-coding-system 'utf-8)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-(bind-key* "M-c" 'capitalize-dwim)
-(bind-key* "<deletechar>" 'hungry-delete-forward)
-(savehist-mode +1)
 (setq tab-always-indent 'complete)
 (setq require-final-newline t)
+(setq mouse-yank-at-point t)
+(setq create-lockfiles nil)
+(auto-compression-mode t)
+#+END_SRC
+**** Keybindings
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "M-c" 'capitalize-dwim)
+(bind-key* "<deletechar>" 'hungry-delete-forward)
+#+END_SRC
+*** Volatile Highlight
+#+BEGIN_SRC emacs-lisp :results none
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+#+END_SRC
+*** Super save
+#+BEGIN_SRC emacs-lisp :results none
+(require 'super-save)
+(add-to-list 'super-save-triggers 'ace-window)
+(super-save-mode +1)
+#+END_SRC
+*** Savehist
+#+BEGIN_SRC emacs-lisp :results none
+(require 'savehist) ;; savehist keeps track of some history
+(setq savehist-additional-variables
+      '(search-ring regexp-search-ring))
+(setq savehist-autosave-interval 60)
+(savehist-mode +1)
+#+END_SRC
+*** Recentf
+#+BEGIN_SRC emacs-lisp :results none
+(require 'recentf) ;; save recent files
+(setq recentf-max-saved-items 500
+      recentf-max-menu-items 15
+      recentf-auto-cleanup 'never)
+(recentf-mode +1)
+
+(add-to-list 'recentf-exclude "\\.windows\\'")
+(add-to-list 'recentf-exclude "\\.revive\\'")
+(add-to-list 'recentf-exclude "\\/ssh:\\'")
+
+#+END_SRC
+*** Uniquify
+#+BEGIN_SRC emacs-lisp :results none
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-separator "/")
 (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
-(require 'savehist) ;; savehist keeps track of some history
-(setq savehist-additional-variables
-      '(search-ring regexp-search-ring)
-      savehist-autosave-interval 60)
-(require 'recentf) ;; save recent files
-(add-to-list 'recentf-exclude "\\.windows\\'")
-(add-to-list 'recentf-exclude "\\.revive\\'")
-(add-to-list 'recentf-exclude "\\/ssh:\\'")
-(setq recentf-max-saved-items 500
-      recentf-max-menu-items 15
-      recentf-auto-cleanup 'never)
-(recentf-mode +1)
-(require 'super-save)
-(add-to-list 'super-save-triggers 'ace-window)
-(super-save-mode +1)
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
-(setq mouse-yank-at-point t)
-(setq create-lockfiles nil)
-(auto-compression-mode t)
+#+END_SRC
+*** Saveplace
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'saveplace) ;; saves your cursor's position in buffers and jumps to it on reopening
+(setq save-place t)
+(setq save-place-file (locate-user-emacs-file "places" ".emacs-places"))
+(setq save-place-forget-unreadable-files nil)
 #+END_SRC
 *** Copy line below
+
 Use =Alt-up/down= as in any other editor to copy lines
 #+BEGIN_SRC emacs-lisp :results none
 (defun duplicate-line-down()
@@ -582,6 +604,7 @@ an error."
 
 #+END_SRC
 
+**** Disabling
 Disable some keybindgs cuz' those are just annoying
 #+BEGIN_SRC emacs-lisp
 (global-unset-key  ( kbd "<prior>"))
@@ -598,26 +621,24 @@ Disable some keybindgs cuz' those are just annoying
 * Windowing
 Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
 ** Ace window
-For easy navigation between several monitors.
+For easy navigation between several monitors. It's helpful to be able to quickly switch between different frames of emacs on different monitors.
 #+BEGIN_SRC emacs-lisp
-;; when working with two monitors this is really helpful
 (require 'ace-window)
 #+END_SRC
 
 ** Framer
-My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs... functionality that already exist.
+My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs... functionality that already exist in vanilla Emacs.
 #+BEGIN_SRC emacs-lisp
 (load "~/.emacs.d/lisp/arnaud-framer.el")
 (require 'arnaud-framer)
 (global-framer-mode nil)
 #+END_SRC
-** Golder Ration
+** Golden Ration
 When used, it keeps the focused window the biggest while still having the other ones in a "golder ratioed" size.
 #+BEGIN_SRC emacs-lisp
 (require 'golden-ratio)
 #+END_SRC
-** General tweaks
-*** Zygospore
+** Zygospore
 Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config that I actually don't necessarily wanted destroyed. This package fixes this "issue". If I hit =C-x 1= again, I was just where I was before
 #+BEGIN_SRC emacs-lisp :results none
 (require 'zygospore)
@@ -642,7 +663,7 @@ I often alternate between these two and can't really decide which is my favorite
 (setq custom-enabled-themes (quote (spacemacs-dark)))
 (setq custom-safe-themes t)
 
-
+;; this loads the theme correctly even in daemon mode
 (if (daemonp)
     (add-hook 'after-make-frame-functions
         (lambda (frame)
@@ -656,28 +677,34 @@ I often alternate between these two and can't really decide which is my favorite
 
 * Misc packages
 These packages add some minor tweak to EMACS to make text editing easier.
-- [[https://github.com/Malabarba/beacon][beacon]] - flashes your cursor after the cursor has been re-positioned.
-- [[https://github.com/nflath/hungry-delete]] - deletes all of the white spaces that are 'on the way' after hitting /delete/ or /backspace/. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
-- [[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
--
-#+BEGIN_SRC emacs-lisp
+
+** Beacon
+[[https://github.com/Malabarba/beacon][beacon]] - flashes your cursor after the cursor has been re-positioned.
+#+BEGIN_SRC emacs-lisp :results none
 (require 'beacon)
 (beacon-mode 1)
-
+#+END_SRC
+** Hungry-delete
+[[https://github.com/nflath/hungry-delete][hungry-delete]] - deletes all of the white spaces that are 'on the way' after hitting /delete/ or /backspace/. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
+#+BEGIN_SRC emacs-lisp :results none
 (require 'hungry-delete)
 (global-hungry-delete-mode)
-
+#+END_SRC
+** Expand Region
+[[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
+#+BEGIN_SRC emacs-lisp
 (require 'expand-region)
+#+END_SRC
+*** Keybindings
+#+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c =" 'er/expand-region)
 #+END_SRC
 
 ** CRUX
-...is an abrabiation for /A Collection of Ridiculously Useful eXtensions for Emacs/, so yeah, pretty self-explenatory.
+CRUX is an abrabiation for /A Collection of Ridiculously Useful eXtensions for Emacs/, so yeah, pretty self-explenatory. Its just a collection of functions that make your emacs-live a little bit easier.
 -[[https://github.com/bbatsov/crux][crux]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'crux)
-
-
 
 (bind-key* "C-c o" 'crux-open-with)
 (bind-key* "C-c r" 'crux-rename-file-and-buffer)
@@ -687,7 +714,6 @@ These packages add some minor tweak to EMACS to make text editing easier.
 (bind-key* "C-c S" 'crux-find-shell-init-file)
 (bind-key* "M-k" 'crux-kill-line-backwards)
 (bind-key* "C-c t" 'crux-visit-term-buffer)
-
 #+END_SRC
 
 ** Q4
@@ -730,7 +756,7 @@ I also frequanlty use Zeal. It's an application housing tons of usefull document
 #+END_SRC
 
 ** PDF-Tools
-Viewing pdf files in emacs! Not really indented for big and heavy files but when I have to check on something is does the trick.
+Viewing pdf files in emacs! Not really indented for big and heavy files but when I have to check on something is does the trick. If emacs is compiled with [[https://imagemagick.org/index.php][ImageMagic]], the provided features are much more.
 - [[https://github.com/politza/pdf-tools][pdf-tools]]
 #+BEGIN_SRC emacs-lisp
 (require 'pdf-tools)
@@ -739,7 +765,9 @@ Viewing pdf files in emacs! Not really indented for big and heavy files but when
 
 
 * Programming
-Surprisingly I don't have all that much tweaks in here. Commenting out regions or lines is probably the thing I use the most. The other things are just very minor things that are standard in every other IDE.
+
+** General
+I don't have all that much tweaks in here in the general programming section. Commenting out regions or lines is probably the thing I use the most. The other things are just very minor things that are standard in every other IDE.
 - [[https://github.com/abo-abo/function-args][function-args]] - package that provies smart completion for function arguments. Works perfectly with *yasnippets*.
 #+BEGIN_SRC emacs-lisp
 (setq c-default-style '((java-mode . "java") (other . "awk")))
@@ -754,6 +782,8 @@ Surprisingly I don't have all that much tweaks in here. Commenting out regions o
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (set-default 'semantic-case-fold t)
 #+END_SRC
+The most of the configuration work is done in each of the following sections. There I extensively have tweaked the environment for each language so that editing it is as easy as possible. There are also several "feature" oriented sections that target some cool feature provided by your standard IDE but by Emacs by default.
+
 
 ** Keybindgs
 #+BEGIN_SRC emacs-lisp :results none
@@ -913,7 +943,7 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 ** CMake
 
 A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant to the eyes. I don't really need more as I don't spend that much time writing /cmake/ scripts.
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (require 'cmake-mode)
 
 (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
@@ -926,6 +956,8 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 #+END_SRC
+
+
 
 
 
@@ -1065,7 +1097,9 @@ From time to time I have to write HTML and other 'web-stuff' and this setup gets
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 #+END_SRC
-** Vuejs
+
+
+** VueJS
 
 #+BEGIN_SRC emacs-lisp :results none
 ;; (require 'multi-web-mode)
@@ -1074,6 +1108,8 @@ From time to time I have to write HTML and other 'web-stuff' and this setup gets
 ;;                   (css-mode "<style *>" "</style>")))
 ;; (add-to-list 'auto-mode-alist '("\\.vue\\'" . multi-web-mode))
 #+END_SRC
+
+
 ** Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
 - [[https://github.com/joaotavora/yasnippet][yasnippets]]
@@ -1239,11 +1275,22 @@ if __name__ == \'__main__\':
 (quickrun-add-command "c++/warnings"
   '((:command . "g++")
     (:exec    . (
-				 "%c -std=c++17 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic  %o -o %e %s"
-				 "%e %a"))
+                 "%c -std=c++17 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic  %o -o %e %s" "%e %a"))
     (:remove  . ("%e"))
 	(:description "Compile C++ file with g++ and all of the warnings."))
   :default "c++")
+
+(quickrun-add-command "python/virtualenv"
+  '((:command . "python_virt")
+    (:exec    . (
+                 "/usr/bin/env python %s"))
+    (:description "Run python with virtual env"))
+  :default "python")
+
+
+
+
+
 
 #+END_SRC
 
@@ -1256,7 +1303,15 @@ if __name__ == \'__main__\':
 #+END_SRC
 
 
+** LSP
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'lsp-mode)
+#+END_SRC
+
+
 * Text editing
+
 ** Alt-moving selection
 Another 'standard feature' of most editors but in emacs we have to set it up because this is how we roll. This is just moving the selected block up and down while holding /Alt/
 - [[https://github.com/rejeep/drag-stuff.el][drag-stuff]]
@@ -1390,7 +1445,7 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 
 ;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons.el")
 ;; (load-file "/home/arnaud/core.d/code/all-the-icons.el/all-the-icons-faces.el")
-(load-file "/home/arnaud/code_sys/emacs-neotree-fork/neotree.el")
+;; (load-file "/home/arnaud/code_sys/emacs-neotree-fork/neotree.el")
 
 (require 'neotree)
 (require 'all-the-icons)
@@ -1406,7 +1461,7 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 
 
 ;;(advice-add 'display-graphic-p :override (lambda () t))
-;; (setq neo-theme  'icons)
+(setq neo-theme  'icons)
 
 
 (defun neotree-project-dir ()
@@ -1432,7 +1487,7 @@ My tree browser of choice. Was blown away when I found that emacs has the abilit
 
 (setq neo-window-width 40)
 (setq neo-window-fixed-size nil)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+;; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-show-hidden-files t)
 ;;(setq projectile-switch-project-action 'neotree-projectile-action)
 (setq neo-theme 'icons)
@@ -1626,7 +1681,6 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 
 
 ** Magit
-
 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'magit)
@@ -2350,7 +2404,7 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 
 
 ** IEdit and Visual Regexp
-*** COMMENT IEdit
+*** IEdit
 IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with ~M-i~ and while editing the marked region, all other occurrences will be changed accordingly.
 - [[https://github.com/victorhge/iedit][iedit]]
 #+BEGIN_SRC emacs-lisp :results none
@@ -2416,7 +2470,6 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 #+BEGIN_SRC emacs-lisp :results none
 (require 'prodigy)
 
-
 (prodigy-define-service
   :name "Python Server"
   :command "python"
@@ -2434,8 +2487,6 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
   :tags '(server)
   :stop-signal 'sigkill
   :kill-process-buffer-on-stop t)
-
-
 
 #+END_SRC
 
@@ -2550,8 +2601,6 @@ Some extra export backends for org-mode that come in handy.
 ;; 	  '("png" "jpg" "jpeg" "pdf" "txt"))
 
 
-
-
 #+END_SRC
 *** Org-extras
 Remove headlines with =:no_title:= tag.
@@ -2570,7 +2619,7 @@ Remove headlines with =:no_title:= tag.
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-reverse-note-order t)
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/Documents/orgfiles/todos/todos.org" "Captured TODOS")
+      '(("t" "Todo" entry (file+headline "~/Documents/orgfiles/todos/todos.org" "Captured")
          "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
         ("i" "Idea" entry (file+headline "~/Documents/orgfiles/notes.org" "Someday/Maybe")
          "* IDEA %?\nAdded: %U\n" :prepend t :kill-buffer t)
@@ -2585,7 +2634,6 @@ This style of presenting looks cool but I don't use it that much. Still, I want 
 
 (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
 (setq org-reveal-mathjax t)
-
 #+END_SRC
 *** Latex classes
 
@@ -2657,7 +2705,6 @@ For some reason I must set the right /python/ command each time I start emacs. T
 
 (defun org-include-img-from-pdf (&rest _)
   "Convert pdf files to image files in org-mode bracket links.
-
     # ()convertfrompdf:t # This is a special comment; tells that the upcoming
                          # link points to the to-be-converted-to file.
     # If you have a foo.pdf that you need to convert to foo.png, use the
@@ -2782,6 +2829,7 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
 
 #+END_SRC
 
+
 ** Session persistence
 Sometimes it gets really annoying when I close my emacs and have a bunch of buffers opened, the next time I launch the program, the buffers are gone and I have to open them again. Mind-blowing, I know, "So why do you close emacs?" - shut up, that's not the point . This package addresses my issues. I can even have custom sessions and open whole groups of tabs all at once
 From the documentation:
@@ -2811,6 +2859,7 @@ From the documentation:
       wg-mode-line-decor-right-brace "]"
       wg-mode-line-decor-divider ":")
 #+END_SRC
+
 
 ** Modeline
 Making the modeline a little bit prettier and more spece efficient than the default. I should say that I am kind of guilty for liking the [[http://spacemacs.org][Spacemacs]] modeline a little too much. My current setup is more or less resembling that. The current package that I am using is [[https://github.com/TheBB/spaceline][spaceline]] which as far as I understand is created for people like me.
@@ -2862,6 +2911,7 @@ Some of the packages for modelines that I've gone over are:
 ;; (spaceline-all-the-icons-theme)
 #+END_SRC
 
+
 ** Vimacs
 /Vim+Emacs/
 \\
@@ -2884,6 +2934,7 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
 
 (bind-key* "M-<f13>" 'quick-evil)
 #+END_SRC
+
 
 ** Which key
 Now, I generally know my Emacs keybindings but from time to time I have to look somethings up. The [[https://github.com/justbur/emacs-which-key][which-key]] packages in awesome in this regard. If I the start of some keybinding, a popup will show me how can I follow the binding and which functions will be I executing if I type something.
@@ -2909,15 +2960,14 @@ Now, I generally know my Emacs keybindings but from time to time I have to look 
 
 #+END_SRC
 
+
 ** Diminish
 The modeline can get pretty cluttered with minor modes pretty quickly. To avoid that I use the [[https://github.com/emacsmirror/diminish][diminish]] package. It allows me to specify modes that will not have any text in the modeline.
 #+BEGIN_SRC emacs-lisp :results none
 (require 'diminish)
-
 #+END_SRC
 
-***  Diminishing modes
-
+*** Diminishing modes
 #+BEGIN_SRC emacs-lisp :results none
 
 (defun diminish-em-all ()
@@ -2963,9 +3013,13 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
   (message "The modes should be away now!"))
 
 (diminish-em-all)
-(bind-key* "M-j d" 'diminish-em-all)
-
 #+END_SRC
+
+*** Keybindings
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "M-j d" 'diminish-em-all)
+#+END_SRC
+
 
 ** Highlight Symbol
 
@@ -2975,13 +3029,9 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 #+END_SRC
 *** Faces
 #+BEGIN_SRC emacs-lisp :results none
-
-
 (setq highlight-symbol-colors (quote ("cyan")))
 
 ;; (face-spec-set 'highlight-symbol-face '((t (:background "royal blue" :foreground "black"))))
-
-
 ;; (face-spec-set 'highlight-indentation-current-column-face '((t (:background "gray"))))
 ;; (face-spec-set 'highlight-symbol-face '((t (:background "light blue"))))
 
@@ -3148,5 +3198,6 @@ This things will track which command is being run and how many times... I just t
 
 
 
-#  LocalWords:  Yagist QOL
-
+#  LocalWords:  Yagist QOL VueJS Quickrun LSP Savehist Recentf GDB Iy
+#  LocalWords:  Uniquify Saveplace Ediff Docview Avy IEdit Swiper SRC
+#  LocalWords:  IMenu Magit Gitignore Modeline Vimacs

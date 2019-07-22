@@ -6,8 +6,21 @@
 (package-initialize)
 
 (setq vc-follow-symlinks t)
-(setq gc-cons-threshold 100000000)
-(org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
+;; (setq gc-cons-threshold 100000000)
+(setq debug-on-error t)
+
+(defun my-minibuffer-setup-hook ()
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun my-minibuffer-exit-hook ()
+  (setq gc-cons-threshold 800000))
+
+(add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+(add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+
+(let ((gc-cons-threshold most-positive-fixnum))
+  (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org")))
+
 
 
 ;; This 'load-file' is added by code-manager 

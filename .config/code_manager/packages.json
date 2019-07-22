@@ -425,6 +425,7 @@
             "curl":{
                 "url" :  "http://dist.schmorp.de/rxvt-unicode/Attic/rxvt-unicode-9.22.tar.bz2"
             },
+            "extract" : true,
             "install": "script",
             "script": "install_rxvt-unicode.sh",
             "script_args": "-p /usr"
