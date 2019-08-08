@@ -455,11 +455,13 @@ nodejs
 notify-osd
 nvidia-opencl-icd
 nxt-firmware
+obfsproxy
 offlineimap
 openbox-menu
 openmpi-bin
 openssh-server
 openvpn
+oracle-java12-installer
 pandoc
 parted
 passwd
@@ -476,6 +478,7 @@ plantuml
 polari
 portaudio19-dev
 procps
+proxychains
 pulseaudio
 pv
 python-dev
@@ -485,6 +488,7 @@ python-xcbgen
 python3-audit
 python3-blist
 python3-bluez
+python3-bs4
 python3-btrees
 python3-cairo
 python3-cairo-dbg
@@ -595,6 +599,7 @@ testdisk
 texlive-full
 tmux
 toilet
+tor
 totem
 totem-plugins
 tracker
