@@ -47,11 +47,11 @@ interval=5
 
 [separator]
 
-[ip]
-command=i3ipadress
-interval=3600
-label=🖧
-color=#50C878
+# [ip]
+# command=i3ipadress
+# interval=3600
+# label=🖧
+# color=#50C878
 
 
 [separator]

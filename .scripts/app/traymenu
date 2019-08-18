@@ -1,0 +1,22 @@
+
+
+
+
+commands=("Weather" "IP Address")
+
+command=$(printf '%s\n' "${commands[@]}" | dmenu -i -p ">" -fn Monospace-16 -l 30)
+
+case ${command} in
+    "Weather")
+        i3weather
+        ;;
+    "IP Address")
+        echo $(hostname)
+        ;;
+    *)
+        echo "Unknown command"
+        exit 1
+
+
+        
+esac
