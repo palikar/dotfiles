@@ -52,7 +52,7 @@ if [ -f ~/.inputrc ]; then
 fi
 
 if [ -f ~/.paths ]; then
-    ~/.scripts/pathloader
+    ~/.scripts/app/pathloader
 fi
 
 if [ -f ~/.git-completion.bash ]; then

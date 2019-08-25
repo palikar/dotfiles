@@ -2,7 +2,7 @@
 
 
 
-while getopts c:b:s: option
+while getopts c:b:s:r option
 do
     case "${option}"
     in
@@ -15,6 +15,9 @@ do
         s)
             PAPE=$(ls "${WALLPAPER_DIR}/"*.{jpg,png,bmp} | sxiv -tio)
             cp "${PAPE}" ${WALLPAPER} && feh --bg-scale ${WALLPAPER} ;;
+        r)
+            feh --bg-scale ${WALLPAPER}
+            ;;
 
     esac
 done

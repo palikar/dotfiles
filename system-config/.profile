@@ -3,13 +3,9 @@ if [ -f ~/.env ]; then
     . ~/.env
 fi
 
+changepape -r
 
 source setupxkbd
 
-addtopath () {
-    if [ -f $1 ] || [ -d $1 ] ; then
-        export PATH=$PATH:$1
-    fi
-    
-}
+setterm -powersave off -blank 0
 

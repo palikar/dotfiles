@@ -2,20 +2,20 @@
 
 
 save_git_dirs() {
-	if [ -f "${DOTFILES_DIR}/setuper/$2" ]; then
-		rm "${DOTFILES_DIR}/setuper/$2"			
-	fi
+    if [ -f "${DOTFILES_DIR}/setuper/$2" ]; then
+	rm "${DOTFILES_DIR}/setuper/$2"			
+    fi
+    
+    for dir in $(ls $1)
+    do
+	[ -d $1/$dir ] || continue
 	
-	for dir in $(ls $1)
-	do
-		[ -d $1/$dir ] || continue
-		
-		cd $1/$dir
+	cd $1/$dir
 
-		if [ -d ./.git ]; then
-			echo $(git config --get remote.origin.url) >> ${DOTFILES_DIR}/setuper/$2
-		fi
-	done
+	if [ -d ./.git ]; then
+	    echo $(git config --get remote.origin.url) >> ${DOTFILES_DIR}/setuper/$2
+	fi
+    done
 }
 
 

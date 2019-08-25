@@ -9,5 +9,4 @@ fi
 
 PACKAGES=$(emacsclient -e "(symbol-value 'package-activated-list)" | sed "s/(/(setq package-list '(/g" | sed "s|)|))|g")
 PACKAGES="; starting-packages\n${PACKAGES}\n; ending-packages"
-# echo -ne $PACKAGES
 sed "/starting-packages/,/ending-packages/c${PACKAGES}" "${DOTFILES_DIR}/.emacs.d/myinit.org" -i

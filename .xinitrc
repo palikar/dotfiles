@@ -14,7 +14,7 @@ xset r rate 230 35
 
 xset s off
 xset -dpms
-xset s noblank
+setterm -blank 0 -powersave off -powerdown 0
 
 setxkbmap -layout de,bg -variant "deadacute, phonetic"
 setxkbmap -option caps:ctrl_modifier

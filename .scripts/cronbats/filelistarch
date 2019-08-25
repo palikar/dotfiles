@@ -1,0 +1,15 @@
+#!/bin/sh
+
+mounter 2> /dev/null
+
+
+if grep -qs "core.d/Snap" /proc/mounts
+then
+    cd $HOME/code/scripts/
+    ./snapshot.sh -o ~/core.d/Snap/System_Lists/
+    displaymsg "File list archive done!"
+    echo "Perform arch"
+else
+    displaymsg "FIle list archive failed!"
+    echo "Leave msg"
+fi

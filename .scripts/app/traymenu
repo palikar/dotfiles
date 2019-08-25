@@ -1,18 +1,95 @@
+#!/bin/bash
 
 
 
-
-commands=("Weather" "IP Address")
+commands=("Weather" "IP Address" "Reset background" "System Info" "Date" "Wifi" "Change keyboard" "Music" "Dropbox"
+          "Battle" "Toggle Caps Lock" "Mount" "Unmount")
 
 command=$(printf '%s\n' "${commands[@]}" | dmenu -i -p ">" -fn Monospace-16 -l 30)
 
 case ${command} in
+
+    "Reset background")
+        changepape -r
+        ;;
+
+    
     "Weather")
-        i3weather
+        location="Karlsruhe"
+        curl -s wttr.in/$location > ~/.weatherreport
+        P1=$(printf "%s " "$(sed '16q;d' ~/.weatherreport | grep -wo "[0-9]*%" | sort -n | sed -e '$!d' | sed -e "s/^/☔ /g" | tr -d '\n')")
+        P2=$(sed '13q;d' ~/.weatherreport | grep -o "m[0-9]\\+" | grep -o "[0-9]\\+" | sort -n  | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print "❄️", $1 "°","☀️", $2 "°"}')
+        notify-send.py -t 5000 -r 0 --replaces-process "Weather" -u normal -a "weather" "Weather Report" "$P1 $P2\nLocation: $location"
         ;;
+    
+    
     "IP Address")
-        echo $(hostname)
+        local_ip=$(i3ipadress)
+        public_ip=$(GET http://ipinfo.io/ip)
+        notify-send.py -t 7000 -r 0 --replaces-process "ip" -u normal -a "ip" "IP Address" "Local: $local_ip\nPublic: $public_ip"
         ;;
+
+    
+    "System Info")
+        wifi=$(i3wifi | head -n1)
+        bat=$(i3battery)
+        temp=$(i3cputemp)
+        ram=$(i3ramusage)
+        hogs=$(ps axch -o cmd:10,%cpu --sort=-%cpu | head)
+        home=$(i3disk $HOME)
+        core=$(i3disk $HOME/core.d/)
+        notify-send.py -t 7000 -r 0 --replaces-process "Battery" -u normal -a "batters" "System Info" "Laptop: $bat $wifi\nSystem: $temp $ram\nDisk: :$home  :$core"
+        ;;
+
+    
+    "Date")
+        cal=$(i3calendar)
+        tim=$(echo $(date '+%H:%M'))
+        notify-send.py -t 7000 -r 0 --replaces-process "Calendar" -u normal -a "calendar" "Calendar Info" "📅 $cal  🕒 $tim"
+        ;;
+
+    
+    "Wifi")
+        networkmanager_dmenu
+        ;;
+
+    
+    "Change keyboard")
+        i3changelayout
+        ;;
+
+    
+    "Music")
+        ;;
+
+    
+    "Dropbox")
+        commands=("status" "start" "stop")
+        command=$(printf '%s\n' "${commands[@]}" | rofi -dmenu -i -p ">" -fn Monospace-16 -l 3)
+        out=$(dropbox $command)
+        notify-send.py -t 7000 -r 0 --replaces-process "Dropbox" -u normal -a "dropbox" "Dropbox" "Output: $out"
+        ;;
+
+    "Battle")
+        battle
+        notify-send.py -t 7000 -r 0 --replaces-process "Battle" -u normal -a "Battle" "Battle" "Let the games begin!"
+        ;;
+
+    
+    "Toggle Caps Lock")
+        xdotool key Caps_Lock
+        ;;
+
+    "Mount")
+        dmenumout
+        ;;
+
+
+    "Unmount")
+        dmenuunmount
+        ;;
+
+    
     *)
         echo "Unknown command"
         exit 1

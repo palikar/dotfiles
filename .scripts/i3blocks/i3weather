@@ -6,10 +6,10 @@ location="Karlsruhe"
 
 [ "$BLOCK_BUTTON" = "1" ] && $TERMINAL -e popweather
 
-ping -q -w 1 -c 1 "$(ip r | grep default | tail -1 | cut -d ' ' -f 3)" >/dev/null || exit
+ping -q -w 1 -c 1 "$(ip r | grep default | tail -1 | cut -d ' ' -f 3)" >/dev/null || echo "No server"
 
 curl -s wttr.in/$location > ~/.weatherreport
 
-# printf "%s" "$(sed '16q;d' ~/.weatherreport | grep -wo "[0-9]*%" | sort -n | sed -e '$!d' | sed -e "s/^/☔ /g" | tr -d '\n')"
+printf "%s" "$(sed '16q;d' ~/.weatherreport | grep -wo "[0-9]*%" | sort -n | sed -e '$!d' | sed -e "s/^/☔ /g" | tr -d '\n')"
 
 sed '13q;d' ~/.weatherreport | grep -o "m[0-9]\\+" | grep -o "[0-9]\\+" | sort -n  | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print "❄️",$1 "°","☀️",$2 "°"}'

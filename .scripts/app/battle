@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ws1="1: "
 ws2="2: "

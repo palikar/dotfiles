@@ -111,57 +111,38 @@ exec_always flock -w1 ~/.config/i3/scratchpad/lockfile ~/.config/i3/scratchpad/p
 
 # #---- Bindings ----# #
 
-bindsym $mod+Shift+u            scratchpad show
-
-Bindsym $mod+Shift+p            exec /home/arnaud/.scripts/setupxkbd
-bindsym $mod+Shift+r            restart 
-
 bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Are you sure you want to reboot?" "$reboot"
-
 bindsym $mod+Shift+Escape 	exec --no-startup-id prompt "Are you sure you want to leave i3?" "i3-msg exit"
-
 bindsym $mod+Shift+F12		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
-
 bindsym $mod+Shift+F11		exec --no-startup-id prompt "Are you sure you want to suspend?" "$suspend"
-
 bindsym $mod+Shift+F10		exec --no-startup-id prompt "Are you sure you want to hibernate?" "$hibernate"
-
 bindsym $mod+Shift+F8		exec --no-startup-id toggleautolocking
-
 bindsym $mod+Return		exec $term
 bindsym $mod+Shift+Return	exec samedir
-
 bindsym $mod+Home 	        floating toggle
-
-bindsym $mod+q	                kill
-bindsym $mod+Shift+q            kill
-
-bindsym $mod+f                  fullscreen toggle
-
-bindsym $mod+d	                exec rofi -show run
-bindsym $mod+Shift+d            exec rofi -show drun
 bindsym $mod+Shift+Tab          exec rofi -show window
-
-bindsym $mod+Shift+c            reload
-
-bindsym $mod+Shift+l	        exec --no-startup-id lockscreen
-
-bindsym $mod+b                  bar mode toggle
-
 bindsym $mod+space              exec --no-startup-id i3changelayout
+bindsym $mod+Shift+Prior        gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+Next		gaps inner current set 15; gaps outer current set 0
 
+bindsym $mod+Shift+a            exec --no-startup-id i3swap
+bindsym $mod+Shift+c            reload
+bindsym $mod+Shift+e            exec --no-startup-id dmenuunicode
+bindsym $mod+Shift+l	        exec --no-startup-id lockscreen
+bindsym $mod+Shift+u            scratchpad show
+Bindsym $mod+Shift+p            exec --no-startup-id setupxkbd
+bindsym $mod+Shift+r            restart 
+bindsym $mod+Shift+q            kill
+bindsym $mod+Shift+d            exec rofi -show drun
 bindsym $mod+Shift+v            split v
 bindsym $mod+Shift+h            split h
-
-
 bindsym $mod+Shift+t            layout toggle split
-
-bindsym $mod+Shift+w            exec --no-startup-id python3.6 $HOME/.scripts/networkmanager_dmenu
-                                
+bindsym $mod+Shift+w            exec --no-startup-id networkmanager_dmenu
 Bindsym $mod+Shift+s            exec --no-startup-id screensetup
-bindsym $mod+Shift+e            exec --no-startup-id dmenuunicode
-bindsym $mod+Shift+a            exec --no-startup-id i3swap
-                                
+bindsym $mod+Shift+b            bar mode toggle
+bindsym $mod+Shift+f            fullscreen toggle
+
+bindsym $mod+d	                exec rofi -show run
 bindsym $mod+r                  exec --no-startup-id $term -e ranger
 bindsym $mod+e                  exec --no-startup-id emacsclient -c
 bindsym $mod+w                  exec --no-startup-id firefox
@@ -170,22 +151,13 @@ bindsym $mod+o                  exec --no-startup-id spotify
 bindsym $mod+t                  exec --no-startup-id $term -e sudo htop
 bindsym $mod+m                  exec --no-startup-id gnome-system-monitor
 bindsym $mod+l            	exec --no-startup-id openfolder
+bindsym $mod+c            	exec --no-startup-id traymenu
 
-
-
-
-
-
+bindsym --release Shift+Print   exec gnome-screenshot -a
 # bindsym --release Print       exec scrot -z "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
 # bindsym --release Shift+Print exec scrot -z -s "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
-bindsym --release Shift+Print exec gnome-screenshot -a
-
 
 # #---- Gaps ----# #
-
-bindsym $mod+Shift+Prior		gaps inner current set 0; gaps outer current set 0
-bindsym $mod+Shift+Next		        gaps inner current set 15; gaps outer current set
-
 
 # set $stacking-mode Window
 mode "  " {
@@ -242,8 +214,8 @@ bindsym $mod+Shift+Right                move container to workspace next
 bindsym $mod+Shift+Left               	move container to workspace prev
 bindsym $mod+Prior		        workspace prev
 bindsym $mod+Next		        workspace next
-bindsym $mod+Shift+Prior	        move container to workspace prev
-bindsym $mod+Shift+Next		        move container to workspace next
+# bindsym $mod+Shift+Prior	        move container to workspace prev
+# bindsym $mod+Shift+Next		        move container to workspace next
 
 # Switch to workspace
 bindsym $mod+1 workspace $ws1

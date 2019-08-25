@@ -684,12 +684,16 @@ These packages add some minor tweak to EMACS to make text editing easier.
 (require 'beacon)
 (beacon-mode 1)
 #+END_SRC
+
+
 ** Hungry-delete
 [[https://github.com/nflath/hungry-delete][hungry-delete]] - deletes all of the white spaces that are 'on the way' after hitting /delete/ or /backspace/. It's weird at first but then you get use to it and kinda crave it and feel its lack if not there.
 #+BEGIN_SRC emacs-lisp :results none
 (require 'hungry-delete)
 (global-hungry-delete-mode)
 #+END_SRC
+
+
 ** Expand Region
 [[https://github.com/magnars/expand-region.el][expand-region]] - kinda of a wannabe of that one vim functionality where you select everything between two braces with few simple strokes. This is more powerful but not that precise, to put it mildly. Not that it's not good. Just hit key binding and you can grow the region in both sides by 'semantic increments', whatever that's supposed to mean.
 #+BEGIN_SRC emacs-lisp
@@ -699,6 +703,7 @@ These packages add some minor tweak to EMACS to make text editing easier.
 #+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c =" 'er/expand-region)
 #+END_SRC
+
 
 ** CRUX
 CRUX is an abrabiation for /A Collection of Ridiculously Useful eXtensions for Emacs/, so yeah, pretty self-explenatory. Its just a collection of functions that make your emacs-live a little bit easier.
@@ -716,6 +721,7 @@ CRUX is an abrabiation for /A Collection of Ridiculously Useful eXtensions for E
 (bind-key* "C-c t" 'crux-visit-term-buffer)
 #+END_SRC
 
+
 ** Q4
 Through this packages, I can browse 4chan (only =/g= of course!) threads in my Emacs. It uses the json API of 4chan and renders everything in the editor itself. It even provides some nifty features that are not available in the vanilla 4chan website. I can browser through the replies of a given post, quickly jump to replies of replies and then go back up and also download (through /wget/) images/webms from 4chan directly from here, in my editor. God, I love Emacs.
 
@@ -728,6 +734,7 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
 
 ;; (bind-key* "M-j q" 'q4/browse-board)
 #+END_SRC
+
 
 ** Google This
 This is absolutely a genius thing! Mark something, simple key-stroke, BAM!! Google! You are there! You have no idea how much copying and windows switching this package saves. Again, for intuition sake, =C-c g= is the prefix. After that:
@@ -754,6 +761,7 @@ I also frequanlty use Zeal. It's an application housing tons of usefull document
 (bind-key* "C-c g c" 'google-this-cpp-reference)
 (bind-key* "C-c g z " 'zeal-at-point)
 #+END_SRC
+
 
 ** PDF-Tools
 Viewing pdf files in emacs! Not really indented for big and heavy files but when I have to check on something is does the trick. If emacs is compiled with [[https://imagemagick.org/index.php][ImageMagic]], the provided features are much more.
@@ -3201,3 +3209,4 @@ This things will track which command is being run and how many times... I just t
 #  LocalWords:  Yagist QOL VueJS Quickrun LSP Savehist Recentf GDB Iy
 #  LocalWords:  Uniquify Saveplace Ediff Docview Avy IEdit Swiper SRC
 #  LocalWords:  IMenu Magit Gitignore Modeline Vimacs
+x

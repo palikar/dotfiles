@@ -1,0 +1,7 @@
+#!/bin/sh
+
+TEMP="/tmp/temp_wal.jpg"
+
+convert $WALLPAPER  -fill white -pointsize 125 -stroke black -strokewidth 2 -gravity center -annotate +0+0 "$1" $TEMP
+
+feh --bg-scale $TEMP

@@ -45,7 +45,7 @@ signal=10
 command=i3battery
 interval=5
 
-[separator]
+# [separator]
 
 # [ip]
 # command=i3ipadress
@@ -56,11 +56,11 @@ interval=5
 
 [separator]
 
+
 [systeminfo]
 command=i3systeminfo
 interval=5
 
-[separator]
 
 [disky_root]
 label=:
@@ -68,13 +68,12 @@ command=i3disk $HOME
 interval=30
 color=#859900
 
-[separator]
-
 [disky_core]
 label=:
 command=i3disk $HOME/core.d
 interval=30
 color=#1793D1
+
 
 [separator]
 
