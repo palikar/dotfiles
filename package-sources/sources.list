@@ -2,10 +2,6 @@ deb http://ftp.uni-stuttgart.de/debian/ testing main non-free contrib
 
 deb-src http://ftp.uni-stuttgart.de/debian/ testing main non-free contrib
 
-deb http://security.debian.org/debian-security testing/updates main contrib non-free
-
-deb-src http://security.debian.org/debian-security testing/updates main contrib non-free
-
 deb http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 
 deb-src http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free

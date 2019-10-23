@@ -1,0 +1,103 @@
+#!/usr/bin/env python
+from subprocess import Popen, PIPE
+import sys
+import os
+
+def menu_piper(string, title, mtype):
+    p1 = Popen(["echo", "-e", string], stdout = PIPE)
+    if mtype == "rofi":
+        cmd = ["rofi", "-dmenu", "-p", title]
+    elif mtype == "fzf":
+        cmd = ["fzf", "--header", title]
+    p2 = Popen(cmd, stdin = p1.stdout, stdout = PIPE)
+    p1.stdout.close()
+    out = p2.communicate()
+    return out[0].decode()
+
+def btpiper(cmd):
+    fcmd = ["echo" , cmd]
+    p1 = Popen(fcmd, stdout = PIPE)
+    p2 = Popen("bluetoothctl", stdin = p1.stdout, stdout = PIPE)
+    p1.stdout.close()
+    out = p2.communicate()
+    return out[0].decode()
+
+def get_devices():
+    devfull = btpiper("devices")
+    devlist = {}
+    for i in devfull.splitlines():
+        if  i.startswith("Device"):
+            full = i.split(" ", 2)
+            devlist[full[2]] = full[1]
+    return devlist
+
+def get_connected(fdevs):
+    info = btpiper("info")
+    cdevs = []
+    for i in info.splitlines():
+        if  i.startswith("Device"):
+            full = i.split(" ", 2)[1]
+            cdevs.append(full)
+
+    connected_devs = {}
+    for cdev in cdevs:
+        for key, val in fdevs.items():
+            if cdev == val:
+                connected_devs[key] = val
+                break
+
+    return(connected_devs)
+
+def connection_bt(devs, connected_devs, mtype, action):
+    if action == "connect":
+        ckeys = [k for k in connected_devs.keys()]
+        pkeys = [k for k in devs.keys() if k not in ckeys]
+        if len(ckeys) > 0:
+            title = "Bluetooth: " + ckeys[0]
+        else:
+            title = "Bluetooth"
+    elif action == "disconnect":
+        pkeys = connected_devs.keys()
+        title = "Bluetooth"
+
+    dkeys = "\n".join(pkeys)
+    dev_selected = menu_piper(dkeys, title, mtype).strip()
+    if dev_selected != "":
+        cmd = action + " " + devs[dev_selected]
+        btpiper(cmd)
+
+devs = get_devices()
+connected_devs = get_connected(devs)
+con_keys = [k for k in connected_devs.keys()]
+
+commands = ["connect", "disconnect", "power", "menu"]
+
+# Set default menu picker based on X availability
+try:
+    os.environ['DISPLAY'].strip()
+    is_x = True
+    menu_type = "rofi"
+except KeyError:
+    is_x = False
+    menu_type = "fzf"
+
+# Allow menu to be toggled with commandline argument
+if len(sys.argv) > 1:
+    if sys.argv[1] == "-r":
+        menu_type = "rofi"
+    elif sys.argv[1] == "-f":
+        menu_type = "fzf"
+
+if len(con_keys) > 0:
+    todo = menu_piper("connect\ndisconnect\npower", "Bluetooth - " + con_keys[0], menu_type).strip()
+else:
+    todo = menu_piper("connect\ndisconnect\npower", "Bluetooth", menu_type).strip()
+
+
+if todo in commands:
+    if todo == "power":
+        powerStat = menu_piper("on\noff", connected_devs, menu_type).strip()
+        cmd = todo + " " + devs[powerStat]
+        btpiper(cmd)
+    elif todo == "disconnect" or todo == "connect":
+        connection_bt(devs, connected_devs, menu_type, todo)

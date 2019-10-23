@@ -2,8 +2,8 @@
 
 
 
-commands=("Weather" "IP Address" "Reset background" "System Info" "Date" "Wifi" "Change keyboard" "Music" "Dropbox"
-          "Battle" "Toggle Caps Lock" "Mount" "Unmount")
+commands=("Weather" "IP Address" "Reset background" "System Info" "Select Wallpaper" "Date" "Wifi" "Change keyboard" "Music" "Dropbox"
+          "Battle" "Toggle Caps Lock" "Mount" "Unmount" "Pass")
 
 command=$(printf '%s\n' "${commands[@]}" | dmenu -i -p ">" -fn Monospace-16 -l 30)
 
@@ -11,6 +11,10 @@ case ${command} in
 
     "Reset background")
         changepape -r
+        ;;
+
+    "Select Wallpaper")
+        selectpape
         ;;
 
     
@@ -88,6 +92,11 @@ case ${command} in
     "Unmount")
         dmenuunmount
         ;;
+
+    
+    # "Pass")
+    #     passmenu
+    #     ;;
 
     
     *)

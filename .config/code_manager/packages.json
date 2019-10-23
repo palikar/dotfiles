@@ -20,7 +20,7 @@
             "dotfiles",
             "jgrapher",
             "MARS",
-            "palikar.github.io",
+            "blog-hugo-files",
             "pollution",
             "projector",
             "smarthomeworks",
@@ -122,7 +122,9 @@
 	    "rofi",
 	    "ibus",
 	    "libgtk2.0-dev",
-	    "youtube-dl"]
+	    "youtube-dl"
+        ]
+        
     },	
 
     "packages": {
@@ -132,9 +134,8 @@
             "git":{
                 "url" :  "https://github.com/palikar/arnaud-framer.git"
             },
-            "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "install": "emacs",
+            "el_files" : ["arnaud-framer.el"]
         },
         
         "vsexp": {
@@ -153,18 +154,17 @@
                 "url" :  "https://github.com/palikar/dotfiles"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo My dot files can be installed with 'sh ./setuper/setup.sh'"
         },
         
         "emacs-neotree": {
             "fetch": "git",
             "git":{
-                "url" :  "https://github.com/jaypei/emacs-neotree/"
+                "url" :  "https://github.com/jaypei/emacs-neotree/",
+                "checkout": "dev"
             },
-            "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "install": "emacs",
+            "el_files" : ["neotree.el"]
         },
         
         "jgrapher": {
@@ -173,28 +173,28 @@
                 "url" :  "https://github.com/palikar/jgrapher.git"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo 'No install command'"
         },
         
         "MARS": {
             "fetch": "git",
             "git":{
-                "url" :  "https://github.com/BodenUnits/MARS"
+                "url" :  "https://github.com/BodenUnits/MARS",
+                "checkout" : "stanislav"
             },
-            "install": "command",
-            "command": "make -j4",
-            "reinstall_command": "make -j4"
+            "install": "make",
+            "install": "make",
+            "make_extra_targets" : ["all"],
+            "make_args": ["-j4"]
         },
         
-        "palikar.github.io": {
+        "blog-hugo-files": {
             "fetch": "git",
             "git":{
-                "url" :  "https://github.com/palikar/blog_hugo_files.git"
+                "url" :  "https://github.com/palikar/blog-hugo-files.git"
             },
             "install": "command",
-            "command": "hugo",
-            "reinstall_command": "hugo"
+            "command": "hugo"
         },
         
         "pollution": {
@@ -203,8 +203,7 @@
                 "url" :  "https://github.com/palikar/PollutionDev"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo The thesis can be generated with sh ./Thesis/compile.sh"
         },
         
         "projector": {
@@ -212,9 +211,8 @@
             "git":{
                 "url" :  "https://github.com/palikar/projector.git"
             },
-            "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "install": "setup.py",
+            "setup_args": []
         },
         
         "smarthomeworks": {
@@ -223,8 +221,7 @@
                 "url" : "https://github.com/palikar/HomeworksSmart"
             },
             "install": "command",
-            "command": "webpack --progress",
-            "reinstall_command": "webpack --progress"
+            "command": "webpack-cli --progress"
         },
         
         "smart_memory_location": {
@@ -232,9 +229,9 @@
             "git":{
                 "url" :  "https://github.com/palikar/smart_memory_location.git"
             },
-            "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "install": ["cmake", "make"],
+            "make_args": ["-j4"],
+            "make_extra_targets" : []
         },
         
         "urxvt-perls": {
@@ -243,18 +240,7 @@
                 "url" :  "https://github.com/muennich/urxvt-perls"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
-        },
-        
-        "blog-hugo-files": {
-            "fetch": "git",
-            "git":{
-                "url" :  "https://github.com/palikar/blog-hugo-files"
-            },
-            "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo copy files in the urxvt load-directroy"
         },
         
         "navigationfx": {
@@ -263,8 +249,7 @@
                 "url" :  "https://github.com/palikar/NavigationFX"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo install navigationfx with java"
         },
         
         "gameengine": {
@@ -273,8 +258,7 @@
                 "url" :  "https://github.com/palikar/GameEngine"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo install navigationfx with java"
         },
         
         "advancedresoucemenaging": {
@@ -283,7 +267,6 @@
                 "url" :  "https://github.com/palikar/AdvancedResouceMenaging"
             },
             "install": "command",
-            "command": "echo 'No install command'",
             "reinstall_command": "echo 'No install command'"
         },
         
@@ -292,11 +275,9 @@
             "git":{
                 "url" :  "https://github.com/palikar/ArffPar"
             },
-            "install": ["cmake", "command", "make"],
+            "install": ["cmake", "make"],
             "make_args" : "-j4",
-            "make_extra_targets": [],
-            "command" : "echo 'this is sick'"
-
+            "make_extra_targets": []
         },
         
         "tictacminimax": {
@@ -305,8 +286,7 @@
                 "url" :  "https://github.com/palikar/TicTacMiniMax"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo install the project with java"
         },
         
         "stateconifiggui": {
@@ -315,8 +295,7 @@
                 "url" :  "https://github.com/palikar/StateConifigGUI"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo install the project with java"
         },
         
         "promanager": {
@@ -325,8 +304,7 @@
                 "url" :  "https://github.com/palikar/ProManager"
             },
             "install": "command",
-            "command": "webpack --progress",
-            "reinstall_command": "webpack --progress"
+            "command": "webpack-cli --progress"
         },
         
         "mandelbrotworks": {
@@ -334,9 +312,9 @@
             "git":{
                 "url" :  "https://github.com/palikar/MandelbrotWorks"
             },
-            "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "install": ["cmake", "make"],
+            "make_args" : "-j4",
+            "make_extra_targets": []
         },
         
         "navigationcore": {
@@ -345,8 +323,7 @@
                 "url" :  "https://github.com/palikar/NavigationCore"
             },
             "install": "command",
-            "command": "echo 'No install command'",
-            "reinstall_command": "echo 'No install command'"
+            "command": "echo install the project with java"
         },
         
         "i3-gaps": {
@@ -372,7 +349,6 @@
             },
             "install": "command",
             "command": "sudo make install",
-            "reinstall_command": "sudo make install",
             "deb_packages": ["xorg-xrandr"]
         },
         
@@ -383,7 +359,6 @@
             },
             "install": "command",
             "command": "make && sudo make install",
-            "reinstall_command": "sudo make",
             "deb_packages": ["libpulse"]
         },
         
@@ -392,9 +367,8 @@
             "git":{
                 "url" :  "https://github.com/ranger/ranger"
             },
-            "install": "command",
-            "command": "sudo python setup.py install --optimize=1 --record=install_log.txt",
-            "reinstall_command": "sudo python setup.py install --optimize=1 --record=install_log.txt",
+            "install": "setup.py",
+            "setup_args" : ["--optimize=1", "--record=install_log.txt"],
             "deb_packages": ["file", "sudo", "w3m", "caca-utils",
                              "pygmentize","atool","lynx","mediainfo",
                              "odt2txt"]
@@ -406,8 +380,7 @@
                 "url" :  "https://github.com/firecat53/networkmanager-dmenu"
             },
             "install": "command",
-            "command": "echo 'No installation' ",
-            "reinstall_command": "echo 'No installation' "
+            "command": "echo setup the commands for the script"
         },
         
         "xkblayout-state": {
@@ -416,8 +389,7 @@
                 "url" :  "https://github.com/nonpop/xkblayout-state"
             },
             "install": "command",
-            "command": "make && sudo make install",
-            "reinstall_command": "make clean && make && sudo make install"
+            "command": "make && sudo make install"
         },
         
         "rxvt-unicode": {
@@ -454,8 +426,7 @@
             },
             "commit": "tags/3.2.0",
             "install": "command",
-            "command": "echo 'No command'",
-            "reinstall_command": "echo 'No command'"
+            "command": "echo this package is not to be installed"
         },
         
         "easyloggingpp": {
@@ -463,7 +434,7 @@
             "git":{
                 "url" :  "https://github.com/muflihun/easyloggingpp"
             },
-            "install": "cmake",
+            "install": ["cmake", "make"],
             "cmake_args": "",
             "make_args": "-j2"
         },
@@ -473,9 +444,9 @@
             "git":{
                 "url" :  "https://github.com/starpos/scull"
             },
-            "install": "command",
-            "command": "echo 'No installation' ",
-            "reinstall_command": "echo 'No installation' "
+            "install": ["make"],
+            "make_args" : ["-j4"],
+            "make_extra_targets": ["all"]
         },
         
         "edward": {
@@ -484,8 +455,7 @@
                 "url" :  "https://github.com/blei-lab/edward"
             },
             "install": "command",
-            "command": "echo 'No installation' ",
-            "reinstall_command": "echo 'No installation' "
+            "command": "echo install edward through pip"
         },
         
         "facebook-chat-api": {
@@ -494,8 +464,7 @@
                 "url" :  "https://github.com/Schmavery/facebook-chat-api"
             },
             "install": "command",
-            "command": "npm install",
-            "reinstall_command": "echo 'No installation' "
+            "command": "npm install"
         },
         
         "fbash": {
@@ -504,8 +473,7 @@
                 "url" :  "https://github.com/avikj/fbash"
             },
             "install": "command",
-            "command": "npm install",
-            "reinstall_command": "echo 'No installation' "
+            "command": "npm install"
         },
         
         "speech_recognition": {
@@ -513,9 +481,8 @@
             "git":{
                 "url" :  "https://github.com/Uberi/speech_recognition"
             },
-            "install": "command",
-            "command": "python setup.py install",
-            "reinstall_command": "python setup.py install"
+            "install": "setup.py",
+            "setup_args": []
         },
         
         "jwtxx": {
@@ -523,7 +490,7 @@
             "git":{
                 "url" :  "https://github.com/madf/jwtxx"
             },
-            "install": "cmake",
+            "install": ["cmake", "make"],
             "cmake_args": "-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-fPIC",
             "make_args": "-j2",
             "deb_packages": ["libjansson-dev", "openssl", "libssl-dev"]
@@ -535,9 +502,7 @@
                 "url" :  "https://github.com/bbatsov/prelude"
             },
             "install": "command",
-            "command": "echo 'No install'",
-            "reinstall_command": "echo 'No reinstall'",
-            "deb_packages": []
+            "command": "echo 'No install'"
         },
         
         "emacs": {
@@ -558,7 +523,7 @@
             "git":{
                 "url" :  "https://github.com/google/googletest"
             },
-            "install": "cmake",
+            "install": ["cmake", "make"],
             "cmake_args": "-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-fPIC",
             "make_args": "-j2",
             "deb_packages": []
@@ -569,7 +534,7 @@
             "git":{
                 "url" :  "https://github.com/ipkn/crow"
             },
-            "install": "cmake",
+            "install": ["cmake", "make"],
             "cmake_args": "-DCMAKE_BUILD_TYPE=Release",
             "make_args": "-j2",
             "deb_packages": []
@@ -590,8 +555,7 @@
                 "url" :  "https://github.com/jhnns/rewire"
             },
             "install": "command",
-            "command": "npm install -g rewire",
-            "reinstall_command": "npm install -g rewire"
+            "command": "npm install -g rewire"
         },
         
         "pip-requirements": {
@@ -599,9 +563,8 @@
             "git":{
                 "url" :  "https://github.com/Wilfred/pip-requirements.el"
             },
-            "install": "command",
-            "command": "echo 'No install'",
-            "reinstall_command": "echo 'No install'"
+            "install": "emacs",
+            "el_files": ["pip-requirements.el"]
         },
         
         "voidrice": {
@@ -610,8 +573,7 @@
                 "url" :  "https://github.com/palikar/voidrice"
             },
             "install": "command",
-            "command": "echo 'No install'",
-            "reinstall_command": "echo 'No install'"
+            "command": "echo 'No install'"
         },
         
         "google-speech-v2-api": {
@@ -620,8 +582,7 @@
                 "url" :  "https://github.com/gillesdemey/google-speech-v2"
             },
             "install": "command",
-            "command": "echo 'No install'",
-            "reinstall_command": "echo 'No install'"
+            "command": "echo 'No install'"
         },
         
         "instagram-web-api": {
@@ -630,8 +591,7 @@
                 "url" :  "https://github.com/jlobos/instagram-web-api"
             },
             "install": "command",
-            "command": "npm install",
-            "reinstall_command": "echo 'No install'"
+            "command": "npm install"
         },
         
         "tensorflow": {
@@ -640,8 +600,7 @@
                 "url" :  "https://github.com/tensorflow/tensorflow"
             },
             "install": "command",
-            "command": "echo 'No install'",
-            "reinstall_command": "echo 'No install'"
+            "command": "echo 'No install'"
         },
         
         "keras": {
@@ -650,8 +609,7 @@
                 "url" :  "https://github.com/keras-team/keras"
             },
             "install": "command",
-            "command": "echo 'No install'",
-            "reinstall_command": "echo 'No install'"
+            "command": "echo 'No install'"
         },
         
         "linux-4.19": {
@@ -659,8 +617,9 @@
             "curl":{
                 "url" :  "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.tar.xz"
             },
-            "install": "script",
-            "script_args": ""
+            "extract" : true,
+            "install" : "command",
+            "command": "echo No install"
         },
         
         "python-req-installer": {
@@ -668,9 +627,8 @@
             "git":{
                 "url" :  "https://github.com/palikar/python-requirements-installer"
             },
-            "install": "command",
-            "command": "echo 'No install'",
-            "reinstall_command": "echo 'No install'"
+            "install": "emacs",
+            "el_files" : ["pri.el"]
         },
         
         "ov.el": {
@@ -678,9 +636,8 @@
             "git":{
                 "url" :  "https://github.com/ShingoFukuyama/ov.el/"
             },
-            "install": "command",
-            "command": "echo 'No install'",
-            "reinstall_command": "echo 'No install'"
+            "install": "emacs",
+            "el_files": ["ov.el"]
         },
         
         "cask": {
@@ -689,8 +646,7 @@
                 "url" :  "https://raw.githubusercontent.com/cask/cask/master/go"
             },
             "install": "command",
-            "command": "python go",
-            "reinstall_command": "python go"
+            "command": "python go"
         },
         
         "company-smart-elisp": {
@@ -744,7 +700,7 @@
             "git":{
                 "url" :  "https://gitlab.com/conradsnicta/armadillo-code"
             },
-            "install": "cmake",
+            "install": ["cmake", "make"],
             "cmake_args": "",
             "make_args": "-j3"
 	},
@@ -754,7 +710,7 @@
             "git":{
                 "url" :  "@arnaud_base/mflower"
             },
-            "install": "cmake",
+            "install": ["cmake", "make"],
             "cmake_args": "",
             "make_args": "-j3"
 	}

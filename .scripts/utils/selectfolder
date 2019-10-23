@@ -3,8 +3,8 @@
 SCRIPTDIR=$(dirname "$(readlink -f "$0")")
 
 FOLDER_NAME=$(cat "$SCRIPTDIR/conf/folders" |\
-				  sed -e "s/\(.*\)<br>\(.*\)/\2/g" |\
-				  rofi -dmenu -i -p "Folder" )
+		  sed -e "s/\(.*\)<br>\(.*\)/\2/g" |\
+		  rofi -dmenu -i -p "Folder" )
 
 grep -i -E ".*<br>($FOLDER_NAME)" "$SCRIPTDIR/conf/folders"\
-	| sed "s/\(.*\)<br>\(.*\)/\1/g" | head -n 1
+    | sed "s/\(.*\)<br>\(.*\)/\1/g" | head -n 1

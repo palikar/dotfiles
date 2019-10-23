@@ -11,14 +11,6 @@ separator=false
 
 
 
-# [Song]
-# command=i3currentsong
-# align=left
-# signal=4
-# interval=once
-
-
-
 
 [weather]
 command=i3weather
@@ -61,12 +53,15 @@ interval=5
 command=i3systeminfo
 interval=5
 
+[separator]
 
 [disky_root]
 label=:
 command=i3disk $HOME
 interval=30
 color=#859900
+
+[separator]
 
 [disky_core]
 label=:

@@ -4,6 +4,7 @@ adwaita-icon-theme
 amd64-microcode
 anacron
 apt
+apt-listchanges
 apt-transport-https
 apt-utils
 at-spi2-core
@@ -69,6 +70,7 @@ dropbox
 dunst
 e2fslibs
 e2fsprogs
+encfs
 entr
 eog
 erlang
@@ -177,7 +179,9 @@ gnome-user-share
 gnome-weather
 gnupg
 gnupg-agent
+go-mtpfs
 gobject-introspection
+google-chrome-stable
 gparted
 gpgv
 grep
@@ -284,6 +288,7 @@ libgnutls30
 libgomp1
 libgpg-error0
 libgsf-bin
+libgtest-dev
 libgtk-3-dev
 libgtk2-perl
 libhdf5-dev
@@ -310,6 +315,8 @@ libmagickwand-dev
 libmnl0
 libmount1
 libmpdclient-dev
+libmtp-common
+libmtp-dev
 libncurses-dev
 libncurses5
 libncursesw5
@@ -434,6 +441,7 @@ midisport-firmware
 moreutils
 mount
 msmtp
+mtp-tools
 mu4e
 multiarch-support
 nano
@@ -464,6 +472,7 @@ openvpn
 oracle-java12-installer
 pandoc
 parted
+pass
 passwd
 pavucontrol
 pciutils
@@ -597,6 +606,7 @@ tasksel
 tasksel-data
 testdisk
 texlive-full
+tldr
 tmux
 toilet
 tor
@@ -614,13 +624,14 @@ ubertooth-firmware
 ubertooth-firmware-source
 udev
 ufw
+unattended-upgrades
 unclutter
 unrar
 usbutils
 util-linux
 valgrind
-vim
 vim-common
+vim-gtk3
 vim-tiny
 vinagre
 vino

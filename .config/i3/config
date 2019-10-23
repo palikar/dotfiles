@@ -25,12 +25,10 @@ client.focused_inactive	$transparent	$blue		$white		$darkblue		$darkblack
 client.urgent		$darkred	$darkred	$black		$darkred		$darkred
 client.background $black
 
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
 #Status bar
 
 bar {
-    font pango:mono 11
+    font pango:mono 12
     separator_symbol "|"
     colors {
         background $darkblack
@@ -142,7 +140,7 @@ Bindsym $mod+Shift+s            exec --no-startup-id screensetup
 bindsym $mod+Shift+b            bar mode toggle
 bindsym $mod+Shift+f            fullscreen toggle
 
-bindsym $mod+d	                exec rofi -show run
+bindsym $mod+d	                exec --no-startup-id rofi -show run
 bindsym $mod+r                  exec --no-startup-id $term -e ranger
 bindsym $mod+e                  exec --no-startup-id emacsclient -c
 bindsym $mod+w                  exec --no-startup-id firefox
@@ -152,6 +150,9 @@ bindsym $mod+t                  exec --no-startup-id $term -e sudo htop
 bindsym $mod+m                  exec --no-startup-id gnome-system-monitor
 bindsym $mod+l            	exec --no-startup-id openfolder
 bindsym $mod+c            	exec --no-startup-id traymenu
+bindsym $mod+p            	exec --no-startup-id passmenu
+
+
 
 bindsym --release Shift+Print   exec gnome-screenshot -a
 # bindsym --release Print       exec scrot -z "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
@@ -168,7 +169,7 @@ mode "  " {
      bindsym Escape          mode "default"
      
 }
-bindsym $mod+c          mode "  "
+
 
 # ----- Windows ----- #
 
@@ -248,6 +249,8 @@ for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 for_window [class="Gnome-system-monitor"] floating enable
 for_window [class="Gnome-calendar"] floating enable
 for_window [class="Matplotlib"] floating enable
+for_window [class="ParaView"] floating enable
+for_window [class="vtk"] floating enable
 
 
 # #---Extra XF86 Keys---# #

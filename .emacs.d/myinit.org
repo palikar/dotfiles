@@ -12,7 +12,6 @@
 #+EXCLUDE_TAGS: no_export
 #+CREATOR: Emacs 25.2.2 (Org mode 9.1.13)
 
-
 #+OPTIONS: author:t broken-links:nil c:nil creator:nil
 #+OPTIONS: timestamp:t title:t todo:t |:t
 #+OPTIONS: toc:nil
@@ -36,7 +35,7 @@ I've drawn a lot of inspiration for my Emacs configuration form:
 - [[https://github.com/zamansky/using-emacs][here]] (for the genera concept of the configuration file)
 - [[https://sriramkswamy.github.io/dotemacs/][also here]] (for some of my /hydras/)
 
-
+  
 * Basic System
 
 ** Personal Info
@@ -64,7 +63,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(ac-R aggressive-indent alect-themes anzu atom-dark-theme auctex auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-quickhelp company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-clangd lsp-css lsp-python lsp-ui lsp-vue lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org package-lint page-break-lines parsebib pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vsexp smartparens vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(ac-R ac-ja aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-math company-quickhelp company-reftex company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils dmenu doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-clangd lsp-css lsp-python lsp-ui lsp-vue lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode math-symbol-lists maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org package-lint page-break-lines parsebib password-store auth-source-pass pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vsexp smartparens vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
 
 ; activate all the packages (in particular autoloads)
@@ -138,7 +137,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (global-hl-line-mode 1)
 (global-prettify-symbols-mode +1)
 (scroll-bar-mode 0)
-(set-frame-parameter (selected-frame) 'alpha '(85 . 85))
+;; (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
 (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
 (set-fill-column 80)
 (face-spec-set 'secondary-selection '((t (:background "light sky blue" :foreground "black"))))
@@ -472,13 +471,14 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
       (term-char-mode)
     (term-line-mode)))
 
-(defun fd-switch-dictionary()
+(defun fd-switch-dictionary ()
   (interactive)
   (let* ((dic ispell-current-dictionary)
     	 (change (if (string= dic "deutsch8") "english" "deutsch8")))
     (ispell-change-dictionary change)
     (message "Dictionary switched from %s to %s" dic change)
     ))
+
 
 (defun toggle-transparency ()
   (interactive)
@@ -545,6 +545,10 @@ an error."
   (backward-char 1))
 
 (defun pass () "A function that does nothing" (interactive))
+
+(toggle-transparency)
+
+
 #+END_SRC
 
 
@@ -580,7 +584,6 @@ an error."
 (bind-key* "C-S-<down>"  'duplicate-line-down)
 (bind-key* "C-S-<up>"  'duplicate-line-up)
 
-
 (bind-key* "C-+" 'text-scale-increase)
 (bind-key* "C--" 'text-scale-decrease)
 (bind-key* "C-z" 'zap-up-to-char)
@@ -601,10 +604,11 @@ an error."
 (bind-key* "M-<f1>" 'whitespace-cleanup)
 
 (bind-key* "C-<Scroll_Lock>" 'list-installed-packages)
+(bind-key* "C-<f7>" 'toggle-transparency)
 
 #+END_SRC
 
-**** Disabling
+**** Disabling keys
 Disable some keybindgs cuz' those are just annoying
 #+BEGIN_SRC emacs-lisp
 (global-unset-key  ( kbd "<prior>"))
@@ -620,11 +624,13 @@ Disable some keybindgs cuz' those are just annoying
 
 * Windowing
 Couple of minor setups that make working with frames a little bit easier. In a lot of cases I just want to switch the position of two windows so there is handy function there. Also, navigating around windows can be a bit weird and slow with just using =C-x o= so =windmove= is set up to work with =C-c= and the arrow keys
+
 ** Ace window
 For easy navigation between several monitors. It's helpful to be able to quickly switch between different frames of emacs on different monitors.
 #+BEGIN_SRC emacs-lisp
 (require 'ace-window)
 #+END_SRC
+
 
 ** Framer
 My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs... functionality that already exist in vanilla Emacs.
@@ -633,17 +639,23 @@ My little thingy that is kind of useless but I like it. I implemented a mode so 
 (require 'arnaud-framer)
 (global-framer-mode nil)
 #+END_SRC
+
+
 ** Golden Ration
 When used, it keeps the focused window the biggest while still having the other ones in a "golder ratioed" size.
 #+BEGIN_SRC emacs-lisp
 (require 'golden-ratio)
 #+END_SRC
+
+
 ** Zygospore
 Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config that I actually don't necessarily wanted destroyed. This package fixes this "issue". If I hit =C-x 1= again, I was just where I was before
 #+BEGIN_SRC emacs-lisp :results none
 (require 'zygospore)
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 #+END_SRC
+
+
 ** Keybindgs
 #+BEGIN_SRC emacs-lisp
 (bind-key* "C-x 4 t" 'transpose-windows)
@@ -728,11 +740,10 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
 - [[https://github.com/rosbo018/q4][q4]]
 
 #+BEGIN_SRC emacs-lisp :results none
-;; https://boards.4chan.org/r9k/thread/49101515#p49101515 this one !
-;; (load-file "/home/arnaud/core.d/code/q4-fork/q4.el")
-;; (require 'q4)
 
-;; (bind-key* "M-j q" 'q4/browse-board)
+(load-file "/home/arnaud/code_ext/q4/q4.el")
+
+(bind-key* "M-j q" 'q4/browse-board)
 #+END_SRC
 
 
@@ -1550,6 +1561,36 @@ The best and the most fully fledged completion engine for emacs IMO. I cannot be
 ;; (helm-autoresize-mode 1)
 
 #+END_SRC
+
+*** Helm mini enhancement
+This will keep the buffers listed in the helm-mini menu neatly organized.
+#+BEGIN_SRC emacs-lisp :results none
+(defclass tohiko/helm-source-file-buffers (helm-source-buffers)
+  ((candidate-transformer :initform (lambda (buffers)
+                                     (cl-loop for buf in buffers
+                                              when (with-current-buffer
+                                                         buf buffer-file-name)
+                                              collect buf)))))
+
+(defclass tohiko/helm-source-nonfile-buffers (helm-source-buffers)
+  ((candidate-transformer :initform (lambda (buffers)
+                                     (cl-loop for buf in buffers
+                                              unless (with-current-buffer
+                                                         buf buffer-file-name)
+                                              collect buf)))))
+
+(setq tohiko/helm-source-file-buffers-list
+            (helm-make-source "File Buffers" 'tohiko/helm-source-file-buffers))
+
+(setq tohiko/helm-source-nonfile-buffers-list
+        (helm-make-source "Non-file Buffers" 'tohiko/helm-source-nonfile-buffers))
+
+(setq helm-mini-default-sources '(tohiko/helm-source-file-buffers-list
+                                  tohiko/helm-source-nonfile-buffers-list
+                                  helm-source-recentf
+                                  helm-source-buffer-not-found)) 
+#+END_SRC
+
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
 (bind-key* "C-x C-f" 'helm-find-files)
@@ -2268,7 +2309,7 @@ The definitions of all the functions for the backends setups.
   (interactive)
   (message "Python backends engaged.")
   (setq company-backends `(company-jedi
-						   elpy-company-backend
+			   elpy-company-backend
                            ,basic-company-backends)))
 
 
@@ -2280,6 +2321,7 @@ The definitions of all the functions for the backends setups.
                              company-auctex-labels
                              company-auctex-symbols
                              company-auctex-environments)
+                            (company-bibtex company-reftex-labels company-reftex-citations)
                             ,basic-company-backends)))
 
 (defun my-company-elisp-backends ()
@@ -2649,6 +2691,8 @@ This style of presenting looks cool but I don't use it that much. Still, I want 
 
 
 (setq org-export-allow-bind-keywords 't)
+
+(setq org-latex-prefer-user-labels 't)
 
 (add-to-list 'org-latex-classes
                 '("llncs"
@@ -3210,3 +3254,6 @@ This things will track which command is being run and how many times... I just t
 #  LocalWords:  Uniquify Saveplace Ediff Docview Avy IEdit Swiper SRC
 #  LocalWords:  IMenu Magit Gitignore Modeline Vimacs
 x
+
+
+
