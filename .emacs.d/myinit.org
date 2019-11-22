@@ -63,7 +63,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(ac-R ac-ja aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-math company-quickhelp company-reftex company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils dmenu doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-clangd lsp-css lsp-python lsp-ui lsp-vue lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode math-symbol-lists maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org package-lint page-break-lines parsebib password-store auth-source-pass pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vsexp smartparens vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(elf-mode ac-R ac-ja aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode cmake-project color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-math company-quickhelp company-reftex company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils dmenu doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-clangd lsp-css lsp-python lsp-ui lsp-vue lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode math-symbol-lists maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org package-lint page-break-lines parsebib password-store auth-source-pass pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags scala-mode skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vsexp smartparens vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
 
 ; activate all the packages (in particular autoloads)
@@ -631,7 +631,6 @@ For easy navigation between several monitors. It's helpful to be able to quickly
 (require 'ace-window)
 #+END_SRC
 
-
 ** Framer
 My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs... functionality that already exist in vanilla Emacs.
 #+BEGIN_SRC emacs-lisp
@@ -639,14 +638,11 @@ My little thingy that is kind of useless but I like it. I implemented a mode so 
 (require 'arnaud-framer)
 (global-framer-mode nil)
 #+END_SRC
-
-
 ** Golden Ration
 When used, it keeps the focused window the biggest while still having the other ones in a "golder ratioed" size.
 #+BEGIN_SRC emacs-lisp
 (require 'golden-ratio)
 #+END_SRC
-
 
 ** Zygospore
 Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config that I actually don't necessarily wanted destroyed. This package fixes this "issue". If I hit =C-x 1= again, I was just where I was before
@@ -654,7 +650,6 @@ Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config
 (require 'zygospore)
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 #+END_SRC
-
 
 ** Keybindgs
 #+BEGIN_SRC emacs-lisp
@@ -965,6 +960,8 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
 #+BEGIN_SRC emacs-lisp :results none
 (require 'cmake-mode)
 
+(require 'cmake-project)
+
 (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
 (add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
 
@@ -974,6 +971,13 @@ A minimal Cmake setup, more or less to make my /CMakeLists.txt/ files pleasant t
       (append '(("CMakeLists.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
+
+
+(defun maybe-cmake-project-hook ()
+  (if (file-exists-p "CMakeLists.txt") (cmake-project-mode)))
+(add-hook 'c-mode-hook 'maybe-cmake-project-hook)
+(add-hook 'c++-mode-hook 'maybe-cmake-project-hook)
+
 #+END_SRC
 
 
@@ -2571,6 +2575,7 @@ Org-mode is awesome not just for note taking but also for general text editing, 
 #+BEGIN_SRC emacs-lisp
 (require 'org-bullets)
 ;; (require 'org-tempo)
+(setq org-agenda-files '("~/Documents/orgfiles/todos/todos.org"))
 
 (setq org-support-shift-select (quote always))
 (setq org-startup-indented t)
@@ -2601,6 +2606,9 @@ Org-mode is awesome not just for note taking but also for general text editing, 
                            (org-bullets-mode 1)
                            (flyspell-mode 1)))
 #+END_SRC
+
+#+RESULTS:
+| (lambda nil (org-bullets-mode 1) (flyspell-mode 1)) | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | (lambda nil (if (member (quote (ein . python)) org-src-lang-modes) org-src-lang-modes (setq org-src-lang-modes (cons (quote (ein . python)) org-src-lang-modes))) (if (member (quote (ein-hy . hy)) org-src-lang-modes) org-src-lang-modes (setq org-src-lang-modes (cons (quote (ein-hy . hy)) org-src-lang-modes)))) | org-eldoc-load |
 
 The codeblocks should be formated with the native envinroment of the language
 #+BEGIN_SRC emacs-lisp :results none
@@ -2742,6 +2750,18 @@ will produce a graph-png at the end....it's awesome!
 (bind-key* "C-c a" 'org-agenda)
 (bind-key* "C-c c" 'org-capture)
 (bind-key* "C-c C-x s" 'org-attach-screenshot org-mode-map)
+
+(setq  org-replace-disputed-keys 't)
+
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
+
+
+
+
+
 #+END_SRC
 
 *** Org-Babel
@@ -2867,7 +2887,7 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
 ;; (setq dashboard-startup-banner 'official)
 ;; (setq dashboard-banner-logo-title "W I T C H M A C S")
 
-(setq dashboard-startup-banner "~/.emacs.d/marivector.png")
+(setq dashboard-startup-banner "~/.emacs.d/chika_new.png")
 (setq dashboard-center-content t)
 (setq dashboard-show-shortcuts nil)
 
@@ -2876,6 +2896,16 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
                         (projects . 10)
                         (agenda . 5)
                         (registers . 5)))
+
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+(setq dashboard-set-navigator t)
+(setq dashboard-footer-icon (all-the-icons-octicon "dashboard"
+                                                   :height 1.1
+                                                   :v-adjust -0.05
+                                                   :face 'font-lock-keyword-face))
+(setq show-week-agenda-p t)
+
 (dashboard-setup-startup-hook)
 
 
@@ -3253,7 +3283,3 @@ This things will track which command is being run and how many times... I just t
 #  LocalWords:  Yagist QOL VueJS Quickrun LSP Savehist Recentf GDB Iy
 #  LocalWords:  Uniquify Saveplace Ediff Docview Avy IEdit Swiper SRC
 #  LocalWords:  IMenu Magit Gitignore Modeline Vimacs
-x
-
-
-

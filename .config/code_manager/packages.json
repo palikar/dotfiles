@@ -1,4 +1,5 @@
 {
+
     "vars" : {
         "arnaud_base" : "git@github.com:palikar",
         "github_base" : "git@github.com:"
@@ -27,7 +28,8 @@
             "smart_memory_location",
             "arffpar",
             "python-req-installer",
-            "mflower"
+            "mflower",
+            "ctgraph"
         ],
         
         "emacs" : [
@@ -134,8 +136,12 @@
             "git":{
                 "url" :  "https://github.com/palikar/arnaud-framer.git"
             },
-            "install": "emacs",
-            "el_files" : ["arnaud-framer.el"]
+            "install": "bashrc",
+            "el_files" : ["arnaud-framer.el"],
+            "bash_lines": [
+                "this is invalid line",
+                "export VALID_VAR=123"
+            ]
         },
         
         "vsexp": {
@@ -144,15 +150,15 @@
                 "url" :  "https://github.com/palikar/arnaud-sexp"
             },
             "install": "emacs",
-            "el_files" : ["vsexp.el"]            
+            "el_files" : ["vsexp.el"]
         },
-        
         
         "dotfiles": {
             "fetch": "git",
             "git":{
                 "url" :  "https://github.com/palikar/dotfiles"
             },
+            "deb_packages" : ["ranger", "libranger-dev"],
             "install": "command",
             "command": "echo My dot files can be installed with 'sh ./setuper/setup.sh'"
         },
@@ -712,6 +718,17 @@
             },
             "install": ["cmake", "make"],
             "cmake_args": "",
+            "make_args": "-j3"
+	},
+        
+        "ctgraph": {
+            "fetch": "git",
+            "git":{
+                "url" :  "@arnaud_base/ctgraph"
+            },
+            "install": ["cmake", "make"],
+            "cmake_args": "",
+            "make_extra_targets" : ["install"],
             "make_args": "-j3"
 	}
         

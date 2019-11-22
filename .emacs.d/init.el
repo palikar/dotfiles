@@ -26,4 +26,4 @@
 ;; This 'load-file' is added by code-manager 
 ;; It loads the packages installed by code-manager
 ;; Do not delete the line nor the file
-(load-file "~/.emacs.d/code-manager-packages.el")
+;; (load-file "~/.emacs.d/code-manager-packages.el")

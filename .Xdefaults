@@ -46,7 +46,7 @@ URxvt.background:       [90]#000000
 URxvt.depth:		32
 URxvt.scrollBar:	false
 URxvt.cursorColor:	white
-
+Rxvt.saveLines: 200000
 URxvt.unicode3:		true
 
 ! URxvt.letterSpace: 0
