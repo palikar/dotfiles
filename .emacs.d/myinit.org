@@ -550,7 +550,7 @@ an error."
   "Load the FILE-NAME if the file is present."
   (if (file-readable-p file-name)
       (progn 
-        (load-file f)
+        (load-file file-name)
         't)
     'nil))
 
@@ -644,7 +644,7 @@ For easy navigation between several monitors. It's helpful to be able to quickly
 My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs... functionality that already exist in vanilla Emacs.
 #+BEGIN_SRC emacs-lisp
 (load-if-present "~/.emacs.d/lisp/arnaud-framer.el")
-(when (require 'arnaud-framer)
+(when (require 'arnaud-framer nil t)
   (global-framer-mode 'nil))
 #+END_SRC
 
@@ -749,7 +749,7 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
 
 #+BEGIN_SRC emacs-lisp :results none
 
-(when (load-if-present "/home/arnaud/code_ext/q4/q4.el")y
+(when (load-if-present "/home/arnaud/code_ext/q4/q4.el")
       (bind-key* "M-j q" 'q4/browse-board))
 
 #+END_SRC
@@ -937,7 +937,7 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 (load-if-present "/home/arnaud/.emacs.d/lisp/xml-parse.el")
 (load-if-present "/home/arnaud/.emacs.d/lisp/doxymacs.el")
 
-(when (require 'doxymacs)
+(when (require 'doxymacs nil t)
   (setq doxymacs-doxygen-style "JavaDoc")
   (setq doxymacs-use-external-xml-parser 't)
   (add-hook 'c-mode-common-hook 'doxymacs-mode)
@@ -1412,7 +1412,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 
 (load-if-present "~/.emacs.d/lisp/vsexp.el")
 
-(when (require 'vsexp)
+(when (require 'vsexp nil t)
   (bind-key* "C-M-y" 'sp-backward-up-sexp)
   (bind-key* "C-M-x" 'sp-up-sexp)
 
@@ -1720,7 +1720,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 #+END_SRC
 
 *** Get rid of the title and summery
-#+BEGIN_SRC emacs-lisp :results none
+Q#+BEGIN_SRC emacs-lisp :results none
 (defadvice ibuffer-update-title-and-summary (after remove-column-titles)
   (with-current-buffer "*Ibuffer*"
     (read-only-mode 1)
@@ -1729,7 +1729,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
     (delete-region 1 (point))
     (let ((window-min-height 1))
       (shrink-window-if-larger-than-buffer))
-    (toggle-read-only)))
+    (read-only-mode)))
 
 (ad-activate 'ibuffer-update-title-and-summary)
 #+END_SRC
@@ -2504,11 +2504,11 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 
 ** Sunrise Commander
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (load-if-present "~/.emacs.d/lisp/sunrise-commander.el")
-(require 'sunrise-commander)
-(require 'sunrise-x-buttons)
-(require 'sunrise-x-modeline)
+(require 'sunrise-commander nil t)
+(require 'sunrise-x-buttons nil t)
+(require 'sunrise-x-modeline nil t)
 
 #+END_SRC
 
