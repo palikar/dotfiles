@@ -643,9 +643,9 @@ For easy navigation between several monitors. It's helpful to be able to quickly
 ** Framer
 My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs... functionality that already exist in vanilla Emacs.
 #+BEGIN_SRC emacs-lisp
-(load "~/.emacs.d/lisp/arnaud-framer.el")
-(require 'arnaud-framer)
-(global-framer-mode nil)
+(load-if-present "~/.emacs.d/lisp/arnaud-framer.el")
+(when (require 'arnaud-framer)
+  (global-framer-mode 'nil))
 #+END_SRC
 
 
@@ -753,7 +753,6 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
       (bind-key* "M-j q" 'q4/browse-board))
 
 #+END_SRC
-
 
 ** Google This
 This is absolutely a genius thing! Mark something, simple key-stroke, BAM!! Google! You are there! You have no idea how much copying and windows switching this package saves. Again, for intuition sake, =C-c g= is the prefix. After that:
@@ -934,21 +933,19 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 *** Doxymacs
 
 #+BEGIN_SRC emacs-lisp :results none
-(load-file "/home/arnaud/.emacs.d/lisp/tempo.el")
-(load-file "/home/arnaud/.emacs.d/lisp/xml-parse.el")
-(load-file "/home/arnaud/.emacs.d/lisp/doxymacs.el")
-(require 'doxymacs)
+(load-if-present "/home/arnaud/.emacs.d/lisp/tempo.el")
+(load-if-present "/home/arnaud/.emacs.d/lisp/xml-parse.el")
+(load-if-present "/home/arnaud/.emacs.d/lisp/doxymacs.el")
 
-(setq doxymacs-doxygen-style "JavaDoc")
-(setq doxymacs-use-external-xml-parser 't)
-
-(add-hook 'c-mode-common-hook 'doxymacs-mode)
-
-(add-hook 'c-mode-common-hook 'doxymacs-mode)
-(defun my-doxymacs-font-lock-hook ()
+(when (require 'doxymacs)
+  (setq doxymacs-doxygen-style "JavaDoc")
+  (setq doxymacs-use-external-xml-parser 't)
+  (add-hook 'c-mode-common-hook 'doxymacs-mode)
+  (add-hook 'c-mode-common-hook 'doxymacs-mode)
+  (defun my-doxymacs-font-lock-hook ()
     (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
         (doxymacs-font-lock)))
-(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+  (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook))
 
 #+END_SRC
 
@@ -1413,23 +1410,21 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 ;; (require 'load-directory)
 ;; (load-directory "~/.emacs.d/my-lisp")
 
-(load "~/.emacs.d/lisp/vsexp.el")
-(require 'vsexp)
+(load-if-present "~/.emacs.d/lisp/vsexp.el")
 
-(bind-key* "C-M-y" 'sp-backward-up-sexp)
-(bind-key* "C-M-x" 'sp-up-sexp)
+(when (require 'vsexp)
+  (bind-key* "C-M-y" 'sp-backward-up-sexp)
+  (bind-key* "C-M-x" 'sp-up-sexp)
 
-(bind-key* "C-M-SPC" 'vsexp-mark-sexp)
-(bind-key* "C-M-k" 'vsexp-kill-sexp)
-(bind-key* "C-M-S-SPC" 'vsexp-mark-sexp-whole)
-(bind-key* "C-M-S-k" 'vsexp-kill-sexp-whole)
-(bind-key* "C-M-w" 'vsexp-kill-save-sexp)
-(bind-key* "C-M-S-w" 'vsexp-kill-save-sexp-whole)
+  (bind-key* "C-M-SPC" 'vsexp-mark-sexp)
+  (bind-key* "C-M-k" 'vsexp-kill-sexp)
+  (bind-key* "C-M-S-SPC" 'vsexp-mark-sexp-whole)
+  (bind-key* "C-M-S-k" 'vsexp-kill-sexp-whole)
+  (bind-key* "C-M-w" 'vsexp-kill-save-sexp)
+  (bind-key* "C-M-S-w" 'vsexp-kill-save-sexp-whole)
 
-(bind-key* "C-c w i" 'vsexp-mark-inside)
-(bind-key* "C-c w o" 'vsexp-mark-outside)
-
-
+  (bind-key* "C-c w i" 'vsexp-mark-inside)
+  (bind-key* "C-c w o" 'vsexp-mark-outside))
 
 #+END_SRC
 
@@ -2510,13 +2505,12 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 ** Sunrise Commander
 
 #+BEGIN_SRC emacs-lisp
-;; (load "~/.emacs.d/lisp/sunrise-commander.el")
-;; (require 'sunrise-commander)
-;; (require 'sunrise-x-buttons)
-;; (require 'sunrise-x-modeline)
+(load-if-present "~/.emacs.d/lisp/sunrise-commander.el")
+(require 'sunrise-commander)
+(require 'sunrise-x-buttons)
+(require 'sunrise-x-modeline)
 
 #+END_SRC
-
 
 
 ** Gitignore templates
@@ -2612,7 +2606,7 @@ Markdown is not as pretty as Org-mode but is widely used throughout the Internet
 *** Common settings
 Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writing/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this /init/ file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporters for =.org= files that just make my life easier.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (require 'org-bullets)
 ;; (require 'org-tempo)
 (setq org-agenda-files '("~/Documents/orgfiles/todos/todos.org"))
@@ -2647,8 +2641,6 @@ Org-mode is awesome not just for note taking but also for general text editing, 
                            (flyspell-mode 1)))
 #+END_SRC
 
-#+RESULTS:
-| (lambda nil (org-bullets-mode 1) (flyspell-mode 1)) | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | (lambda nil (if (member (quote (ein . python)) org-src-lang-modes) org-src-lang-modes (setq org-src-lang-modes (cons (quote (ein . python)) org-src-lang-modes))) (if (member (quote (ein-hy . hy)) org-src-lang-modes) org-src-lang-modes (setq org-src-lang-modes (cons (quote (ein-hy . hy)) org-src-lang-modes)))) | org-eldoc-load |
 
 The codeblocks should be formated with the native envinroment of the language
 #+BEGIN_SRC emacs-lisp :results none
