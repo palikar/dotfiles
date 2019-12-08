@@ -546,6 +546,14 @@ an error."
 
 (defun pass () "A function that does nothing" (interactive))
 
+(defun load-if-present (file-name)
+  "Load the FILE-NAME if the file is present."
+  (if (file-readable-p file-name)
+      (progn 
+        (load-file f)
+        't)
+    'nil))
+
 (toggle-transparency)
 
 
@@ -631,6 +639,7 @@ For easy navigation between several monitors. It's helpful to be able to quickly
 (require 'ace-window)
 #+END_SRC
 
+
 ** Framer
 My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs... functionality that already exist in vanilla Emacs.
 #+BEGIN_SRC emacs-lisp
@@ -638,11 +647,14 @@ My little thingy that is kind of useless but I like it. I implemented a mode so 
 (require 'arnaud-framer)
 (global-framer-mode nil)
 #+END_SRC
+
+
 ** Golden Ration
 When used, it keeps the focused window the biggest while still having the other ones in a "golder ratioed" size.
 #+BEGIN_SRC emacs-lisp
 (require 'golden-ratio)
 #+END_SRC
+
 
 ** Zygospore
 Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config that I actually don't necessarily wanted destroyed. This package fixes this "issue". If I hit =C-x 1= again, I was just where I was before
@@ -650,6 +662,7 @@ Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config
 (require 'zygospore)
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 #+END_SRC
+
 
 ** Keybindgs
 #+BEGIN_SRC emacs-lisp
@@ -736,9 +749,9 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
 
 #+BEGIN_SRC emacs-lisp :results none
 
-(load-file "/home/arnaud/code_ext/q4/q4.el")
+(when (load-if-present "/home/arnaud/code_ext/q4/q4.el")y
+      (bind-key* "M-j q" 'q4/browse-board))
 
-(bind-key* "M-j q" 'q4/browse-board)
 #+END_SRC
 
 
@@ -2551,6 +2564,33 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 #+END_SRC
 
 
+** RMSBolt 
+
+RMSBolt is an equivalent of [[https://godbolt.org/][Compiler Explorer]] but it runs right in my editor. With it I can quickly expect the generated binary from a C++ program, for example. A more common case in my case is to test macro expansions of the C preprocessor when writing C++ code.
+------
+https://github.com/emacsmirror/rmsbolt
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'rmsbolt)
+#+END_SRC
+
+*** Usage for C++ program
+#+BEGIN_SRC c++
+// Local Variables:
+// rmsbolt-command: "gcc -O0"
+// rmsbolt-disassemble: nil
+// End:
+#+END_SRC
+
+*** Keybindings
+#+BEGIN_SRC emacs-lisp :results none
+
+(bind-key* "M-j b c" 'rmsbolt-compile)
+(bind-key* "M-j b s" 'rmsbolt-starter)
+
+#+END_SRC
+
+
 * Markup
 
 ** Markdown
@@ -2869,6 +2909,7 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 (bind-key* "C-c l M-p" 'latex-preview-pane-update)
 (bind-key* "C-c l l" 'TeX-command-master)
 #+END_SRC
+
 
 
 * Editor enhancing

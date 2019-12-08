@@ -116,7 +116,7 @@ bindsym $mod+Shift+F11		exec --no-startup-id prompt "Are you sure you want to su
 bindsym $mod+Shift+F10		exec --no-startup-id prompt "Are you sure you want to hibernate?" "$hibernate"
 bindsym $mod+Shift+F8		exec --no-startup-id toggleautolocking
 bindsym $mod+Return		exec $term
-bindsym $mod+Shift+Return	exec samedir
+bindsym $mod+Shift+Return	exec --no-startup-id samedir
 bindsym $mod+Home 	        floating toggle
 bindsym $mod+Shift+Tab          exec rofi -show window
 bindsym $mod+space              exec --no-startup-id i3changelayout
