@@ -162,11 +162,10 @@ bindsym --release Shift+Print   exec gnome-screenshot -a
 
 # set $stacking-mode Window
 mode "  " {
-     bindsym q layout stacking  ; mode "default"
-     bindsym w layout tabbed ; mode "default"
+     bindsym q layout stacking  ;    mode "default"
+     bindsym w layout tabbed ;       mode "default"
      bindsym e layout toggle split ; mode "default"
-
-     bindsym Escape          mode "default"
+     bindsym Escape                  mode "default"
      
 }
 
@@ -190,10 +189,10 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+control+Up                 exec --no-startup-id "bash ~/.scripts/i3resize up"
-bindsym $mod+control+Down		exec --no-startup-id "bash ~/.scripts/i3resize down"
-bindsym $mod+control+Left		exec --no-startup-id "bash ~/.scripts/i3resize left"
-bindsym $mod+control+Right 		exec --no-startup-id "bash ~/.scripts/i3resize right"
+bindsym $mod+control+Up                 exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize up"
+bindsym $mod+control+Down		exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize down"
+bindsym $mod+control+Left		exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize left"
+bindsym $mod+control+Right 		exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize right"
 
 for_window [class="Emacs"] move workspace $ws2
 for_window [class="Nautilus"] move workspace $ws5

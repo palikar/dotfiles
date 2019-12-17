@@ -894,7 +894,7 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 )
 (add-hook 'c++-mode-hook 'vlad-cc-style)
 
-
+(add-hook 'c++-mode-hook (lambda () (setq sp-escape-quotes-after-insert nil)))
 
 
 
@@ -1153,11 +1153,8 @@ One of the most useful packages that is pretty much a must for a emacs configura
 
 (setq yas-snippet-dirs '())
 
-1
-(setq yas-snippet-dirs `(
-						 ,(concat user-emacs-directory "snippets")
-						 ))
 
+(setq yas-snippet-dirs `(,(concat user-emacs-directory "snippets")))
 
 (yas-global-mode 1)
 (setq helm-yas-space-match-any-greedy t)
