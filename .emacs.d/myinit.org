@@ -1340,6 +1340,13 @@ if __name__ == \'__main__\':
 #+END_SRC
 
 
+** ALisp 
+
+#+BEGIN_SRC emacs-lisp :results none
+(add-to-list 'auto-mode-alist '("\\.al\\'" . emacs-lisp-mode))
+#+END_SRC
+
+
 * Text editing
 
 ** Alt-moving selection
@@ -2454,7 +2461,7 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 (global-anzu-mode +1)
 #+END_SRC
 *** Keybindgs
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c M-s"  'swiper)
 (bind-key* "C-s"  'isearch-forward)
 (bind-key* "M-%" 'anzu-query-replace)
@@ -2481,10 +2488,8 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 #+BEGIN_SRC emacs-lisp :results none
 ;; (bind-key* "M-%" 'vr/select-query-replace)
 (bind-key* "M-%" 'query-replace)
-
 (bind-key* "M-i"   'iedit-mode)
 (bind-key* "C-M-i" 'iedit-mode-toggle-on-function)
-
 #+END_SRC
 
 
@@ -2778,7 +2783,7 @@ will produce a graph-png at the end....it's awesome!
 #+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c a" 'org-agenda)
 (bind-key* "C-c c" 'org-capture)
-(bind-key* "C-c C-x s" 'org-attach-screenshot org-mode-map)
+(bind-keys* "C-c C-x s" 'org-attach-screenshot org-mode-map)
 
 (setq  org-replace-disputed-keys 't)
 
@@ -2893,10 +2898,10 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 
 *** Keybinds
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c l p" 'latex-preview-pane-mode)
-(bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography)
-(bind-key* "C-c l M-p" 'latex-preview-pane-update)
-(bind-key* "C-c l l" 'TeX-command-master)
+(bind-key* "C-c l p" 'latex-preview-pane-mode latex-mode-map)
+(bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography latex-mode-map)
+(bind-key* "C-c l M-p" 'latex-preview-pane-update latex-mode-map)
+(bind-key* "C-c l l" 'TeX-command-master latex-mode-map)
 #+END_SRC
 
 
