@@ -587,6 +587,10 @@ an error."
 (bind-key* "C-<next>" 'scroll-up-line)
 (bind-key* "C-S-<prior>" 'scroll-down-line)
 (bind-key* "C-S-<next>" 'scroll-up-line)
+
+(bind-key* "C-M-<prior>" 'scroll-down)
+(bind-key* "C-M-<next>" 'scroll-up)
+
 (bind-key* "C-c d" 'delete-file)
 
 (bind-key* "C-S-<down>"  'duplicate-line-down)
@@ -790,6 +794,325 @@ Viewing pdf files in emacs! Not really indented for big and heavy files but when
 #+END_SRC
 
 
+* Markup
+
+** Markdown
+Markdown is not as pretty as Org-mode but is widely used throughout the Internet. I often have to open /.md/ files and therefore it's worth making them look pretty in my emacs. The =markdown-mode= provies exaclty that.
+-[[https://jblevins.org/projects/markdown-mode/][markdown-mode]]
+#+BEGIN_SRC emacs-lisp
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+#+END_SRC
+
+
+** Org-mode
+
+*** Common settings
+Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writing/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this /init/ file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporters for =.org= files that just make my life easier.
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'org-bullets)
+;; (require 'org-tempo)
+(setq org-agenda-files '("~/Documents/orgfiles/todos/todos.org"))
+
+(setq org-support-shift-select (quote always))
+(setq org-startup-indented t)
+(setq org-hide-leading-stars t)
+(setq org-babel-python-command "python")
+(setq org-directory "~/Documents/orgfiles")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-export-html-postamble nil)
+(setq org-startup-folded (quote overview))
+(setq org-log-done 'time)
+
+(setq org-pretty-entities t)
+(setq org-export-babel-evaluate nil)
+(setq org-export-with-smart-quotes t)
+(setq org-enable-priority-commands nil)
+(setq org-html-htmlize-output-type 'css)
+
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(setq org-highlight-latex-and-related '(latex script entities))
+
+
+(add-hook 'org-mode-hook (lambda ()
+                           (org-bullets-mode 1)
+                           (flyspell-mode 1)))
+#+END_SRC
+
+
+The codeblocks should be formated with the native envinroment of the language
+#+BEGIN_SRC emacs-lisp :results none
+
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+(setq org-confirm-babel-evaluate nil)
+(setq org-edit-src-content-indentation 0)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :results none
+(defun org-summary-todo (n-done n-not-done)
+  "Switch entry to DONE when all subentries are done, to TODO otherwise."
+  (let (org-log-done org-log-states)   ; turn off logging
+    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+
+(add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+#+END_SRC
+
+*** Templates
+#+BEGIN_SRC emacs-lisp :results none
+;; (setq org-structure-template-alist '(("a" . "export ascii")
+;; 				     ("c" . "center")
+;; 				     ("C" . "comment")
+;; 				     ("e" . "example")
+;; 				     ("E" . "export")
+;; 				     ("h" . "export html")
+;; 				     ("l" . "export latex")
+;; 				     ("q" . "quote")
+;; 				     ("s" . "src")
+;; 				     ("v" . "verse")))
+
+(setq org-structure-template-alist '())
+#+END_SRC 
+*** Exporters
+Some extra export backends for org-mode that come in handy.
+- Beamer - for making those awesome-ish presentations
+- twbs(Tweeter Bootstrap) - quickly make your org files look really pretty
+- hugo - I use Hugo for blogging and the exporter allows me to write every single content page in /org-mode/
+- gfm (Github Flavored Markdown) - this makes writing /README.md/ files easy (i.e. writing them in org-mode)
+#+BEGIN_SRC emacs-lisp
+(require 'ox-beamer)
+(require 'ox-twbs)
+(require 'ox-hugo)
+(require 'ox-gfm)
+
+;; (setq org-hugo-external-file-extensions-allowed-for-copying 
+;; 	  '("png" "jpg" "jpeg" "pdf" "txt"))
+
+
+#+END_SRC
+*** Org-extras
+Remove headlines with =:no_title:= tag.
+#+BEGIN_SRC emacs-lisp :results none
+(require 'ox-extra)
+(defun org-remove-headlines (backend)
+  (org-map-entries (lambda () (delete-region (point-at-bol) (point-at-eol)))
+                   "no_title"))
+
+(add-hook 'org-export-before-processing-hook #'org-remove-headlines)
+
+(ox-extras-activate '(ignore-headlines))
+
+#+END_SRC
+*** Capture
+#+BEGIN_SRC emacs-lisp :results none
+(setq org-reverse-note-order t)
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/Documents/orgfiles/todos/todos.org" "Captured")
+         "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
+        ("i" "Idea" entry (file+headline "~/Documents/orgfiles/notes.org" "Someday/Maybe")
+         "* IDEA %?\nAdded: %U\n" :prepend t :kill-buffer t)
+        ))
+
+#+END_SRC
+*** Reveal.js
+This style of presenting looks cool but I don't use it that much. Still, I want to have the possibility in my emacs.
+#+BEGIN_SRC emacs-lisp
+(require 'ox-reveal)
+(require 'htmlize)
+
+(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+(setq org-reveal-mathjax t)
+#+END_SRC
+*** Latex classes
+
+#+BEGIN_SRC emacs-lisp :results none
+
+
+(setq org-export-allow-bind-keywords 't)
+
+(setq org-latex-prefer-user-labels 't)
+
+(add-to-list 'org-latex-classes
+                '("llncs"
+                  "\\documentclass{llncs}"
+                  ("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+
+
+#+END_SRC
+*** Babel Languages
+- Source block with this line in the header:
+
+#+BEGIN_EXAMPLE
+dot :file ./img/example1.png :cmdline -Kdot -Tpng
+#+END_EXAMPLE
+will produce a graph-png at the end....it's awesome!
+
+#+BEGIN_SRC emacs-lisp :results none
+(org-babel-do-load-languages
+ (quote org-babel-load-languages)
+ (quote (
+         (emacs-lisp . t)
+         (java . t)
+         (dot . t)
+         (ditaa . t)
+         (R . t)
+         (python . t)
+         (ruby . t)
+         (gnuplot . t)
+         (clojure . t)
+         (shell . t)
+         (ledger . t)
+         (org . t)
+		   (plantuml . t)
+         (plantuml . t)
+         (latex . t))))
+
+(setq org-plantuml-jar-path
+      (expand-file-name "~/code_ext/plantuml.jar"))
+
+#+END_SRC
+*** Keybinds
+
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "C-c a" 'org-agenda)
+(bind-key* "C-c c" 'org-capture)
+(bind-key* "C-c C-x s" 'org-attach-screenshot org-mode-map)
+
+(setq  org-replace-disputed-keys 't)
+
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
+
+
+
+
+
+#+END_SRC
+
+*** Org-Babel
+For some reason I must set the right /python/ command each time I start emacs. This does the trick...sometimes. Running random snippets of code in /.org/ files...how bonkers is that. The answer is *pretty bonkers*!!(You know if you are into emacs if you get this "reference")
+#+BEGIN_SRC emacs-lisp :results none
+(setq org-babel-python-command "python")
+#+END_SRC
+
+*** Include PDFs as image
+
+#+BEGIN_SRC emacs-lisp :results none
+
+
+(defun org-include-img-from-pdf (&rest _)
+  "Convert pdf files to image files in org-mode bracket links.
+    # ()convertfrompdf:t # This is a special comment; tells that the upcoming
+                         # link points to the to-be-converted-to file.
+    # If you have a foo.pdf that you need to convert to foo.png, use the
+    # foo.png file name in the link.
+    [[./foo.png]]
+"
+  (interactive)
+  (if (executable-find "convert")
+      (save-excursion
+        (goto-char (point-min))
+        (while (re-search-forward "^[ \t]*#\\s-+()convertfrompdf\\s-*:\\s-*t"
+                                  nil :noerror)
+          ;; Keep on going to the next line till it finds a line with bracketed
+          ;; file link.
+          (while (progn
+                   (forward-line 1)
+                   (not (looking-at org-bracket-link-regexp))))
+          ;; Get the sub-group 1 match, the link, from `org-bracket-link-regexp'
+          (let ((link (match-string-no-properties 1)))
+            (when (stringp link)
+              (let* ((imgfile (expand-file-name link))
+                     (pdffile (expand-file-name
+                               (concat (file-name-sans-extension imgfile)
+                                       "." "pdf")))
+                     (cmd (concat "convert -density 96 -quality 85 "
+                                  pdffile " " imgfile)))
+                (when (and (file-readable-p pdffile)
+                           (file-newer-than-file-p pdffile imgfile))
+                  ;; This block is executed only if pdffile is newer than
+                  ;; imgfile or if imgfile does not exist.
+                  (shell-command cmd)
+                  (message "%s" cmd)))))))
+    (user-error "`convert' executable (part of Imagemagick) is not found")))
+
+
+(defun my/org-include-img-from-pdf-before-save ()
+  "Execute `org-include-img-from-pdf' just before saving the file."
+  (add-hook 'before-save-hook #'org-include-img-from-pdf nil :local))
+
+;; Do not include this, it freezes when used in huge org buffers!
+;; (add-hook 'org-mode-hook #'my/org-include-img-from-pdf-before-save)
+
+#+END_SRC
+*** Reloading
+For some reasons I have to call this after I've /require/-d all the exporters' backends in order to make them available in the export dispatcher of /org-mode/.
+#+BEGIN_SRC emacs-lisp :results none
+(require 'org)
+(org-reload)
+#+END_SRC
+
+
+** Latex
+
+I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writing my $\LaTeX$ documents but recent changes to its interface have made me look for alternative. Also, recent changes with me and me loving /Emacs/ have made the choice pretty easy. By know I don't think I miss anything that /TexMaker/ could offer me that /Emacs/ cannot.
+- [[https://www.emacswiki.org/emacs/AUCTeX][auctex]] - full fledged environment for writing, editing and compiling /.tex/ documents. Almost everything comes out of the box. Only a simple setup and configuration is required.
+- [[https://www.emacswiki.org/emacs/LaTeXPreviewPane][latex-preview-pane]] - The very cool feature of Tex/Maker/ where your generated /pdf/-document is displayed on the side. Yes. Emacs can do it too...surprise, surprise!!
+#+BEGIN_SRC emacs-lisp :results none
+(require 'tex)
+(require 'latex-preview-pane)
+
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook 'pretty-mode)
+(add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
+
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+
+(TeX-global-PDF-mode t)
+
+(setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
+(setq TeX-view-program-selection '((output-pdf "Evince")))
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+(setq TeX-source-correlate-start-server t)
+
+(setq org-latex-pdf-process (list
+   "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
+
+#+END_SRC
+
+*** Keybinds
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "C-c l p" 'latex-preview-pane-mode latex-mode-map)
+(bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography latex-mode-map)
+(bind-key* "C-c l M-p" 'latex-preview-pane-update latex-mode-map)
+(bind-key* "C-c l l" 'TeX-command-master latex-mode-map)
+#+END_SRC
+
+
+
 * Programming
 
 ** General
@@ -880,21 +1203,33 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 ;; (c-set-offset 'substatement-open 0)
 ;; (c-set-offset 'inline-open '0)
 
+
 (defun vlad-cc-style()
   (c-set-style "linux")
+  (setq c-basic-offset 4)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
   (c-set-offset 'innamespace '0)
   (c-set-offset 'inextern-lang '0)
   (c-set-offset 'inline-open '0)
   (c-set-offset 'label '*)
   (c-set-offset 'case-label '*)
   (c-set-offset 'access-label '/)
-  (setq c-basic-offset 4)
-  (setq tab-width 4)
-  (setq indent-tabs-mode nil)
+  (c-set-offset 'inlambda 0)
+  (c-set-offset 'lambda-intro-cont 0)
+  (c-set-offset 'brace-list-open 0)
+  (c-set-offset 'brace-list-close 0)
+  (c-set-offset 'brace-list-intro '+)
+
+
 )
+
+
 (add-hook 'c++-mode-hook 'vlad-cc-style)
 
 (add-hook 'c++-mode-hook (lambda () (setq sp-escape-quotes-after-insert nil)))
+
+
 
 
 
@@ -2587,330 +2922,12 @@ https://github.com/emacsmirror/rmsbolt
 #+END_SRC
 
 
-* Markup
-
-** Markdown
-Markdown is not as pretty as Org-mode but is widely used throughout the Internet. I often have to open /.md/ files and therefore it's worth making them look pretty in my emacs. The =markdown-mode= provies exaclty that.
--[[https://jblevins.org/projects/markdown-mode/][markdown-mode]]
-#+BEGIN_SRC emacs-lisp
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-#+END_SRC
-
-
-** Org-mode
-
-*** Common settings
-Org-mode is awesome not just for note taking but also for general text editing, formating and all and all just plain old /writing/. Therefore some basic org-mode configuration comes at handy when working with =.org= files (this /init/ file is written in org-mode so...yeah!!). The =org-bullets= makes the heading look pretty. I have couple of extra exporters for =.org= files that just make my life easier.
-
-#+BEGIN_SRC emacs-lisp :results none
-(require 'org-bullets)
-;; (require 'org-tempo)
-(setq org-agenda-files '("~/Documents/orgfiles/todos/todos.org"))
-
-(setq org-support-shift-select (quote always))
-(setq org-startup-indented t)
-(setq org-hide-leading-stars t)
-(setq org-babel-python-command "python")
-(setq org-directory "~/Documents/orgfiles")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(setq org-export-html-postamble nil)
-(setq org-startup-folded (quote overview))
-(setq org-log-done 'time)
-
-(setq org-pretty-entities t)
-(setq org-export-babel-evaluate nil)
-(setq org-export-with-smart-quotes t)
-(setq org-enable-priority-commands nil)
-(setq org-html-htmlize-output-type 'css)
-
-(setq org-latex-listings 'minted
-      org-latex-packages-alist '(("" "minted"))
-      org-latex-pdf-process
-      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
-
-(setq org-highlight-latex-and-related '(latex script entities))
-
-
-(add-hook 'org-mode-hook (lambda ()
-                           (org-bullets-mode 1)
-                           (flyspell-mode 1)))
-#+END_SRC
-
-
-The codeblocks should be formated with the native envinroment of the language
-#+BEGIN_SRC emacs-lisp :results none
-
-(setq org-src-fontify-natively t)
-(setq org-src-tab-acts-natively t)
-(setq org-confirm-babel-evaluate nil)
-(setq org-edit-src-content-indentation 0)
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp :results none
-(defun org-summary-todo (n-done n-not-done)
-  "Switch entry to DONE when all subentries are done, to TODO otherwise."
-  (let (org-log-done org-log-states)   ; turn off logging
-    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
-
-(add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-#+END_SRC
-
-*** Templates
-#+BEGIN_SRC emacs-lisp :results none
-;; (setq org-structure-template-alist '(("a" . "export ascii")
-;; 				     ("c" . "center")
-;; 				     ("C" . "comment")
-;; 				     ("e" . "example")
-;; 				     ("E" . "export")
-;; 				     ("h" . "export html")
-;; 				     ("l" . "export latex")
-;; 				     ("q" . "quote")
-;; 				     ("s" . "src")
-;; 				     ("v" . "verse")))
-
-(setq org-structure-template-alist '())
-#+END_SRC 
-*** Exporters
-Some extra export backends for org-mode that come in handy.
-- Beamer - for making those awesome-ish presentations
-- twbs(Tweeter Bootstrap) - quickly make your org files look really pretty
-- hugo - I use Hugo for blogging and the exporter allows me to write every single content page in /org-mode/
-- gfm (Github Flavored Markdown) - this makes writing /README.md/ files easy (i.e. writing them in org-mode)
-#+BEGIN_SRC emacs-lisp
-(require 'ox-beamer)
-(require 'ox-twbs)
-(require 'ox-hugo)
-(require 'ox-gfm)
-
-;; (setq org-hugo-external-file-extensions-allowed-for-copying 
-;; 	  '("png" "jpg" "jpeg" "pdf" "txt"))
-
-
-#+END_SRC
-*** Org-extras
-Remove headlines with =:no_title:= tag.
-#+BEGIN_SRC emacs-lisp :results none
-(require 'ox-extra)
-(defun org-remove-headlines (backend)
-  (org-map-entries (lambda () (delete-region (point-at-bol) (point-at-eol)))
-                   "no_title"))
-
-(add-hook 'org-export-before-processing-hook #'org-remove-headlines)
-
-(ox-extras-activate '(ignore-headlines))
-
-#+END_SRC
-*** Capture
-#+BEGIN_SRC emacs-lisp :results none
-(setq org-reverse-note-order t)
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/Documents/orgfiles/todos/todos.org" "Captured")
-         "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        ("i" "Idea" entry (file+headline "~/Documents/orgfiles/notes.org" "Someday/Maybe")
-         "* IDEA %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        ))
-
-#+END_SRC
-*** Reveal.js
-This style of presenting looks cool but I don't use it that much. Still, I want to have the possibility in my emacs.
-#+BEGIN_SRC emacs-lisp
-(require 'ox-reveal)
-(require 'htmlize)
-
-(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-(setq org-reveal-mathjax t)
-#+END_SRC
-*** Latex classes
-
-#+BEGIN_SRC emacs-lisp :results none
-
-
-(setq org-export-allow-bind-keywords 't)
-
-(setq org-latex-prefer-user-labels 't)
-
-(add-to-list 'org-latex-classes
-                '("llncs"
-                  "\\documentclass{llncs}"
-                  ("\\section{%s}" . "\\section*{%s}")
-                  ("\\subsection{%s}" . "\\subsection*{%s}")
-                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-
-
-
-#+END_SRC
-*** Babel Languages
-- Source block with this line in the header:
-
-#+BEGIN_EXAMPLE
-dot :file ./img/example1.png :cmdline -Kdot -Tpng
-#+END_EXAMPLE
-will produce a graph-png at the end....it's awesome!
-
-#+BEGIN_SRC emacs-lisp :results none
-(org-babel-do-load-languages
- (quote org-babel-load-languages)
- (quote (
-         (emacs-lisp . t)
-         (java . t)
-         (dot . t)
-         (ditaa . t)
-         (R . t)
-         (python . t)
-         (ruby . t)
-         (gnuplot . t)
-         (clojure . t)
-         (shell . t)
-         (ledger . t)
-         (org . t)
-		   (plantuml . t)
-         (plantuml . t)
-         (latex . t))))
-
-(setq org-plantuml-jar-path
-      (expand-file-name "~/code_ext/plantuml.jar"))
-
-#+END_SRC
-*** Keybinds
-
-#+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c a" 'org-agenda)
-(bind-key* "C-c c" 'org-capture)
-(bind-keys* "C-c C-x s" 'org-attach-screenshot org-mode-map)
-
-(setq  org-replace-disputed-keys 't)
-
-(add-hook 'org-shiftup-final-hook 'windmove-up)
-(add-hook 'org-shiftleft-final-hook 'windmove-left)
-(add-hook 'org-shiftdown-final-hook 'windmove-down)
-(add-hook 'org-shiftright-final-hook 'windmove-right)
-
-
-
-
-
-#+END_SRC
-
-*** Org-Babel
-For some reason I must set the right /python/ command each time I start emacs. This does the trick...sometimes. Running random snippets of code in /.org/ files...how bonkers is that. The answer is *pretty bonkers*!!(You know if you are into emacs if you get this "reference")
-#+BEGIN_SRC emacs-lisp :results none
-(setq org-babel-python-command "python")
-#+END_SRC
-
-*** Include PDFs as image
-
-#+BEGIN_SRC emacs-lisp :results none
-
-
-(defun org-include-img-from-pdf (&rest _)
-  "Convert pdf files to image files in org-mode bracket links.
-    # ()convertfrompdf:t # This is a special comment; tells that the upcoming
-                         # link points to the to-be-converted-to file.
-    # If you have a foo.pdf that you need to convert to foo.png, use the
-    # foo.png file name in the link.
-    [[./foo.png]]
-"
-  (interactive)
-  (if (executable-find "convert")
-      (save-excursion
-        (goto-char (point-min))
-        (while (re-search-forward "^[ \t]*#\\s-+()convertfrompdf\\s-*:\\s-*t"
-                                  nil :noerror)
-          ;; Keep on going to the next line till it finds a line with bracketed
-          ;; file link.
-          (while (progn
-                   (forward-line 1)
-                   (not (looking-at org-bracket-link-regexp))))
-          ;; Get the sub-group 1 match, the link, from `org-bracket-link-regexp'
-          (let ((link (match-string-no-properties 1)))
-            (when (stringp link)
-              (let* ((imgfile (expand-file-name link))
-                     (pdffile (expand-file-name
-                               (concat (file-name-sans-extension imgfile)
-                                       "." "pdf")))
-                     (cmd (concat "convert -density 96 -quality 85 "
-                                  pdffile " " imgfile)))
-                (when (and (file-readable-p pdffile)
-                           (file-newer-than-file-p pdffile imgfile))
-                  ;; This block is executed only if pdffile is newer than
-                  ;; imgfile or if imgfile does not exist.
-                  (shell-command cmd)
-                  (message "%s" cmd)))))))
-    (user-error "`convert' executable (part of Imagemagick) is not found")))
-
-
-(defun my/org-include-img-from-pdf-before-save ()
-  "Execute `org-include-img-from-pdf' just before saving the file."
-  (add-hook 'before-save-hook #'org-include-img-from-pdf nil :local))
-
-;; Do not include this, it freezes when used in huge org buffers!
-;; (add-hook 'org-mode-hook #'my/org-include-img-from-pdf-before-save)
-
-#+END_SRC
-*** Reloading
-For some reasons I have to call this after I've /require/-d all the exporters' backends in order to make them available in the export dispatcher of /org-mode/.
-#+BEGIN_SRC emacs-lisp :results none
-(require 'org)
-(org-reload)
-#+END_SRC
-
-
-** Latex
-
-I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writing my $\LaTeX$ documents but recent changes to its interface have made me look for alternative. Also, recent changes with me and me loving /Emacs/ have made the choice pretty easy. By know I don't think I miss anything that /TexMaker/ could offer me that /Emacs/ cannot.
-- [[https://www.emacswiki.org/emacs/AUCTeX][auctex]] - full fledged environment for writing, editing and compiling /.tex/ documents. Almost everything comes out of the box. Only a simple setup and configuration is required.
-- [[https://www.emacswiki.org/emacs/LaTeXPreviewPane][latex-preview-pane]] - The very cool feature of Tex/Maker/ where your generated /pdf/-document is displayed on the side. Yes. Emacs can do it too...surprise, surprise!!
-#+BEGIN_SRC emacs-lisp :results none
-(require 'tex)
-(require 'latex-preview-pane)
-
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master nil)
-
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'pretty-mode)
-(add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
-
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
-
-(TeX-global-PDF-mode t)
-
-(setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
-(setq TeX-view-program-selection '((output-pdf "Evince")))
-(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
-(setq TeX-source-correlate-start-server t)
-
-(setq org-latex-pdf-process (list
-   "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
-
-#+END_SRC
-
-*** Keybinds
-#+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c l p" 'latex-preview-pane-mode latex-mode-map)
-(bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography latex-mode-map)
-(bind-key* "C-c l M-p" 'latex-preview-pane-update latex-mode-map)
-(bind-key* "C-c l l" 'TeX-command-master latex-mode-map)
-#+END_SRC
-
-
-
 * Editor enhancing
 
 ** Pretty startup screen
 A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that display on startup of/Emacs/ and gives quick access to recent files and projectile-projects. It works with sessions too but I haven't configured that yet. A image can also be displayed so I guess that is pretty. Custom startup message is a must of course!!
 - [[https://github.com/rakanalh/emacs-dashboard][dashboard]]
+
 #+BEGIN_SRC emacs-lisp :results none
 
 (require 'dashboard)
@@ -2939,7 +2956,24 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
                                                    :height 1.1
                                                    :v-adjust -0.05
                                                    :face 'font-lock-keyword-face))
+
+(setq dashboard-footer "Dashboard is pretty cool!")
 (setq show-week-agenda-p t)
+
+(setq dashboard-navigator-buttons
+      `(;; line1
+        ((,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0)
+         "Homepage"
+         "Browse homepage"
+         (lambda (&rest _) (browse-url "homepage")))
+        ("★" "Star" "Show stars" (lambda (&rest _) (show-stars)) warning)
+        ("?" "" "?/h" #'show-help nil "<" ">"))
+         ;; line 2
+        ((,(all-the-icons-faicon "linkedin" :height 1.1 :v-adjust 0.0)
+          "Linkedin"
+          ""
+          (lambda (&rest _) (browse-url "homepage")))
+         ("⚑" nil "Show flags" (lambda (&rest _) (message "flag")) error))))
 
 (dashboard-setup-startup-hook)
 
