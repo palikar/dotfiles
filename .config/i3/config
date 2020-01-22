@@ -199,6 +199,8 @@ for_window [class="Nautilus"] move workspace $ws5
 for_window [class="Evince"] move workspace $ws6
 for_window [class="Spotify"] move workspace $ws7
 for_window [class="discord"] move workspace $ws8
+for_window [class="ParaView"] move workspace $ws10
+
 
 
 
