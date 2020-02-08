@@ -1,0 +1,49 @@
+language: cpp
+
+matrix:
+  include:
+    - name: "gcc 9 Debug Coverage (ONLY_COVERAGE)"
+      os: linux
+      sudo: false
+      env: COVERAGE=1 CXX_EXE=/usr/bin/g++-9 CC_EXE=/usr/bin/gcc-9 CMAKE_OPTS="-DALL_WARNINGS=1 -DLIBCPP=1 -DENABLE_CLANG_TIDY=0 -DENABLE_CPPCHECK=0 -DENABLE_COVERAGE=1 -DBUILD_TESTS=1 -DCMAKE_BUILD_TYPE=Debug" CODECOV_TOKEN="23fdf1fc-d0ee-4005-94b0-14f135f261f9"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libx11-dev
+            - libxrandr-dev
+            - libudev-dev
+            - g++-9
+            - lcov
+            - gcovr
+            - catch
+
+  
+script:
+  - $CXX_EXE --version
+  - which cmake
+  - cmake --version
+  - export CXX=$CXX_EXE
+  - export CC=$CC_EXE
+  - echo $CXX
+  - echo $CMAKE_OPTS
+  - $CXX --version
+  - mkdir build
+  - cd build
+  - cmake  $CMAKE_OPTS ..
+  - VERBOSE=1 cmake --build . -- -j2
+  - make graph_coverage_xml
+  - ./graph_tests --reporter=xml -s --out=catch_log.xml
+  
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -f graph_coverage_xml.xml -t 23fdf1fc-d0ee-4005-94b0-14f135f261f9
+  - curl -s https://report.ci/upload.py | python - --include='catch_log.xml' -t ZSv4xLQlPismY8ISXkR2T8ModxglvzzALnOzTwH6GvcXtMPk0wGvxAuHD1iwgxnKyRzD/nDSBQ==fNSn0v8vaDnwaL5K8rK9wQ==
+
+  
+
+
+
+
+

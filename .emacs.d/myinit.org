@@ -63,7 +63,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(elf-mode ac-R ac-ja aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode cmake-project color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-math company-quickhelp company-reftex company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils dmenu doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-clangd lsp-css lsp-python lsp-ui lsp-vue lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode math-symbol-lists maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org package-lint page-break-lines parsebib password-store auth-source-pass pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags scala-mode skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights vsexp smartparens vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(elf-mode ac-R ac-ja aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode cmake-project color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-math company-quickhelp company-reftex company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils dmenu doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elpy emlib emmet-mode eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates god-mode golden-ratio google-this google-translate gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-mode dash-functional magit lv git-commit magit-popup markdown-mode math-symbol-lists maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog htmlize metaweblog ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki org package-lint page-break-lines parsebib password-store auth-source-pass pcache pdf-tools pip-requirements plantuml-mode pod-mode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rtags scala-mode skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visual-regexp-steroids visual-regexp volatile-highlights smartparens vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy go-mode rmsbolt))
 ; ending-packages
 
 ; activate all the packages (in particular autoloads)
@@ -73,18 +73,22 @@ I use a lot of additional packages and like to keep them local and installed. I'
 (unless package-archive-contents
   (package-refresh-contents))
 
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+(defvar packages-setup-state 'nil)
+(setq package-check-signature 'nil)
+
 (defun setup-packages ()
   (interactive)
   (setq package-archives '())
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t )
-  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") )
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") )
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") )
   (package-refresh-contents)
   (setq packages-setup-state t)
   )
 
-(defvar packages-setup-state 'nil)
+
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -1183,11 +1187,8 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
-
 (add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup)
-
 (add-hook 'flycheck-mode-hook #'flycheck-clang-analyzer-setup)
-
 (add-hook 'c++-mode-hook #'flycheck-calng-check-setup)
 
 (defun flycheck-calng-check-setup ()
@@ -1219,14 +1220,9 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
   (c-set-offset 'lambda-intro-cont 0)
   (c-set-offset 'brace-list-open 0)
   (c-set-offset 'brace-list-close 0)
-  (c-set-offset 'brace-list-intro '+)
-
-
-)
-
+  (c-set-offset 'brace-list-intro '+))
 
 (add-hook 'c++-mode-hook 'vlad-cc-style)
-
 (add-hook 'c++-mode-hook (lambda () (setq sp-escape-quotes-after-insert nil)))
 
 
@@ -1452,7 +1448,7 @@ I don't really use EMACS for java development as it can be tedious and the packa
 (require 'meghanada)
 (add-hook 'java-mode-hook
           (lambda ()
-            (meghanada-mode t)
+            ;; (meghanada-mode t)
             (flycheck-mode +1)
             (setq c-basic-offset 2)
             (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
@@ -1704,6 +1700,13 @@ if __name__ == \'__main__\':
     (:description "Run python with virtual env"))
   :default "python")
 
+(quickrun-add-command "go/run"
+  '((:command . "go_run")
+    (:exec    . (
+                 "/usr/bin/env go run %s"))
+    (:description "Run the file with go run"))
+  :default "go")
+
 
 
 
@@ -1731,6 +1734,41 @@ if __name__ == \'__main__\':
 
 #+BEGIN_SRC emacs-lisp :results none
 (add-to-list 'auto-mode-alist '("\\.al\\'" . emacs-lisp-mode))
+#+END_SRC
+
+
+** Go
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'lsp)
+(require 'lsp-mode)
+
+
+
+(setq go-mode-hook '())
+
+(add-hook 'go-mode-hook
+          (lambda ()
+
+            ;; (add-hook 'before-save-hook 'gofmt-before-save)
+
+            (setq tab-width 4)
+            (setq indent-tabs-mode 1)
+            (setq lsp-gopls-staticcheck t)
+            (setq lsp-eldoc-render-all t)
+            (setq lsp-gopls-complete-unimported t)
+
+            (local-set-key (kbd "M-.") 'godef-jump)
+            (local-set-key (kbd "M-*") 'pop-tag-mark)))
+
+
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection "gopls")
+                  :major-modes '(go-mode)
+                  :server-id 'gopls))
+
+
+
 #+END_SRC
 
 
@@ -1995,7 +2033,8 @@ This will keep the buffers listed in the helm-mini menu neatly organized.
 #+END_SRC
 
 *** Keybindgs
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
+(customize-set-variable 'helm-ff-lynx-style-map t)
 (bind-key* "C-x C-f" 'helm-find-files)
 (bind-key* "M-x" 'helm-M-x)
 (bind-key* "C-x b" 'helm-mini)
@@ -2007,9 +2046,6 @@ This will keep the buffers listed in the helm-mini menu neatly organized.
 (bind-key* "C-x r h" 'helm-register)
 (bind-key* "M-y" 'helm-show-kill-ring)
 #+END_SRC
-
-#+RESULTS:
-: helm-show-kill-ring
 
 
 ** IBuffer
@@ -2024,13 +2060,17 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 
 
 (setq ibuffer-saved-filter-groups
-      '(
-        ("home"
+      '(("home"
 	 ("Emacs-config" (or (filename . ".emacs")
 			     (filename . "myinit.org")))
          ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")))
-         ("Programming C++"
+         ("C++"
+          (or
+           (mode . c-mode)
+           (mode . c++-mode)
+           ))
+         ("Go"
           (or
            (mode . c-mode)
            (mode . c++-mode)
@@ -2111,7 +2151,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 #+END_SRC
 
 *** Get rid of the title and summery
-Q#+BEGIN_SRC emacs-lisp :results none
+#+BEGIN_SRC emacs-lisp :results none
 (defadvice ibuffer-update-title-and-summary (after remove-column-titles)
   (with-current-buffer "*Ibuffer*"
     (read-only-mode 1)
@@ -2649,6 +2689,7 @@ Complete Anything! I am yet to find an effective setup that is as fast as well a
 (require 'company-irony)
 (require 'company-nxml)
 (require 'company-anaconda)
+
 #+END_SRC
 
 \\
@@ -2684,7 +2725,7 @@ The definitions of all the functions for the backends setups.
 (defun my-company-java-backends ()
   (interactive)
   (message "Java backends engaged.")
-  (setq company-backends `(company-meghanada
+  (setq company-backends `(company-lsp
                            ,basic-company-backends)))
 
 
@@ -2693,11 +2734,18 @@ The definitions of all the functions for the backends setups.
   (interactive)
   (message "C++ backends engaged.")
   (setq company-backends `(
-						   company-irony
-						   company-ycmd
-						   company-c-headers
-						   company-irony-c-headers
-						   ,basic-company-backends)))
+			   company-irony
+			   company-ycmd
+			   company-c-headers
+			   company-irony-c-headers
+			   ,basic-company-backends)))
+
+(defun my-company-go-backends ()
+  (interactive)
+  (message "Go backends engaged.")
+  (setq company-backends `(
+			   company-lsp
+			   ,basic-company-backends)))
 
 
 (defun my-company-cmake-backends ()
@@ -2744,6 +2792,7 @@ Automation...60% of the time it works every time!
 (add-hook 'cmake-mode-hook 'my-company-cmake-backends)
 (add-hook 'c++-mode-hook 'my-company-c++-backends)
 (add-hook 'emacs-lisp-mode-hook 'my-company-elisp-backends)
+(add-hook 'go-mode-hook 'my-company-go-backends)
 #+END_SRC
 *** Hydra
 Hooks are nice but sometimes I want some finer control of which backends are activated in company.
@@ -2795,12 +2844,12 @@ Hydras are nice but sometimes I just want hit some keys and have what I want
 (bind-key* "M-j c c" 'my-company-c++-backends   )
 (bind-key* "M-j c e" 'my-company-elisp-backends )
 (bind-key* "M-j c b" 'my-company-basic-backends )
+(bind-key* "M-j c g" 'my-company-go-backends)
 #+END_SRC
 - The Hydry-thingy
 #+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c h c" 'arnaud-hydra-company/body)
 #+END_SRC
-
 
 ** Avy
 Navigate by searching for a letter on the screen and jumping to it. Useful for quick navigation and getting to places on the screen.
@@ -2838,7 +2887,7 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 \\
 /Update/: I've switched back to *isearch* for now
 #+BEGIN_SRC emacs-lisp
-(require 'swiper)
+
 (require 'ivy)
 (require 'anzu)
 
@@ -2847,6 +2896,12 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 
 (global-anzu-mode +1)
 #+END_SRC
+
+#+RESULTS:
+: t
+
+
+
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c M-s"  'swiper)
@@ -3017,14 +3072,14 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
         ((,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0)
          "Homepage"
          "Browse homepage"
-         (lambda (&rest _) (browse-url "homepage")))
-        ("★" "Star" "Show stars" (lambda (&rest _) (show-stars)) warning)
+         (lambda (&rest _) (browse-url "https://palikar.github.io/")))
+        ("★" "Star" "Show stars" (lambda (&rest _) (browse-url "https://palikar.github.io/")) warning)
         ("?" "" "?/h" #'show-help nil "<" ">"))
          ;; line 2
         ((,(all-the-icons-faicon "linkedin" :height 1.1 :v-adjust 0.0)
           "Linkedin"
           ""
-          (lambda (&rest _) (browse-url "homepage")))
+          (lambda (&rest _) (browse-url "https://www.linkedin.com/in/stanislav-arnaudov-37b475164/")))
          ("⚑" nil "Show flags" (lambda (&rest _) (message "flag")) error))))
 
 (dashboard-setup-startup-hook)
@@ -3398,6 +3453,9 @@ This things will track which command is being run and how many times... I just t
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 #+END_SRC
+
+#+RESULTS:
+: t
 
 
 

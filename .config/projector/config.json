@@ -1,212 +1,216 @@
-
 {
     "cmake-project":{
-        "root_dir": "cmake_project",
-        "properties": [
-            {
-                "name": "Name of the project",
-                "token": "project_name"
-            },
-            {
-                "name": "Installation prefix for 'make install' ",
-                "token": "install_prefix",
-                "default":"/usr/local/"
-            },
-            {
-                "name": "Init git",
-                "token" : "git",
-                "y_n": true
-            },
-            {
-                "name": "Licens",
-                "token": "lic",
-                "choice": ["GPL", "MIT"]
-            }
-        ]
-    },
-    
-    "cmake":{        
-        "root_dir": "cmake_simple",
-        "properties": [
-            {
-                "name": "Name of the project",
-                "token": "project_name"
-            },
-            {
-                "name": "Main binary file",
-                "token": "main_file"
-            },
-            {
-                "name": "Author of the project",
-                "default":"Stanislav Arnaudov",
-                "token": "author_name"
-            },
-            {
-                "name": "Email of the author",
-                "default":"stanislv_ts@abv.bg",
-                "token": "author_email"
-            },
-            {
-                "name": "Description ",
-                "default":" ",
-                "token": "description"
-            },
-            {
-                "name": "Keywords",
-                "default":" ",
-                "token": "keywords"
-            }
-        ]
-        
-        
-    },
-    
-    "python":{        
-        "root_dir": "python",
-        "properties": [
-            {
-                "name": "Name of the project",
-                "token": "project_name"
-            },
-            {
-                "name": "Author of the project",
-                "default":"Stanislav Arnaudov",
-                "token": "author_name"
-            },
-            {
-                "name": "Email of the author",
-                "default":"stanislv_ts@abv.bg",
-                "token": "author_email"
-            },
-            {
-                "name": "Description ",
-                "default":" ",
-                "token": "description"
-            },
-            {
-                "name": "Keywords",
-                "default":" ",
-                "token": "keywords"
-            }
-        ]
-    },
-    
-    "js":{        
-        "root_dir": "js",
-        "properties": [
-            {
-                "name": "Name of the project",
-                "token": "project_name"
-            },
-            {
-                "name": "The main .js file name",
-                "token": "main_file"
-            },
-            {
-                "name": "Author of the project",
-                "default":"Stanislav Arnaudov",
-                "token": "author_name"
-            },
-            {
-                "name": "Email of the author",
-                "default":"stanislv_ts@abv.bg",
-                "token": "author_email"
-            },
-            {
-                "name": "Description ",
-                "default":" ",
-                "token": "description"
-            },
-            {
-                "name": "Keywords",
-                "default":" ",
-                "token": "keywords"
-            }
-        ]
+	"root_dir": "cmake_project",
+        "description" :"A big C++ project based on the Cmake build system",
+	"properties": [
+	    {
+		"name": "Name of the project",
+		"token": "project_name"
+	    },
+	    {
+		"name": "Installation prefix for 'make install' ",
+		"token": "install_prefix",
+		"default":"/usr/local/"
+	    },
+	    {
+		"name": "Init git",
+		"token" : "git",
+		"y_n": true
+	    },
+	    {
+		"name": "Licens",
+		"token": "license",
+		"choice": ["GPL2", "GPL3", "MIT", "BSD2", "BSD2", "APACHE2"]
+	    }
+	]
     },
 
-    "emacs":{        
-        "root_dir": "emacs",
-        "properties": [
-            {
-                "name": "Name of the project",
-                "token": "project_name"
-            },
-            {
-                "name": "The .el file name",
-                "token": "main_file"
-            },
-            {
-                "name": "Author of the project",
-                "default":"Stanislav Arnaudov",
-                "token": "author_name"
-            },
-            {
-                "name": "Email of the author",
-                "default":"stanislv_ts@abv.bg",
-                "token": "author_email"
-            },
-            {
-                "name": "Description ",
-                "default":" ",
-                "token": "description"
-            },
-            {
-                "name": "Keywords",
-                "default":" ",
-                "token": "keywords"
-            }
-        ]
+    "cmake-simple":{
+
+	"root_dir": "cmake_simple",
+        "description" :"",
+	"properties": [
+	    {
+		"name": "Name of the project",
+		"token": "project_name"
+	    },
+	    {
+		"name": "Author of the project",
+		"default":"Stanislav Arnaudov",
+		"token": "project_author"
+	    },
+	    {
+		"name": "Description ",
+		"default":" ",
+		"token": "project_description"
+	    }
+	]
+	
+
     },
-    
+
+    "python":{
+	"root_dir": "python",
+        "description" :"",
+	"properties": [
+	    {
+		"name": "Name of the project",
+		"token": "project_name"
+	    },
+	    {
+		"name": "Author of the project",
+		"default":"Stanislav Arnaudov",
+		"token": "author_name"
+	    },
+	    {
+		"name": "Email of the author",
+		"default":"stanislv_ts@abv.bg",
+		"token": "author_email"
+	    },
+	    {
+		"name": "Description ",
+		"default":" ",
+		"token": "description"
+	    },
+	    {
+		"name": "Keywords",
+		"default":" ",
+		"token": "keywords"
+	    }
+	]
+    },
+
+    "js":{
+	"root_dir": "js",
+	"properties": [
+	    {
+		"name": "Name of the project",
+		"token": "project_name"
+	    },
+	    {
+		"name": "The main .js file name",
+		"token": "main_file"
+	    },
+	    {
+		"name": "Author of the project",
+		"default":"Stanislav Arnaudov",
+		"token": "author_name"
+	    },
+	    {
+		"name": "Email of the author",
+		"default":"stanislv_ts@abv.bg",
+		"token": "author_email"
+	    },
+	    {
+		"name": "Description ",
+		"default":" ",
+		"token": "description"
+	    },
+	    {
+		"name": "Keywords",
+		"default":" ",
+		"token": "keywords"
+	    }
+	]
+    },
+
+    "emacs":{
+	"root_dir": "emacs",
+        "description" :"",
+	"properties": [
+	    {
+		"name": "Name of the project",
+		"token": "project_name"
+	    },
+	    {
+		"name": "The .el file name",
+		"token": "main_file"
+	    },
+	    {
+		"name": "Author of the project",
+		"default":"Stanislav Arnaudov",
+		"token": "author_name"
+	    },
+	    {
+		"name": "Email of the author",
+		"default":"stanislv_ts@abv.bg",
+		"token": "author_email"
+	    },
+	    {
+		"name": "Description ",
+		"default":" ",
+		"token": "description"
+	    },
+	    {
+		"name": "Keywords",
+		"default":" ",
+		"token": "keywords"
+	    }
+	]
+    },
+
     "beamer":{
-        "root_dir": "beamer_presentation",
-        "properties": [
-            {
-                "name": "Name of the project",
-                "token": "project_name"
-            },
-            {
-                "name": "Author of the project",
-                "default":"Stanislav Arnaudov",
-                "token": "author_name"
-            },
-            {
-                "name": "Title",
-                "token": "title"
-            },
-            {
-                "name": "Subtitle",
-                "token": "subtitle",
-                "default":" "
-            },
-            {
-                "name": "Institute or Organisation",
-                "token": "institute",
-                "default": "KIT - Karlsruher Institut Für Technologie"
-            }
-        ]
+	"root_dir": "beamer_presentation",
+        "description" :"",
+	"properties": [
+	    {
+		"name": "Name of the project",
+		"token": "project_name"
+	    },
+	    {
+		"name": "Author of the project",
+		"default":"Stanislav Arnaudov",
+		"token": "author_name"
+	    },
+	    {
+		"name": "Title",
+		"token": "title"
+	    },
+	    {
+		"name": "Subtitle",
+		"token": "subtitle",
+		"default":" "
+	    },
+	    {
+		"name": "Institute or Organisation",
+		"token": "institute",
+		"default": "KIT - Karlsruher Institut Für Technologie"
+	    }
+	]
     },
 
     "install_script":{
-        "root_dir": "{{project_name}}_install_script.sh",
-        "properties": [
-            {
-                "name": "Name of the script",
-                "token": "project_name"
-            }
-        ]
+	"root_dir": "{{project_name}}_install_script.sh",
+        "description" :"",
+	"properties": [
+	    {
+		"name": "Name of the script",
+		"token": "project_name"
+	    }
+	]
     },
-	
+
     "ml_stream":{
-        "root_dir": "ml_streamer",
+	"root_dir": "ml_streamer",
+        "description" :"",
+	"properties": [
+	    {
+		"name": "Name of the model",
+		"token": "project_name"
+	    }
+	]
+    },
+
+    "ml_torch" : {
+        "root_dir": "ml_torch",
+        "description" :"",
         "properties": [
-            {
-                "name": "Name of the model",
-                "token": "project_name"
-            }
-        ]
+	    {
+		"name": "Name of the model",
+		"token": "project_name"
+	    }
+	]
     }
-    
-    
+
+
 }

@@ -1,0 +1,9 @@
+* TODO Define Data Set
+* TODO Define network
+* TODO Create the needed directories
+* TODO Adjust the print-summaries
+* TODO Adjust Training loop
+* TODO Adjust the tracking metrics
+* TODO Adjust the saving of the model
+* TODO Create evaluator
+* TODO Evaluate the model on the test set in different ways

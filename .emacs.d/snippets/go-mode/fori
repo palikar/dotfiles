@@ -1,0 +1,7 @@
+# -*- mode:snippet -*-
+# name: fori
+# key: fori
+# --
+for ${1:i} := 0; $1 < $2; i++ {
+  $0
+}

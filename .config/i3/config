@@ -252,11 +252,12 @@ for_window [class="Gnome-calendar"] floating enable
 for_window [class="Matplotlib"] floating enable
 for_window [class="ParaView"] floating enable
 for_window [class="vtk"] floating enable
+for_window [class="GoSweeper"] floating enable
 
 
 # #---Extra XF86 Keys---# #
 # # These are the extra media keys that some keyboards have.
-bindsym XF86AudioMute		exec --no-startup-id lmc mute
+bindsym XF86AudioMute		exec --no-startup-id lmc mute4
 bindsym XF86AudioLowerVolume	exec --no-startup-id lmc down 5
 bindsym XF86AudioRaiseVolume	exec --no-startup-id lmc up 5
 # bindsym XF86PowerOff		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
