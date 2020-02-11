@@ -39,6 +39,7 @@ entrypoints==0.3
 epc==0.0.5
 fasteners==0.14.1
 flake8==3.7.7
+Flask==1.0.3
 future==0.16.0
 gcovr==4.2
 gevent==1.4.0
@@ -57,6 +58,7 @@ indexed-gzip==0.8.6
 ipython==5.8.0
 ipython-genutils==0.2.0
 isort==4.3.15
+itsdangerous==1.1.0
 jedi==0.13.3
 Jinja2==2.10
 jmespath==0.9.4
@@ -192,11 +194,13 @@ unattended-upgrades==0.1
 UNKNOWN==0.0.0
 urllib3==1.25.6
 urwid==2.0.1
+uWSGI==2.0.18
 virtualenv==16.4.3
 virtualenv-clone==0.5.1
 wcwidth==0.1.8
 webencodings==0.5.1
 websockets==8.0
+Werkzeug==0.15.4
 wheezy.template==0.1.167
 wrapt==1.11.1
 yenc==0.4.0

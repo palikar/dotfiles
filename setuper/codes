@@ -1,10 +1,16 @@
+https://github.com/palikar/AdvancedResouceMenaging
 https://github.com/palikar/ai-streamer
 git@github.com:palikar/alisp.git
 https://github.com/palikar/blog-hugo-files
+git@github.com:palikar/alisp.git
 https://github.com/palikar/code_manager
+git@github.com:palikar/ctgraph.git
 https://github.com/palikar/dotfiles
 https://github.com/palikar/fcontrol
-
+git@github.com:palikar/flow_predict.git
+git@github.com:palikar/go-learn.git
+git@github.com:palikar/go-range.git
+git@github.com:palikar/gosweeper.git
 https://github.com/palikar/homebrew
 https://github.com/palikar/MandelbrotWorks
 https://github.com/palikar/mflower
@@ -14,3 +20,4 @@ https://github.com/palikar/python-requirements-installer
 git@github.com:palikar/rabbitholer.git
 https://github.com/palikar/smart_memory_location
 git@github.com:palikar/vsexp.git
+https://github.com/EnclaveGames/Enclave-Phaser-Template

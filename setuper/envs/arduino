@@ -127,6 +127,8 @@ pynvim==0.4.0
 pyodbc==4.0.22
 pyparsing==2.3.1
 pypcap==1.2.2
+PyQt5==5.12.1
+PyQt5-sip==4.19.15
 pyraf==2.1.15
 pysendfile==2.0.1
 pySFML==2.2.0
@@ -153,6 +155,8 @@ pyxattr==0.6.1
 pyxdg==0.26
 PyYAML==3.13
 qrencode==1.2
+QScintilla==2.11.1
+QtPy==1.7.0
 ranger-fm==1.9.2
 readme-renderer==24.0
 requests==2.22.0

@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 
 save_git_dirs() {
     if [ -f "${DOTFILES_DIR}/setuper/$2" ]; then
@@ -10,11 +9,32 @@ save_git_dirs() {
     do
 	[ -d $1/$dir ] || continue
 	
-	cd $1/$dir
+	cd $1/$dir|| exit
 
 	if [ -d ./.git ]; then
 	    echo $(git config --get remote.origin.url) >> ${DOTFILES_DIR}/setuper/$2
 	fi
+    done
+}
+
+
+save_pyenvs() {
+    if [ ! -d "${DOTFILES_DIR}/setuper/envs" ]; then
+	mkdir "${DOTFILES_DIR}/setuper/envs"
+    fi
+    
+    for dir in $(ls $1)
+    do
+	[ -d $1/$dir ] || continue
+	
+	. "$1/$dir/bin/activate"
+        echo $(which pip)
+        pip freeze > "${DOTFILES_DIR}/setuper/envs/${dir}"
+        deactive
+        
+
+        
+
     done
 }
 
@@ -30,6 +50,8 @@ echo "$(emacsclient -e "(symbol-value 'package-activated-list)" | sed "s#(##g" |
 apt-mark showmanual > ${DOTFILES_DIR}/setuper/apt_packages
 
 pip3 freeze > ${DOTFILES_DIR}/setuper/python_packages
+
+save_pyenvs "${HOME}/Envs"
 
 save_git_dirs "$CODE_DIR_EXT" "ext_codes"
 

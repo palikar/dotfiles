@@ -6,26 +6,26 @@ DIR=$(dirname "$(readlink -f "$0")")
 
 check_drive()
 {
-	
-	return 1
+    
+    return 1
 }
 
 
 sync()
 {
-	while read -r line; do
-		back=$(echo $line | sed -e 's/#.*$//' -e '/^$/d')
+    while read -r line; do
+	back=$(echo $line | sed -e 's/#.*$//' -e '/^$/d')
 
-		[ -n "$back" ] || continue;
+	[ -n "$back" ] || continue;
 
-		FOLDER=$(echo $back | awk '{print $1}')
-		POINT=$(echo $back | awk '{print $2}')
+	FOLDER=$(echo $back | awk '{print $1}')
+	POINT=$(echo $back | awk '{print $2}')
 
-		echo "$FOLDER -> $POINT"
+	echo "$FOLDER -> $POINT"
 
-		rsync --exclude ".git" --ignore-existing --stats --human-readable -aLuzv "${FOLDER}/" "${POINT}/" | pv -lep -s 42 >/dev/null
+	rsync --exclude ".git" --ignore-existing --stats --human-readable -aLuzv "${FOLDER}/" "${POINT}/" | pv -lep -s 42 >/dev/null
 
-	done < $DIR/../conf/backups
+    done < $DIR/../conf/backups
 }
 
 
