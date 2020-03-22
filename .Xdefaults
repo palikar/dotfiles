@@ -68,7 +68,7 @@ URxvt.colorUL:							#4682B4
 
 
 URxvt.keysym.M-l:                       perl:url-select:select_next
-URxvt.url-select.launcher:              linkhandler
+URxvt.url-select.launcher:              sensible-browser
 URxvt.url-select.underline:             true
 
 !! keyboard-eslect:

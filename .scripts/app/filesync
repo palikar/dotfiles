@@ -23,7 +23,7 @@ sync()
 
 	echo "$FOLDER -> $POINT"
 
-	rsync --exclude ".git" --ignore-existing --stats --human-readable -aLuzv "${FOLDER}/" "${POINT}/" | pv -lep -s 42 >/dev/null
+	rsync --ignore-errors --exclude ".git" --ignore-existing --stats --human-readable -aLuzv "${FOLDER}/" "${POINT}/" | pv -lep -s 42 >/dev/null
 
     done < $DIR/../conf/backups
 }

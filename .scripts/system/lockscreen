@@ -8,9 +8,9 @@ rm -f /tmp/locked.png
     pgrep -x dunst && notify-send -i ~/.scripts/lock.png "Locking computer..." &&
     convert /tmp/base.png -blur 0x8 /tmp/locked.png
 
-convert -composite /tmp/locked.png ~/.scripts/rick.png -gravity Southwest -geometry +250+0  /tmp/locked.png
+convert -composite /tmp/locked.png "${HOME}/.scripts/resources/rick.png" -gravity Southwest -geometry +250+0  /tmp/locked.png
 
-convert -composite /tmp/locked.png ~/.scripts/rick2.png -gravity Southeast -geometry +450+0 /tmp/locked.png
+convert -composite /tmp/locked.png "${HOME}/.scripts/resources/rick2.png" -gravity Southeast -geometry +450+0 /tmp/locked.png
 
 
 

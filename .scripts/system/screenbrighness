@@ -3,16 +3,10 @@
 XRANDR=$(which xrandr)
 
 
-res=""
-
-while [[ $res != "none" ]]; do
-	res=$(rofi -dmenu)
-
-	
-done
+dis=$(echo -e "HDMI-1\neDP-1" | rofi -dmenu -i -p "Display: ")
+res=$(echo -e "1\n1.1\n1.2\n1.3\n1.4\n1.5\n1.6\n1.7\n1.8\n1.9\n2" |rofi -dmenu -i -p "Brightness: ")
 
 
 
-
-# xrandr --output HDMI-1 --brightness 0.5
-# xrandr --output eDP-1 --brightness 0.5
+xrandr --output ${dis} --brightness ${res}
+xrandr --output ${dis} --brightness ${res}

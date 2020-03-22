@@ -140,7 +140,9 @@ Bindsym $mod+Shift+s            exec --no-startup-id screensetup
 bindsym $mod+Shift+b            bar mode toggle
 bindsym $mod+Shift+f            fullscreen toggle
 
-bindsym $mod+d	                exec --no-startup-id rofi -show run
+bindsym $mod+b	                exec --no-startup-id screenbrighness
+
+Bindsym $mod+d	                exec --no-startup-id rofi -show run
 bindsym $mod+r                  exec --no-startup-id $term -e ranger
 bindsym $mod+e                  exec --no-startup-id emacsclient -c
 bindsym $mod+w                  exec --no-startup-id firefox

@@ -30,11 +30,7 @@ save_pyenvs() {
 	. "$1/$dir/bin/activate"
         echo $(which pip)
         pip freeze > "${DOTFILES_DIR}/setuper/envs/${dir}"
-        deactive
         
-
-        
-
     done
 }
 

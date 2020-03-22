@@ -132,6 +132,8 @@
     "packages": {
         
         "arnaud-framer": {
+            "root_dir" : "arnaud",
+            "install_dir" : "~/core.d/usr/arnaud/",
             "fetch": "git",
             "git":{
                 "url" :  "https://github.com/palikar/arnaud-framer.git"

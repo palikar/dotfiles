@@ -44,7 +44,7 @@ if [ -f ~/.bash_prompt ]; then
 fi
 
 if [ -f ~/.env ]; then
-    . ~/.env
+    source ~/.env
 fi
 
 if [ -f ~/.inputrc ]; then
@@ -101,3 +101,4 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export GOPATH="${HOME}/go/"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
+export MANPATH="${MANPATH}:/home/arnaud/core.d/usr/man/"

@@ -146,7 +146,6 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 (set-fill-column 80)
 (face-spec-set 'secondary-selection '((t (:background "light sky blue" :foreground "black"))))
 #+END_SRC
-
 *** Fonts
 #+BEGIN_SRC emacs-lisp :results none
 ;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=16")
@@ -154,8 +153,13 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 ;;(set-frame-font "SauceCodePro Nerd Font Mono:size=15" nil t)
 ;; (set-default-font "SauceCodePro Nerd Font Mono:size=15")
 #+END_SRC
-
-
+*** Emojify
+Displaying emojies in a proper way.
+-------
+- [[https://github.com/iqbalansari/emacs-emojify][emacs-emojify]]
+#+BEGIN_SRC emacs-lisp :results none
+(add-hook 'after-init-hook #'global-emojify-mode)
+#+END_SRC
 ** Behavioral tweaks
 Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp :results none
@@ -689,8 +693,8 @@ I often alternate between these two and can't really decide which is my favorite
 #+BEGIN_SRC emacs-lisp :results none
 
 (setq custom-enabled-themes (quote (spacemacs-dark)))
+(setq custom-enabled-themes (quote (vscdark-dark)))
 (setq custom-safe-themes t)
-
 ;; this loads the theme correctly even in daemon mode
 (if (daemonp)
     (add-hook 'after-make-frame-functions
@@ -1774,6 +1778,16 @@ if __name__ == \'__main__\':
 
 * Text editing
 
+** Text inserting
+
+#+BEGIN_SRC emacs-lisp :results none
+
+(define-key python-mode-map (kbd "C-c x") (lambda () (interactive) (insert "import pdb; pdb.set_trace()")))
+;; (global-set-key (kbd "C-c j") "your text here")
+
+#+END_SRC
+
+
 ** Alt-moving selection
 Another 'standard feature' of most editors but in emacs we have to set it up because this is how we roll. This is just moving the selected block up and down while holding /Alt/
 - [[https://github.com/rejeep/drag-stuff.el][drag-stuff]]
@@ -1858,13 +1872,30 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 #+END_SRC
 
 
+** Multiple cursor
+
+----------
+- [[https://github.com/magnars/multiple-cursors.el][multiple-cursors]]
+#+BEGIN_SRC emacs-lisp :results none
+(require 'multiple-cursors)
+(define-key mc/keymap (kbd "<return>") nil)
+#+END_SRC
+*** Keybinds
+#+BEGIN_SRC emacs-lisp :results none
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+#+END_SRC
+
+
 * QOL
 Extensions/Applications/Packages for Emacs that just plainly do by life easier. The key to getting the job done in an effective manner in having the right tools for it. And you know the Emacs philosophy... "Put _everything_ in your editor!"
 
 ** Undo tree
 #+BEGIN_SRC emacs-lisp :export src
 (require 'undo-tree)
-#+END_SRC
+#+END_SRvC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
 (bind-key* "C-x u" 'undo-tree-visualize)
@@ -3029,6 +3060,22 @@ https://github.com/emacsmirror/rmsbolt
 #+END_SRC
 
 
+** Goto live preview
+This package updates the point's potions as you type numbers for ~goto-line~. It makes the whole experience of using ~goto-line~ less chunky.
+-------
+- [[https://github.com/lassik/emacs-live-preview][emacs-live-preview]]
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'goto-line-preview)
+#+END_SRC
+
+*** Keybindings
+#+BEGIN_SRC emacs-lisp :results none
+(bind-key* "M-g g" 'goto-line-preview)
+(bind-key* "M-g M-g" 'goto-line-preview)
+#+END_SRC
+
+
 * Editor enhancing
 
 ** Pretty startup screen
@@ -3402,6 +3449,15 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 * Things just for fun
 The world is full of useless things! We should use them all!! Emacs agrees!!
 
+
+#+BEGIN_SRC emacs-lisp :results none
+
+;; (require 'visible-mark)
+;; (global-visible-mark-mode 1)
+;; (setq visible-mark-max 1)
+;; (setq visible-mark-faces `(visible-mark-face1 visible-mark-face2))
+#+END_SRC
+
 ** Weather
 That one cool site - [[http://wttr.in/][wttr]] - that I even use in my system setup to get weather information. It can also be used in Emacs so why the hell not.
 #+BEGIN_SRC emacs-lisp
@@ -3461,4 +3517,5 @@ This things will track which command is being run and how many times... I just t
 
 #  LocalWords:  Yagist QOL VueJS Quickrun LSP Savehist Recentf GDB Iy
 #  LocalWords:  Uniquify Saveplace Ediff Docview Avy IEdit Swiper SRC
-#  LocalWords:  IMenu Magit Gitignore Modeline Vimacs
+#  LocalWords:  IMenu Magit Gitignore Modeline Vimacs Emojify
+
