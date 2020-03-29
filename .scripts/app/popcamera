@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+
+mplayer tv://device=/dev/video0 &
+i3-msg "for_window [class=\"MPlayer\"] floating enable"
+ 
