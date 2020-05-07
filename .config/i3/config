@@ -141,7 +141,6 @@ bindsym $mod+Shift+b            bar mode toggle
 bindsym $mod+Shift+f            fullscreen toggle
 
 bindsym $mod+b	                exec --no-startup-id screenbrighness
-
 Bindsym $mod+d	                exec --no-startup-id rofi -show run
 bindsym $mod+r                  exec --no-startup-id $term -e ranger
 bindsym $mod+e                  exec --no-startup-id emacsclient -c
@@ -154,6 +153,7 @@ bindsym $mod+l            	exec --no-startup-id openfolder
 bindsym $mod+c            	exec --no-startup-id traymenu
 bindsym $mod+p            	exec --no-startup-id passmenu
 bindsym $mod+n            	exec --no-startup-id popcamera
+bindsym $mod+i            	exec --no-startup-id $term -e cmatrix
 
 
 
@@ -257,6 +257,7 @@ for_window [class="Matplotlib"] floating enable
 for_window [class="ParaView"] floating enable
 for_window [class="vtk"] floating enable
 for_window [class="GoSweeper"] floating enable
+for_window [class="Anything"] floating enable
 
 
 # #---Extra XF86 Keys---# #

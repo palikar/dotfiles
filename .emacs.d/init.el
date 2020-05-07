@@ -19,7 +19,7 @@
 (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 
 (let ((gc-cons-threshold most-positive-fixnum))
-  (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org") 't))
+  (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org")))
 
 
 

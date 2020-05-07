@@ -160,6 +160,8 @@ Displaying emojies in a proper way.
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'after-init-hook #'global-emojify-mode)
 #+END_SRC
+
+
 ** Behavioral tweaks
 Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp :results none
@@ -189,6 +191,10 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (setq mouse-yank-at-point t)
 (setq create-lockfiles nil)
 (auto-compression-mode t)
+
+(setenv "LD_LIBRARY_PATH" (concat (getenv "PATH") ":" (expand-file-name "~/core.d/usr/lib/")))
+(setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/core.d/usr/bin")))
+(setq exec-path (append exec-path (list (expand-file-name "~/core.d/usr/bin"))))
 #+END_SRC
 **** Keybindings
 #+BEGIN_SRC emacs-lisp :results none
@@ -667,15 +673,15 @@ My little thingy that is kind of useless but I like it. I implemented a mode so 
 ** Golden Ration
 When used, it keeps the focused window the biggest while still having the other ones in a "golder ratioed" size.
 #+BEGIN_SRC emacs-lisp
-(require 'golden-ratio)
+;; (require 'golden-ratio)
 #+END_SRC
 
 
 ** Zygospore
 Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config that I actually don't necessarily wanted destroyed. This package fixes this "issue". If I hit =C-x 1= again, I was just where I was before
 #+BEGIN_SRC emacs-lisp :results none
-(require 'zygospore)
-(global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
+;; (require 'zygospore)
+;; (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 #+END_SRC
 
 
@@ -746,7 +752,8 @@ CRUX is an abrabiation for /A Collection of Ridiculously Useful eXtensions for E
 #+BEGIN_SRC emacs-lisp :results none
 (require 'crux)
 
-(bind-key* "C-c o" 'crux-open-with)
+(bind-key* "C-c o" nil)
+;; (bind-key* "C-c o" 'crux-open-with)
 (bind-key* "C-c r" 'crux-rename-file-and-buffer)
 (bind-key* "C-c i" 'find-myinit-file)
 (bind-key* "C-c I" 'crux-find-user-init-file)
@@ -764,10 +771,11 @@ Through this packages, I can browse 4chan (only =/g= of course!) threads in my E
 
 #+BEGIN_SRC emacs-lisp :results none
 
-(when (load-if-present "/home/arnaud/code_ext/q4/q4.el")
-      (bind-key* "M-j q" 'q4/browse-board))
+;; (when (load-if-present "/home/arnaud/code_ext/q4/q4.el")
+;;       (bind-key* "M-j q" 'q4/browse-board))
 
 #+END_SRC
+
 
 ** Google This
 This is absolutely a genius thing! Mark something, simple key-stroke, BAM!! Google! You are there! You have no idea how much copying and windows switching this package saves. Again, for intuition sake, =C-c g= is the prefix. After that:
@@ -800,8 +808,8 @@ I also frequanlty use Zeal. It's an application housing tons of usefull document
 Viewing pdf files in emacs! Not really indented for big and heavy files but when I have to check on something is does the trick. If emacs is compiled with [[https://imagemagick.org/index.php][ImageMagic]], the provided features are much more.
 - [[https://github.com/politza/pdf-tools][pdf-tools]]
 #+BEGIN_SRC emacs-lisp
-(require 'pdf-tools)
-(require 'org-pdfview)
+;; (require 'pdf-tools)
+;; (require 'org-pdfview)
 #+END_SRC
 
 
@@ -1169,36 +1177,36 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'irony)
-(require 'ycmd)
-(require 'company-ycmd)
-(require 'flycheck-ycmd)
-(require 'function-args)
-(require 'modern-cpp-font-lock)
+;; (require 'ycmd)
+;; (require 'company-ycmd)
+;; (require 'flycheck-ycmd)
+;; (require 'function-args)
+;; (require 'modern-cpp-font-lock)
 (require 'flycheck-clangcheck)
-(require 'flycheck-clang-analyzer)
+;; (require 'flycheck-clang-analyzer)
 
-(modern-c++-font-lock-global-mode t)
+;; (modern-c++-font-lock-global-mode t)
 
-(fa-config-default)
+;; (fa-config-default)
 
-(set-variable 'ycmd-server-command '("python" "/home/arnaud/code_ext/ycmd/ycmd"))
-(set-variable 'ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
-(set-variable 'ycmd-global-config "~/.ycm_extra_conf.py")
+;; (set-variable 'ycmd-server-command '("python" "/home/arnaud/code_ext/ycmd/ycmd"))
+;; (set-variable 'ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
+;; (set-variable 'ycmd-global-config "~/.ycm_extra_conf.py")
 
 ;; (add-hook 'c++-mode-hook 'ycmd-mode)
 ;; (add-hook 'c++-mode-hook 'flycheck-ycmd-setup)
 ;; (add-hook 'c++-mode-hook 'company-ycmd-setup)
 
 
-(add-hook 'c++-mode-hook 'function-args-mode)
+;; (add-hook 'c++-mode-hook 'function-args-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
-(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup)
-(add-hook 'flycheck-mode-hook #'flycheck-clang-analyzer-setup)
-(add-hook 'c++-mode-hook #'flycheck-calng-check-setup)
+;; (add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup)
+;; (add-hook 'flycheck-mode-hook #'flycheck-clang-analyzer-setup)
+;; (add-hook 'c++-mode-hook #'flycheck-clang-check-setup)
 
-(defun flycheck-calng-check-setup ()
+(defun flycheck-clang-check-setup ()
   (setq flycheck-clangcheck-extra-arg "-Wall -std=c++17 -x c++")
   (flycheck-set-checker-executable 'c/c++-clangcheck "/usr/bin/clang-check-7")
   (flycheck-clang-analyzer-setup))
@@ -1221,9 +1229,12 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
   (c-set-offset 'inextern-lang '0)
   (c-set-offset 'inline-open '0)
   (c-set-offset 'label '*)
+  (c-set-offset 'arglist-intro '+)
+  (c-set-offset 'arglist-close 0)
   (c-set-offset 'case-label '*)
   (c-set-offset 'access-label '/)
   (c-set-offset 'inlambda 0)
+  (c-set-offset 'arglist-cont-nonempty 0)
   (c-set-offset 'lambda-intro-cont 0)
   (c-set-offset 'brace-list-open 0)
   (c-set-offset 'brace-list-close 0)
@@ -1231,10 +1242,6 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 
 (add-hook 'c++-mode-hook 'vlad-cc-style)
 (add-hook 'c++-mode-hook (lambda () (setq sp-escape-quotes-after-insert nil)))
-
-
-
-
 
 #+END_SRC
 
@@ -1318,24 +1325,26 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 
 (bind-key* "M-j l" 'clang-format)
 
+(bind-key* "C-c ." 'xref-find-definitions 'c++-mode-map)
+
 #+End_SRC
 
 *** Doxymacs
 
 #+BEGIN_SRC emacs-lisp :results none
-(load-if-present "/home/arnaud/.emacs.d/lisp/tempo.el")
-(load-if-present "/home/arnaud/.emacs.d/lisp/xml-parse.el")
-(load-if-present "/home/arnaud/.emacs.d/lisp/doxymacs.el")
+;; (load-if-present "/home/arnaud/.emacs.d/lisp/tempo.el")
+;; (load-if-present "/home/arnaud/.emacs.d/lisp/xml-parse.el")
+;; (load-if-present "/home/arnaud/.emacs.d/lisp/doxymacs.el")
 
-(when (require 'doxymacs nil t)
-  (setq doxymacs-doxygen-style "JavaDoc")
-  (setq doxymacs-use-external-xml-parser 't)
-  (add-hook 'c-mode-common-hook 'doxymacs-mode)
-  (add-hook 'c-mode-common-hook 'doxymacs-mode)
-  (defun my-doxymacs-font-lock-hook ()
-    (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
-        (doxymacs-font-lock)))
-  (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook))
+;; (when (require 'doxymacs nil t)
+;;   (setq doxymacs-doxygen-style "JavaDoc")
+;;   (setq doxymacs-use-external-xml-parser 't)
+;;   (add-hook 'c-mode-common-hook 'doxymacs-mode)
+;;   (add-hook 'c-mode-common-hook 'doxymacs-mode)
+;;   (defun my-doxymacs-font-lock-hook ()
+;;     (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+;;         (doxymacs-font-lock)))
+;;   (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook))
 
 #+END_SRC
 
@@ -1714,6 +1723,14 @@ if __name__ == \'__main__\':
     (:description "Run the file with go run"))
   :default "go")
 
+(quickrun-add-command "alisp/run"
+  '((:command . "alisp")
+    (:exec    . (
+                 "/usr/bin/env alisp %s"))
+    (:description "Run the file with alisp"))
+  :mode 'emacs-lisp-mode
+  :default "emacs-lisp")
+
 
 
 
@@ -1887,8 +1904,8 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 #+BEGIN_SRC emacs-lisp :results none
 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(glob-set-key (kbd "C->") 'mc/mark-next-like-this)
-(glob-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-\"") 'mc/skip-to-next-like-this)
 (global-set-key (kbd "C-:")  'mc/skip-to-previous-like-this)
@@ -1901,11 +1918,11 @@ Extensions/Applications/Packages for Emacs that just plainly do by life easier. 
 
 ** Undo tree
 #+BEGIN_SRC emacs-lisp :export src
-(require 'undo-tree)
-#+END_SRvC
+;;(require 'undo-tree)
+#+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "C-x u" 'undo-tree-visualize)
+;; (bind-key* "C-x u" 'undo-tree-visualize)
 #+END_SRC
 
 
@@ -2889,6 +2906,7 @@ Hydras are nice but sometimes I just want hit some keys and have what I want
 (bind-key* "C-c h c" 'arnaud-hydra-company/body)
 #+END_SRC
 
+
 ** Avy
 Navigate by searching for a letter on the screen and jumping to it. Useful for quick navigation and getting to places on the screen.
 - [[https://github.com/abo-abo/avy][avy]]
@@ -2926,26 +2944,21 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 /Update/: I've switched back to *isearch* for now
 #+BEGIN_SRC emacs-lisp
 
-(require 'ivy)
-(require 'anzu)
+;; (require 'ivy)
+;; (require 'anzu)
 
-(setq ivy-display-style (quote fancy))
-(setq search-whitespace-regexp ".*?")
+;; (setq ivy-display-style (quote fancy))
+;; (setq search-whitespace-regexp ".*?")
 
-(global-anzu-mode +1)
+;; (global-anzu-mode +1)
 #+END_SRC
-
-#+RESULTS:
-: t
-
-
 
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c M-s"  'swiper)
 (bind-key* "C-s"  'isearch-forward)
-(bind-key* "M-%" 'anzu-query-replace)
-(bind-key* "C-M-%" 'anzu-query-replace-regexp)
+;; (bind-key* "C-c M-s"  'swiper)
+;; (bind-key* "M-%" 'anzu-query-replace)
+;; (bind-key* "C-M-%" 'anzu-query-replace-regexp)
 #+END_SRC
 
 
@@ -2954,22 +2967,22 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with ~M-i~ and while editing the marked region, all other occurrences will be changed accordingly.
 - [[https://github.com/victorhge/iedit][iedit]]
 #+BEGIN_SRC emacs-lisp :results none
-(require 'iedit)
-(face-spec-set 'iedit-occurrence '((t (:background "pale green" :foreground "black"))))
+;; (require 'iedit)
+;; (face-spec-set 'iedit-occurrence '((t (:background "pale green" :foreground "black"))))
 #+END_SRC
 
 *** Visual Regexp
 #+BEGIN_SRC emacs-lisp
-(require 'visual-regexp)
-(require 'visual-regexp-steroids)
+;; (require 'visual-regexp)
+;; (require 'visual-regexp-steroids)
 #+END_SRC
 
 *** Keybindings
 #+BEGIN_SRC emacs-lisp :results none
 ;; (bind-key* "M-%" 'vr/select-query-replace)
 (bind-key* "M-%" 'query-replace)
-(bind-key* "M-i"   'iedit-mode)
-(bind-key* "C-M-i" 'iedit-mode-toggle-on-function)
+;; (bind-key* "M-i"   'iedit-mode)
+;; (bind-key* "C-M-i" 'iedit-mode-toggle-on-function)
 #+END_SRC
 
 
@@ -2987,10 +3000,10 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 ** Sunrise Commander
 
 #+BEGIN_SRC emacs-lisp :results none
-(load-if-present "~/.emacs.d/lisp/sunrise-commander.el")
-(require 'sunrise-commander nil t)
-(require 'sunrise-x-buttons nil t)
-(require 'sunrise-x-modeline nil t)
+;; (load-if-present "~/.emacs.d/lisp/sunrise-commander.el")
+;; (require 'sunrise-commander nil t)
+;; (require 'sunrise-x-buttons nil t)
+;; (require 'sunrise-x-modeline nil t)
 
 #+END_SRC
 
@@ -2998,38 +3011,38 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 ** Gitignore templates
 
 #+BEGIN_SRC emacs-lisp
-(require 'gitignore-templates)
+;; (require 'gitignore-templates)
 #+END_SRC
 
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
-(bind-key* "M-j i i" 'gitignore-templates-insert)
-(bind-key* "M-j i f" 'gitignore-templates-new-file)
+;; (bind-key* "M-j i i" 'gitignore-templates-insert)
+;; (bind-key* "M-j i f" 'gitignore-templates-new-file)
 #+END_SRC
 
 
 ** Prodigy
 
 #+BEGIN_SRC emacs-lisp :results none
-(require 'prodigy)
+;; (require 'prodigy)
 
-(prodigy-define-service
-  :name "Python Server"
-  :command "python"
-  :args '("-m" "http.server" "6001")
-  :cwd "/home/arnaud/core.d/www"
-  :tags '(server)
-  :stop-signal 'sigkill
-  :kill-process-buffer-on-stop t)
+;; (prodigy-define-service
+;;   :name "Python Server"
+;;   :command "python"
+;;   :args '("-m" "http.server" "6001")
+;;   :cwd "/home/arnaud/core.d/www"
+;;   :tags '(server)
+;;   :stop-signal 'sigkill
+;;   :kill-process-buffer-on-stop t)
 
-(prodigy-define-service
-  :name "Hugo Local Blog"
-  :command "hugo"
-  :args '("server" "-D" )
-  :cwd "/home/arnaud/code/blog-hugo-files"
-  :tags '(server)
-  :stop-signal 'sigkill
-  :kill-process-buffer-on-stop t)
+;; (prodigy-define-service
+;;   :name "Hugo Local Blog"
+;;   :command "hugo"
+;;   :args '("server" "-D" )
+;;   :cwd "/home/arnaud/code/blog-hugo-files"
+;;   :tags '(server)
+;;   :stop-signal 'sigkill
+;;   :kill-process-buffer-on-stop t)
 
 #+END_SRC
 
@@ -3047,7 +3060,7 @@ RMSBolt is an equivalent of [[https://godbolt.org/][Compiler Explorer]] but it r
 https://github.com/emacsmirror/rmsbolt
 
 #+BEGIN_SRC emacs-lisp :results none
-(require 'rmsbolt)
+;; (require 'rmsbolt)
 #+END_SRC
 
 *** Usage for C++ program
@@ -3061,8 +3074,8 @@ https://github.com/emacsmirror/rmsbolt
 *** Keybindings
 #+BEGIN_SRC emacs-lisp :results none
 
-(bind-key* "M-j b c" 'rmsbolt-compile)
-(bind-key* "M-j b s" 'rmsbolt-starter)
+;; (bind-key* "M-j b c" 'rmsbolt-compile)
+;; (bind-key* "M-j b s" 'rmsbolt-starter)
 
 #+END_SRC
 
@@ -3158,18 +3171,18 @@ From the documentation:
 ---------
 - [[https://github.com/pashinin/workgroups2][workgroups2]]
 #+BEGIN_SRC emacs-lisp :results none
-(require 'workgroups2)
-(workgroups-mode 1)
+;; (require 'workgroups2)
+;; (workgroups-mode 1)
 
-(setq wg-prefix-key (kbd "C-c z"))
-(setq wg-session-file "~/.emacs.d/.emacs_workgroups")
-(setq wg-emacs-exit-save-behavior           'save)
-(setq wg-workgroups-mode-exit-save-behavior 'save)
-(setq wg-mode-line-display-on t)
-(setq wg-flag-modified t)
-(setq wg-mode-line-decor-left-brace "["
-      wg-mode-line-decor-right-brace "]"
-      wg-mode-line-decor-divider ":")
+;; (setq wg-prefix-key (kbd "C-c z"))
+;; (setq wg-session-file "~/.emacs.d/.emacs_workgroups")
+;; (setq wg-emacs-exit-save-behavior           'save)
+;; (setq wg-workgroups-mode-exit-save-behavior 'save)
+;; (setq wg-mode-line-display-on t)
+;; (setq wg-flag-modified t)
+;; (setq wg-mode-line-decor-left-brace "["
+;;       wg-mode-line-decor-right-brace "]"
+;;       wg-mode-line-decor-divider ":")
 #+END_SRC
 
 
@@ -3234,44 +3247,39 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
   (interactive)
   (if (bound-and-true-p evil-local-mode)
     (progn
-      (evil-local-mode (or -1 1))
-      (undo-tree-mode (or -1 1))
-      (set-cursor-color "#d0d0d0")
+      ;; (evil-local-mode (or -1 1))
+      ;; (undo-tree-mode (or -1 1))
+      (set-cursor-color "#d0d0d0")      
     )
     (progn
-	  (evil-mode)
-      (evil-local-mode (or 1 1))
-      (set-variable 'cursor-type 'box)
+	  ;; (evil-mode)
+      ;; (evil-local-mode (or 1 1))
+      ;; (set-variable 'cursor-type 'box)
       (set-cursor-color "#8968cd"))))
 
+(set-cursor-color "#98fb98")
 (bind-key* "M-<f13>" 'quick-evil)
 #+END_SRC
 
-
 ** Which key
 Now, I generally know my Emacs keybindings but from time to time I have to look somethings up. The [[https://github.com/justbur/emacs-which-key][which-key]] packages in awesome in this regard. If I the start of some keybinding, a popup will show me how can I follow the binding and which functions will be I executing if I type something.
-
-
 #+BEGIN_SRC emacs-lisp :results none
-
-(require 'which-key)
-(which-key-mode)
-(which-key-setup-side-window-bottom)
-
-;; the default setup for the package
-(setq which-key-idle-delay 1.0)
-(setq which-key-max-description-length 27)
-(setq which-key-add-column-padding 0)
-(setq which-key-max-display-columns nil)
-(setq which-key-separator " → " )
-(setq which-key-unicode-correction 3)
-(setq which-key-prefix-prefix "+" )
-(setq which-key-special-keys nil)
-(setq which-key-show-prefix 'left)
-(setq which-key-show-remaining-keys nil)
+;; (require 'which-key)
+;; (which-key-mode)
+;; (which-key-setup-side-window-bottom)
+;; ;; the default setup for the package
+;; (setq which-key-idle-delay 1.0)
+;; (setq which-key-max-description-length 27)
+;; (setq which-key-add-column-padding 0)
+;; (setq which-key-max-display-columns nil)
+;; (setq which-key-separator " → " )
+;; (setq which-key-unicode-correction 3)
+;; (setq which-key-prefix-prefix "+" )
+;; (setq which-key-special-keys nil)
+;; (setq which-key-show-prefix 'left)
+;; (setq which-key-show-remaining-keys nil)
 
 #+END_SRC
-
 
 ** Diminish
 The modeline can get pretty cluttered with minor modes pretty quickly. To avoid that I use the [[https://github.com/emacsmirror/diminish][diminish]] package. It allows me to specify modes that will not have any text in the modeline.
@@ -3332,16 +3340,15 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 (bind-key* "M-j d" 'diminish-em-all)
 #+END_SRC
 
-
 ** Highlight Symbol
 
 #+BEGIN_SRC emacs-lisp :results none
-(require 'highlight-symbol)
-(highlight-symbol-nav-mode)
+;; (require 'highlight-symbol)
+;; (highlight-symbol-nav-mode)
 #+END_SRC
 *** Faces
 #+BEGIN_SRC emacs-lisp :results none
-(setq highlight-symbol-colors (quote ("cyan")))
+;; (setq highlight-symbol-colors (quote ("cyan")))
 
 ;; (face-spec-set 'highlight-symbol-face '((t (:background "royal blue" :foreground "black"))))
 ;; (face-spec-set 'highlight-indentation-current-column-face '((t (:background "gray"))))
@@ -3351,14 +3358,14 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "M-o o" 'highlight-symbol)
-(bind-key* "M-o M-o" 'highlight-symbol)
+;; (bind-key* "M-o o" 'highlight-symbol)
+;; (bind-key* "M-o M-o" 'highlight-symbol)
 
-(bind-key* "M-n" 'highlight-symbol-next)
-(bind-key* "M-p" 'highlight-symbol-prev)
+;; (bind-key* "M-n" 'highlight-symbol-next)
+;; (bind-key* "M-p" 'highlight-symbol-prev)
 
-(bind-key* "M-o c" 'highlight-symbol-remove-all)
-(bind-key* "M-o M-c" 'highlight-symbol-remove-all)
+;; (bind-key* "M-o c" 'highlight-symbol-remove-all)
+;; (bind-key* "M-o M-c" 'highlight-symbol-remove-all)
 #+END_SRC
 
 
@@ -3368,61 +3375,61 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 
 #+BEGIN_SRC emacs-lisp :results none
 
-(add-to-list 'load-path "~/code_ext/mu/mu4e")
-(require 'mu4e)
+;; (add-to-list 'load-path "~/code_ext/mu/mu4e")
+;; (require 'mu4e)
 
-(setq mu4e-maildir "/home/arnaud/.mail")
+;; (setq mu4e-maildir "/home/arnaud/.mail")
 
-(setq
- message-send-mail-function 'smtpmail-send-it
- starttls-use-gnutls t
- mu4e-sent-messages-behavior 'sent
- user-mail-address "stanislav.arn@gmail.com"
- user-full-name "Stanislav Arnaudov"
- smtpmail-default-smtp-server "smtp.gmail.comg"
- smtpmail-smtp-user "stanislav.arn"
- smtpmail-smtp-server "smtp.gmail.com"
- smtpmail-stream-type 'starttls
- smtpmail-smtp-service 587)
-
-
-(setq mu4e-trash-folder "/mu4e/Trash"
-      mu4e-refile-folder "/mu4e/Archive"
-	  mu4e-sent-folder "/mu4e/Sent"
-	  mu4e-drafts-folder "/mu4e/Drafts"
-      mu4e-attachment-dir "/mu4e/Downloads"
-      mu4e-get-mail-command "offlineimap -q"
-      mu4e-update-interval 300 ;; second
-      mu4e-compose-signature-auto-include nil
-      mu4e-view-show-images t
-      mu4e-view-show-addresses t
-      mu4e-use-fancy-chars t
-	  )
+;; (setq
+;;  message-send-mail-function 'smtpmail-send-it
+;;  starttls-use-gnutls t
+;;  mu4e-sent-messages-behavior 'sent
+;;  user-mail-address "stanislav.arn@gmail.com"
+;;  user-full-name "Stanislav Arnaudov"
+;;  smtpmail-default-smtp-server "smtp.gmail.comg"
+;;  smtpmail-smtp-user "stanislav.arn"
+;;  smtpmail-smtp-server "smtp.gmail.com"
+;;  smtpmail-stream-type 'starttls
+;;  smtpmail-smtp-service 587)
 
 
-(setq mu4e-contexts
-    `( ,(make-mu4e-context
-	  :name "Gmail"
-	  :enter-func (lambda () (mu4e-message "Entering Gmail context"))
-      :leave-func (lambda () (mu4e-message "Leaving Gmail context"))
-	  ;; we match based on the contact-fields of the message
-	  :match-func (lambda (msg)
-			(when msg
-			  (string-match-p "^/Gmail" (mu4e-message-field msg :maildir))))
-	  :vars '( 
-			  (mu4e-trash-folder . "/Gmail/[Gmail].Bin/")
-			  ( user-mail-address	    . "stanislav.arn@gmail.com"  )
-			  ( user-full-name	    . "Stanislav Arnaudov" )))))
+;; (setq mu4e-trash-folder "/mu4e/Trash"
+;;       mu4e-refile-folder "/mu4e/Archive"
+;; 	  mu4e-sent-folder "/mu4e/Sent"
+;; 	  mu4e-drafts-folder "/mu4e/Drafts"
+;;       mu4e-attachment-dir "/mu4e/Downloads"
+;;       mu4e-get-mail-command "offlineimap -q"
+;;       mu4e-update-interval 300 ;; second
+;;       mu4e-compose-signature-auto-include nil
+;;       mu4e-view-show-images t
+;;       mu4e-view-show-addresses t
+;;       mu4e-use-fancy-chars t
+;; 	  )
+
+
+;; (setq mu4e-contexts
+;;     `( ,(make-mu4e-context
+;; 	  :name "Gmail"
+;; 	  :enter-func (lambda () (mu4e-message "Entering Gmail context"))
+;;       :leave-func (lambda () (mu4e-message "Leaving Gmail context"))
+;; 	  ;; we match based on the contact-fields of the message
+;; 	  :match-func (lambda (msg)
+;; 			(when msg
+;; 			  (string-match-p "^/Gmail" (mu4e-message-field msg :maildir))))
+;; 	  :vars '( 
+;; 			  (mu4e-trash-folder . "/Gmail/[Gmail].Bin/")
+;; 			  ( user-mail-address	    . "stanislav.arn@gmail.com"  )
+;; 			  ( user-full-name	    . "Stanislav Arnaudov" )))))
 
 
 
-(setq mu4e-context-policy 'pick-first)
-(setq mu4e-compose-context-policy nil)
+;; (setq mu4e-context-policy 'pick-first)
+;; (setq mu4e-compose-context-policy nil)
 
 
-(require 'org-mu4e)
-(setq org-mu4e-convert-to-html t)
-(add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+;; (require 'org-mu4e)
+;; (setq org-mu4e-convert-to-html t)
+;; (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
 ;; (setq mu4e-maildir-shortcuts
 ;;     '( ("/INBOX"               . ?i)
@@ -3439,7 +3446,7 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
 ;;       "http://www.example.com\n"))
 
 
-(require 'mu4e-alert)
+;; (require 'mu4e-alert)
 
 
 #+END_SRC
@@ -3468,14 +3475,14 @@ The world is full of useless things! We should use them all!! Emacs agrees!!
 ** Weather
 That one cool site - [[http://wttr.in/][wttr]] - that I even use in my system setup to get weather information. It can also be used in Emacs so why the hell not.
 #+BEGIN_SRC emacs-lisp
-(require 'wttrin)
-(setq wttrin-default-cities '("Karlsruhe"
-                              "Sliven"
-                              "Sofia"))
-(setq wttrin-default-accept-language
-      '("Accept-Language" . "en-US"))
+;; (require 'wttrin)
+;; (setq wttrin-default-cities '("Karlsruhe"
+;;                               "Sliven"
+;;                               "Sofia"))
+;; (setq wttrin-default-accept-language
+;;       '("Accept-Language" . "en-US"))
 
-(bind-key* "M-j w"  'wttrin)
+;; (bind-key* "M-j w"  'wttrin)
 
 #+END_SRC
 
@@ -3483,38 +3490,38 @@ That one cool site - [[http://wttr.in/][wttr]] - that I even use in my system se
 ** XKCD
 This cute little thing with those cool little nerdy cody comics
 #+BEGIN_SRC emacs-lisp
-(require 'xkcd)
-(bind-key* "M-j x" 'xkcd)
+;; (require 'xkcd)
+;; (bind-key* "M-j x" 'xkcd)
 #+END_SRC
 
 
 ** Touch typing
 I... am not exactly a fast typist but I've really put time and effort into it. I regularly use [[https://typing-speed-test.aoeu.eu/][this]] one but Emacs is Emacs and everything should be Emacs. Just put everything in Emacs they said! So, [[https://github.com/mrkkrp/typit][typit]] is a small package that lets you practice touch typing right here into Emacs.
 #+BEGIN_SRC emacs-lisp
-(require 'typit)
-(bind-key* "M-j t b" 'typit-basic-test)
-(bind-key* "M-j t a" 'typit-advanced-test)
+;; (require 'typit)
+;; (bind-key* "M-j t b" 'typit-basic-test)
+;; (bind-key* "M-j t a" 'typit-advanced-test)
 #+END_SRC
 
 
 ** Commands frequency
 This things will track which command is being run and how many times... I just think it's cool.
 #+BEGIN_SRC emacs-lisp
-(require 'keyfreq)
+;; (require 'keyfreq)
 
-(setq keyfreq-excluded-commands
-        '(self-insert-command
-          org-self-insert-command
-          company-ignore
-          abort-recursive-edit
-          forward-char
-          modalka-mode
-          backward-char
-          previous-line
-          next-line))
+;; (setq keyfreq-excluded-commands
+;;         '(self-insert-command
+;;           org-self-insert-command
+;;           company-ignore
+;;           abort-recursive-edit
+;;           forward-char
+;;           modalka-mode
+;;           backward-char
+;;           previous-line
+;;           next-line))
 
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+;; (keyfreq-mode 1)
+;; (keyfreq-autosave-mode 1)
 #+END_SRC
 
 #+RESULTS:
