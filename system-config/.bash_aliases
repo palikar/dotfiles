@@ -25,7 +25,7 @@ alias urxvt="rxvt-unicode"
 
 
 
-alias emacsd='emacs --daemon'
+alias emacsd='rm ~/.emacs.d/myinit.el && emacs --daemon'
 alias em='emacsclient'
 alias emacspd='emacs -q --load $HOME/code_sys/prelude/init.el --daemon'
 alias vim='vim'

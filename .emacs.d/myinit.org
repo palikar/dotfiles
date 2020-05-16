@@ -1709,6 +1709,13 @@ if __name__ == \'__main__\':
 	(:description "Compile C++ file with g++ and all of the warnings."))
   :default "c++")
 
+(quickrun-add-command "simple-python-run"
+  '((:command . "python")
+    (:exec    . ("%c %s"))
+    (:description "")
+    (:timeout . 42))
+  :default "python")
+
 (quickrun-add-command "python/virtualenv"
   '((:command . "python_virt")
     (:exec    . (
@@ -1796,6 +1803,13 @@ if __name__ == \'__main__\':
 #+END_SRC
 
 
+** Elisp
+
+#+BEGIN_SRC emacs-lisp
+
+(bind-key* "C-x M-e" 'eval-defun)
+
+#+END_SRC
 * Text editing
 
 ** Text inserting
@@ -2967,8 +2981,8 @@ Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don
 IEdit is kinda like real time search and replace. It's similar to that one vim feature that I see people using from time to time. After a word is selected by the region, you can go into iedit-mode with ~M-i~ and while editing the marked region, all other occurrences will be changed accordingly.
 - [[https://github.com/victorhge/iedit][iedit]]
 #+BEGIN_SRC emacs-lisp :results none
-;; (require 'iedit)
-;; (face-spec-set 'iedit-occurrence '((t (:background "pale green" :foreground "black"))))
+(require 'iedit)
+(face-spec-set 'iedit-occurrence '((t (:background "pale green" :foreground "black"))))
 #+END_SRC
 
 *** Visual Regexp
@@ -2981,7 +2995,7 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 #+BEGIN_SRC emacs-lisp :results none
 ;; (bind-key* "M-%" 'vr/select-query-replace)
 (bind-key* "M-%" 'query-replace)
-;; (bind-key* "M-i"   'iedit-mode)
+(bind-key* "M-i"   'iedit-mode)
 ;; (bind-key* "C-M-i" 'iedit-mode-toggle-on-function)
 #+END_SRC
 
@@ -3096,6 +3110,16 @@ This package updates the point's potions as you type numbers for ~goto-line~. It
 #+END_SRC
 
 
+
+** Swooper
+Helm-Swooper is similar to swiper but offers better user experience IMO. I use it to quickly inspect the file for lines matching a pattern and then jump to one of the lines. This is somewhat nicer than using incremental search all of the time.
+-------
+ - [[https://github.com/emacsorphanage/helm-swoop/][swoop]]
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'helm-swoop)
+(bind-key* "C-x q" 'helm-swoop)
+#+END_SRC
 * Editor enhancing
 
 ** Pretty startup screen
