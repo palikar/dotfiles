@@ -164,6 +164,14 @@ sub key_press {
 		$self->selection_make($event->{time});
 		$self->selection_beg(1, 0);
 		$self->selection_end(1, 0);
+                
+                if (open(CLIPBOARD, "| $self->{copy_cmd}")) {
+                    my $sel = $found;
+                    utf8::encode($sel);
+                    print CLIPBOARD $sel;
+                    close(CLIPBOARD);
+                }
+                
 		deactivate($self);
 	} elsif ($char eq 'k' || $keysym == 0xff52 || $keysym == 0xff51) {
 		select_next($self, -1, $event);

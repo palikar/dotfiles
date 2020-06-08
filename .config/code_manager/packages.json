@@ -2,12 +2,17 @@
 
     "vars" : {
         "arnaud_base" : "git@github.com:palikar",
-        "github_base" : "git@github.com:"
+        "github_base" : "git@github.com:",
+        "emacs_version": "emacs-26.3",
+        "ranger_version": "",
+        "i3gaps_version": "",
+        "urxvt_version": ""
     },
 
     "packages_list": {
-        
+
         "personal" : [
+
             "tictacminimax",
             "mandelbrotworks",
             "advancedresoucemenaging",
@@ -29,15 +34,18 @@
             "arffpar",
             "python-req-installer",
             "mflower",
-            "ctgraph"
+            "ctgraph",
+            "anything",
+            "alisp"
+
         ],
-        
-        "emacs" : [
+
+        "elisp" : [
             "arnaud-framer",
             "vsexp",
             "python-req-installer"
         ],
-        
+
         "system" : [
             "i3-gaps",
             "mons",
@@ -47,13 +55,22 @@
             "xkblayout-state",
             "rxvt-unicode",
             "urxvt-perls",
-            "opencv",
-            "easyloggingpp",
             "emacs",
+            "dragon",
+            "nerd-fonts",
+            "notify-send-py",
+            "nerd-fonts",
+            "pamixer",
+            "discord",
+            "dropbox",
+            "vim",
+            "fzf",
             "pywal"
         ],
-        
+
         "misc" : [
+            "easyloggingpp",
+            "opencv",
             "opencv-contrib",
             "scull",
             "edward",
@@ -80,57 +97,168 @@
             "pystache",
             "vue-mode",
             "mlpack",
-	    "armadillo",
+            "armadillo",
             "navigationfx",
             "jwtxx"
         ]
-        
+
     },
-    
+
     "debian_packages": {
 
         "system" : [
-	    "libboost-all-dev",
-	    "build-essential",
-	    "git",
-	    "cmake",
-	    "cmake-curses-gui",
-	    "krb5-config",
-	    "krb5-user",
-	    "libfile-homedir-perl",
-	    "libpath-class-perl",					
-	    "libswitch-perl",
-	    "virtualenv",
-	    "htop",
-	    "gitk",
-	    "ssh",
-	    "ntp",
-	    "ntpdate",
-	    "ntpstat",
-	    "sudo",
-	    "net-tools",
-	    "inetutils-ping",
-	    "curl",
-	    "wget",
-	    "libglew-dev",
-	    "libxt-dev",
-	    "libgtk-3-dev"],
+            "libboost-all-dev",
+            "build-essential",
+            "git",
+            "cmake",
+            "cmake-curses-gui",
+            "krb5-config",
+            "krb5-user",
+            "libfile-homedir-perl",
+            "libpath-class-perl",
+            "libswitch-perl",
+            "virtualenv",
+            "htop",
+            "gitk",
+            "ssh",
+            "ntp",
+            "ntpdate",
+            "ntpstat",
+            "sudo",
+            "net-tools",
+            "inetutils-ping",
+            "curl",
+            "wget",
+            "libglew-dev",
+            "libxt-dev",
+            "libgtk-3-dev"],
 
         "application": [
-	    "feh",
-	    "i3blocks",
-	    "i3lock",
-	    "dmunu",
-	    "rofi",
-	    "ibus",
-	    "libgtk2.0-dev",
-	    "youtube-dl"
+            "feh",
+            "i3blocks",
+            "i3lock",
+            "dmunu",
+            "rofi",
+            "ibus",
+            "libgtk2.0-dev",
+            "youtube-dl"
         ]
-        
-    },	
+
+    },
+
+    "packages_config" : {
+
+        "group_dirs" : {
+            "personal" : "personal",
+            "elisp" : "elisp",
+            "system" : "system",
+            "misc" : "misc"
+        }
+
+    },
 
     "packages": {
+
+        "vim" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/amix/vimrc"
+            },
+            "install" : "command",
+            "command": ["sh", "install_awesome_parameterized.sh", "$(pwd)", "--all"]
+        },
+
+        "fzf" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/junegunn/fzf"
+            },
+            "install" : "command",
+            "command": ["bash", "install", "--key-bindings", "--no-completion", "--update-rc"]
+        },
+
+        "dropbox" : {
+            "fetch" : "curl",
+            "curl" : {
+                "url" : "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.01.31_amd64.deb",
+                "output": "dropbox.deb"
+            },
+            "install" : "command",
+            "command": [
+                ["sudo", "dpkg", "-i", "dropbox.deb"],
+                ["sudo", "apt-get", "-f", "install", "-y", "--force-yes"]
+            ]
+        },
+
+        "discord" : {
+            "fetch" : "curl",
+            "curl" : {
+                "url" : "https://dl.discordapp.net/apps/linux/0.0.10/discord-0.0.10.deb",
+                "output": "discord.deb"
+            },
+            "install" : "command",
+            "command": ["sudo", "dpkg", "-i", "discord.deb"]
+        },
+
+        "nerd-fonts" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/cdemoulins/pamixer"
+            },
+            "install" : "make",
+            "make_args": "-j3"
+        },
         
+        "nerd-fonts" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/ryanoasis/nerd-fonts"
+            },
+            "install" : "command",
+            "command" : "sh install.sh"
+        },
+
+        "notify-send-py" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/andreztz/notify-send"
+            },
+            "install": "setup.py",
+            "setup_args" : ["--optimize=1", "--record=install_log.txt"]
+        },
+
+        "dragon" : {
+            "fetch": "git",
+            "git":{
+                "url" :  "https://github.com/mwh/dragon"
+            },
+            "install" : ["make"],
+            "make_extra_targets" : ["install"],
+            "make_args": "-j3"
+        },
+
+        "alisp" : {
+            "fetch": "git",
+            "git":{
+                "url" :  "@arnaud_base@/alisp"
+            }
+        },
+
+        "anything" : {
+
+            "fetch": "git",
+            "git":{
+                "url" :  "@arnaud_base@/anything"
+            },
+
+            "install" : "path",
+            "path" : [
+                "~/core.d",
+                "~/core.d/usr/bin"
+            ]
+
+        },
+
         "arnaud-framer": {
             "root_dir" : "arnaud",
             "install_dir" : "~/core.d/usr/arnaud/",
@@ -145,7 +273,7 @@
                 "export VALID_VAR=123"
             ]
         },
-        
+
         "vsexp": {
             "fetch": "git",
             "git":{
@@ -154,7 +282,7 @@
             "install": "emacs",
             "el_files" : ["vsexp.el"]
         },
-        
+
         "dotfiles": {
             "fetch": "git",
             "git":{
@@ -164,7 +292,7 @@
             "install": "command",
             "command": "echo My dot files can be installed with 'sh ./setuper/setup.sh'"
         },
-        
+
         "emacs-neotree": {
             "fetch": "git",
             "git":{
@@ -174,7 +302,7 @@
             "install": "emacs",
             "el_files" : ["neotree.el"]
         },
-        
+
         "jgrapher": {
             "fetch": "git",
             "git":{
@@ -183,7 +311,7 @@
             "install": "command",
             "command": "echo 'No install command'"
         },
-        
+
         "MARS": {
             "fetch": "git",
             "git":{
@@ -195,7 +323,7 @@
             "make_extra_targets" : ["all"],
             "make_args": ["-j4"]
         },
-        
+
         "blog-hugo-files": {
             "fetch": "git",
             "git":{
@@ -204,7 +332,7 @@
             "install": "command",
             "command": "hugo"
         },
-        
+
         "pollution": {
             "fetch": "git",
             "git":{
@@ -213,7 +341,7 @@
             "install": "command",
             "command": "echo The thesis can be generated with sh ./Thesis/compile.sh"
         },
-        
+
         "projector": {
             "fetch": "git",
             "git":{
@@ -222,7 +350,7 @@
             "install": "setup.py",
             "setup_args": []
         },
-        
+
         "smarthomeworks": {
             "fetch": "git",
             "git":{
@@ -231,7 +359,7 @@
             "install": "command",
             "command": "webpack-cli --progress"
         },
-        
+
         "smart_memory_location": {
             "fetch": "git",
             "git":{
@@ -241,7 +369,7 @@
             "make_args": ["-j4"],
             "make_extra_targets" : []
         },
-        
+
         "urxvt-perls": {
             "fetch": "git",
             "git":{
@@ -250,7 +378,7 @@
             "install": "command",
             "command": "echo copy files in the urxvt load-directroy"
         },
-        
+
         "navigationfx": {
             "fetch": "git",
             "git":{
@@ -259,7 +387,7 @@
             "install": "command",
             "command": "echo install navigationfx with java"
         },
-        
+
         "gameengine": {
             "fetch": "git",
             "git":{
@@ -268,7 +396,7 @@
             "install": "command",
             "command": "echo install navigationfx with java"
         },
-        
+
         "advancedresoucemenaging": {
             "fetch": "git",
             "git":{
@@ -277,7 +405,7 @@
             "install": "command",
             "reinstall_command": "echo 'No install command'"
         },
-        
+
         "arffpar": {
             "fetch": "git",
             "git":{
@@ -287,7 +415,7 @@
             "make_args" : "-j4",
             "make_extra_targets": []
         },
-        
+
         "tictacminimax": {
             "fetch": "git",
             "git":{
@@ -296,7 +424,7 @@
             "install": "command",
             "command": "echo install the project with java"
         },
-        
+
         "stateconifiggui": {
             "fetch": "git",
             "git":{
@@ -305,7 +433,7 @@
             "install": "command",
             "command": "echo install the project with java"
         },
-        
+
         "promanager": {
             "fetch": "git",
             "git":{
@@ -314,7 +442,7 @@
             "install": "command",
             "command": "webpack-cli --progress"
         },
-        
+
         "mandelbrotworks": {
             "fetch": "git",
             "git":{
@@ -324,7 +452,7 @@
             "make_args" : "-j4",
             "make_extra_targets": []
         },
-        
+
         "navigationcore": {
             "fetch": "git",
             "git":{
@@ -333,11 +461,12 @@
             "install": "command",
             "command": "echo install the project with java"
         },
-        
+
         "i3-gaps": {
             "fetch": "git",
             "git":{
-                "url" :  "https://www.github.com/Airblader/i3"
+                "url" :  "https://www.github.com/Airblader/i3",
+                "checkout" : "4.18"
             },
             "install": "script",
             "script": "install_i3gaps.sh",
@@ -346,10 +475,11 @@
             "deb_packages": ["libxcb1-dev", "libxcb-keysyms1-dev", "libpango1.0-dev",
                              "libxcb-util0-dev", "libxcb-icccm4-dev", "libyajl-dev",
                              "libstartup-notification0-dev", "libxcb-randr0-dev",
-                             "libev-dev libxcb-cursor-dev", "libxcb-xinerama0-dev", 
-                             "libxcb-xkb-dev", "libxkbcommon-dev" ,"libxkbcommon-x11-dev", "autoconf", "libxcb-xrm-dev"]
+                             "libev-dev", "libxcb-cursor-dev", "libxcb-xinerama0-dev",
+                             "libxcb-xkb-dev", "libxkbcommon-dev" ,"libxkbcommon-x11-dev",
+                             "autoconf", "libxcb-xrm-dev"]
         },
-        
+
         "mons": {
             "fetch": "git",
             "git":{
@@ -359,7 +489,7 @@
             "command": "sudo make install",
             "deb_packages": ["xorg-xrandr"]
         },
-        
+
         "pamixer": {
             "fetch": "git",
             "git":{
@@ -369,7 +499,7 @@
             "command": "make && sudo make install",
             "deb_packages": ["libpulse"]
         },
-        
+
         "ranger": {
             "fetch": "git",
             "git":{
@@ -381,7 +511,7 @@
                              "pygmentize","atool","lynx","mediainfo",
                              "odt2txt"]
         },
-        
+
         "networkmanager-dmenu": {
             "fetch": "git",
             "git":{
@@ -390,7 +520,7 @@
             "install": "command",
             "command": "echo setup the commands for the script"
         },
-        
+
         "xkblayout-state": {
             "fetch": "git",
             "git":{
@@ -399,7 +529,7 @@
             "install": "command",
             "command": "make && sudo make install"
         },
-        
+
         "rxvt-unicode": {
             "fetch" : "curl",
             "curl":{
@@ -410,7 +540,7 @@
             "script": "install_rxvt-unicode.sh",
             "script_args": "-p /usr"
         },
-        
+
         "opencv": {
             "fetch": "git",
             "git":{
@@ -426,7 +556,7 @@
                              "libjpeg-dev", "libpng-dev", "libtiff-dev", "libjasper-dev",
                              "libdc1394-22-dev"]
         },
-        
+
         "opencv-contrib": {
             "fetch": "git",
             "git":{
@@ -436,7 +566,7 @@
             "install": "command",
             "command": "echo this package is not to be installed"
         },
-        
+
         "easyloggingpp": {
             "fetch": "git",
             "git":{
@@ -446,7 +576,7 @@
             "cmake_args": "",
             "make_args": "-j2"
         },
-        
+
         "scull": {
             "fetch": "git",
             "git":{
@@ -456,7 +586,7 @@
             "make_args" : ["-j4"],
             "make_extra_targets": ["all"]
         },
-        
+
         "edward": {
             "fetch": "git",
             "git":{
@@ -465,7 +595,7 @@
             "install": "command",
             "command": "echo install edward through pip"
         },
-        
+
         "facebook-chat-api": {
             "fetch": "git",
             "git":{
@@ -474,7 +604,7 @@
             "install": "command",
             "command": "npm install"
         },
-        
+
         "fbash": {
             "fetch": "git",
             "git":{
@@ -483,7 +613,7 @@
             "install": "command",
             "command": "npm install"
         },
-        
+
         "speech_recognition": {
             "fetch": "git",
             "git":{
@@ -492,7 +622,7 @@
             "install": "setup.py",
             "setup_args": []
         },
-        
+
         "jwtxx": {
             "fetch": "git",
             "git":{
@@ -503,7 +633,7 @@
             "make_args": "-j2",
             "deb_packages": ["libjansson-dev", "openssl", "libssl-dev"]
         },
-        
+
         "prelude": {
             "fetch": "git",
             "git":{
@@ -512,20 +642,20 @@
             "install": "command",
             "command": "echo 'No install'"
         },
-        
+
         "emacs": {
-            "fetch": "git",
-            "git":{
-                "url" :  "https://github.com/emacs-mirror/emacs"
+            "fetch": "curl",
+            "curl":{
+                "url" :  "http://ftp.hosteurope.de/mirror/ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz"
             },
+            "extract" : true,
             "install": "script",
             "script": "install_emacs.sh",
             "deb_packages": ["build-essential","libm17n-dev",
-                             "libmagickcore-dev","emacs",
-                             "libgtk-3-dev", "libwebkitgtk-3.0-dev",
+                             "libmagickcore-dev", "libgtk-3-dev", "libwebkitgtk-3.0-dev",
                              "libxml2-dev"]
         },
-        
+
         "googletest": {
             "fetch": "git",
             "git":{
@@ -536,7 +666,7 @@
             "make_args": "-j2",
             "deb_packages": []
         },
-        
+
         "crow": {
             "fetch": "git",
             "git":{
@@ -547,7 +677,7 @@
             "make_args": "-j2",
             "deb_packages": []
         },
-        
+
         "pywal": {
             "fetch": "git",
             "git":{
@@ -556,7 +686,7 @@
             "install": "setup.py",
             "setup_args": "--verbose"
         },
-        
+
         "rewire": {
             "fetch": "git",
             "git":{
@@ -565,7 +695,7 @@
             "install": "command",
             "command": "npm install -g rewire"
         },
-        
+
         "pip-requirements": {
             "fetch": "git",
             "git":{
@@ -574,7 +704,7 @@
             "install": "emacs",
             "el_files": ["pip-requirements.el"]
         },
-        
+
         "voidrice": {
             "fetch": "git",
             "git":{
@@ -583,7 +713,7 @@
             "install": "command",
             "command": "echo 'No install'"
         },
-        
+
         "google-speech-v2-api": {
             "fetch": "git",
             "git":{
@@ -592,7 +722,7 @@
             "install": "command",
             "command": "echo 'No install'"
         },
-        
+
         "instagram-web-api": {
             "fetch": "git",
             "git":{
@@ -601,7 +731,7 @@
             "install": "command",
             "command": "npm install"
         },
-        
+
         "tensorflow": {
             "fetch": "git",
             "git":{
@@ -610,7 +740,7 @@
             "install": "command",
             "command": "echo 'No install'"
         },
-        
+
         "keras": {
             "fetch": "git",
             "git":{
@@ -619,7 +749,7 @@
             "install": "command",
             "command": "echo 'No install'"
         },
-        
+
         "linux-4.19": {
             "fetch": "curl",
             "curl":{
@@ -629,7 +759,7 @@
             "install" : "command",
             "command": "echo No install"
         },
-        
+
         "python-req-installer": {
             "fetch": "git",
             "git":{
@@ -638,7 +768,7 @@
             "install": "emacs",
             "el_files" : ["pri.el"]
         },
-        
+
         "ov.el": {
             "fetch": "git",
             "git":{
@@ -647,7 +777,7 @@
             "install": "emacs",
             "el_files": ["ov.el"]
         },
-        
+
         "cask": {
             "fetch" : "curl",
             "curl":{
@@ -656,7 +786,7 @@
             "install": "command",
             "command": "python go"
         },
-        
+
         "company-smart-elisp": {
             "fetch": "git",
             "git":{
@@ -665,7 +795,7 @@
             "install": "emacs",
             "el_files": ["company-smart-elisp.el"]
         },
-        
+
         "all-the-icons": {
             "fetch": "git",
             "git":{
@@ -674,7 +804,7 @@
             "install": "emacs",
             "el_files": ["all-the-icons.el", "all-the-icons-faces.el"]
         },
-        
+
         "pystache": {
             "fetch": "git",
             "git":{
@@ -683,7 +813,7 @@
             "install": "setup.py",
             "setup_args": "--verbose --user"
         },
-        
+
         "vue-mode": {
             "fetch": "git",
             "git":{
@@ -692,7 +822,7 @@
             "install": "emacs",
             "el_files": ["vue-mode.el"]
         },
-        
+
         "mlpack": {
             "fetch": "git",
             "git":{
@@ -702,8 +832,8 @@
             "cmake_args": "",
             "make_args": "-j3"
         },
-        
-	"armadillo": {
+
+        "armadillo": {
             "fetch": "git",
             "git":{
                 "url" :  "https://gitlab.com/conradsnicta/armadillo-code"
@@ -711,8 +841,8 @@
             "install": ["cmake", "make"],
             "cmake_args": "",
             "make_args": "-j3"
-	},
-        
+        },
+
         "mflower": {
             "fetch": "git",
             "git":{
@@ -721,8 +851,8 @@
             "install": ["cmake", "make"],
             "cmake_args": "",
             "make_args": "-j3"
-	},
-        
+        },
+
         "ctgraph": {
             "fetch": "git",
             "git":{
@@ -732,7 +862,7 @@
             "cmake_args": "",
             "make_extra_targets" : ["install"],
             "make_args": "-j3"
-	}
-        
+        }
+
     }
 }

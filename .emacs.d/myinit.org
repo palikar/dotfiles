@@ -680,8 +680,8 @@ When used, it keeps the focused window the biggest while still having the other 
 ** Zygospore
 Sometimes... I make mistakes. I hit =C-x 1= and bam! I've lost may window config that I actually don't necessarily wanted destroyed. This package fixes this "issue". If I hit =C-x 1= again, I was just where I was before
 #+BEGIN_SRC emacs-lisp :results none
-;; (require 'zygospore)
-;; (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
+(require 'zygospore)
+(global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 #+END_SRC
 
 
@@ -1810,6 +1810,8 @@ if __name__ == \'__main__\':
 (bind-key* "C-x M-e" 'eval-defun)
 
 #+END_SRC
+
+
 * Text editing
 
 ** Text inserting
@@ -2113,6 +2115,7 @@ This will keep the buffers listed in the helm-mini menu neatly organized.
 (bind-key* "C-x c M-m" 'helm-complete-file-name-at-point)
 (bind-key* "C-x c C-s" 'helm-occur-from-isearch)
 (bind-key* "C-x r h" 'helm-register)
+(bind-key* "C-x c k" 'helm-execute-kmacro)
 (bind-key* "M-y" 'helm-show-kill-ring)
 #+END_SRC
 
@@ -2804,9 +2807,8 @@ The definitions of all the functions for the backends setups.
   (message "C++ backends engaged.")
   (setq company-backends `(
 			   company-irony
-			   company-ycmd
-			   company-c-headers
 			   company-irony-c-headers
+			   company-c-headers
 			   ,basic-company-backends)))
 
 (defun my-company-go-backends ()
@@ -3120,6 +3122,8 @@ Helm-Swooper is similar to swiper but offers better user experience IMO. I use i
 (require 'helm-swoop)
 (bind-key* "C-x q" 'helm-swoop)
 #+END_SRC
+
+
 * Editor enhancing
 
 ** Pretty startup screen

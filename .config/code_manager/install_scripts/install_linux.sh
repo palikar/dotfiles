@@ -21,7 +21,6 @@ echo "##########################"
 echo "### Script for  linux  ###"
 echo "##########################"
 
-tar -xvf linux-* --strip 1
 
 echo "Script finished"
 

@@ -52,7 +52,7 @@ URxvt.unicode3:		true
 ! URxvt.letterSpace: 0
 
 !! Extensions
-URxvt.perl-lib:							/home/arnaud/.urxvt-perls/
+URxvt.perl-lib:							/home/arnaud/.config/urxvt-perls/
 URxvt.perl-ext-common:			        default,matcher,resize-font,url-select,clipboard,font-sizee
 
 ! URxvt.font: 		xft:mono:size=12

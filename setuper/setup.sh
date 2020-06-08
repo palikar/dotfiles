@@ -13,8 +13,17 @@ create_home_dirs()
 {
     while IFS='' read -r line || [[ -n "$folder" ]]; do
         echo "Creating '$HOME/$line'"
-        [ -d $HOME/$folder ] || mkdir $HOME/$folder
+        [ -d $HOME/$folder ] || mkdir -p $HOME/$folder
     done < $SCRIPTDIR/folders
+}
+
+set_package_sources()
+{
+    echo "Setting up the package sources.."
+    [ -f "/etc/apt/sources.list" ] && sudo rm       "/etc/apt/sources.list"
+    [ -d "/etc/apt/sources.list.d" ] && sudo rm -rf "/etc/apt/sources.list.d"
+    sudo ln -s $DIR/package-sources/sources.list    "/etc/apt/sources.list"
+    sudo ln -s $DIR/package-sources/sources.list.d  "/etc/apt/sources.list.d"
 }
 
 install_deb_packages()
@@ -23,18 +32,18 @@ install_deb_packages()
 
     for pack in $(cat "$SCRIPTDIR/apt_packages"); do
 
-        [ dpkg -s "$pack" > /dev/null 2>&1 ] && continue
-        sleep 1
         echo "Installing '$pack'"
 
+        [ dpkg -s "$pack" > /dev/null 2>&1 ] && continue
         sudo apt-get install -y --force-yes $pack 2>&1 /dev/null
+        
+        sleep 1
 
     done
 
     echo "Updating and upgrading packages"
     sudo apt-get update -y --force-yes >2 /dev/null
     sudo apt-get upgrade -y --force-yes >2 /dev/null
-    sudo apt-get update -y --force-yes >2 /dev/null
 
     echo "Removing unnecessary packages"
     sudo apt autoremove -y --force-yes > /dev/null 2>&1
@@ -43,33 +52,14 @@ install_deb_packages()
 
 install_python_packages()
 {
+    
     for pack in $(cat "$SCRIPTDIR/python_packages"); do
         sleep 1
         echo "Installing $pack"
         pip3 install $pack --user > /dev/null 2>&1
-    done
-}
-
-pull_all()
-{
-    cd $1
-
-    for repo in $(cat "$2"); do
         sleep 1
-        echo "Cloning '$repo'"
-        $(git clone "$repo" > /dev/null 2>&1) || echo "$repo is already there"
     done
-
-    cd ~
-}
-
-set_package_sources()
-{
-    echo "Setting up the package sources"
-    [ -f "/etc/apt/sources.list" ] && sudo rm       "/etc/apt/sources.list"
-    [ -d "/etc/apt/sources.list.d" ] && sudo rm -rf "/etc/apt/sources.list.d"
-    sudo ln -s $DIR/package-sources/sources.list    "/etc/apt/sources.list"
-    sudo ln -s $DIR/package-sources/sources.list.d  "/etc/apt/sources.list.d"
+    
 }
 
 setup_files()
@@ -103,12 +93,28 @@ setup_files()
 
     rm -f "${HOME}/.emacs.d/myinit.org"
     rm -f "${HOME}/.emacs.d/init.el"
+    rm -rf "${HOME}/.emacs.d/snippets"
+
     ln -s "$DIR/.emacs.d/myinit.org" "${HOME}/.emacs.d/myinit.org"
     ln -s "$DIR/.emacs.d/init.el" "${HOME}/.emacs.d/init.el"
+    ln -s "$DIR/.emacs.d/snippets" "${HOME}/.emacs.d/snippets"
 
-    [ -d "${HOME}/.urxvt-perls" ] && rm "${HOME}/.urxvt-perls"
-    ln -s "$DIR/urxvt-perls" "${HOME}/.urxvt-perls"
+    [ -d "${HOME}/.config/urxvt-perls" ] && rm -rf "${HOME}/.config/urxvt-perls"
+    ln -s "$DIR/urxvt-perls" "${HOME}/.config/urxvt-perls"
 
+}
+
+pull_all()
+{
+    cd $1
+
+    for repo in $(cat "$2"); do
+        sleep 1
+        echo "Cloning '$repo'"
+        $(git clone "$repo" > /dev/null 2>&1) || echo "$repo is already there"
+    done
+
+    cd ~
 }
 
 setup_vim()
@@ -131,9 +137,11 @@ setup_fzf()
 setup_emacs()
 {
     cd $CODE_EXT
-    wget "https://ftp.gnu.org/gnu/emacs/emacs-26.1.tar.gz"
-    tar zxvf "emacs-26.1.tar.gz"
-    cd ./emacs-26.1
+    EMACS_FILE="emacs-26.3.tar.gz"
+    EMACS_URL="https://ftp.gnu.org/gnu/emacs/${EMACS_FILE}"
+    wget "${EMACS_URL}"
+    tar zxvf "${EMACS_FILE}"
+    cd ./emacs-26.3
     autoreconf --force --install
     export CFLAGS="-g3 -O3" && ./configure --with-x  --with-xwidgets --with-mailutils --with-pop
     make -j4 && sudo make install
@@ -220,24 +228,24 @@ setup_fzf
 
 # Pull repos from github
 
-pull_all $CODE "$SCRIPTDIR/codes"
+# pull_all $CODE "$SCRIPTDIR/codes"
 
-pull_all $CODE_EXT "$SCRIPTDIR/ext_codes"
+# pull_all $CODE_EXT "$SCRIPTDIR/ext_codes"
 
-pull_all $CODE_SYS "$SCRIPTDIR/sys_codes"
+# pull_all $CODE_SYS "$SCRIPTDIR/sys_codes"
 
 
 # Setup essenital applications
 
-setup_i3
+# setup_i3
 
-setup_urxvt
+# setup_urxvt
 
-setup_emacs
+# setup_emacs
 
-setup_dropbox
+# setup_dropbox
 
-setup_discrod
+# setup_discrod
 
 # Sourcing the new dot files
 

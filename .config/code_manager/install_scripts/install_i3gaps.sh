@@ -30,8 +30,8 @@ else
 fi
 
 echo "Install prefix: ${prefix}"
-../configure --prefix="${prefix}" --sysconfdir=/etc --disable-sanitizers
-make
+CFLAGS="-g3 -O3" ../configure --prefix="${prefix}" --sysconfdir=/etc --disable-sanitizers
+make -j4
 sudo make install
 
 echo "Script finished"

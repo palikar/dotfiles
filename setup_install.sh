@@ -2,4 +2,4 @@
 
 sudo apt-get install git
 mkdir -p ~/code  && git clone https://github.com/palikar/dotfiles ~/code/dotfiles
-cd ~/code/dotfiles && . install.sh
+cd ~/code/dotfiles && . ./setuper/install.sh

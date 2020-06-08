@@ -129,6 +129,7 @@ application/x-extension-shtml=userapp-Firefox-75Q36Z.desktop
 application/xhtml+xml=userapp-Firefox-75Q36Z.desktop
 application/x-extension-xhtml=userapp-Firefox-75Q36Z.desktop
 application/x-extension-xht=userapp-Firefox-75Q36Z.desktop
+x-scheme-handler/msteams=teams.desktop
 
 [Removed Associations]
 video/webm=vlc.desktop;

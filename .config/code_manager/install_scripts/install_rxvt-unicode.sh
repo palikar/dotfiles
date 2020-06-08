@@ -28,8 +28,8 @@ else
 fi
 
 echo "Install prefix: ${prefix}"
-./configure  --enable-everything --enable-256-color --prefix=$prefix
-make
+CFLAGS="-g3 -O3" ./configure  --enable-everything --enable-256-color --prefix=$prefix
+make -j4
 sudo make install
 
 echo "Script finished"
