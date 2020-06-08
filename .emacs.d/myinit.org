@@ -1452,7 +1452,9 @@ Myeah, that was a lie from the past. My python setup has evolved since then. I u
 (bind-key* "M-j e d" 'sphinx-doc)
 (bind-key* "M-j e t" 'elpy-test)
 (bind-key* "M-j e f" 'elpy-format-code)
+
 (bind-key* "M-." 'elpy-goto-definition python-mode-map)
+
 ;; (bind-key* "M-TAB" 'auto-complete)
 #+END_SRC
 

@@ -3,10 +3,10 @@
     "vars" : {
         "arnaud_base" : "git@github.com:palikar",
         "github_base" : "git@github.com:",
-        "emacs_version": "emacs-26.3",
-        "ranger_version": "",
-        "i3gaps_version": "",
-        "urxvt_version": ""
+        "emacs_version": "26.3",
+        "ranger_version": "1.9.2",
+        "i3gaps_version": "4.18",
+        "urxvt_version": "9.22"
     },
 
     "packages_list": {
@@ -99,7 +99,8 @@
             "mlpack",
             "armadillo",
             "navigationfx",
-            "jwtxx"
+            "jwtxx",
+            "blender"
         ]
 
     },
@@ -152,7 +153,8 @@
             "personal" : "personal",
             "elisp" : "elisp",
             "system" : "system",
-            "misc" : "misc"
+            "misc" : "misc",
+            "open_source" : "source"
         }
 
     },
@@ -200,6 +202,19 @@
             "command": ["sudo", "dpkg", "-i", "discord.deb"]
         },
 
+        "blender" : {
+            "fetch" : "curl",
+            "curl" : {
+                "url" : "https://ftp.halifax.rwth-aachen.de/blender/release/Blender2.83/blender-2.83.0-linux64.tar.xz"
+            },
+            "extract" : true,
+            "install" : "path",
+            "path": [
+                "lkaösd"
+            ]
+            
+        },
+
         "nerd-fonts" : {
             "fetch" : "git",
             "git" : {
@@ -241,7 +256,12 @@
             "fetch": "git",
             "git":{
                 "url" :  "@arnaud_base@/alisp"
-            }
+            },
+            
+            "install": ["cmake", "make"],
+            "cmake_args": "",
+            "make_extra_targets" : ["install"],
+            "make_args": "-j3"
         },
 
         "anything" : {
@@ -250,12 +270,11 @@
             "git":{
                 "url" :  "@arnaud_base@/anything"
             },
-
-            "install" : "path",
-            "path" : [
-                "~/core.d",
-                "~/core.d/usr/bin"
-            ]
+            
+            "install": ["cmake", "make"],
+            "cmake_args": "",
+            "make_extra_targets" : ["install"],
+            "make_args": "-j3"
 
         },
 
@@ -856,7 +875,7 @@
         "ctgraph": {
             "fetch": "git",
             "git":{
-                "url" :  "@arnaud_base/ctgraph"
+                "url" :  "@arnaud_base@/ctgraph"
             },
             "install": ["cmake", "make"],
             "cmake_args": "",
