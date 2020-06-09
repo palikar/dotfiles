@@ -35,28 +35,28 @@ fi
 
 set bell-style none
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.config/.bash_aliases ]; then
+    . ~/.config/.bash_aliases
 fi
 
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
+if [ -f ~/.config/.bash_prompt ]; then
+    . ~/.config/.bash_prompt
 fi
 
-if [ -f ~/.env ]; then
-    source ~/.env
+if [ -f ~/.config/.env ]; then
+    source ~/.config/.env
 fi
 
 if [ -f ~/.inputrc ]; then
     bind -f ~/.inputrc
 fi
 
-if [ -f ~/.paths ]; then
+if [ -f ~/.config/paths ]; then
     ~/.scripts/app/pathloader
 fi
 
-if [ -f ~/.git-completion.bash ]; then
-    source ~/.git-completion.bash
+if [ -f ~/code/.git-completion.bash ]; then
+    source ~/code/.git-completion.bash
 fi
 
 
@@ -65,40 +65,28 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 if [ -f /etc/bash_completion ]; then
-	. /etc/bash_completion
+    . /etc/bash_completion
 fi
 
 
 source "${DOTFILES_DIR}"/fzf/completion.bash
 source "${DOTFILES_DIR}"/fzf/key-bindings.bash
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.config/.fzf.bash ] && source ~/.config/.fzf.bash
+
 
 
 # pip bash completion start
 _pip_completion()
 {
     COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-							 COMP_CWORD=$COMP_CWORD \
-							 PIP_AUTO_COMPLETE=1 $1 ) )
+                             COMP_CWORD=$COMP_CWORD \
+                             PIP_AUTO_COMPLETE=1 $1 2>/dev/null ) )
 }
+complete -o default -F _pip_completion pip3
+# pip bash completion end
 
-# pip bash completion
-complete -o default -F _pip_completion pip
 
 #theming
 xrdb merge "$HOME/.Xdefaults"
 
 
-
-NPM_PACKAGES="${HOME}/.npm-packages"
-
-export PATH="$NPM_PACKAGES/bin:$PATH"
-
-# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
-unset MANPATH # delete if you already modified MANPATH elsewhere in your config
-export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-
-export GOPATH="${HOME}/go/"
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
-export MANPATH="${MANPATH}:/home/arnaud/core.d/usr/man/"

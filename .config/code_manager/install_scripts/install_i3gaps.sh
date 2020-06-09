@@ -1,4 +1,4 @@
-#!/bin/bash
+##!/bin/bash
 
 
 
@@ -27,6 +27,7 @@ if [ $reinstall = "false" ] ; then
     mkdir -p build && cd build/
 else
     echo "Reinstalling."
+    cd build/
 fi
 
 echo "Install prefix: ${prefix}"
@@ -35,4 +36,3 @@ make -j4
 sudo make install
 
 echo "Script finished"
-

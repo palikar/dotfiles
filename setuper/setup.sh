@@ -34,19 +34,19 @@ install_deb_packages()
 
         echo "Installing '$pack'"
 
-        [ dpkg -s "$pack" > /dev/null 2>&1 ] && continue
-        sudo apt-get install -y --force-yes $pack 2>&1 /dev/null
+        [ dpkg -s "$pack"
+        sudo apt-get install -y --force-yes $pack
         
         sleep 1
 
     done
 
     echo "Updating and upgrading packages"
-    sudo apt-get update -y --force-yes >2 /dev/null
-    sudo apt-get upgrade -y --force-yes >2 /dev/null
+    sudo apt-get update -y --force-yes
+    sudo apt-get upgrade -y --force-yes
 
     echo "Removing unnecessary packages"
-    sudo apt autoremove -y --force-yes > /dev/null 2>&1
+    sudo apt autoremove -y --force-yes
 
 }
 
@@ -56,7 +56,7 @@ install_python_packages()
     for pack in $(cat "$SCRIPTDIR/python_packages"); do
         sleep 1
         echo "Installing $pack"
-        pip3 install $pack --user > /dev/null 2>&1
+        pip3 install $pack --user
         sleep 1
     done
     
@@ -88,6 +88,11 @@ setup_files()
 
     [ -f "${HOME}/.paths" ] && rm "${HOME}/.paths"
     ln -s "$DIR/.paths" "${HOME}/.paths"
+
+    
+    [ -f "${HOME}/.bashrc" ] && rm "${HOME}/.bashrc"
+    ln -s "$DIR/.bashrc" "${HOME}/.bashrc"
+
 
     cp "$DIR/.emacs.d"  "${HOME}/" -b -R
 
@@ -209,22 +214,22 @@ setup_discrod()
 ###########################################
 
 
-create_home_dirs
+# create_home_dirs
 
-set_package_sources
+# set_package_sources
 
-install_deb_packages
+# install_deb_packages
 
-install_python_packages
+# install_python_packages
 
 
 # Setup basic application
 
 setup_files
 
-setup_vim
+# setup_vim
 
-setup_fzf
+# setup_fzf
 
 # Pull repos from github
 

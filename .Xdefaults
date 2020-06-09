@@ -36,10 +36,6 @@
 *.color15:      #f3f4f5
 
 
-
-
-
-
 !! Basic interface setup
 URxvt.intensityStyles:	false
 URxvt.background:       [90]#000000
@@ -52,18 +48,17 @@ URxvt.unicode3:		true
 ! URxvt.letterSpace: 0
 
 !! Extensions
-URxvt.perl-lib:							/home/arnaud/.config/urxvt-perls/
+URxvt.perl-lib:                                 /home/arnaud/.config/urxvt-perls/
 URxvt.perl-ext-common:			        default,matcher,resize-font,url-select,clipboard,font-sizee
 
 ! URxvt.font: 		xft:mono:size=12
 
-! URxvt.font:								xft:Inconsolata:style=Bold:size=12
-! URxvt.font:								xft:SauceCodePro Nerd Font Mono:style=Bold:size=12
+! URxvt.font:           xft:Inconsolata:style=Bold:size=15
+! URxvt.font:           xft:SauceCodePro Nerd Font Mono:style=Bold:size=12
+URxvt.font:             xft:SauceCodePro Nerd Font Mono:style=Bold:size=13, xft:DejaVu Sans:pixelsize=14, xft:Inconsolata Nerd Font Mono:size=15, xft:Hack:pixelsize=18
 
-URxvt.font:                                 xft:SauceCodePro Nerd Font Mono:style=Bold:size=12, xft:DejaVu Sans:pixelsize=14, xft:Inconsolata Nerd Font Mono:size=15, xft:Hack:pixelsize=18
 
-
-URxvt.colorUL:							#4682B4	
+URxvt.colorUL:          #4682B4	
 
 
 

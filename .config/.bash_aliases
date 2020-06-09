@@ -1,0 +1,1 @@
+/home/arnaud/code/dotfiles/system-config/.bash_aliases

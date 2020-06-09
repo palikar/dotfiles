@@ -1,16 +1,10 @@
-# command=/usr/bin/i3blocks
 separator_block_width=3
 markup=pango
 separator=true
 
 full_text=|
 align=center
-
 separator=false
-# separator_block_width=7
-
-
-
 
 [weather]
 command=i3weather
@@ -25,30 +19,24 @@ signal=3
 interval=once
 
 [separator]
-
 [volume]
 interval=once
 command=i3volume
 signal=10
 
-[separator]
-
-[battery]
-command=i3battery
-interval=5
+# [separator]
+# [battery]
+# command=i3battery
+# interval=5
 
 # [separator]
-
 # [ip]
 # command=i3ipadress
 # interval=3600
 # label=🖧
 # color=#50C878
 
-
 [separator]
-
-
 [systeminfo]
 command=i3systeminfo
 interval=5
@@ -61,13 +49,13 @@ command=i3disk $HOME
 interval=30
 color=#859900
 
-[separator]
 
-[disky_core]
-label=:
-command=i3disk $HOME/core.d
-interval=30
-color=#1793D1
+# [separator]
+# [disky_core]
+# label=:
+# command=i3disk $HOME/core.d
+# interval=30
+# color=#1793D1
 
 
 [separator]

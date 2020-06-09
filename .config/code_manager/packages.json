@@ -12,7 +12,6 @@
     "packages_list": {
 
         "personal" : [
-
             "tictacminimax",
             "mandelbrotworks",
             "advancedresoucemenaging",
@@ -21,9 +20,6 @@
             "stateconifiggui",
             "gameengine",
             "blog-hugo-files",
-            "arnaud-framer",
-            "vsexp",
-            "dotfiles",
             "jgrapher",
             "MARS",
             "blog-hugo-files",
@@ -32,12 +28,10 @@
             "smarthomeworks",
             "smart_memory_location",
             "arffpar",
-            "python-req-installer",
             "mflower",
             "ctgraph",
             "anything",
             "alisp"
-
         ],
 
         "elisp" : [
@@ -54,10 +48,8 @@
             "networkmanager-dmenu",
             "xkblayout-state",
             "rxvt-unicode",
-            "urxvt-perls",
             "emacs",
             "dragon",
-            "nerd-fonts",
             "notify-send-py",
             "nerd-fonts",
             "pamixer",
@@ -182,13 +174,12 @@
         "dropbox" : {
             "fetch" : "curl",
             "curl" : {
-                "url" : "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.01.31_amd64.deb",
+                "url" : "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb",
                 "output": "dropbox.deb"
             },
             "install" : "command",
             "command": [
-                ["sudo", "dpkg", "-i", "dropbox.deb"],
-                ["sudo", "apt-get", "-f", "install", "-y", "--force-yes"]
+                ["sudo", "dpkg", "--ignore-depends=libpango1.0-0", "-i", "./dropbox*.deb"]
             ]
         },
 
@@ -230,16 +221,18 @@
                 "url" : "https://github.com/ryanoasis/nerd-fonts"
             },
             "install" : "command",
-            "command" : "sh install.sh"
+            "command" : "./install.sh"
         },
 
         "notify-send-py" : {
             "fetch" : "git",
             "git" : {
-                "url" : "https://github.com/andreztz/notify-send"
+                "url" : "https://github.com/phuhl/notify-send.py"
             },
-            "install": "setup.py",
-            "setup_args" : ["--optimize=1", "--record=install_log.txt"]
+            "install" : ["command"],
+            "command": [
+                ["pip", "install", "."]
+            ]
         },
 
         "dragon" : {
@@ -285,12 +278,8 @@
             "git":{
                 "url" :  "https://github.com/palikar/arnaud-framer.git"
             },
-            "install": "bashrc",
-            "el_files" : ["arnaud-framer.el"],
-            "bash_lines": [
-                "this is invalid line",
-                "export VALID_VAR=123"
-            ]
+            "install": "emacs",
+            "el_files" : ["arnaud-framer.el"]
         },
 
         "vsexp": {
@@ -300,16 +289,6 @@
             },
             "install": "emacs",
             "el_files" : ["vsexp.el"]
-        },
-
-        "dotfiles": {
-            "fetch": "git",
-            "git":{
-                "url" :  "https://github.com/palikar/dotfiles"
-            },
-            "deb_packages" : ["ranger", "libranger-dev"],
-            "install": "command",
-            "command": "echo My dot files can be installed with 'sh ./setuper/setup.sh'"
         },
 
         "emacs-neotree": {
@@ -387,15 +366,6 @@
             "install": ["cmake", "make"],
             "make_args": ["-j4"],
             "make_extra_targets" : []
-        },
-
-        "urxvt-perls": {
-            "fetch": "git",
-            "git":{
-                "url" :  "https://github.com/muennich/urxvt-perls"
-            },
-            "install": "command",
-            "command": "echo copy files in the urxvt load-directroy"
         },
 
         "navigationfx": {
@@ -502,11 +472,13 @@
         "mons": {
             "fetch": "git",
             "git":{
-                "url" :  "https://github.com/Ventto/mons.git"
+                "url" :  "https://github.com/Ventto/mons.git",
+                "args" : "--recursive"
             },
             "install": "command",
-            "command": "sudo make install",
-            "deb_packages": ["xorg-xrandr"]
+            "command": [
+                ["sudo", "make", "install"]
+            ]
         },
 
         "pamixer": {
@@ -515,8 +487,11 @@
                 "url" :  "https://github.com/cdemoulins/pamixer.git"
             },
             "install": "command",
-            "command": "make && sudo make install",
-            "deb_packages": ["libpulse"]
+            "command": [
+                [ "make"],
+                ["sudo make install"]
+            ],
+            "deb_packages": ["libpulse-dev"]
         },
 
         "ranger": {
@@ -527,7 +502,7 @@
             "install": "setup.py",
             "setup_args" : ["--optimize=1", "--record=install_log.txt"],
             "deb_packages": ["file", "sudo", "w3m", "caca-utils",
-                             "pygmentize","atool","lynx","mediainfo",
+                             "atool","lynx","mediainfo",
                              "odt2txt"]
         },
 
@@ -671,7 +646,7 @@
             "install": "script",
             "script": "install_emacs.sh",
             "deb_packages": ["build-essential","libm17n-dev",
-                             "libmagickcore-dev", "libgtk-3-dev", "libwebkitgtk-3.0-dev",
+                             "libmagickcore-dev", "libgtk-3-dev",
                              "libxml2-dev"]
         },
 

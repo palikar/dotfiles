@@ -21,15 +21,14 @@ alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
 alias open="gio open"
 alias gitcred="git config --global credential.helper cache"
 alias ua_python="sudo update-alternatives --config python"
-alias urxvt="rxvt-unicode"
+alias rxvt-unicode="urxvt"
 
 
 
-alias emacsd='rm ~/.emacs.d/myinit.el && emacs --daemon'
+alias emacsd='rm -rf ~/.emacs.d/myinit.el && emacs --daemon'
 alias em='emacsclient'
-alias emacspd='emacs -q --load $HOME/code_sys/prelude/init.el --daemon'
-alias vim='vim'
-alias vi='vim'
+alias vim='nvim'
+alias vi='nvim'
 
 
 for env in $(ls "$HOME/Envs/"); do

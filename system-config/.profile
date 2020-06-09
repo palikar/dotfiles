@@ -1,6 +1,6 @@
 
-if [ -f ~/.env ]; then
-    . ~/.env
+if [ -f ~/.config/.env ]; then
+    . ~/.config/.env
 fi
 
 changepape -r

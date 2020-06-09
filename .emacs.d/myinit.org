@@ -63,7 +63,7 @@ I use a lot of additional packages and like to keep them local and installed. I'
 
 ; all of my packages that I want in my config
 ; starting-packages
-(setq package-list '(ac-R ac-ja aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode cmake-project color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-math company-quickhelp company-reftex company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils dmenu docker docker-tramp dockerfile-mode doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elf-mode elpy emlib emmet-mode emojify eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates gnu-elpa-keyring-update go-mode god-mode golden-ratio google-this google-translate goto-line-preview gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-java lsp-treemacs lsp-ui lsp-mode dash-functional magit git-commit magit-popup markdown-mode math-symbol-lists maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode multiple-cursors mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-pdfview org-plus-contrib org2blog metaweblog htmlize organize-imports-java ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki package-lint page-break-lines parsebib password-store auth-source-pass pcache pdf-tools pip-requirements plantuml-mode pod-mode polymode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rmsbolt rtags scala-mode skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra lv pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visible-mark visual-regexp-steroids visual-regexp volatile-highlights vscdark-theme vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request let-alist deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
+(setq package-list '(ac-R ac-ja aggressive-indent alect-themes anzu atom-dark-theme auto-complete-clang auto-complete-clang-async auto-complete-nxml auto-org-md base16-theme bash-completion beacon blacken clang-format cmake-font-lock cmake-ide cmake-mode cmake-project color-theme-modern company-anaconda anaconda-mode company-auctex auctex company-bibtex company-c-headers company-cmake company-emacs-eclim company-ghci company-irony company-irony-c-headers company-jedi company-lsp company-math company-quickhelp company-reftex company-rtags company-web company-ycmd cppcheck cquery crux ctags-update dap-mode bui dashboard diminish dired-collapse dired-details dired-du dired-hide-dotfiles dired-icon dired-imenu dired-nav-enhance dired-sidebar dired-subtree dired-hacks-utils dmenu docker docker-tramp dockerfile-mode doom-themes dot-mode drag-stuff dumb-jump easy-hugo easy-kill eclim ein elf-mode elpy emlib emmet-mode emojify eslint-fix esxml expand-region eyebrowse fancy-battery fill-column-indicator find-file-in-project firefox-controller fireplace flycheck-clang-analyzer flycheck-clang-tidy flycheck-clangcheck flycheck-irony flycheck-pycheckers flycheck-ycmd flyspell-correct-popup flyspell-correct flyspell-popup fontawesome function-args ghub git-timemachine gitignore-templates gnu-elpa-keyring-update go-mode god-mode golden-ratio google-this google-translate goto-line-preview gradle-mode graphql graphviz-dot-mode haskell-mode helm-ag helm-bibtex biblio biblio-core helm-bibtexkey helm-c-yasnippet helm-company helm-flycheck helm-ispell helm-lsp helm-projectile helm-rtags helm-spotify helm-spotify-plus helm helm-core hide-mode-line highlight-indent-guides highlight-indentation highlight-sexp highlight-symbol hugo hungry-delete ibuffer-projectile iedit image-dired+ imenu-list irony-eldoc irony iy-go-to-char java-file-create java-imports java-snippets jedi auto-complete jedi-core epc ctable concurrent json-mode json-reformat json-snatcher keyfreq latex-pretty-symbols latex-preview-pane levenshtein lorem-ipsum lsp-java lsp-treemacs lsp-ui lsp-mode dash-functional magit git-commit magit-popup markdown-mode math-symbol-lists maven-test-mode meghanada flycheck company modalka modern-cpp-font-lock moe-theme molokai-theme monokai-theme moz mu4e-alert alert log4e gntp mu4e-conversation multi multi-web-mode multiple-cursors mustache-mode mvn mvn-help neotree nlinum-relative nlinum noflet org-attach-screenshot org-bullets org-page git mustache org-plus-contrib org2blog metaweblog htmlize organize-imports-java ov ox-epub ox-gfm ox-hugo ox-reveal ox-twbs ox-twiki package-lint page-break-lines parsebib password-store auth-source-pass pcache pdf-tools pip-requirements plantuml-mode pod-mode polymode popup-complete popup popwin pos-tip powerline-evil evil goto-chg pretty-mode prodigy py-yapf pyenv-mode pymacs python-environment python-pylint python-x folding pythonic pyvenv quickrun ranger rmsbolt rtags scala-mode skewer-mode js2-mode simple-httpd smart-hungry-delete smart-mode-line-powerline-theme smart-mode-line rich-minority smartparens solarized-theme spaceline-all-the-icons spaceline powerline spacemacs-theme sphinx-doc spinner spotify srefactor sublimity super-save swiper ivy symbol-overlay syntax-subword tabbar tablist telephone-line template transient tree-mode treemacs-projectile treemacs ht hydra lv pfuture ace-window projectile treepy try typing typit mmt undo-tree use-package bind-key vimrc-mode virtualenvwrapper visible-mark visual-regexp-steroids visual-regexp volatile-highlights vscdark-theme vue-mode edit-indirect ssass-mode vue-html-mode mmm-mode web-beautify web-completion-data web-mode websocket wgrep-helm wgrep which-key with-editor async workgroups workgroups2 f anaphora wrap-region wttrin xelb xkcd xlicense xml-rpc xterm-color yagist yaml-mode yasnippet-snippets yasnippet ycmd pkg-info epl request-deferred request let-alist deferred s dash zeal-at-point zerodark-theme all-the-icons memoize zygospore zzz-to-char avy))
 ; ending-packages
 
 ; activate all the packages (in particular autoloads)
@@ -115,7 +115,6 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 (my-keys-mode t)
 #+END_SRC
 
-
 ** Interface tweaks
 Making the whole =emacs= experience a tiny bit better with those fixes of the interface of the editor
 - Startup screen is anoying
@@ -148,9 +147,8 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 #+END_SRC
 *** Fonts
 #+BEGIN_SRC emacs-lisp :results none
-;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=16")
-
-;;(set-frame-font "SauceCodePro Nerd Font Mono:size=15" nil t)
+;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=14")
+;; (set-frame-font "SauceCodePro Nerd Font Mono:size=15" nil t)
 ;; (set-default-font "SauceCodePro Nerd Font Mono:size=15")
 #+END_SRC
 *** Emojify
@@ -1001,7 +999,7 @@ will produce a graph-png at the end....it's awesome!
          (latex . t))))
 
 (setq org-plantuml-jar-path
-      (expand-file-name "~/code_ext/plantuml.jar"))
+      (expand-file-name "~/code/plantuml.jar"))
 
 #+END_SRC
 *** Keybinds
@@ -1891,7 +1889,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 ;; (require 'load-directory)
 ;; (load-directory "~/.emacs.d/my-lisp")
 
-(load-if-present "~/.emacs.d/lisp/vsexp.el")
+;; (load-if-present "~/.emacs.d/lisp/vsexp.el")
 
 (when (require 'vsexp nil t)
   (bind-key* "C-M-y" 'sp-backward-up-sexp)
@@ -1961,7 +1959,7 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'projectile)
 (setq projectile-completion-system 'helm)
-(setq projectile-project-search-path '("/home/arnaud/code" "/home/arnaud/code_ext" "/home/arnaud/code_sys" ))
+(setq projectile-project-search-path '("/home/arnaud/code"))
 (setq projectile-indexing-method 'native)
 (setq projectile-enable-caching t)
 
@@ -2297,8 +2295,7 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 
 (setq magit-repository-directories
 		'(
-		  ("~/code"        . 1)
-		  ("~/code_ext/"      . 1))
+		  ("~/code"        . 1))
 		magit-repolist-columns
 		'(
 		  ("Name"    25 magit-repolist-column-ident                  nil)
@@ -3140,10 +3137,7 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
 
 (setq dashboard-banner-logo-title "Welcome to the Emacs of Stanislav Arnaudov")
 
-;; (setq dashboard-startup-banner 'official)
-;; (setq dashboard-banner-logo-title "W I T C H M A C S")
-
-(setq dashboard-startup-banner "~/.emacs.d/chika_new.png")
+(setq dashboard-startup-banner "/home/arnaud/.emacs.d/chika.png")
 (setq dashboard-center-content t)
 (setq dashboard-show-shortcuts nil)
 

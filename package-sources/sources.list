@@ -6,8 +6,8 @@ deb http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 
 deb-src http://ftp.uni-stuttgart.de/debian/ testing-updates main contrib non-free
 
-deb http://www.rabbitmq.com/debian/ testing main
+# deb http://www.rabbitmq.com/debian/ testing main
 
 deb http://ftp.debian.org/debian/ stable main contrib non-free
 
-deb http://ftp.de.debian.org/debian jessie main
+# deb http://ftp.de.debian.org/debian jessie main
