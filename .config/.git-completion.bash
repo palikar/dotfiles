@@ -1,0 +1,1 @@
+/home/arnaud/code/dotfiles/setuper/../system-config/.git-completion.bash
