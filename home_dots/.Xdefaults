@@ -54,8 +54,11 @@ URxvt.perl-ext-common:			        default,matcher,resize-font,url-select,clipboar
 ! URxvt.font: 		xft:mono:size=12
 
 ! URxvt.font:           xft:Inconsolata:style=Bold:size=15
-! URxvt.font:           xft:SauceCodePro Nerd Font Mono:style=Bold:size=12
-URxvt.font:             xft:SauceCodePro Nerd Font Mono:style=Bold:size=13, xft:DejaVu Sans:pixelsize=14, xft:Inconsolata Nerd Font Mono:size=15, xft:Hack:pixelsize=18
+URxvt.font:           xft:SauceCodePro Nerd Font Mono:style=Bold:size=14
+! URxvt.font:           xft:FuraCode Nerd Font:style=Regular:size=13
+! URxvt.font            xft:DejaVu Sans:pixelsize=14
+! URxvt.font              Monospace regular:pixelsize=14
+
 
 
 URxvt.colorUL:          #4682B4	

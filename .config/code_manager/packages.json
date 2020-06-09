@@ -49,6 +49,7 @@
             "xkblayout-state",
             "rxvt-unicode",
             "emacs",
+            "firefox",
             "dragon",
             "notify-send-py",
             "nerd-fonts",
@@ -252,9 +253,9 @@
             },
             
             "install": ["cmake", "make"],
-            "cmake_args": "",
-            "make_extra_targets" : ["install"],
-            "make_args": "-j3"
+            "cmake_args": "-DBUILD_SHARED=True -DCMAKE_BUILD_TYPE=Debug",
+            "make_args": "-j8",
+            "make_extra_targets" : ["install"]
         },
 
         "anything" : {
@@ -263,12 +264,12 @@
             "git":{
                 "url" :  "@arnaud_base@/anything"
             },
-            
+
             "install": ["cmake", "make"],
             "cmake_args": "",
-            "make_extra_targets" : ["install"],
-            "make_args": "-j3"
-
+            "make_args": "-j4",
+            "make_extra_targets" : ["install"]
+            
         },
 
         "arnaud-framer": {
@@ -854,6 +855,19 @@
             "cmake_args": "",
             "make_extra_targets" : ["install"],
             "make_args": "-j3"
+        },
+
+        "firefox" : {
+            "fetch"   : "curl",
+            "curl": {
+                "url" : "https://files03.tchspt.com/temp/firefox-77.0.1x86_64.tar.bz2"
+            },
+            "extract" : true,
+            "install" : "command",
+            "command" : [
+                ["echo firefox"]
+                
+            ]
         }
 
     }

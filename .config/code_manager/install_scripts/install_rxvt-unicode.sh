@@ -28,7 +28,7 @@ else
 fi
 
 echo "Install prefix: ${prefix}"
-CFLAGS="-g3 -O3" ./configure  --enable-everything --enable-256-color --prefix=$prefix --enable-perl=/usr/bin/perl5.30.2
+CFLAGS="-g3 -O3" ./configure  --enable-256-color --enable-unicode3 --prefix=$prefix --enable-perl=/usr/bin/perl5.30.2
 make -j4
 sudo make install
 

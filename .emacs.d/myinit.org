@@ -3137,7 +3137,7 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
 
 (setq dashboard-banner-logo-title "Welcome to the Emacs of Stanislav Arnaudov")
 
-(setq dashboard-startup-banner "/home/arnaud/.emacs.d/chika.png")
+(setq dashboard-startup-banner "/home/arnaud/.emacs.d/chika_new.png")
 (setq dashboard-center-content t)
 (setq dashboard-show-shortcuts nil)
 
