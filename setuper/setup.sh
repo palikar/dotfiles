@@ -60,18 +60,19 @@ setup_files()
     ln -s "${DIR}/.scripts" "${HOME}/.scripts"
 
     for dot in $(ls "${DIR}/system-config" -A); do
-        [ -f "${HOME}/$dot" ] && rm -f "${HOME}/$dot"
+        rm -f "${HOME}/.config/$dot"
         ln -s "${DIR}/system-config/${dot}" "${HOME}/.config/$dot"
     done
 
-    for dot in $(ls "${DIR}/home_dots" -A); do
-        [ -f "${HOME}/$dot" ] && rm -f "${HOME}/$dot"
+    for dot in $(ls "${DIR}/home_dots/" -A); do
+        rm -f "${HOME}/$dot"
         ln -s "${DIR}/home_dots/${dot}" "${HOME}/$dot"
     done
     
 
     # emascs ####################
-    cp "$DIR/.emacs.d"  "${HOME}/" -b -R
+    rm -f "${HOME}/.emacs.d/snippets"
+    cp "$DIR/.emacs.d"  "${HOME}/" -b -R -a
 
     rm -f "${HOME}/.emacs.d/myinit.org"
     rm -f "${HOME}/.emacs.d/init.el"

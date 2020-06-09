@@ -1,17 +1,20 @@
 #!/bin/bash
 
-
 notify-send "Changing language" "Keyboard layout has been configured"
 pkill -RTMIN+9 i3blocks
 
-setxkbmap -option # reset everything to default state!
+setxkbmap -option
 setxkbmap -layout de,bg -variant "deadacute, phonetic"
 xmodmap -e "remove Lock = Caps_Lock"
 xmodmap -e "keysym Caps_Lock = F13"
 
 xdotool key Caps_Lock
 
-TOUCH_ID=$(xinput list | grep "ELAN0511:00 04F3:3041 Touchpad" | grep "id=[0-9]*" -o | sed -e "s/id=\(.*\)/\1/g")
-TAP_ID=$(xinput list-props "${TOUCH_ID}" | grep "libinput Tapping Enabled ([0-9]*)" -o | sed -e "s/libinput Tapping Enabled (\([0-9]*\))/\1/g")
-xinput set-prop ${TOUCH_ID} ${TAP_ID} 1
+
+if [ $HOST_SYSTEM = 1 ]; then
+    TOUCH_ID=$(xinput list | grep "ELAN0511:00 04F3:3041 Touchpad" | grep "id=[0-9]*" -o | sed -e "s/id=\(.*\)/\1/g")
+    TAP_ID=$(xinput list-props "${TOUCH_ID}" | grep "libinput Tapping Enabled ([0-9]*)" -o | sed -e "s/libinput Tapping Enabled (\([0-9]*\))/\1/g")
+    xinput set-prop ${TOUCH_ID} ${TAP_ID} 1
+fi
+
 
