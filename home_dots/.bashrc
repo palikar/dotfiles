@@ -35,6 +35,10 @@ fi
 
 set bell-style none
 
+if [ -f ~/.inputrc ]; then
+    bind -f ~/.inputrc
+fi
+
 if [ -f ~/.config/.bash_aliases ]; then
     . ~/.config/.bash_aliases
 fi
@@ -45,10 +49,6 @@ fi
 
 if [ -f ~/.config/.env ]; then
     source ~/.config/.env
-fi
-
-if [ -f ~/.inputrc ]; then
-    bind -f ~/.inputrc
 fi
 
 if [ -f ~/.config/paths ]; then
@@ -69,11 +69,7 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 
-source "${DOTFILES_DIR}"/fzf/completion.bash
-source "${DOTFILES_DIR}"/fzf/key-bindings.bash
 [ -f ~/.config/.fzf.bash ] && source ~/.config/.fzf.bash
-
-
 
 # pip bash completion start
 _pip_completion()

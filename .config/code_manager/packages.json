@@ -501,9 +501,7 @@
             },
             "install": "setup.py",
             "setup_args" : ["--optimize=1", "--record=install_log.txt"],
-            "deb_packages": ["file", "sudo", "w3m", "caca-utils",
-                             "atool","lynx","mediainfo",
-                             "odt2txt"]
+            "deb_packages": ["file", "caca-utils", "atool", "mediainfo", "odt2txt"]
         },
 
         "networkmanager-dmenu": {

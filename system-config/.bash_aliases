@@ -13,8 +13,6 @@ alias uni='cd ~/Uni/Semesters/SS19'
 
 alias pip='pip3'
 
-
-
 alias paths='echo -e ${PATH//:/\\n}'
 alias week="date +%V"
 alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
@@ -40,6 +38,7 @@ for METHOD in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "$METHOD"="lwp-request -m '$METHOD'"
 done
 
+alias setenv='source ~/code/setenv.sh'
 
 human() {
 	echo "
