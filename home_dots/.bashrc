@@ -16,6 +16,8 @@ case $- in
     *) return;;
 esac
 
+[ -z "$PS1" ] && return
+
 stty -ixon
 shopt -s histappend
 shopt -s checkwinsize
