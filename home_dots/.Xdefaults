@@ -50,7 +50,6 @@ URxvt.unicode3:		true
 !! Extensions
 URxvt.perl-lib:                                 /home/arnaud/.config/urxvt-perls/
 URxvt.perl-ext-common:			        default,matcher,resize-font,url-select,clipboard,font-sizee
-
 ! URxvt.font: 		xft:mono:size=12
 
 ! URxvt.font:           xft:Inconsolata:style=Bold:size=15
