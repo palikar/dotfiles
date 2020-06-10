@@ -215,8 +215,8 @@ for_window [class="ParaView"] move workspace $ws10
 bindsym $mod+Tab                        workspace back_and_forth
 bindsym $mod+Mod1+Right                 workspace next
 bindsym $mod+Mod1+Left	                workspace prev
-bindsym $mod+Shift+Right                move container to workspace next
-bindsym $mod+Shift+Left               	move container to workspace prev
+# bindsym $mod+Shift+Right                move container to workspace next
+# bindsym $mod+Shift+Left               	move container to workspace prev
 bindsym $mod+Prior		        workspace prev
 bindsym $mod+Next		        workspace next
 # bindsym $mod+Shift+Prior	        move container to workspace prev
