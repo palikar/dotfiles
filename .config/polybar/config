@@ -1,0 +1,544 @@
+;-------------------------------------------------------------------------------
+;	V A R I A B L E S
+;-------------------------------------------------------------------------------
+
+[colors]
+background = #131313
+background-alt = #333
+
+foreground = #b2b2b2
+foreground-alt = #ee3333
+
+trans = #ED1e1e1e
+white = #eee
+grey = #444444
+pink = #d75f87
+blue = #4f97d7
+purple = #875faf
+green = #20ad80
+red = #ee3333
+dark = #182725
+mid = #293939
+border = #6E6F69
+light = #8A8881
+highlight = #C08552
+urgent = #B73C33
+
+;-------------------------------------------------------------------------------
+;	B A R S
+;-------------------------------------------------------------------------------
+
+[bar/main]
+width = 100%
+height = 20
+radius = 1.0
+fixed-center = true
+
+background = ${colors.dark}
+foreground = ${colors.light}
+
+border-bottom-size = 1
+border-bottom-color = ${colors.border}
+
+; Normal Text
+font-0 = Hack Nerd Font:pixelsize=14;3
+; Arrow
+font-1 = Hack Nerd Font:pixelsize=14;3
+; Workspaces
+font-2 = Hack Nerd Font:pixelsize=14;2
+; Symbols
+font-3 = Hack Nerd Font:pixelsize=14;4
+; Middle Arrow
+font-4 = Hack Nerd Font:pixelsize=14;0
+; COM Symbol
+font-5 = Hack Nerd Font:pixelsize=14;0
+; RUN Symbol
+font-6 = Hack Nerd Font:pixelsize=4;0
+
+padding-left = 0
+padding-right = 0
+
+; modules-left = arrow_l1 arrow_l2 i3_index arrow_i3_index i3_icon
+modules-left = arrow_l1 arrow_l2 i3 arrow_i3_name arrow_i3_end arrow_i3_name
+
+modules-right = arrow_r3 arrow_r4 arrow_r3 xkeyboard arrow_r2 volume_symbol volume arrow_r1 ram_symbol ram arrow_r2 cpu_symbol cpu arrow_r1 filesystem_symbol filesystem arrow_r2 arrow_r1 temperature_symbol temperature
+
+; tray-position = left
+; tray-background = ${colors.mid}
+; tray-padding = 4
+
+;-------------------------------------------------------------------------------
+;	D E C O R A T I O N S
+;-------------------------------------------------------------------------------
+
+; LEFT --------
+[module/arrow_l1]
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.mid}
+content-background = ${colors.light}
+
+[module/arrow_l2]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.light}
+content-background = ${colors.mid}
+
+[module/arrow_i3]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.mid}
+content-background = ${colors.light}
+
+[module/arrow_i3_index]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.light}
+content-background = ${colors.mid}
+
+[module/arrow_i3_name]
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.mid}
+content-background = ${colors.dark}
+
+[module/arrow_i3_end]
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.dark}
+content-background = ${colors.mid}
+
+; MIDDLE ---------
+
+[module/middle0]
+type = custom/text
+content = "◥"
+content-font = 5
+content-foreground = ${colors.dark}
+content-background = ${colors.mid}
+
+[module/middle1]
+type = custom/text
+content = "◥"
+content-font = 5
+content-foreground = ${colors.mid}
+content-background = ${colors.dark}
+
+[module/middle2]
+type = custom/text
+content = "◤"
+content-font = 5
+content-foreground = ${colors.mid}
+content-background = ${colors.border}
+
+[module/date_symbols]
+type = custom/text
+content = "  "
+content-font = 4
+content-foreground = ${colors.dark}
+content-background = ${colors.border}
+
+[module/middle3]
+type = custom/text
+content = "◥"
+content-font = 5
+content-foreground = ${colors.mid}
+content-background = ${colors.border}
+
+[module/middle4]
+type = custom/text
+content = "◤"
+content-font = 5
+content-foreground = ${colors.mid}
+content-background = ${colors.dark}
+
+[module/middle5]
+type = custom/text
+content = "◤"
+content-font = 5
+content-foreground = ${colors.dark}
+content-background = ${colors.mid}
+
+; RIGHT
+
+[module/arrow_r1]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.mid}
+content-background = ${colors.light}
+
+[module/arrow_r2]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.light}
+content-background = ${colors.mid}
+
+[module/arrow_r3]
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.mid}
+content-background = ${colors.dark}
+
+[module/arrow_r4]
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.dark}
+content-background = ${colors.mid}
+
+
+;-------------------------------------------------------------------------------
+;	M O D U L E S
+;-------------------------------------------------------------------------------
+
+
+[module/i3]
+type = internal/i3
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+
+format = <label-state>
+
+label-mode-foreground = ${colors.urgent}
+label-mode-background = ${colors.mid}
+
+label-focused = %icon%
+label-focused-foreground = ${colors.highlight}
+label-focused-background = ${colors.mid}
+label-focused-padding = 2
+
+label-visible = %icon%
+label-visible-underline = ${colors.blue}
+label-visible-padding = 2
+
+label-unfocused = %icon%
+label-unfocused-padding = 2
+label-unfocused-foreground = ${colors.light}
+label-unfocused-background = ${colors.mid}
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.urgent}
+label-urgent-background = ${colors.mid}
+
+
+label-urgent-padding = 2
+
+
+[module/i3_index]
+type = internal/i3
+format = <label-state>
+
+label-focused = "%index% "
+label-focused-foreground = ${colors.mid}
+label-focused-background = ${colors.light}
+
+label-unfocused =
+label-urgent =
+
+[module/i3_icon]
+type = internal/i3
+format = <label-state>
+
+
+label-focused = "%icon%"
+label-focused-font = 4
+label-focused-foreground = ${colors.light}
+label-focused-background = ${colors.mid}
+
+label-unfocused =
+label-urgent =
+
+[module/i3_name]
+type = internal/i3
+format = <label-state>
+
+ws-icon-default = FREE
+
+ws-icon-0 = ""
+ws-icon-1 = ""
+ws-icon-2 = ""
+ws-icon-3 = ""
+ws-icon-4 = ""
+ws-icon-5 = ""
+ws-icon-6 = ""
+ws-icon-7 = ""
+ws-icon-8 = ""
+ws-icon-9 = ""
+
+label-focused = " %icon% "
+label-focused-foreground = ${colors.light}
+label-focused-background = ${colors.mid}
+
+label-unfocused =
+label-urgent =
+
+; MIDDLE --------
+
+[module/day]
+type = internal/date
+interval = 5
+
+date = " %Y-%m-%d"
+
+time= %H:%M:%S
+
+label = %date%
+label-foreground = ${colors.light}
+label-background = ${colors.mid}
+
+[module/time]
+type = internal/date
+interval = 5
+
+time= %H:%M:%S
+
+label = %time%
+label-foreground = ${colors.light}
+label-background = ${colors.mid}
+
+; RIGHT ----
+
+[module/battery]
+interval = 5
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 100
+
+format-charging = <animation-charging>
+format-charging-font = 4
+format-charging-foreground = ${colors.mid}
+format-charging-background = ${colors.light}
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
+animation-charging-framerate = 750
+
+format-discharging = <ramp-capacity>
+format-discharging-font = 4
+format-discharging-foreground = ${colors.mid}
+format-discharging-background = ${colors.light}
+ramp-capacity-0 = " "
+ramp-capacity-0-foreground = ${colors.urgent}
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
+ramp-capacity-5 = " "
+ramp-capacity-6 = " "
+ramp-capacity-7 = " "
+ramp-capacity-8 = " "
+ramp-capacity-9 = " "
+
+format-full = <label-full>
+format-full-font = 4
+format-full-foreground = ${colors.mid}
+format-full-background = ${colors.light}
+label-full = " "
+
+[module/battery_text]
+interval = 5
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 100
+
+format-charging = <label-charging>
+format-charging-foreground = ${colors.mid}
+format-charging-background = ${colors.light}
+label-charging = " %percentage%%"
+
+format-discharging = <label-discharging>
+format-discharging-foreground = ${colors.mid}
+format-discharging-background = ${colors.light}
+label-discharging-foreground = ${colors.mid}
+label-discharging = " %percentage%%"
+
+format-full = <label-full>
+format-full-foreground = ${colors.mid}
+format-full-background = ${colors.light}
+label-full = " %percentage%%"
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = " %percentage_used%%"
+label-mounted-foreground = ${colors.light}
+label-mounted-background = ${colors.mid}
+
+[module/filesystem_symbol]
+type = custom/text
+content = " "
+content-font = 4
+content-foreground = ${colors.light}
+content-background = ${colors.mid}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label = " %percentage%%"
+label-foreground = ${colors.mid}
+label-background = ${colors.light}
+
+[module/cpu_symbol]
+type = custom/text
+content = " "
+content-font = 4
+content-foreground = ${colors.mid}
+content-background = ${colors.light}
+
+[module/ram]
+type = internal/memory
+interval = 2
+label = " %percentage_used%%"
+label-foreground = ${colors.light}
+label-background = ${colors.mid}
+
+[module/ram_symbol]
+type = custom/text
+content = " "
+content-font = 4
+content-foreground = ${colors.light}
+content-background = ${colors.mid}
+
+; [module/volume]
+; type = custom/script
+; exec = ./comfy_guration/scripts/volume_output.sh
+; interval = 0.2
+
+; format = <label>
+; format-background = ${colors.light}
+; format-foreground = ${colors.mid}
+
+; label = " %output%"
+
+
+[module/volume_symbol]
+type = internal/volume
+
+format-volume = <ramp-volume>
+
+ramp-volume-font = 4
+ramp-volume-foreground = ${colors.mid}
+ramp-volume-background = ${colors.light}
+ramp-volume-0 = " "
+ramp-volume-1 = " "
+ramp-volume-2 = " "
+ramp-volume-3 = " "
+ramp-volume-4 = " "
+ramp-volume-5 = " "
+
+label-muted = " "
+label-muted-font = 4
+label-muted-foreground = ${colors.mid}
+label-muted-background = ${colors.light}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+blacklist-2 = caps lock
+
+format-prefix = " "
+format-prefix-font = 1
+format-prefix-foreground = ${colors.light}
+format-prefix-background = ${colors.mid}
+
+label-layout = "%layout% "
+label-layout-font = 1
+label-layout-foreground = ${colors.light}
+label-layout-background = ${colors.mid}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+interval = 2
+
+format = <label>
+format-foreground = ${colors.light}
+format-background = ${colors.mid}
+label = " %temperature% "
+
+[module/temperature_symbol]
+type = internal/temperature
+thermal-zone = 0
+interval = 2
+warn-temperature = 55
+
+format = <ramp>
+format-font = 4
+format-foreground = ${colors.light}
+format-background = ${colors.mid}
+
+format-warn = <ramp>
+format-warn-font = 4
+format-warn-foreground = ${colors.urgent}
+format-warn-background = ${colors.mid}
+
+ramp-0 = " "
+ramp-1 = " "
+ramp-2 = " "
+ramp-3 = " "
+ramp-4 = " "
+ramp-5 = " "
+ramp-6 = " "
+ramp-7 = " "
+ramp-8 = " "
+ramp-9 = " "
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %Y-%m-%d"
+
+time= %H:%M:%S
+
+label = %date% %time%
+label-foreground = ${colors.blue}
+label-background = ${colors.background}
+
+
+;-------------------------------------------------------------------------------
+;	S E T T I N G S
+;-------------------------------------------------------------------------------
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
