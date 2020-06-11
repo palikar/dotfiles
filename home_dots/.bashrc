@@ -71,7 +71,7 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 
-[ -f ~/.config/.fzf.bash ] && source ~/.config/.fzf.bash
+# [ -f ~/.config/.fzf.bash ] && source ~/.config/.fzf.bash
 
 # pip bash completion start
 _pip_completion()
@@ -86,5 +86,5 @@ complete -o default -F _pip_completion pip3
 
 #theming
 xrdb merge "$HOME/.Xdefaults"
-
+(cat ~/.cache/wal/sequences &)
 

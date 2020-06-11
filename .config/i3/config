@@ -27,9 +27,9 @@ client.background $black
 
 font pango:mono 12
 
-#Status bar
+# Status bar
 bar {
-    # font pango:mono 14
+    font pango:mono 14
     separator_symbol "|"
     font pango:DejaVu Sans Mono 14
 
@@ -49,7 +49,7 @@ bar {
     Position top
     mode dock
     modifier None
-    tray_output           primary
+    tray_output             primary
     workspace_buttons       yes
     strip_workspace_numbers yes
 }
@@ -82,6 +82,17 @@ set $ws7    "7: "
 set $ws8    "8: "
 set $ws9    "9: "
 set $ws10   "10: "
+
+# set $ws1    1
+# set $ws2    2
+# set $ws3    3
+# set $ws4    4
+# set $ws5    5
+# set $ws6    6
+# set $ws7    7
+# set $ws8    8
+# set $ws9    9
+# set $ws10   10
 
 # #---- System setup ----# #
 exec_always --no-startup-id feh --bg-scale $WALLPAPER
@@ -214,8 +225,6 @@ for_window [class="ParaView"] move workspace $ws10
 bindsym $mod+Tab                        workspace back_and_forth
 bindsym $mod+Mod1+Right                 workspace next
 bindsym $mod+Mod1+Left	                workspace prev
-bindsym $mod+Shift+Right                move container to workspace next
-bindsym $mod+Shift+Left               	move container to workspace prev
 bindsym $mod+Prior		        workspace prev
 bindsym $mod+Next		        workspace next
 # bindsym $mod+Shift+Prior	        move container to workspace prev
