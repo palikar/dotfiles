@@ -8,15 +8,19 @@ do
     in
         c)
             cp $2 "${WALLPAPER_DIR}/"
-	    wal  -i $2 -a 85;;
+	    wal  -i $2 -a 85 -n;
+            feh --no-fehbg --bg-scale $2;;
+        
 	b)
             cp $2 "${WALLPAPER_DIR}/"
-            cp $2 ${WALLPAPER} && feh --bg-scale ${WALLPAPER} ;;
+            cp $2 ${WALLPAPER} && feh --no-fehbg --bg-scale ${WALLPAPER} ;;
         s)
+            
             PAPE=$(ls "${WALLPAPER_DIR}/"*.{jpg,png,bmp} | sxiv -tio)
-            cp "${PAPE}" ${WALLPAPER} && feh --bg-scale ${WALLPAPER} ;;
+            cp "${PAPE}" ${WALLPAPER} && feh --no-fehbg --bg-scale ${WALLPAPER} ;;
+        
         r)
-            feh --bg-scale ${WALLPAPER}
+            feh --no-fehbg --bg-scale ${WALLPAPER}
             ;;
 
     esac

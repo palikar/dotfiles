@@ -37,6 +37,10 @@ fi
 
 set bell-style none
 
+if [ -f ~/.config/.env ]; then
+    source ~/.config/.env
+fi
+
 if [ -f ~/.inputrc ]; then
     bind -f ~/.inputrc
 fi
@@ -47,10 +51,6 @@ fi
 
 if [ -f ~/.config/.bash_prompt ]; then
     . ~/.config/.bash_prompt
-fi
-
-if [ -f ~/.config/.env ]; then
-    source ~/.config/.env
 fi
 
 if [ -f ~/.config/paths ]; then

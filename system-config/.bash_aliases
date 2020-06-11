@@ -29,8 +29,8 @@ alias vim='nvim'
 alias vi='nvim'
 
 
-for env in $(ls "$HOME/Envs/"); do
-    alias "activate_$env"="source $HOME/Envs/$env/bin/activate"
+for env in $(ls "${PYENVS_DIR}"); do
+    alias "activate_$env"="source ${PYENVS_DIR}/$env/bin/activate"
 done
 
 

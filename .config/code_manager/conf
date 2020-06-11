@@ -1,7 +1,7 @@
 [Config]
 code = /home/arnaud/code
 usr = /home/arnaud/usr
-venv = /home/arnaud/Envs/dev
+venv = /home/arnaud/code/envs/dev
 debug = true
 
 [Download]

@@ -95,8 +95,12 @@ set $ws10   "10: "
 # set $ws10   10
 
 # #---- System setup ----# #
-exec_always --no-startup-id feh --bg-scale $WALLPAPER
+exec_always --no-startup-id feh --bg-scale --no-fehbg $WALLPAPER
+
+exec_always --no-startup-id nvidia-settings --load-config-only --config $HOME/.config/.nvidia-settings-rc
+
 exec_always --no-startup-id /home/arnaud/.scripts/system/setupxkbd
+
 exec --no-startup-id i3spotifyupdate
 exec --no-startup-id nm-applet
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
