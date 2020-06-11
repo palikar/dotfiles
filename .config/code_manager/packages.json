@@ -22,7 +22,7 @@
             "blog-hugo-files",
             "jgrapher",
             "MARS",
-            "blog-hugo-files",
+            "rabbitholer",
             "pollution",
             "projector",
             "smarthomeworks",
@@ -839,7 +839,7 @@
         "mflower": {
             "fetch": "git",
             "git":{
-                "url" :  "@arnaud_base/mflower"
+                "url" :  "@arnaud_base@/mflower"
             },
             "install": ["cmake", "make"],
             "cmake_args": "",
@@ -868,7 +868,18 @@
                 ["echo firefox"]
                 
             ]
+        },
+
+        "rabbitholer"  : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/palikar/rabbitholer"
+            },
+            "install" : "setup.py",
+            "setup_args" : "",
+            "prefix" : false
         }
+        
 
     }
 }

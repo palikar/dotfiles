@@ -21,6 +21,7 @@ alias gitcred="git config --global credential.helper cache"
 alias ua_python="sudo update-alternatives --config python"
 alias rxvt-unicode="urxvt"
 
+alias setenv="source $DOTFILES_DIR/setenv.sh"
 
 
 alias emacsd='rm -rf ~/.emacs.d/myinit.el && emacs --daemon'
