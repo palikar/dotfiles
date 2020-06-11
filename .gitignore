@@ -46,4 +46,5 @@ __pycache__/
 .config/totem/
 .config/vifm/
 .config/vlc/
+.config/.gnupg/
 
