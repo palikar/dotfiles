@@ -204,7 +204,7 @@
             "path": [
                 "lkaösd"
             ]
-            
+
         },
 
         "nerd-fonts" : {
@@ -215,7 +215,7 @@
             "install" : "make",
             "make_args": "-j3"
         },
-        
+
         "nerd-fonts" : {
             "fetch" : "git",
             "git" : {
@@ -251,7 +251,7 @@
             "git":{
                 "url" :  "@arnaud_base@/alisp"
             },
-            
+
             "install": ["cmake", "make"],
             "cmake_args": "-DBUILD_SHARED=True -DCMAKE_BUILD_TYPE=Debug",
             "make_args": "-j8",
@@ -269,7 +269,7 @@
             "cmake_args": "",
             "make_args": "-j4",
             "make_extra_targets" : ["install"]
-            
+
         },
 
         "arnaud-framer": {
@@ -866,7 +866,7 @@
             "install" : "command",
             "command" : [
                 ["echo firefox"]
-                
+
             ]
         },
 
@@ -879,7 +879,7 @@
             "setup_args" : "",
             "prefix" : false
         }
-        
+
 
     }
 }
