@@ -1,5 +1,5 @@
 [Added Associations]
-text/html=firefox-esr.desktop;org.gnome.gedit.desktop;vim.desktop;userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
+text/html=firefox-esr.desktop;org.gnome.gedit.desktop;vim.desktop;userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
 text/csv=org.gnome.gedit.desktop;libreoffice-calc.desktop;
 application/octet-stream=org.gnome.Evince.desktop;org.gnome.gedit.desktop;eog.desktop;shotwell.desktop;evince.desktop;
 image/png=shotwell-viewer.desktop;eog.desktop;display-im6.q16hdri.desktop;pqiv.desktop;display-im6.q16.desktop;
@@ -61,16 +61,16 @@ audio/mpeg=org.gnome.Totem.desktop;org.gnome.gedit.desktop;caja-browser.desktop;
 text/x-chdr=org.gnome.gedit.desktop;
 application/x-bibtex=org.gnome.gedit.desktop;
 application/x-httpd-php=org.gnome.gedit.desktop;org.gnome.FileRoller.desktop;
-x-scheme-handler/http=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-x-scheme-handler/https=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-x-scheme-handler/ftp=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-x-scheme-handler/chrome=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-application/x-extension-htm=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-application/x-extension-html=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-application/x-extension-shtml=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-application/xhtml+xml=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-application/x-extension-xhtml=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
-application/x-extension-xht=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;
+x-scheme-handler/http=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+x-scheme-handler/https=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+x-scheme-handler/ftp=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+x-scheme-handler/chrome=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+application/x-extension-htm=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+application/x-extension-html=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+application/x-extension-shtml=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+application/xhtml+xml=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+application/x-extension-xhtml=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
+application/x-extension-xht=userapp-Firefox-75Q36Z.desktop;userapp-Firefox-ZQJRL0.desktop;userapp-Firefox-2INAM0.desktop;
 application/x-tgif=org.gnome.gedit.desktop;
 
 [Default Applications]
@@ -118,17 +118,17 @@ video/x-flc=vlc.desktop
 video/x-fli=vlc.desktop
 video/x-flv=vlc.desktop
 x-scheme-handler/postman=Postman.desktop
-x-scheme-handler/http=userapp-Firefox-ZQJRL0.desktop
-x-scheme-handler/https=userapp-Firefox-ZQJRL0.desktop
-x-scheme-handler/ftp=userapp-Firefox-ZQJRL0.desktop
-x-scheme-handler/chrome=userapp-Firefox-ZQJRL0.desktop
-text/html=userapp-Firefox-ZQJRL0.desktop
-application/x-extension-htm=userapp-Firefox-ZQJRL0.desktop
-application/x-extension-html=userapp-Firefox-ZQJRL0.desktop
-application/x-extension-shtml=userapp-Firefox-ZQJRL0.desktop
-application/xhtml+xml=userapp-Firefox-ZQJRL0.desktop
-application/x-extension-xhtml=userapp-Firefox-ZQJRL0.desktop
-application/x-extension-xht=userapp-Firefox-ZQJRL0.desktop
+x-scheme-handler/http=userapp-Firefox-2INAM0.desktop
+x-scheme-handler/https=userapp-Firefox-2INAM0.desktop
+x-scheme-handler/ftp=userapp-Firefox-2INAM0.desktop
+x-scheme-handler/chrome=userapp-Firefox-2INAM0.desktop
+text/html=userapp-Firefox-2INAM0.desktop
+application/x-extension-htm=userapp-Firefox-2INAM0.desktop
+application/x-extension-html=userapp-Firefox-2INAM0.desktop
+application/x-extension-shtml=userapp-Firefox-2INAM0.desktop
+application/xhtml+xml=userapp-Firefox-2INAM0.desktop
+application/x-extension-xhtml=userapp-Firefox-2INAM0.desktop
+application/x-extension-xht=userapp-Firefox-2INAM0.desktop
 x-scheme-handler/msteams=teams.desktop
 
 [Removed Associations]

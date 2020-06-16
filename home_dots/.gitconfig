@@ -97,7 +97,7 @@
 	name = Stanislav Arnaudov
 	email = stanislav_ts@abv.bg
 [credential]
-	helper = store --file ~/.git-credentials
+	helper = store --file ~/.cache/.git-credentials
 	helper = cache --timeout 30000	
 [github]
 	oauth-token = 1f28ce622d70d6b2e4a69d919c40238e9563de64

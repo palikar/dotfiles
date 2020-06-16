@@ -252,6 +252,8 @@
                 "url" :  "@arnaud_base@/alisp"
             },
 
+            "deb_packages" : ["cloc"],
+            
             "install": ["cmake", "make"],
             "cmake_args": "-DBUILD_SHARED=True -DCMAKE_BUILD_TYPE=Debug",
             "make_args": "-j8",
@@ -863,10 +865,12 @@
                 "url" : "https://files03.tchspt.com/temp/firefox-77.0.1x86_64.tar.bz2"
             },
             "extract" : true,
-            "install" : "command",
-            "command" : [
-                ["echo firefox"]
-
+            "install" : "ln",
+            "ln" : [
+                {
+                    "source" : "firefox/firefox",
+                    "dest" : "/usr/bin/firefox"
+                }
             ]
         },
 

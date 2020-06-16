@@ -63,7 +63,7 @@ gaps outer 15
 
 floating_modifier $mod
 
-set $term --no-startup-id urxvt
+set $term --no-startup-id rxvt-unicode
 set $mod Mod4
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
@@ -81,7 +81,7 @@ set $ws6    "6: "
 set $ws7    "7: "
 set $ws8    "8: "
 set $ws9    "9: "
-set $ws10   "10: "
+set $ws10   "10: "
 
 # set $ws1    1
 # set $ws2    2

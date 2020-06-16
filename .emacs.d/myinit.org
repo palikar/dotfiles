@@ -148,7 +148,7 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 *** Fonts
 #+BEGIN_SRC emacs-lisp :results none
 ;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=14")
-;; (set-frame-font "SauceCodePro Nerd Font Mono:size=15" nil t)
+;; (set-frame-font "Hack:size=14" nil t)
 ;; (set-default-font "SauceCodePro Nerd Font Mono:size=15")
 #+END_SRC
 *** Emojify
@@ -501,7 +501,7 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
                     ((numberp (cdr alpha)) (cdr alpha))
                     ((numberp (cadr alpha)) (cadr alpha)))
               100)
-         '(85 . 80) '(100 . 100)))))
+         '(90 . 80) '(100 . 100)))))
 
 (defun hot-expand (str)
   "Expand org template."
