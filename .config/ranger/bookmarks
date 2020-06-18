@@ -5,10 +5,10 @@
 u:/home/arnaud/Uni/Semesters/SS20
 e:/home/arnaud/code_ext
 w:/home/arnaud/Wallpapers
-p:/home/arnaud/Wallpapers/Phototos
-s:/home/arnaud/code_sys
+p:/home/arnaud/code/personal
+s:/home/arnaud/code/source
 c:/home/arnaud/code
-':/home/arnaud
+':/home/arnaud/code/system
 o:/home/arnaud/Documents/orgfiles
 5:/home/arnaud/.config
 6:/home/arnaud/code/dotfiles
@@ -16,3 +16,4 @@ E:/home/arnaud/Webms
 0:/home/arnaud/core.d
 7:/home/arnaud/Dropbox
 m:/home/arnaud/Webms
+S:/home/arnaud/code/system

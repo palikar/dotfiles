@@ -31,7 +31,8 @@
             "mflower",
             "ctgraph",
             "anything",
-            "alisp"
+            "alisp",
+            "flow_predict"
         ],
 
         "elisp" : [
@@ -94,6 +95,11 @@
             "navigationfx",
             "jwtxx",
             "blender"
+        ],
+
+        "source" : [
+            "all-repos",
+            "projectile"
         ]
 
     },
@@ -147,12 +153,29 @@
             "elisp" : "elisp",
             "system" : "system",
             "misc" : "misc",
-            "open_source" : "source"
+            "source" : "source"
         }
 
     },
 
     "packages": {
+
+        "projectile" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/bbatsov/projectile/"
+            }
+        },
+
+        "all-repos" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/asottile/all-repos"
+            },
+
+            "install" : "setup.py",
+            "setup_args" : ["--optimize=1", "--record=install_log.txt"]
+        },
 
         "vim" : {
             "fetch" : "git",
@@ -252,8 +275,6 @@
                 "url" :  "@arnaud_base@/alisp"
             },
 
-            "deb_packages" : ["cloc"],
-            
             "install": ["cmake", "make"],
             "cmake_args": "-DBUILD_SHARED=True -DCMAKE_BUILD_TYPE=Debug",
             "make_args": "-j8",
@@ -882,6 +903,13 @@
             "install" : "setup.py",
             "setup_args" : "",
             "prefix" : false
+        },
+
+        "flow_predict" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "@arnaud_base@/flow_predict"
+            }
         }
 
 

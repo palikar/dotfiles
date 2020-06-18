@@ -35,8 +35,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-set bell-style none
-
 if [ -f ~/.config/.env ]; then
     source ~/.config/.env
 fi
@@ -71,7 +69,7 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 
-# [ -f ~/.config/.fzf.bash ] && source ~/.config/.fzf.bash
+[ -f ~/.config/.fzf.bash ] && source ~/.config/.fzf.bash
 
 # pip bash completion start
 _pip_completion()

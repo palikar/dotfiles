@@ -13,5 +13,10 @@ cache = ${HOME}/.config/code_manager/cache
 [Logging]
 direcory = /home/arnaud/.config/code_manager/logs
 
+
+[Commands]
+grep-colors = true
+sed-colors = true
+
 [Common]
 
