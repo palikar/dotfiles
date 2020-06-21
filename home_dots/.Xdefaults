@@ -1,104 +1,84 @@
-! special
-*.foreground:   #c7ccd1
-*.background:   #1c2023
-*.cursorColor:  #c7ccd1
+!                                 special
+*.foreground:                     #c7ccd1
+*.background:                     #1c2023
+*.cursorColor:                    #c7ccd1
 
-! black
-*.color0:       #1c2023
-*.color8:       #747c84
+!                                 black
+*.color0:                         #1c2023
+*.color8:                         #747c84
 
-! red
-*.color1:       #c7ae95
-*.color9:       #c7ae95
+!                                 red
+*.color1:                         #c7ae95
+*.color9:                         #c7ae95
 
-! green
-*.color2:       #95c7ae
-*.color10:      #95c7ae
+!                                 green
+*.color2:                         #95c7ae
+*.color10:                        #95c7ae
 
-! yellow
-*.color3:       #aec795
-*.color11:      #aec795
+!                                 yellow
+*.color3:                         #aec795
+*.color11:                        #aec795
 
-! blue
-*.color4:       #ae95c7
-*.color12:      #ae95c7
+!                                 blue
+*.color4:                         #ae95c7
+*.color12:                        #ae95c7
 
-! magenta
-*.color5:       #c795ae
-*.color13:      #c795ae
+!                                 magenta
+*.color5:                         #c795ae
+*.color13:                        #c795ae
 
-! cyan
-*.color6:       #95aec7
-*.color14:      #95aec7
+!                                 cyan
+*.color6:                         #95aec7
+*.color14:                        #95aec7
 
-! white
-*.color7:       #c7ccd1
-*.color15:      #f3f4f5
+!                                 white
+*.color7:                         #c7ccd1
+*.color15:                        #f3f4f5
 
 
-!! Basic interface setup
+!!                                Basic interface setup
 URxvt.intensityStyles:	false
-URxvt.background:       [90]#000000
+URxvt.background:                 [90]#000000
 URxvt.depth:		32
 URxvt.scrollBar:	false
 URxvt.cursorColor:	white
-Rxvt.saveLines: 200000
+URxvt.saveLines:        200000
 URxvt.unicode3:		true
 
-! URxvt.letterSpace: 0
+!!                                Extensions
+URxvt.perl-lib:                   /home/arnaud/.config/urxvt-perls/
 
-!! Extensions
-URxvt.perl-lib:                                 /home/arnaud/.config/urxvt-perls/
-URxvt.perl-ext-common:			        default,matcher,resize-font,url-select,clipboard,font-sizee
-! URxvt.font: 		xft:mono:size=12
+URxvt.perl-ext-common:		  default,matcher,resize-font,url-select,clipboard
 
-! URxvt.font:           xft:Inconsolata:style=Bold:size=15
-URxvt.font:           xft:SauceCodePro Nerd Font Mono:style=Bold:size=14
-! URxvt.font:           xft:FuraCode Nerd Font:style=Regular:size=13
-! URxvt.font            xft:DejaVu Sans:pixelsize=14
-! URxvt.font              Monospace regular:pixelsize=14
+URxvt.font:                       xft:SauceCodePro Nerd Font Mono:style=Bold:size=14
 
+URxvt.colorURL:                    #4682B4	
 
+URxvt.keysym.M-l:                 perl:url-select:select_next
+URxvt.url-select.launcher:        sensible-browser
+URxvt.url-select.underline:       true
 
-URxvt.colorUL:          #4682B4	
+!!                                keyboard-eslect:
+URxvt.keysym.M-i:                 perl:keyboard-select:activate
 
+URxvt.keyboard-select.clipboard:  true
 
+!!                                resize-font
+URxvt.keysym.C-equal:             resize-font:reset
+URxvt.keysym.C-question:          resize-font:show
 
-URxvt.keysym.M-l:                       perl:url-select:select_next
-URxvt.url-select.launcher:              sensible-browser
-URxvt.url-select.underline:             true
-
-!! keyboard-eslect:
-URxvt.keysym.M-i:                       perl:keyboard-select:activate
-
-URxvt.keyboard-select.clipboard:        true
-
-!! resize-font
-URxvt.keysym.C-equal:     resize-font:reset
-URxvt.keysym.C-question:  resize-font:show
-
-!! Matcher
+!!                                Matcher
 URxvt.url-launcher:	linkhandler
 URxvt.matcher.button:	1
 
-!! Clipboard
-URxvt.keysym.M-w:   perl:clipboard:copy
-URxvt.keysym.C-y:   perl:clipboard:paste
-URxvt.keysym.C-w:   perl:clipboard:paste_escaped
+!!                                Clipboard
+URxvt.keysym.M-w:                 perl:clipboard:copy
+URxvt.keysym.C-y:                 perl:clipboard:paste
+URxvt.keysym.C-w:                 perl:clipboard:paste_escaped
 
-!! Good scrolling
-URxvt*scrollTtyOutput:      false
-URxvt*scrollWithBuffer:     true
-URxvt*scrollTtyKeypress:    true
-urxvt*saveLines:            10000
+!!                                Good scrolling
+URxvt*scrollTtyOutput:            false
+URxvt*scrollWithBuffer:           true
+URxvt*scrollTtyKeypress:          true
 
-!! Movements
-!!URxvt.keysym.Control-Up:     \033[1;5A
-!!URxvt.keysym.Control-Down:   \033[1;5B
-!!URxvt.keysym.Control-Left:   \033[1;5D
-!!URxvt.keysym.Control-Right:  \033[1;5C
-
-!!URxvt.keysym.Control-Left:    \033[1;5D
-!!URxvt.keysym.Control-Right:    \033[1;5C]]
-
-emacs.font: DejaVu Sans Mono-14
+emacs.font:                       DejaVu Sans Mono-14

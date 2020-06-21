@@ -155,6 +155,13 @@ dir_node_exact_matches = {
     'code'                             : '\uf668',
     'code_home'                        : '\uf668',
     'core.d'                           : '\ue5fc',
+    'Workspace'                        : '',
+    'personal'                         : '',
+    'system'                           : '',
+    'source'                           : 'שׂ',
+    'dotfiles'                         : '',
+    'code_manager'                     : '',
+    'envs'                             : '',
   
 # Spanish
     'Escritorio'                       : '',
@@ -200,6 +207,10 @@ dir_node_exact_matches = {
 }
 
 file_node_exact_matches = {
+  
+    '.bash_logout'                     : '',
+    '.inputrc'                         : '',
+    '.xinitrc'                         : '',
     '.Xdefaults'                       : '',
     '.Xresources'                      : '',
     '.bashprofile'                     : '',

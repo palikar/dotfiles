@@ -1,4 +1,4 @@
-Theming
+# Theming
 set $darkblack		#1b1918
 set $black		#766e6b
 set $darkred		#000000
@@ -63,7 +63,7 @@ gaps outer 15
 
 floating_modifier $mod
 
-set $term --no-startup-id rxvt-unicode
+set $term rxvt-unicode
 set $mod Mod4
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot

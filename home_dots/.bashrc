@@ -82,7 +82,9 @@ complete -o default -F _pip_completion pip3
 # pip bash completion end
 
 
-#theming
-xrdb merge "$HOME/.Xdefaults"
+[[ -f ~/.Xdefaults ]] && xrdb -merge -I$HOME ~/.Xdefaults
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
 (cat ~/.cache/wal/sequences &)
+
 

@@ -1,3 +1,4 @@
+xrdb merge "$HOME/.Xdefaults"
 
 if [ -f ~/.config/.env ]; then
     . ~/.config/.env
