@@ -3,10 +3,11 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+
+(when (< emacs-major-version 27)
+  (package-initialize))
 
 (setq vc-follow-symlinks t)
-;; (setq gc-cons-threshold 100000000)
 (setq debug-on-error t)
 
 (defun my-minibuffer-setup-hook ()
@@ -18,18 +19,15 @@
 (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 
-(load-file "/home/arnaud/.emacs.d/code-manager-packages.el")
+(defvar config-directory (file-name-as-directory (file-name-directory user-init-file)))
+(load-file (concat config-directory "code-manager-packages.el"))
 
 (let ((gc-cons-threshold most-positive-fixnum))
-  (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org")))
+  (org-babel-load-file (expand-file-name (concat config-directory "myinit.org")))
+  (setq gc-cons-threshold 800000))
 
 
 
-
-;; This 'load-file' is added by code-manager 
-;; It loads the packages installed by code-manager
-;; Do not delete the line nor the file
-;; (load-file "~/.emacs.d/code-manager-packages.el")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

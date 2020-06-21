@@ -1,4 +1,4 @@
-#Theming
+Theming
 set $darkblack		#1b1918
 set $black		#766e6b
 set $darkred		#000000
@@ -103,7 +103,7 @@ exec_always --no-startup-id /home/arnaud/.scripts/system/setupxkbd
 
 exec --no-startup-id i3spotifyupdate
 exec --no-startup-id nm-applet
-exec --no-startup-id compton --config ~/.config/compton/compton.conf
+exec --no-startup-id picom -b --config ~/.config/compton/compton.conf
 exec --no-startup-id unclutter
 exec --no-startup-id dunst
 exec --no-startup-id i3xautolock

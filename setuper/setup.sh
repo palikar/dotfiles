@@ -71,16 +71,16 @@ setup_files()
     
 
     # emascs ####################
-    rm -f "${HOME}/.emacs.d/snippets"
-    cp "$DIR/.emacs.d"  "${HOME}/" -b -R -a
+    rm -f "${HOME}/.config/emacs/snippets"
+    cp "$DIR/.emacs.d"  "${HOME}/.config/emacs" -b -R -a
 
-    rm -f "${HOME}/.emacs.d/myinit.org"
-    rm -f "${HOME}/.emacs.d/init.el"
-    rm -rf "${HOME}/.emacs.d/snippets"
+    rm -f "${HOME}/.config/emacs/myinit.org"
+    rm -f "${HOME}/.config/emacs/init.el"
+    rm -rf "${HOME}/.config/emacs/snippets"
 
-    ln -s "$DIR/.emacs.d/myinit.org" "${HOME}/.emacs.d/myinit.org"
-    ln -s "$DIR/.emacs.d/init.el" "${HOME}/.emacs.d/init.el"
-    ln -s "$DIR/.emacs.d/snippets" "${HOME}/.emacs.d/snippets"
+    ln -s "$DIR/.emacs.d/myinit.org" "${HOME}/.config/emacs/myinit.org"
+    ln -s "$DIR/.emacs.d/init.el" "${HOME}/.config/emacs/init.el"
+    ln -s "$DIR/.emacs.d/snippets" "${HOME}/.config/emacs/snippets"
     ##############################
 
 }

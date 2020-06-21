@@ -175,7 +175,7 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (setq auto-revert-verbose nil) ;; everything is seemless
 (setq vc-follow-symlinks t) ;; it asks you everytime otherwise
 (delete-selection-mode 1) ;; it's really weird working without that
-(load "~/.emacs.d/lisp/syntax-subword")
+(load (concat config-directory "lisp/syntax-subword"))
 (global-syntax-subword-mode 1) ;; easy workings with camel case, snake case and pretty much anything else
 (global-auto-revert-mode 1) ;; see changes on disc as quick as possible
 (prefer-coding-system 'utf-8)
@@ -462,7 +462,7 @@ My choice of terminal envinroment in my emacs is /Terminal Emulator/(term). Ther
 (defun find-myinit-file ()
   "Open the myinit.org file which is my actual configuration file."
   (interactive)
-  (find-file-other-window "~/.emacs.d/myinit.org"))
+  (find-file-other-window (concat config-directory "myinit.org")))
 
 
 
@@ -575,7 +575,7 @@ an error."
 ** Customs files
 
 #+BEGIN_SRC emacs-lisp
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (concat config-directory "custom.el"))
 (load custom-file)
 #+END_SRC
 
@@ -662,7 +662,7 @@ For easy navigation between several monitors. It's helpful to be able to quickly
 ** Framer
 My little thingy that is kind of useless but I like it. I implemented a mode so that you can resize the windows in Emacs... functionality that already exist in vanilla Emacs.
 #+BEGIN_SRC emacs-lisp
-(load-if-present "~/.emacs.d/lisp/arnaud-framer.el")
+(load-if-present (concat config-directory "lisp/arnaud-framer.el"))
 (when (require 'arnaud-framer nil t)
   (global-framer-mode 'nil))
 #+END_SRC
@@ -1330,9 +1330,10 @@ At my work I use this emacs-configuration for a lot of c++ programming. Yet, sim
 *** Doxymacs
 
 #+BEGIN_SRC emacs-lisp :results none
-;; (load-if-present "/home/arnaud/.emacs.d/lisp/tempo.el")
-;; (load-if-present "/home/arnaud/.emacs.d/lisp/xml-parse.el")
-;; (load-if-present "/home/arnaud/.emacs.d/lisp/doxymacs.el")
+
+;; (load-if-present (concat config-directory "lisp/tempo.el"))
+;; (load-if-present (concat config-directory "lisp/xml-parse.el"))
+;; (load-if-present (concat config-directory "lisp/doxymacs.el"))
 
 ;; (when (require 'doxymacs nil t)
 ;;   (setq doxymacs-doxygen-style "JavaDoc")
@@ -1887,9 +1888,8 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 #+Begin_src emacs-lisp :results none
 
 ;; (require 'load-directory)
-;; (load-directory "~/.emacs.d/my-lisp")
-
-;; (load-if-present "~/.emacs.d/lisp/vsexp.el")
+;; (load-directory (concat config-directory "my-lisp"))
+;; (load-if-present (concat config-directory "lisp/vsexp.el"))
 
 (when (require 'vsexp nil t)
   (bind-key* "C-M-y" 'sp-backward-up-sexp)
@@ -2665,7 +2665,7 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
   ("n" (find-file "~/Dropbox/orgfiles/notes.org") )
   ("t" (find-file "~/Dropbox/orgfiles/todos/todos.org"))
   ("a" (find-file "~/code/palikar.github.io/org/about.org"))
-  ("i" (find-file "~/code/dotfiles/.emacs.d/myinit.org"))
+  ("i" (find-file (concat config-directory "myinit.org")))
   ("q" nil "Cancel" :color blue))
 
 (bind-key* "C-c h F" 'arnaud-hydra-files/body)
@@ -3015,7 +3015,7 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 ** Sunrise Commander
 
 #+BEGIN_SRC emacs-lisp :results none
-;; (load-if-present "~/.emacs.d/lisp/sunrise-commander.el")
+;; (load-if-present (concat config-directory "lisp/sunrise-commander.el"))
 ;; (require 'sunrise-commander nil t)
 ;; (require 'sunrise-x-buttons nil t)
 ;; (require 'sunrise-x-modeline nil t)
@@ -3137,7 +3137,7 @@ A dashboard(yeah, I know, pretend the name didn't say it) kind of thing that dis
 
 (setq dashboard-banner-logo-title "Welcome to the Emacs of Stanislav Arnaudov")
 
-(setq dashboard-startup-banner "/home/arnaud/.emacs.d/chika_new.png")
+(setq dashboard-startup-banner (concat config-directory "chika_new.png"))
 (setq dashboard-center-content t)
 (setq dashboard-show-shortcuts nil)
 
@@ -3199,7 +3199,7 @@ From the documentation:
 ;; (workgroups-mode 1)
 
 ;; (setq wg-prefix-key (kbd "C-c z"))
-;; (setq wg-session-file "~/.emacs.d/.emacs_workgroups")
+;; (setq wg-session-file (concat config-directory ".emacs_workgroups"))
 ;; (setq wg-emacs-exit-save-behavior           'save)
 ;; (setq wg-workgroups-mode-exit-save-behavior 'save)
 ;; (setq wg-mode-line-display-on t)

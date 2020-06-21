@@ -47,4 +47,6 @@ __pycache__/
 .config/vifm/
 .config/vlc/
 .config/.gnupg/
+.config/.lesshst
+.config/emacs
 .config/.nvidia-settings-rc

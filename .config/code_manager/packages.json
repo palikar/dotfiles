@@ -40,7 +40,7 @@
             "vsexp",
             "python-req-installer"
         ],
-
+        
         "system" : [
             "i3-gaps",
             "mons",
@@ -99,7 +99,8 @@
 
         "source" : [
             "all-repos",
-            "projectile"
+            "projectile",
+            "cpr"
         ]
 
     },
@@ -662,7 +663,7 @@
         "emacs": {
             "fetch": "curl",
             "curl":{
-                "url" :  "http://ftp.hosteurope.de/mirror/ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz"
+                "url" :  "https://alpha.gnu.org/gnu/emacs/pretest/emacs-27.0.91.tar.xz"
             },
             "extract" : true,
             "install": "script",
@@ -910,7 +911,15 @@
             "git" : {
                 "url" : "@arnaud_base@/flow_predict"
             }
+        },
+
+        "cpr" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/whoshuu/cpr/"
+            }
         }
+        
 
 
     }

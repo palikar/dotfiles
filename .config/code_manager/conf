@@ -1,6 +1,6 @@
 [Config]
 code = /home/arnaud/code
-usr = /home/arnaud/usr
+usr = /home/arnaud/.local
 venv = /home/arnaud/code/envs/dev
 debug = true
 
