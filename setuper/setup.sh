@@ -56,8 +56,8 @@ setup_files()
     [ -d "${HOME}/.config" ] && mv "${HOME}/.config" "${HOME}/.config_old"
     ln -s "${DIR}/.config" "${HOME}/.config"
 
-    [ -d "${HOME}/.scripts" ] && rm -rf "${HOME}/.scripts"
-    ln -s "${DIR}/.scripts" "${HOME}/.scripts"
+    [ -d "${HOME}/.local/bin/scripts" ] && rm -rf "${HOME}/.local/bin/scripts"
+    ln -s "${DIR}/.scripts" "${HOME}/.local/bin/scripts"
 
     for dot in $(ls "${DIR}/system-config" -A); do
         rm -f "${HOME}/.config/$dot"

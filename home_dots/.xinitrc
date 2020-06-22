@@ -3,9 +3,6 @@ xhost +SI:localuser:$USER
 
 start-pulseaudio-x11
 
-# Make Java applications aware this is a non-reparenting window manager.
-export _JAVA_AWT_WM_NONREPARENTING=1
-
 # Fallback cursor
 xsetroot -cursor_name left_ptr
 

@@ -162,6 +162,7 @@ dir_node_exact_matches = {
     'dotfiles'                         : '',
     'code_manager'                     : '',
     'envs'                             : '',
+    'Media'                            : '',
   
 # Spanish
     'Escritorio'                       : '',

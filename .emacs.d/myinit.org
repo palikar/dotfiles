@@ -46,6 +46,13 @@ Lets let Emacs know who I am. Probably not a good idea cut them CIA know everyth
 #+END_SRC
 
 
+** Global variables 
+#+BEGIN_SRC emacs-lisp :results none
+(defvar documents-directory (file-name-as-directory (or (getenv "DOCUMENTS") "~/Documents/")))
+(defvar orgfiles-directory (file-name-as-directory (or (getenv "ORGFILES") "~/Documents/orgfiles/")))
+(defvar code-directory (file-name-as-directory (or (getenv "CODE_DIR") "~/code/")))
+#+END_SRC
+
 ** Repositories and packages
 The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
 /Edit:/ It's anoying when starting emacs it takes so long to connect to all the sites for the packages and I don't need =package-install= that regularly. With the current setup I fist have to call =setup-packages= in order to install new one but the emacs init time significantly lower. You may or may not care about that time if you run emacs like =emacs --daemon=.
@@ -114,6 +121,7 @@ Some major modes overwrite some of my custom keybindings. Therefore I define a c
 
 (my-keys-mode t)
 #+END_SRC
+
 
 ** Interface tweaks
 Making the whole =emacs= experience a tiny bit better with those fixes of the interface of the editor
@@ -189,10 +197,6 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 (setq mouse-yank-at-point t)
 (setq create-lockfiles nil)
 (auto-compression-mode t)
-
-(setenv "LD_LIBRARY_PATH" (concat (getenv "PATH") ":" (expand-file-name "~/core.d/usr/lib/")))
-(setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/core.d/usr/bin")))
-(setq exec-path (append exec-path (list (expand-file-name "~/core.d/usr/bin"))))
 #+END_SRC
 **** Keybindings
 #+BEGIN_SRC emacs-lisp :results none
@@ -242,7 +246,7 @@ Some quick fixes for intuitive and straight forward editing. Generally I strive 
 *** Saveplace
 
 #+BEGIN_SRC emacs-lisp :results none
-(require 'saveplace) ;; saves your cursor's position in buffers and jumps to it on reopening
+(require 'saveplace)
 (setq save-place t)
 (setq save-place-file (locate-user-emacs-file "places" ".emacs-places"))
 (setq save-place-forget-unreadable-files nil)
@@ -360,6 +364,18 @@ When you run Emacs as daemon and you connect clients to it, hitting =C-x C-c= wi
 #+BEGIN_SRC emacs-lisp :results none
 (when (daemonp)
   (bind-key* "C-x C-c" 'ask-before-closing))
+#+END_SRC
+*** Mini-buffer lag
+
+#+BEGIN_SRC emacs-lisp
+(defun my-minibuffer-setup-hook ()
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun my-minibuffer-exit-hook ()
+  (setq gc-cons-threshold 800000))
+
+(add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+(add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 #+END_SRC
 *** Scrolling
 The default scrolling behavior of Emacs is god awful. This fixes more of the issues.
@@ -834,15 +850,15 @@ Org-mode is awesome not just for note taking but also for general text editing, 
 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'org-bullets)
-;; (require 'org-tempo)
-(setq org-agenda-files '("~/Documents/orgfiles/todos/todos.org"))
+
+(setq org-agenda-files `(,(concat documents-directory "todos/todos.org")))
 
 (setq org-support-shift-select (quote always))
 (setq org-startup-indented t)
 (setq org-hide-leading-stars t)
 (setq org-babel-python-command "python")
-(setq org-directory "~/Documents/orgfiles")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-directory orgfiles-directory)
+(setq org-default-notes-file (concat orgfiles-directory "/notes.org"))
 (setq org-export-html-postamble nil)
 (setq org-startup-folded (quote overview))
 (setq org-log-done 'time)
@@ -935,9 +951,9 @@ Remove headlines with =:no_title:= tag.
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-reverse-note-order t)
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/Documents/orgfiles/todos/todos.org" "Captured")
+      `(("t" "Todo" entry (file+headline ,(concat orgfiles-directory "todos/todos.org") "Captured")
          "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
-        ("i" "Idea" entry (file+headline "~/Documents/orgfiles/notes.org" "Someday/Maybe")
+        ("i" "Idea" entry (file+headline ,(concat orgfiles-directory "notes.org") "Someday/Maybe")
          "* IDEA %?\nAdded: %U\n" :prepend t :kill-buffer t)
         ))
 
@@ -999,7 +1015,7 @@ will produce a graph-png at the end....it's awesome!
          (latex . t))))
 
 (setq org-plantuml-jar-path
-      (expand-file-name "~/code/plantuml.jar"))
+      (expand-file-name (concat config-directory "plantuml.jar")))
 
 #+END_SRC
 *** Keybinds
@@ -1973,7 +1989,7 @@ Get it here -> [[https://github.com/bbatsov/projectile][PROJECTILE!!!]]
 #+BEGIN_SRC emacs-lisp :results none
 (require 'projectile)
 (setq projectile-completion-system 'helm)
-(setq projectile-project-search-path '("/home/arnaud/code"))
+(setq projectile-project-search-path `(,code-directory))
 (setq projectile-indexing-method 'native)
 (setq projectile-enable-caching t)
 
@@ -2308,8 +2324,8 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
 
 
 (setq magit-repository-directories
-		'(
-		  ("~/code"        . 1))
+		`(
+		  (,code-directory        . 1))
 		magit-repolist-columns
 		'(
 		  ("Name"    25 magit-repolist-column-ident                  nil)
@@ -2676,9 +2692,8 @@ _d_: Diff        _C-c_: Clone    _S_  : Stage modified
 ^_i_^ : Myinit
 "
 
-  ("n" (find-file "~/Dropbox/orgfiles/notes.org") )
-  ("t" (find-file "~/Dropbox/orgfiles/todos/todos.org"))
-  ("a" (find-file "~/code/palikar.github.io/org/about.org"))
+  ("n" (find-file (concat orgfiles-directory "notes.org")) )
+  ("t" (find-file (concat orgfiles-directory "todos/todos.org")))
   ("i" (find-file (concat config-directory "myinit.org")))
   ("q" nil "Cancel" :color blue))
 
@@ -3059,7 +3074,7 @@ IEdit is kinda like real time search and replace. It's similar to that one vim f
 ;;   :name "Python Server"
 ;;   :command "python"
 ;;   :args '("-m" "http.server" "6001")
-;;   :cwd "/home/arnaud/core.d/www"
+;;   :cwd "/var/www/simple-python"
 ;;   :tags '(server)
 ;;   :stop-signal 'sigkill
 ;;   :kill-process-buffer-on-stop t)

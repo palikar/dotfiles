@@ -52,7 +52,7 @@ if [ -f ~/.config/.bash_prompt ]; then
 fi
 
 if [ -f ~/.config/paths ]; then
-    ~/.scripts/app/pathloader
+    pathloader
 fi
 
 if [ -f ~/code/.git-completion.bash ]; then
