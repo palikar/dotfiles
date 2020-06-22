@@ -34,9 +34,14 @@ for env in $(ls "${PYENVS_DIR}"); do
     alias "activate_$env"="source ${PYENVS_DIR}/$env/bin/activate"
 done
 
+if [ -d ${CODE_DIR}/personal ]; then
+    for dir in $(ls "${CODE_DIR}/personal"); do
+        alias "$dir"="cd ${CODE_DIR}/personal/${dir}"
+    done
+fi
 
 for METHOD in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "$METHOD"="lwp-request -m '$METHOD'"
+    alias "$METHOD"="lwp-request -m '$METHOD'"
 done
 
 alias setenv='source ~/code/setenv.sh'
@@ -104,4 +109,3 @@ extract () {
 		echo "'$1' is not a valid file!"
 	fi
 }
-

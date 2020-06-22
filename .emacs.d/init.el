@@ -2,7 +2,7 @@
   (package-initialize))
 
 (setq vc-follow-symlinks t)
-(setq debug-on-error t)
+(setq debug-on-error 't)
 
 (defvar config-directory (file-name-as-directory (file-name-directory user-init-file)))
 
@@ -11,8 +11,6 @@
 (let ((gc-cons-threshold most-positive-fixnum))
   (org-babel-load-file (expand-file-name (concat config-directory "myinit.org")))
   (setq gc-cons-threshold 800000))
-
-
 
 (custom-set-variables
  '(package-selected-packages

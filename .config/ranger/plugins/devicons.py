@@ -163,6 +163,7 @@ dir_node_exact_matches = {
     'code_manager'                     : '',
     'envs'                             : '',
     'Media'                            : '',
+    'elisp'                            : '',
   
 # Spanish
     'Escritorio'                       : '',

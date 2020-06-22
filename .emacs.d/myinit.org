@@ -48,10 +48,12 @@ Lets let Emacs know who I am. Probably not a good idea cut them CIA know everyth
 
 ** Global variables 
 #+BEGIN_SRC emacs-lisp :results none
+(defvar config-directory (file-name-as-directory (file-name-directory user-init-file)))
 (defvar documents-directory (file-name-as-directory (or (getenv "DOCUMENTS") "~/Documents/")))
 (defvar orgfiles-directory (file-name-as-directory (or (getenv "ORGFILES") "~/Documents/orgfiles/")))
 (defvar code-directory (file-name-as-directory (or (getenv "CODE_DIR") "~/code/")))
 #+END_SRC
+
 
 ** Repositories and packages
 The default packages repository for emacs is ELPA. ELPA is not super good, we also want MELPA. +MELPA is configured in the .emacs file but here we also add ELPA for good measures+ Everything is here now!
@@ -155,9 +157,8 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 #+END_SRC
 *** Fonts
 #+BEGIN_SRC emacs-lisp :results none
-;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=14")
-;; (set-frame-font "Hack:size=14" nil t)
-;; (set-default-font "SauceCodePro Nerd Font Mono:size=15")
+(set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=16")
+(set-frame-font "Hack:size=15" nil t)
 #+END_SRC
 *** Emojify
 Displaying emojies in a proper way.
@@ -726,7 +727,7 @@ I often alternate between these two and can't really decide which is my favorite
               (load-theme 'spacemacs-dark t))))
     (load-theme 'spacemacs-dark t))
 
-;; (load-theme 'monokai)
+
 #+END_SRC
 
 
