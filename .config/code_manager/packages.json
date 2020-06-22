@@ -100,6 +100,7 @@
         "source" : [
             "all-repos",
             "projectile",
+            "cpp-httplib",
             "cpr"
         ]
 
@@ -160,6 +161,14 @@
     },
 
     "packages": {
+        
+        "cpp-httplib" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/yhirose/cpp-httplib"
+            }
+
+        },
 
         "projectile" : {
             "fetch" : "git",

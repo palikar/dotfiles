@@ -1593,6 +1593,20 @@ When writing code I lot of times I mark the things I've just typed and hit /Tab/
        (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
                            (thing-at-point 'line)))))
 
+(defun aggressive-indent--indent-if-changed (buffer)
+  "Indent any region that changed in BUFFER in the last command loop."
+  (if (not (buffer-live-p buffer))
+      (and aggressive-indent--idle-timer
+           (cancel-timer aggressive-indent--idle-timer))
+    (with-current-buffer buffer
+      (when (and aggressive-indent-mode aggressive-indent--changed-list)
+        (save-excursion
+          (save-selected-window
+            (aggressive-indent--while-no-input
+              (aggressive-indent--proccess-changed-list-and-indent))))
+        (when (timerp aggressive-indent--idle-timer)
+          (cancel-timer aggressive-indent--idle-timer))))))
+
 #+END_SRC
 
 

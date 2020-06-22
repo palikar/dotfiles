@@ -37,22 +37,21 @@
 
 
 !!                                Basic interface setup
-URxvt.intensityStyles:	false
+URxvt.intensityStyles:	          false
 URxvt.background:                 [90]#000000
-URxvt.depth:		32
-URxvt.scrollBar:	false
-URxvt.cursorColor:	white
-URxvt.saveLines:        200000
-URxvt.unicode3:		true
+URxvt.depth:		          32
+URxvt.scrollBar:	          false
+URxvt.cursorColor:	          white
+URxvt.saveLines:                  200000
+URxvt.unicode3:                   true
 
 !!                                Extensions
 URxvt.perl-lib:                   /home/arnaud/.config/urxvt-perls/
-
 URxvt.perl-ext-common:		  default,matcher,resize-font,url-select,clipboard
 
 URxvt.font:                       xft:SauceCodePro Nerd Font Mono:style=Bold:size=14
 
-URxvt.colorURL:                    #4682B4	
+URxvt.colorURL:                   #4682B4	
 
 URxvt.keysym.M-l:                 perl:url-select:select_next
 URxvt.url-select.launcher:        sensible-browser
@@ -68,8 +67,8 @@ URxvt.keysym.C-equal:             resize-font:reset
 URxvt.keysym.C-question:          resize-font:show
 
 !!                                Matcher
-URxvt.url-launcher:	linkhandler
-URxvt.matcher.button:	1
+URxvt.url-launcher:	          linkhandler
+URxvt.matcher.button:	          1
 
 !!                                Clipboard
 URxvt.keysym.M-w:                 perl:clipboard:copy
@@ -81,4 +80,6 @@ URxvt*scrollTtyOutput:            false
 URxvt*scrollWithBuffer:           true
 URxvt*scrollTtyKeypress:          true
 
+!                                 
+!                                 emacs.font:                       xft:SauceCodePro Nerd Font Mono:size=14
 emacs.font:                       DejaVu Sans Mono-14
