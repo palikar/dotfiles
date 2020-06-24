@@ -101,6 +101,10 @@
             "all-repos",
             "projectile",
             "cpp-httplib",
+            "libhttpserver",
+            "uWebSockets",
+            "tabbed-distrotube",
+            "st-distrotube",
             "cpr"
         ]
 
@@ -161,6 +165,38 @@
     },
 
     "packages": {
+
+        "tabbed-distrotube" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://gitlab.com/dwt1/tabbed-distrotube"
+            },
+            "install": "make"
+        },
+
+        "tabbed-st" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://gitlab.com/dwt1/st-distrotube"
+            },
+            "install": "make"
+        },
+
+        "uWebSockets" : {
+            
+            "fetch" :  "git",
+            "git" : {
+                "url" : "https://github.com/uNetworking/uWebSockets"
+            }
+            
+        },
+
+        "libhttpserver":  {
+            "fetch" :  "git",
+            "git" : {
+                "url" : "https://github.com/etr/libhttpserver"
+            }
+        },
         
         "cpp-httplib" : {
             "fetch" : "git",

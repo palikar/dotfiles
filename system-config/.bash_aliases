@@ -36,7 +36,7 @@ done
 
 if [ -d ${CODE_DIR}/personal ]; then
     for dir in $(ls "${CODE_DIR}/personal"); do
-        alias "$dir"="cd ${CODE_DIR}/personal/${dir}"
+        alias "c${dir}"="cd ${CODE_DIR}/personal/${dir}"
     done
 fi
 

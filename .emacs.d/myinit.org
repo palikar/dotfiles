@@ -157,8 +157,8 @@ Making the whole =emacs= experience a tiny bit better with those fixes of the in
 #+END_SRC
 *** Fonts
 #+BEGIN_SRC emacs-lisp :results none
-(set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=16")
-(set-frame-font "Hack:size=15" nil t)
+;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font Mono:size=16")
+;; (set-frame-font "Hack:size=15" nil t)
 #+END_SRC
 *** Emojify
 Displaying emojies in a proper way.
@@ -852,7 +852,7 @@ Org-mode is awesome not just for note taking but also for general text editing, 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'org-bullets)
 
-(setq org-agenda-files `(,(concat documents-directory "todos/todos.org")))
+(setq org-agenda-files `(,(concat orgfiles-directory "todos/todos.org")))
 
 (setq org-support-shift-select (quote always))
 (setq org-startup-indented t)
