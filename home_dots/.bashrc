@@ -87,3 +87,5 @@ complete -o default -F _pip_completion pip3
 
 (cat ~/.cache/wal/sequences &)
 
+
+

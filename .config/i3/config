@@ -49,7 +49,7 @@ bar {
     Position top
     mode dock
     modifier None
-    tray_output             primary
+    # tray_output              
     workspace_buttons       yes
     strip_workspace_numbers yes
 }

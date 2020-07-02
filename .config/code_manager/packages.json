@@ -105,6 +105,7 @@
             "uWebSockets",
             "tabbed-distrotube",
             "st-distrotube",
+            "restbed",
             "cpr"
         ]
 
@@ -166,6 +167,14 @@
 
     "packages": {
 
+        "restbed" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/Corvusoft/restbed/"
+            }
+        },
+
+
         "tabbed-distrotube" : {
             "fetch" : "git",
             "git" : {
@@ -174,7 +183,7 @@
             "install": "make"
         },
 
-        "tabbed-st" : {
+        "st-distrotube" : {
             "fetch" : "git",
             "git" : {
                 "url" : "https://gitlab.com/dwt1/st-distrotube"

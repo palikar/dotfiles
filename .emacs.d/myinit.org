@@ -1026,6 +1026,9 @@ will produce a graph-png at the end....it's awesome!
 (bind-key* "C-c c" 'org-capture)
 (bind-key* "C-c C-x s" 'org-attach-screenshot org-mode-map)
 
+(bind-key* "M-S-<down>" 'org-move-subtree-down org-mode-map)
+(bind-key* "M-S-<up>" 'org-move-subtree-up org-mode-map)
+
 (setq  org-replace-disputed-keys 't)
 
 (add-hook 'org-shiftup-final-hook 'windmove-up)
