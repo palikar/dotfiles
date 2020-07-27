@@ -2,4 +2,6 @@
 
 config = {}
 
-config['server'] = 'localhost'
+config['server'] = 'taygeta'
+
+config['exchange'] = 'amq.topic'

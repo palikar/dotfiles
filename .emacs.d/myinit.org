@@ -1176,8 +1176,6 @@ The most of the configuration work is done in each of the following sections. Th
 (bind-key* "C-/" 'comment-or-uncomment-region-or-line)
 #+END_SRC
 
-
-
 ** Folding code
 A standard IDE feature that comes out of the box with emacs. Just a little tweak to give it nice keybindings. To note is that I use german QWERTZ keyboard so this won't work for all you QWERTY-Normies out there.
 #+BEGIN_SRC emacs-lisp
@@ -1186,7 +1184,6 @@ A standard IDE feature that comes out of the box with emacs. Just a little tweak
 (bind-key* "C-M-ü" 'hs-hide-all)
 (bind-key* "C-ü" 'hs-toggle-hiding)
 #+END_SRC
-
 
 
 ** C++
@@ -1500,7 +1497,6 @@ I don't really use EMACS for java development as it can be tedious and the packa
 
 #+END_SRC
 
-
 ** Web Mode
 
 From time to time I have to write HTML and other 'web-stuff' and this setup gets me by. It's not really sophisticated and complex but.... come on, it web-programming...no offense. There are a lot Key bindings that come with =web-mode= that I don't really know, mostly because I don't use it that much but if you do, be sure to check them out.
@@ -1551,7 +1547,6 @@ From time to time I have to write HTML and other 'web-stuff' and this setup gets
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 #+END_SRC
 
-
 ** VueJS
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -1561,7 +1556,6 @@ From time to time I have to write HTML and other 'web-stuff' and this setup gets
 ;;                   (css-mode "<style *>" "</style>")))
 ;; (add-to-list 'auto-mode-alist '("\\.vue\\'" . multi-web-mode))
 #+END_SRC
-
 
 ** Yasnippet
 One of the most useful packages that is pretty much a must for a emacs configuration. The package provides a whole bunch of very handy snippets for code/text/structures in almost all major modes of emacs. The default prefix for some of the yas functions is =C-c &= but this really doesn't work for me. Therefore I've defined custom keybindings for the important functions. Also, I write a lot in c++, so I often found myself in the situation where I first expand a ~std::vector~ and then I want to give it a type of ~std::sting~. Stacked snippets are my best friend when it comes to this problem.
@@ -1589,7 +1583,6 @@ One of the most useful packages that is pretty much a must for a emacs configura
 (bind-key* "C-c y r"  'yas/reload-all)
 (bind-key* "C-<tab>" 'helm-yas-complete)
 #+END_SRC
-
 
 ** Fly-check
 Syntax error-checking on the fly (haha!) while working on code. It's convenient to avoid small errors that screw up your compilation and are just being anoying.

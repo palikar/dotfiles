@@ -106,6 +106,8 @@
             "tabbed-distrotube",
             "st-distrotube",
             "restbed",
+            "v8",
+            "libuv",
             "cpr"
         ]
 
@@ -166,6 +168,22 @@
     },
 
     "packages": {
+
+        "libuv" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/libuv/libuv"
+            }
+        },
+
+
+        "v8" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/v8/v8"
+            }
+        },
+
 
         "restbed" : {
             "fetch" : "git",
