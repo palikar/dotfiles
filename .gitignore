@@ -50,3 +50,6 @@ __pycache__/
 .config/.lesshst
 .config/emacs
 .config/.nvidia-settings-rc
+.config/kritarc
+.config/kritadisplayrc
+.config/configstore/
