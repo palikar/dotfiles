@@ -1,18 +1,18 @@
 [Config]
-code = /home/arnaud/code
-usr = /home/arnaud/.local
-venv = /home/arnaud/code/envs/dev
+code = $HOME/code
+usr = $HOME/.local
+install_scripts = $HOME/.config/install_scripts
 debug = true
+cache = $HOME/.config/code_manager/cache
+sources = $HOME/.config/code_manager/sources
+venv = $HOME/code/envs/dev
+
 
 [Download]
 git_ssh = true
 
-[Cache]
-cache = ${HOME}/.config/code_manager/cache
-
 [Logging]
-direcory = /home/arnaud/.config/code_manager/logs
-
+direcory = $HOME/.config/code_manager/logs
 
 [Commands]
 grep-colors = true
