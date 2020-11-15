@@ -32,6 +32,7 @@
             "ctgraph",
             "anything",
             "alisp",
+            "github_install_wizard",
             "flow_predict"
         ],
 
@@ -168,6 +169,15 @@
     },
 
     "packages": {
+
+        
+        "github_install_wizard" : {
+            "fetch" : "git",
+            "git" : {
+                "url" : "https://github.com/palikar/github_install_wizard"
+            }
+        },
+
 
         "libuv" : {
             "fetch" : "git",

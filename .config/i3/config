@@ -12,8 +12,8 @@ set $blue		#407ee7
 set $darkmagenta	#6666ea
 set $magenta		#6666ea
 set $darkcyan		#00ad9c
-set $cyan       	#00ad9c      
-set $darkwhite  	#a8a19f
+set $cyan               #00ad9c
+set $darkwhite          #a8a19f
 set $white		#f1efee
 set $transparent        #00000000
 
@@ -29,9 +29,8 @@ font pango:mono 12
 
 # Status bar
 bar {
-    font pango:mono 14
     separator_symbol "|"
-    font pango:DejaVu Sans Mono 14
+    font pango:DejaVuSansMono Nerd 14
 
     colors {
         background $darkblack
@@ -44,12 +43,12 @@ bar {
     }
 
     workspace_min_width 30
-    
+
     status_command i3blocks
     Position top
     mode dock
     modifier None
-    # tray_output              
+    # tray_output
     workspace_buttons       yes
     strip_workspace_numbers yes
 }
@@ -65,6 +64,7 @@ floating_modifier $mod
 
 set $term rxvt-unicode
 set $mod Mod4
+set $alt Mod1
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
 set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
@@ -77,29 +77,24 @@ set $ws2    "2: "
 set $ws3    "3: "
 set $ws4    "4: "
 set $ws5    "5: "
-set $ws6    "6: "
-set $ws7    "7: "
+set $ws6    "6:  "
+set $ws7    "7:  "
 set $ws8    "8: "
-set $ws9    "9: "
-set $ws10   "10: "
+set $ws9    "9:  "
+Set $ws10   "10:   "
 
-# set $ws1    1
-# set $ws2    2
-# set $ws3    3
-# set $ws4    4
-# set $ws5    5
-# set $ws6    6
-# set $ws7    7
-# set $ws8    8
-# set $ws9    9
-# set $ws10   10
+set $ws11    "11:  ( )"
+set $ws12    "12:  ( )"
+set $ws13    "13:  ( )"
+set $ws14    "14:  ( )"
+set $ws15    "15:  ( )"
+
 
 # #---- System setup ----# #
 exec_always --no-startup-id feh --bg-scale --no-fehbg $WALLPAPER
-
 exec_always --no-startup-id nvidia-settings --load-config-only --config $HOME/.config/.nvidia-settings-rc
-
 exec_always --no-startup-id /home/arnaud/.scripts/system/setupxkbd
+exec_always --no-startup-id autorandr --load home
 
 exec --no-startup-id i3spotifyupdate
 exec --no-startup-id nm-applet
@@ -108,7 +103,7 @@ exec --no-startup-id unclutter
 exec --no-startup-id dunst
 exec --no-startup-id i3xautolock
 exec --no-startup-id wal -R
-exec --no-startup-id dropbox start
+
 
 exec --no-startup-i xinput set-prop 12 287 1
 
@@ -129,14 +124,14 @@ exec_always flock -w1 ~/.config/i3/scratchpad/lockfile ~/.config/i3/scratchpad/p
 # #---- Bindings ----# #
 
 bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Are you sure you want to reboot?" "$reboot"
-bindsym $mod+Shift+Escape 	exec --no-startup-id prompt "Are you sure you want to leave i3?" "i3-msg exit"
+bindsym $mod+Shift+Escape       exec --no-startup-id prompt "Are you sure you want to leave i3?" "i3-msg exit"
 bindsym $mod+Shift+F12		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
 bindsym $mod+Shift+F11		exec --no-startup-id prompt "Are you sure you want to suspend?" "$suspend"
 bindsym $mod+Shift+F10		exec --no-startup-id prompt "Are you sure you want to hibernate?" "$hibernate"
 bindsym $mod+Shift+F8		exec --no-startup-id toggleautolocking
 bindsym $mod+Return		exec $term
 bindsym $mod+Shift+Return	exec --no-startup-id samedir
-bindsym $mod+Home 	        floating toggle
+bindsym $mod+Home               floating toggle
 bindsym $mod+Shift+Tab          exec rofi -show window
 bindsym $mod+space              exec --no-startup-id i3changelayout
 bindsym $mod+Shift+Prior        gaps inner current set 0; gaps outer current set 0
@@ -145,10 +140,10 @@ bindsym $mod+Shift+Next		gaps inner current set 15; gaps outer current set 0
 bindsym $mod+Shift+a            exec --no-startup-id i3swap
 bindsym $mod+Shift+c            reload
 bindsym $mod+Shift+e            exec --no-startup-id dmenuunicode
-bindsym $mod+Shift+l	        exec --no-startup-id lockscreen
+bindsym $mod+Shift+l            exec --no-startup-id lockscreen
 bindsym $mod+Shift+u            scratchpad show
 Bindsym $mod+Shift+p            exec --no-startup-id setupxkbd
-bindsym $mod+Shift+r            restart 
+bindsym $mod+Shift+r            restart
 bindsym $mod+Shift+q            kill
 bindsym $mod+Shift+d            exec rofi -show drun
 bindsym $mod+Shift+v            split v
@@ -159,8 +154,8 @@ Bindsym $mod+Shift+s            exec --no-startup-id screensetup
 bindsym $mod+Shift+b            bar mode toggle
 bindsym $mod+Shift+f            fullscreen toggle
 
-bindsym $mod+b	                exec --no-startup-id screenbrighness
-Bindsym $mod+d	                exec --no-startup-id rofi -show run
+bindsym $mod+b                  exec --no-startup-id screenbrighness
+Bindsym $mod+d                  exec --no-startup-id rofi -show run
 bindsym $mod+r                  exec --no-startup-id $term -e ranger
 bindsym $mod+e                  exec --no-startup-id emacsclient -c
 bindsym $mod+w                  exec --no-startup-id firefox
@@ -168,11 +163,11 @@ bindsym $mod+u                  exec --no-startup-id nautilus
 bindsym $mod+o                  exec --no-startup-id spotify
 bindsym $mod+t                  exec --no-startup-id $term -e sudo htop
 bindsym $mod+m                  exec --no-startup-id gnome-system-monitor
-bindsym $mod+l            	exec --no-startup-id openfolder
-bindsym $mod+c            	exec --no-startup-id traymenu
-bindsym $mod+p            	exec --no-startup-id passmenu
-bindsym $mod+n            	exec --no-startup-id popcamera
-bindsym $mod+i            	exec --no-startup-id $term -e cmatrix
+bindsym $mod+l                  exec --no-startup-id openfolder
+bindsym $mod+c                  exec --no-startup-id traymenu
+bindsym $mod+p                  exec --no-startup-id passmenu
+bindsym $mod+n                  exec --no-startup-id popcamera
+bindsym $mod+i                  exec --no-startup-id $term -e cmatrix
 
 
 
@@ -181,15 +176,6 @@ bindsym --release Shift+Print   exec gnome-screenshot -a
 # bindsym --release Shift+Print exec scrot -z -s "/home/arnaud/Wallpapers/Screenshots/Screenshots_%Y-%m-%d_$(date '+%s').png"
 
 # #---- Gaps ----# #
-
-# set $stacking-mode Window
-mode "  " {
-     bindsym q layout stacking  ;    mode "default"
-     bindsym w layout tabbed ;       mode "default"
-     bindsym e layout toggle split ; mode "default"
-     bindsym Escape                  mode "default"
-     
-}
 
 
 # ----- Windows ----- #
@@ -214,25 +200,25 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+control+Up                 exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize up"
 bindsym $mod+control+Down		exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize down"
 bindsym $mod+control+Left		exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize left"
-bindsym $mod+control+Right 		exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize right"
+bindsym $mod+control+Right              exec --no-startup-id "bash ~/.scripts/i3blocks/i3resize right"
 
-for_window [class="Emacs"] move workspace $ws2
-for_window [class="Nautilus"] move workspace $ws5
-for_window [class="Evince"] move workspace $ws6
-for_window [class="Spotify"] move workspace $ws7
-for_window [class="discord"] move workspace $ws8
-for_window [class="ParaView"] move workspace $ws10
+# for_window [class="Emacs"] move workspace $ws2
+# for_window [class="Nautilus"] move workspace $ws5
+# for_window [class="Evince"] move workspace $ws6
+# for_window [class="Spotify"] move workspace $ws7
+# for_window [class="discord"] move workspace $ws8
+# for_window [class="ParaView"] move workspace $ws10
 
 # ----- Workspaces ----- #
 
 # Bindings
 bindsym $mod+Tab                        workspace back_and_forth
 bindsym $mod+Mod1+Right                 workspace next
-bindsym $mod+Mod1+Left	                workspace prev
-bindsym $mod+Prior		        workspace prev
-bindsym $mod+Next		        workspace next
-# bindsym $mod+Shift+Prior	        move container to workspace prev
-# bindsym $mod+Shift+Next		        move container to workspace next
+bindsym $mod+Mod1+Left                  workspace prev
+bindsym $mod+Prior                      workspace prev
+bindsym $mod+Next                       workspace next
+# bindsym $mod+Shift+Prior              move container to workspace prev
+# bindsym $mod+Shift+Next                       move container to workspace next
 
 # Switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -246,6 +232,12 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+bindsym $mod+F1 workspace $ws11
+bindsym $mod+F2 workspace $ws12
+bindsym $mod+F3 workspace $ws13
+bindsym $mod+F4 workspace $ws14
+bindsym $mod+F5 workspace $ws15
+
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -257,6 +249,13 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Shift+F1 move container to workspace $ws11
+bindsym $mod+Shift+F2 move container to workspace $ws12
+bindsym $mod+Shift+F3 move container to workspace $ws13
+bindsym $mod+Shift+F4 move container to workspace $ws14
+bindsym $mod+Shift+F5 move container to workspace $ws15
+
 
 # #---- Floating windows ----# #
 for_window [class="MPlayer"] floating enable
@@ -349,7 +348,7 @@ bindsym XF86AudioStop		exec --no-startup-id lmc toggle
 # #bindsym XF86Reply		exec
 # #bindsym XF86MailForward	exec
 # bindsym XF86Save		exec
-# bindsym XF86Documents	        exec $term -e ranger ~/Documents
+# bindsym XF86Documents         exec $term -e ranger ~/Documents
 # bindsym XF86Battery		exec
-# bindsym XF86Bluetooth	        exec
+# bindsym XF86Bluetooth         exec
 # bindsym XF86WLAN		exec $netrefresh

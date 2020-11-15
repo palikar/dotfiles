@@ -3,13 +3,7 @@
 alias ..="cd .."
 alias ~="cd ~"
 
-alias core='cd ~/core.d'
-alias ext='cd ~/code_ext/'
 alias code='cd ~/code/'
-alias sys='cd ~/code_sys/'
-alias scripts='cd ~/code/scripts'
-alias uni='cd ~/Uni/Semesters/SS19'
-
 
 alias pip='pip3'
 
@@ -30,6 +24,9 @@ alias vim='nvim'
 alias vi='nvim'
 
 
+alias make='make -s'
+
+
 for env in $(ls "${PYENVS_DIR}"); do
     alias "activate_$env"="source ${PYENVS_DIR}/$env/bin/activate"
 done
@@ -39,6 +36,8 @@ if [ -d ${CODE_DIR}/personal ]; then
         alias "c${dir}"="cd ${CODE_DIR}/personal/${dir}"
     done
 fi
+
+alias corg='cd ~/Media/Documents/orgfiles/'
 
 for METHOD in GET HEAD POST PUT DELETE TRACE OPTIONS; do
     alias "$METHOD"="lwp-request -m '$METHOD'"

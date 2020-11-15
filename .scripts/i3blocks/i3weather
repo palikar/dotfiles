@@ -2,7 +2,7 @@
 ### This is only if your location isn't automatically detected, otherwise you can leave it blank.
 
 # [ "$location" != "" ] && location="$location+"
-location="Karlsruhe"
+location="Sofia"
 
 [ "$BLOCK_BUTTON" = "1" ] && $TERMINAL -e popweather
 

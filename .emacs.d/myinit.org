@@ -89,13 +89,12 @@ I use a lot of additional packages and like to keep them local and installed. I'
 (defun setup-packages ()
   (interactive)
   (setq package-archives '())
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/#/"))
   (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") )
-  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") )
+  (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") )
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") )
   (package-refresh-contents)
-  (setq packages-setup-state t)
-  )
+  (setq packages-setup-state t))
 
 
 
@@ -650,6 +649,10 @@ an error."
 (bind-key* "M-+" 'backward-paragraph)
 (bind-key* "M-#" 'forward-paragraph)
 
+(bind-key* "M-^" 'join-line)
+
+
+
 #+END_SRC
 
 **** Disabling keys
@@ -717,8 +720,8 @@ I often alternate between these two and can't really decide which is my favorite
 #+BEGIN_SRC emacs-lisp :results none
 
 (setq custom-enabled-themes (quote (spacemacs-dark)))
-(setq custom-enabled-themes (quote (vscdark-dark)))
 (setq custom-safe-themes t)
+(setq custom-enabled-themes (quote (vscdark-dark)))
 ;; this loads the theme correctly even in daemon mode
 (if (daemonp)
     (add-hook 'after-make-frame-functions
@@ -1024,10 +1027,14 @@ will produce a graph-png at the end....it's awesome!
 #+BEGIN_SRC emacs-lisp :results none
 (bind-key* "C-c a" 'org-agenda)
 (bind-key* "C-c c" 'org-capture)
-(bind-key* "C-c C-x s" 'org-attach-screenshot org-mode-map)
 
+(bind-key* "C-c C-x s" 'org-attach-screenshot org-mode-map)
 (bind-key* "M-S-<down>" 'org-move-subtree-down org-mode-map)
 (bind-key* "M-S-<up>" 'org-move-subtree-up org-mode-map)
+
+(bind-key* "C-c n" 'org-table-insert-row org-mode-map)
+(bind-key* "C-c v" 'org-table-insert-column org-mode-map)
+
 
 (setq  org-replace-disputed-keys 't)
 
@@ -1856,7 +1863,7 @@ if __name__ == \'__main__\':
 Another 'standard feature' of most editors but in emacs we have to set it up because this is how we roll. This is just moving the selected block up and down while holding /Alt/
 - [[https://github.com/rejeep/drag-stuff.el][drag-stuff]]
 #+BEGIN_SRC emacs-lisp
-(require 'drag-stuff)
+(require 'drag-stuff) 
 (drag-stuff-global-mode)
 (bind-key* "M-<up>" 'drag-stuff-up)
 (bind-key* "M-<down>" 'drag-stuff-down)
@@ -2144,6 +2151,7 @@ This will keep the buffers listed in the helm-mini menu neatly organized.
 (bind-key* "C-x r h" 'helm-register)
 (bind-key* "C-x c k" 'helm-execute-kmacro)
 (bind-key* "M-y" 'helm-show-kill-ring)
+
 #+END_SRC
 
 
@@ -2169,11 +2177,8 @@ This package makes your =C-x C-b= (/list-buffers/) pretty. You can even specify 
            (mode . c-mode)
            (mode . c++-mode)
            ))
-         ("Go"
-          (or
-           (mode . c-mode)
-           (mode . c++-mode)
-           ))
+         ("Go Lang"
+          (mode . go-mode))
          ("Python"
           (mode . python-mode)
           )
@@ -2966,7 +2971,7 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginning of the expression and you type =C-SPC C-c f (= you won't mark everything till the =(= (now I believer this sentence to be lie). Still useful though.
 - [[https://github.com/doitian/iy-go-to-char][iy-go-to-char]]
 #+BEGIN_SRC emacs-lisp
-(require 'iy-go-to-char)
+(require 'iy-go-to-char)i
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
@@ -3305,7 +3310,7 @@ Yes, from time to time I do find myself saying "Ugh, vim has that one nice featu
 	  ;; (evil-mode)
       ;; (evil-local-mode (or 1 1))
       ;; (set-variable 'cursor-type 'box)
-      (set-cursor-color "#8968cd"))))
+      (set-cursor-color "#98fb98"))))
 
 (set-cursor-color "#98fb98")
 (bind-key* "M-<f13>" 'quick-evil)
@@ -3367,7 +3372,6 @@ The modeline can get pretty cluttered with minor modes pretty quickly. To avoid 
   (diminish 'hs-minor-mode)
   (diminish 'which-key-mode)
   (diminish 'iedit-mode)
-  (diminish 'modalka-mode "μ")
   (diminish 'visual-line-mode)
   (diminish 'hs-minor-mode)
   (diminish 'aggressive-indent-mode)

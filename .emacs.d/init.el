@@ -4,9 +4,9 @@
 (setq vc-follow-symlinks t)
 (setq debug-on-error 't)
 
-(defvar config-directory (file-name-as-directory (file-name-directory user-init-file)))
+(defvar config-directory "~/.config/emacs/")
 
-(load-file (concat config-directory "code-manager-packages.el"))
+;; (load-file (concat config-directory "code-manager-packages.el"))
 
 (let ((gc-cons-threshold most-positive-fixnum))
   (org-babel-load-file (expand-file-name (concat config-directory "myinit.org")))

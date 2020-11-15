@@ -164,6 +164,7 @@ dir_node_exact_matches = {
     'envs'                             : '',
     'Media'                            : '',
     'elisp'                            : '',
+    'go'                               : 'ﳑ',
   
 # Spanish
     'Escritorio'                       : '',

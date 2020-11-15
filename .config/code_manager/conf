@@ -17,6 +17,7 @@ direcory = $HOME/.config/code_manager/logs
 [Commands]
 grep-colors = true
 sed-colors = true
+pull-colors = true
 
 [Common]
 

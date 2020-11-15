@@ -3,8 +3,8 @@
 XRANDR=$(which xrandr)
 
 
-dis=$(echo -e "HDMI-1\neDP-1" | rofi -dmenu -i -p "Display: ")
-res=$(echo -e "1\n1.1\n1.2\n1.3\n1.4\n1.5\n1.6\n1.7\n1.8\n1.9\n2" |rofi -dmenu -i -p "Brightness: ")
+dis=$(echo -e "HDMI-1\nDP-0" | rofi -dmenu -i -p "Display: ")
+res=$(echo -e "0.5\n0.6\n0.7\n0.8\n0.9\n1\n1.1\n1.2\n1.3\n1.4\n1.5\n1.6\n1.7\n1.8\n1.9\n2" |rofi -dmenu -i -p "Brightness: ")
 
 
 
