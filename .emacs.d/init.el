@@ -12,6 +12,8 @@
   (org-babel-load-file (expand-file-name (concat config-directory "myinit.org")))
   (setq gc-cons-threshold 800000))
 
+(setq debug-on-error 'nil)
+
 (custom-set-variables
  '(package-selected-packages
    (quote

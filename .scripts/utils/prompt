@@ -4,7 +4,7 @@
 # For example:
 # `./prompt "Do you want to shutdown?" "shutdown -h now"`
 
-res=$(echo  "No\nYes" | rofi -dmenu -i -p "$1" -nb darkred -sb red -sf white -nf gray -fn mono)
+res=$(echo  "No\nYes" | dmenu -i -p "$1" -nb darkred -sb red -sf white -nf gray -fn mono)
 echo $res
 if [ "$res" = "Yes" ] ; then
     $2 ;

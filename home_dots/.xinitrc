@@ -16,6 +16,7 @@ setterm -blank 0 -powersave off -powerdown 0
 setxkbmap -layout de,bg -variant "deadacute, phonetic"
 setxkbmap -option caps:ctrl_modifier
 
+exec i3
 
 [[ -f ~/.Xdefaults ]] && xrdb -merge -I$HOME ~/.Xdefaults
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources

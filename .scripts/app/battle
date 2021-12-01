@@ -19,14 +19,15 @@ fi
 i3-msg "workspace ${ws1}; exec rxvt-unicode"
 sleep 1
 i3-msg "workspace ${ws2}; exec emacsclient -c"
+sleep 2
 i3-msg "workspace ${ws3}; exec rxvt-unicode"
 i3-msg "workspace ${ws4}; exec /usr/bin/firefox"
 sleep 1
 i3-msg "workspace ${ws5}; exec rxvt-unicode -e ranger"
 
-i3-msg "workspace ${ws11}; exec /usr/bin/firefox"
-i3-msg "workspace ${ws12}; exec emacsclient -c"
-i3-msg "workspace ${ws13}; exec rxvt-unicode"
-i3-msg "workspace ${ws14}; exec rxvt-unicode"
+# i3-msg "workspace ${ws11}; exec /usr/bin/firefox"
+# i3-msg "workspace ${ws12}; exec emacsclient -c"
+# i3-msg "workspace ${ws13}; exec rxvt-unicode"
+# i3-msg "workspace ${ws14}; exec rxvt-unicode"
 
 

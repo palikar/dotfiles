@@ -98,7 +98,7 @@ exec_always --no-startup-id autorandr --load home
 
 exec --no-startup-id i3spotifyupdate
 exec --no-startup-id nm-applet
-exec --no-startup-id picom -b --config ~/.config/compton/compton.conf
+exec --no-startup-id comton -b --config ~/.config/compton/compton.conf
 exec --no-startup-id unclutter
 exec --no-startup-id dunst
 exec --no-startup-id i3xautolock

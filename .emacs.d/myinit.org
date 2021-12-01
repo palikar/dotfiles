@@ -171,7 +171,6 @@ Displaying emojies in a proper way.
 ** Behavioral tweaks
 Some quick fixes for intuitive and straight forward editing. Generally I strive for the cleanest design the interface possible so I remove a lot from the unnecessary things that come by default with EMACS.
 #+BEGIN_SRC emacs-lisp :results none
-(setq debug-on-error nil)
 (setq indent-tabs-mode nil)
 (setq auto-save-default nil)
 (setq backup-inhibited t)
@@ -1149,10 +1148,11 @@ I used to use [[http://www.xm1math.net/texmaker/TexMaker/][/TexMaker/]] for writ
 
 *** Keybinds
 #+BEGIN_SRC emacs-lisp :results none
-(bind-key* "C-c l p" 'latex-preview-pane-mode latex-mode-map)
-(bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography latex-mode-map)
-(bind-key* "C-c l M-p" 'latex-preview-pane-update latex-mode-map)
-(bind-key* "C-c l l" 'TeX-command-master latex-mode-map)
+
+;; (bind-key* "C-c l p" 'latex-preview-pane-mode latex-mode-map)
+;; (bind-key* "C-c l b" 'helm-bibtex-with-local-bibliography latex-mode-map)
+;; (bind-key* "C-c l M-p" 'latex-preview-pane-update latex-mode-map)
+;; (bind-key* "C-c l l" 'TeX-command-master latex-mode-map)
 #+END_SRC
 
 
@@ -1491,7 +1491,7 @@ I don't really use EMACS for java development as it can be tedious and the packa
           (lambda ()
             ;; (meghanada-mode t)
             (flycheck-mode +1)
-            (setq c-basic-offset 2)
+            (setq c-basic-offset 4)
             (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
 (cond
    ((eq system-type 'windows-nt)
@@ -1923,7 +1923,7 @@ As you've probably noticed =C-M= in like kind of a prefix for all /sexp/-operati
 
 ;; (require 'load-directory)
 ;; (load-directory (concat config-directory "my-lisp"))
-;; (load-if-present (concat config-directory "lisp/vsexp.el"))
+(load-if-present (concat config-directory "lisp/vsexp.el"))
 
 (when (require 'vsexp nil t)
   (bind-key* "C-M-y" 'sp-backward-up-sexp)
@@ -2971,7 +2971,7 @@ Navigate by searching for a letter on the screen and jumping to it. Useful for q
 Go to next CHAR which is similar to "f" and " t" in /vim/. To note is that I don't think that this package will remember the state of your mark when you make the jump. So if you have the expression =int funcName(int a, int b)=, the cursor is at the beginning of the expression and you type =C-SPC C-c f (= you won't mark everything till the =(= (now I believer this sentence to be lie). Still useful though.
 - [[https://github.com/doitian/iy-go-to-char][iy-go-to-char]]
 #+BEGIN_SRC emacs-lisp
-(require 'iy-go-to-char)i
+(require 'iy-go-to-char)
 #+END_SRC
 *** Keybindgs
 #+BEGIN_SRC emacs-lisp
@@ -3586,4 +3586,19 @@ This things will track which command is being run and how many times... I just t
 #  LocalWords:  Yagist QOL VueJS Quickrun LSP Savehist Recentf GDB Iy
 #  LocalWords:  Uniquify Saveplace Ediff Docview Avy IEdit Swiper SRC
 #  LocalWords:  IMenu Magit Gitignore Modeline Vimacs Emojify
+
+
+
+* Colorize compilation
+
+#+BEGIN_SRC emacs-lisp
+
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+#+END_SRC
+
 
